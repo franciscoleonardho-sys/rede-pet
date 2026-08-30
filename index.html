@@ -177,6 +177,11 @@
             background: #111;
         }
 
+        .botao-enviar:disabled {
+            background: #888;
+            cursor: wait;
+        }
+
         .mensagem {
             display: none;
             margin-top: 20px;
@@ -285,7 +290,6 @@
 
     <!-- =====================================================
          CABEÇALHO
-         IDENTIDADE VISUAL PROVISÓRIA
          ===================================================== -->
 
     <header>
@@ -316,8 +320,12 @@
                 voltada à proteção e ao reencontro de animais.
             </p>
 
-            <button class="botao-principal" onclick="entrarNaRede()">
+            <button
+                class="botao-principal"
+                onclick="entrarNaRede()">
+
                 ENTRAR NA REDE PET
+
             </button>
 
         </section>
@@ -336,13 +344,17 @@
                 <button
                     class="aba ativa"
                     onclick="mostrarAba('pet', this)">
+
                     PET
+
                 </button>
 
                 <button
                     class="aba"
                     onclick="mostrarAba('match', this)">
+
                     MATCH
+
                 </button>
 
             </nav>
@@ -368,9 +380,10 @@
 
                 <form id="formPet">
 
-                    <!-- 1 -->
+                    <!-- 1. ID DO PET -->
 
                     <div class="campo">
+
                         <label for="idPet">
                             ID do Pet
                         </label>
@@ -379,12 +392,14 @@
                             type="text"
                             id="idPet"
                             name="idPet">
+
                     </div>
 
 
-                    <!-- 2 -->
+                    <!-- 2. FOTO -->
 
                     <div class="campo">
+
                         <label for="foto">
                             Foto
                         </label>
@@ -394,10 +409,11 @@
                             id="foto"
                             name="foto"
                             accept="image/*">
+
                     </div>
 
 
-                    <!-- 3 + 4 -->
+                    <!-- 3 + 4. ESPÉCIE / RAÇA -->
 
                     <div class="linha">
 
@@ -412,6 +428,7 @@
                                 id="especie"
                                 name="especie"
                                 placeholder="Ex.: Cão">
+
                         </div>
 
 
@@ -426,12 +443,13 @@
                                 id="raca"
                                 name="raca"
                                 placeholder="Ex.: Labrador">
+
                         </div>
 
                     </div>
 
 
-                    <!-- 5 -->
+                    <!-- 5. NOME -->
 
                     <div class="campo">
 
@@ -443,10 +461,11 @@
                             type="text"
                             id="nome"
                             name="nome">
+
                     </div>
 
 
-                    <!-- 6 + 7 -->
+                    <!-- 6 + 7. SEXO / IDADE -->
 
                     <div class="linha">
 
@@ -456,17 +475,19 @@
                                 Sexo
                             </label>
 
-                            <select id="sexo" name="sexo">
+                            <select
+                                id="sexo"
+                                name="sexo">
 
                                 <option value="">
                                     Selecione
                                 </option>
 
-                                <option>
+                                <option value="Macho">
                                     Macho
                                 </option>
 
-                                <option>
+                                <option value="Fêmea">
                                     Fêmea
                                 </option>
 
@@ -486,12 +507,13 @@
                                 id="idade"
                                 name="idade"
                                 placeholder="Ex.: 3 anos">
+
                         </div>
 
                     </div>
 
 
-                    <!-- 8 + 11 -->
+                    <!-- 8 + 11. PESO / PORTE -->
 
                     <div class="linha">
 
@@ -506,6 +528,7 @@
                                 id="peso"
                                 name="peso"
                                 placeholder="Ex.: 12 kg">
+
                         </div>
 
 
@@ -523,15 +546,15 @@
                                     Selecione
                                 </option>
 
-                                <option>
+                                <option value="Pequeno">
                                     Pequeno
                                 </option>
 
-                                <option>
+                                <option value="Médio">
                                     Médio
                                 </option>
 
-                                <option>
+                                <option value="Grande">
                                     Grande
                                 </option>
 
@@ -542,7 +565,7 @@
                     </div>
 
 
-                    <!-- 9 + 10 -->
+                    <!-- 9 + 10. CASTRADO / VACINADO -->
 
                     <div class="linha">
 
@@ -560,15 +583,15 @@
                                     Selecione
                                 </option>
 
-                                <option>
+                                <option value="Sim">
                                     Sim
                                 </option>
 
-                                <option>
+                                <option value="Não">
                                     Não
                                 </option>
 
-                                <option>
+                                <option value="Não informado">
                                     Não informado
                                 </option>
 
@@ -591,15 +614,15 @@
                                     Selecione
                                 </option>
 
-                                <option>
+                                <option value="Sim">
                                     Sim
                                 </option>
 
-                                <option>
+                                <option value="Não">
                                     Não
                                 </option>
 
-                                <option>
+                                <option value="Não informado">
                                     Não informado
                                 </option>
 
@@ -610,7 +633,7 @@
                     </div>
 
 
-                    <!-- 12 -->
+                    <!-- 12. COR -->
 
                     <div class="campo">
 
@@ -622,10 +645,11 @@
                             type="text"
                             id="cor"
                             name="cor">
+
                     </div>
 
 
-                    <!-- 13 -->
+                    <!-- 13. WHATSAPP -->
 
                     <div class="campo">
 
@@ -641,11 +665,11 @@
                                 Selecione
                             </option>
 
-                            <option>
+                            <option value="Sim">
                                 Sim
                             </option>
 
-                            <option>
+                            <option value="Não">
                                 Não
                             </option>
 
@@ -654,7 +678,7 @@
                     </div>
 
 
-                    <!-- 14 + 15 -->
+                    <!-- 14 + 15. TUTOR / CONTATO -->
 
                     <div class="linha">
 
@@ -668,6 +692,7 @@
                                 type="text"
                                 id="tutor"
                                 name="tutor">
+
                         </div>
 
 
@@ -681,12 +706,13 @@
                                 type="text"
                                 id="contato"
                                 name="contato">
+
                         </div>
 
                     </div>
 
 
-                    <!-- 16 -->
+                    <!-- 16. ENDEREÇO -->
 
                     <div class="campo">
 
@@ -698,10 +724,11 @@
                             type="text"
                             id="endereco"
                             name="endereco">
+
                     </div>
 
 
-                    <!-- 17 + 18 -->
+                    <!-- 17 + 18. BAIRRO / CIDADE -->
 
                     <div class="linha">
 
@@ -715,6 +742,7 @@
                                 type="text"
                                 id="bairro"
                                 name="bairro">
+
                         </div>
 
 
@@ -728,12 +756,13 @@
                                 type="text"
                                 id="cidade"
                                 name="cidade">
+
                         </div>
 
                     </div>
 
 
-                    <!-- 19 -->
+                    <!-- 19. REFERÊNCIA -->
 
                     <div class="campo">
 
@@ -745,10 +774,11 @@
                             type="text"
                             id="referencia"
                             name="referencia">
+
                     </div>
 
 
-                    <!-- 20 -->
+                    <!-- 20. ÚLTIMA VEZ VISTO -->
 
                     <div class="campo">
 
@@ -760,10 +790,11 @@
                             type="datetime-local"
                             id="ultimaVez"
                             name="ultimaVez">
+
                     </div>
 
 
-                    <!-- 21 -->
+                    <!-- 21. OBSERVAÇÕES -->
 
                     <div class="campo">
 
@@ -774,13 +805,12 @@
                         <textarea
                             id="observacoes"
                             name="observacoes"
-                            placeholder="Informações adicionais sobre o animal">
-                        </textarea>
+                            placeholder="Informações adicionais sobre o animal"></textarea>
 
                     </div>
 
 
-                    <!-- 22 -->
+                    <!-- 22. STATUS -->
 
                     <div class="campo">
 
@@ -796,15 +826,15 @@
                                 Selecione
                             </option>
 
-                            <option>
+                            <option value="Para adoção">
                                 Para adoção
                             </option>
 
-                            <option>
+                            <option value="Perdido">
                                 Perdido
                             </option>
 
-                            <option>
+                            <option value="Encontrado / Procurando tutor">
                                 Encontrado / Procurando tutor
                             </option>
 
@@ -813,7 +843,7 @@
                     </div>
 
 
-                    <!-- 23 -->
+                    <!-- 23. DATA DO CADASTRO -->
 
                     <div class="campo">
 
@@ -825,10 +855,11 @@
                             type="date"
                             id="dataCadastro"
                             name="dataCadastro">
+
                     </div>
 
 
-                    <!-- 24 -->
+                    <!-- 24. EMAIL -->
 
                     <div class="campo">
 
@@ -840,8 +871,11 @@
                             type="email"
                             id="email"
                             name="email">
+
                     </div>
 
+
+                    <!-- BOTÃO -->
 
                     <button
                         type="submit"
@@ -852,12 +886,11 @@
                     </button>
 
 
+                    <!-- MENSAGEM -->
+
                     <div
                         class="mensagem"
                         id="mensagem">
-
-                        Cadastro realizado apenas como
-                        demonstração neste protótipo.
 
                     </div>
 
@@ -918,7 +951,6 @@
                                 à praça central.
                             </p>
 
-
                             <div class="comentarios">
 
                                 <strong>
@@ -926,8 +958,7 @@
                                 </strong>
 
                                 <textarea
-                                    placeholder="Adicione uma informação sobre este PET...">
-                                </textarea>
+                                    placeholder="Adicione uma informação sobre este PET..."></textarea>
 
                             </div>
 
@@ -967,7 +998,6 @@
                                 adoção responsável.
                             </p>
 
-
                             <div class="comentarios">
 
                                 <strong>
@@ -975,8 +1005,7 @@
                                 </strong>
 
                                 <textarea
-                                    placeholder="Adicione uma informação sobre este PET...">
-                                </textarea>
+                                    placeholder="Adicione uma informação sobre este PET..."></textarea>
 
                             </div>
 
@@ -1015,7 +1044,6 @@
                                 Encontrada recentemente.
                             </p>
 
-
                             <div class="comentarios">
 
                                 <strong>
@@ -1023,8 +1051,7 @@
                                 </strong>
 
                                 <textarea
-                                    placeholder="Adicione uma informação sobre este PET...">
-                                </textarea>
+                                    placeholder="Adicione uma informação sobre este PET..."></textarea>
 
                             </div>
 
@@ -1051,16 +1078,31 @@
 
     <!-- =====================================================
          JAVASCRIPT
-         FUNCIONALIDADES PROVISÓRIAS
          ===================================================== -->
 
     <script>
 
+        /* =====================================================
+           URL DO GOOGLE APPS SCRIPT
+           ===================================================== */
+
+        const URL_APPS_SCRIPT =
+            "https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
+
+
+        /* =====================================================
+           ENTRADA NA REDE
+           ===================================================== */
+
         function entrarNaRede() {
 
-            document.getElementById("entrada").style.display = "none";
+            document
+                .getElementById("entrada")
+                .style.display = "none";
 
-            document.getElementById("sistema").style.display = "block";
+            document
+                .getElementById("sistema")
+                .style.display = "block";
 
             window.scrollTo({
                 top: 0,
@@ -1069,6 +1111,10 @@
 
         }
 
+
+        /* =====================================================
+           TROCA DE ABAS
+           ===================================================== */
 
         function mostrarAba(nome, botao) {
 
@@ -1096,28 +1142,202 @@
                 .getElementById(nome)
                 .classList.add("ativo");
 
-
             botao.classList.add("ativa");
 
         }
 
 
+        /* =====================================================
+           CADASTRO DO PET
+           ENVIO PARA O GOOGLE SHEETS
+           ===================================================== */
+
         document
             .getElementById("formPet")
-            .addEventListener("submit", function(event) {
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                document
-                    .getElementById("mensagem")
-                    .style.display = "block";
 
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: "smooth"
-                });
+                    const botao =
+                        this.querySelector(".botao-enviar");
 
-            });
+                    const mensagem =
+                        document.getElementById("mensagem");
+
+
+                    botao.disabled = true;
+
+                    botao.textContent = "Enviando...";
+
+
+                    /*
+                     * Neste primeiro momento a foto ainda não
+                     * será enviada para a planilha.
+                     *
+                     * Vamos conectar o armazenamento das fotos
+                     * em uma etapa própria.
+                     */
+
+
+                    const dados = {
+
+                        tipo: "pet",
+
+                        valores: [
+
+                            document
+                                .getElementById("idPet")
+                                .value,
+
+                            "",
+
+                            document
+                                .getElementById("especie")
+                                .value,
+
+                            document
+                                .getElementById("raca")
+                                .value,
+
+                            document
+                                .getElementById("nome")
+                                .value,
+
+                            document
+                                .getElementById("sexo")
+                                .value,
+
+                            document
+                                .getElementById("idade")
+                                .value,
+
+                            document
+                                .getElementById("peso")
+                                .value,
+
+                            document
+                                .getElementById("castrado")
+                                .value,
+
+                            document
+                                .getElementById("vacinado")
+                                .value,
+
+                            document
+                                .getElementById("porte")
+                                .value,
+
+                            document
+                                .getElementById("cor")
+                                .value,
+
+                            document
+                                .getElementById("whatsapp")
+                                .value,
+
+                            document
+                                .getElementById("tutor")
+                                .value,
+
+                            document
+                                .getElementById("contato")
+                                .value,
+
+                            document
+                                .getElementById("endereco")
+                                .value,
+
+                            document
+                                .getElementById("bairro")
+                                .value,
+
+                            document
+                                .getElementById("cidade")
+                                .value,
+
+                            document
+                                .getElementById("referencia")
+                                .value,
+
+                            document
+                                .getElementById("ultimaVez")
+                                .value,
+
+                            document
+                                .getElementById("observacoes")
+                                .value,
+
+                            document
+                                .getElementById("status")
+                                .value,
+
+                            document
+                                .getElementById("dataCadastro")
+                                .value,
+
+                            document
+                                .getElementById("email")
+                                .value
+
+                        ]
+
+                    };
+
+
+                    try {
+
+                        await fetch(
+                            URL_APPS_SCRIPT,
+                            {
+                                method: "POST",
+
+                                mode: "no-cors",
+
+                                headers: {
+                                    "Content-Type":
+                                        "text/plain;charset=utf-8"
+                                },
+
+                                body:
+                                    JSON.stringify(dados)
+
+                            }
+                        );
+
+
+                        mensagem.textContent =
+                            "Cadastro enviado com sucesso!";
+
+                        mensagem.style.display =
+                            "block";
+
+
+                        this.reset();
+
+
+                    } catch (erro) {
+
+                        mensagem.textContent =
+                            "Não foi possível enviar o cadastro.";
+
+                        mensagem.style.display =
+                            "block";
+
+                        console.error(erro);
+
+                    }
+
+
+                    botao.disabled = false;
+
+                    botao.textContent =
+                        "Cadastrar PET";
+
+                }
+            );
 
     </script>
 
