@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>REDE PET</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -31,7 +26,7 @@ body{
 header{
     background:#064e3b;
     color:white;
-    padding:20px;
+    padding:16px 20px;
     text-align:center;
 }
 
@@ -39,7 +34,43 @@ header{
     font-size:30px;
     font-weight:bold;
     letter-spacing:2px;
+    margin-bottom:15px;
 }
+
+/* =========================
+   NAVEGAÇÃO SUPERIOR
+========================= */
+
+.navegacao{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.navegacao button{
+    border:none;
+    background:transparent;
+    color:white;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.navegacao button:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.navegacao button.ativa{
+    background:white;
+    color:#064e3b;
+}
+
+/* =========================
+   GERAL
+========================= */
 
 .container{
     max-width:1100px;
@@ -55,7 +86,9 @@ header{
     display:block;
 }
 
-/* INÍCIO */
+/* =========================
+   INÍCIO
+========================= */
 
 .inicio{
     text-align:center;
@@ -85,7 +118,9 @@ header{
     flex-wrap:wrap;
 }
 
-/* BOTÕES */
+/* =========================
+   BOTÕES
+========================= */
 
 button{
     font-family:inherit;
@@ -99,6 +134,7 @@ button{
     border-radius:7px;
     cursor:pointer;
     font-size:15px;
+    font-weight:bold;
 }
 
 .botao:hover{
@@ -110,7 +146,9 @@ button{
     color:#064e3b;
 }
 
-/* BLOCOS */
+/* =========================
+   BLOCOS
+========================= */
 
 .bloco{
     background:white;
@@ -156,7 +194,9 @@ textarea{
     gap:18px;
 }
 
-/* OPÇÕES */
+/* =========================
+   OPÇÕES
+========================= */
 
 .opcoes{
     display:flex;
@@ -171,6 +211,7 @@ textarea{
     padding:11px 18px;
     border-radius:7px;
     cursor:pointer;
+    font-weight:normal;
 }
 
 .opcao.selecionada{
@@ -179,7 +220,9 @@ textarea{
     border-color:#064e3b;
 }
 
-/* PESO */
+/* =========================
+   PESO
+========================= */
 
 .peso-controle{
     display:flex;
@@ -205,7 +248,9 @@ textarea{
     text-align:center;
 }
 
-/* FILTRO */
+/* =========================
+   MATCH
+========================= */
 
 .filtro-match{
     background:white;
@@ -225,8 +270,6 @@ textarea{
 #filtroStatus{
     max-width:350px;
 }
-
-/* CARDS */
 
 .lista-pets{
     display:grid;
@@ -282,7 +325,9 @@ textarea{
     font-weight:bold;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     display:none;
@@ -327,7 +372,7 @@ textarea{
 }
 
 .dado{
-    padding:9px 0;
+    padding:11px 0;
     border-bottom:1px solid #eee;
 }
 
@@ -335,7 +380,9 @@ textarea{
     color:#064e3b;
 }
 
-/* EDIÇÃO */
+/* =========================
+   EDIÇÃO
+========================= */
 
 .edicao-cadastro{
     background:#f5f7f6;
@@ -352,10 +399,6 @@ textarea{
 
 .edicao-cadastro .campo{
     margin-bottom:15px;
-}
-
-.edicao-cadastro .opcoes{
-    margin-bottom:5px;
 }
 
 .botao-editar{
@@ -378,7 +421,9 @@ textarea{
     margin-left:8px;
 }
 
-/* STATUS */
+/* =========================
+   STATUS
+========================= */
 
 .alterar-status{
     background:#f5f7f6;
@@ -406,7 +451,9 @@ textarea{
     cursor:pointer;
 }
 
-/* COMENTÁRIOS */
+/* =========================
+   COMENTÁRIOS
+========================= */
 
 .comentarios-bloco{
     margin-top:28px;
@@ -451,6 +498,7 @@ textarea{
     padding:12px 20px;
     border-radius:7px;
     cursor:pointer;
+    font-weight:bold;
 }
 
 .lista-comentarios{
@@ -497,7 +545,9 @@ textarea{
     color:#777;
 }
 
-/* CURTIR */
+/* =========================
+   CURTIR
+========================= */
 
 .botao-curtir{
     width:38px;
@@ -518,7 +568,9 @@ textarea{
     color:white;
 }
 
-/* MAPA */
+/* =========================
+   MAPA
+========================= */
 
 .mapa-container{
     background:white;
@@ -551,6 +603,7 @@ textarea{
     cursor:pointer;
     font-size:13px;
     margin-top:5px;
+    font-weight:bold;
 }
 
 .botao-como-chegar{
@@ -564,7 +617,9 @@ textarea{
     font-weight:bold;
 }
 
-/* MENSAGENS */
+/* =========================
+   MENSAGENS
+========================= */
 
 .mensagem{
     display:none;
@@ -591,7 +646,9 @@ textarea{
     padding:15px 0;
 }
 
-/* NAVEGAÇÃO */
+/* =========================
+   NAVEGAÇÃO INFERIOR
+========================= */
 
 .rodape-navegacao{
     display:flex;
@@ -601,7 +658,9 @@ textarea{
     margin-top:35px;
 }
 
-/* VOLTAR */
+/* =========================
+   VOLTAR
+========================= */
 
 .botao-voltar-flutuante{
     position:fixed;
@@ -624,7 +683,9 @@ textarea{
     display:block;
 }
 
-/* FOTO */
+/* =========================
+   FOTO
+========================= */
 
 .foto-ampliada{
     display:none;
@@ -648,7 +709,9 @@ textarea{
     object-fit:contain;
 }
 
-/* RODAPÉ */
+/* =========================
+   RODAPÉ
+========================= */
 
 footer{
     text-align:center;
@@ -679,51 +742,81 @@ footer{
         max-height:330px;
     }
 
+    .navegacao button{
+        padding:8px 9px;
+        font-size:11px;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
-REDE PET
-</div>
+<div class="logo">REDE PET</div>
+
+<!-- =========================
+     ABAS
+========================= -->
+
+<nav class="navegacao">
+
+<button id="navInicio"
+onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
+<button id="navPet"
+onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button id="navMatch"
+onclick="abrirPagina('match')">
+MATCH
+</button>
+
+<button id="navMapa"
+onclick="abrirPagina('mapa')">
+MAPA
+</button>
+
+</nav>
 
 </header>
 
 <main class="container">
 
-<!-- INÍCIO -->
+<!-- =========================
+     INÍCIO
+========================= -->
 
 <section id="inicio" class="pagina ativa">
 
 <div class="inicio">
 
-<h1>O que é a REDE PET?</h1>
+<h1>O QUE É A REDE PET?</h1>
 
 <p>
 Uma plataforma comunitária e tecnológica
 voltada à proteção e ao reencontro de animais.
 </p>
 
-<h2>Por onde você quer começar?</h2>
+<h2>POR ONDE VOCÊ QUER COMEÇAR?</h2>
 
 <div class="botoes-inicio">
 
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-Cadastrar seu PET
+CADASTRAR SEU PET
 </button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-Visualizar PETs
+VISUALIZAR PETS
 </button>
 
 </div>
@@ -732,7 +825,9 @@ Visualizar PETs
 
 </section>
 
-<!-- CADASTRO -->
+<!-- =========================
+     CADASTRO
+========================= -->
 
 <section id="pet" class="pagina">
 
@@ -740,43 +835,37 @@ Visualizar PETs
 
 <div class="bloco">
 
-<h2>Dados do PET</h2>
+<h2>DADOS DO PET</h2>
 
 <div class="campo">
-
-<label>Foto do animal</label>
-
-<input
-type="file"
-id="foto"
-accept="image/*">
-
+<label>FOTO DO ANIMAL</label>
+<input type="file" id="foto" accept="image/*">
 </div>
 
 <div class="campo">
 
-<label>Status do animal</label>
+<label>STATUS DO ANIMAL</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'status','Perdido')">
-Perdido
+PERDIDO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'status','Para adoção')">
-Para adoção
+PARA ADOÇÃO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'status','Encontrado')">
-Encontrado
+ENCONTRADO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'status','Adotado')">
-Adotado
+ADOTADO
 </button>
 
 </div>
@@ -786,37 +875,34 @@ Adotado
 </div>
 
 <div class="campo">
-
-<label>Nome do PET</label>
-
+<label>NOME DO PET</label>
 <input id="nome" required>
-
 </div>
 
 <div class="campo">
 
-<label>Idade</label>
+<label>IDADE</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
-Filhote (até 1 ano)
+FILHOTE (ATÉ 1 ANO)
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
-Jovem (1 a 3 anos)
+JOVEM (1 A 3 ANOS)
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
-Adulto (3 a 8 anos)
+ADULTO (3 A 8 ANOS)
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'idade','Idoso (8+ anos)')">
-Idoso (8+ anos)
+IDOSO (8+ ANOS)
 </button>
 
 </div>
@@ -827,25 +913,17 @@ Idoso (8+ anos)
 
 <div class="campo">
 
-<label>Peso aproximado</label>
+<label>PESO APROXIMADO</label>
 
 <div class="peso-controle">
 
-<button
-type="button"
-onclick="alterarPeso(-1)">
-−
-</button>
+<button type="button" onclick="alterarPeso(-1)">−</button>
 
 <div class="peso-valor">
-<span id="pesoValor">0</span> kg
+<span id="pesoValor">0</span> KG
 </div>
 
-<button
-type="button"
-onclick="alterarPeso(1)">
-+
-</button>
+<button type="button" onclick="alterarPeso(1)">+</button>
 
 </div>
 
@@ -853,23 +931,23 @@ onclick="alterarPeso(1)">
 
 <div class="campo">
 
-<label>Espécie</label>
+<label>ESPÉCIE</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'especie','Cão')">
-Cão
+CÃO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'especie','Gato')">
-Gato
+GATO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'especie','Outro')">
-Outro
+OUTRO
 </button>
 
 </div>
@@ -878,38 +956,35 @@ Outro
 
 <input
 id="especieOutro"
-placeholder="Se escolheu outro, especifique"
+placeholder="SE ESCOLHEU OUTRO, ESPECIFIQUE"
 style="display:none;margin-top:10px">
 
 </div>
 
 <div class="campo">
-
-<label>Raça</label>
-
+<label>RAÇA</label>
 <input id="raca">
-
 </div>
 
 <div class="campo">
 
-<label>Sexo</label>
+<label>SEXO</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Macho')">
-Macho
+MACHO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Fêmea')">
-Fêmea
+FÊMEA
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Não identificado')">
-Não identificado
+NÃO IDENTIFICADO
 </button>
 
 </div>
@@ -920,23 +995,23 @@ Não identificado
 
 <div class="campo">
 
-<label>Porte</label>
+<label>PORTE</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'porte','Pequeno')">
-Pequeno
+PEQUENO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'porte','Médio')">
-Médio
+MÉDIO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'porte','Grande')">
-Grande
+GRANDE
 </button>
 
 </div>
@@ -946,34 +1021,31 @@ Grande
 </div>
 
 <div class="campo">
-
-<label>Cor</label>
-
+<label>COR</label>
 <input id="cor">
-
 </div>
 
 <div class="linha">
 
 <div class="campo">
 
-<label>É castrado?</label>
+<label>É CASTRADO?</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Sim')">
-Sim
+SIM
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Não')">
-Não
+NÃO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Não sei')">
-Não sei
+NÃO SEI
 </button>
 
 </div>
@@ -984,23 +1056,23 @@ Não sei
 
 <div class="campo">
 
-<label>É vacinado?</label>
+<label>É VACINADO?</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Sim')">
-Sim
+SIM
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Não')">
-Não
+NÃO
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Não sei')">
-Não sei
+NÃO SEI
 </button>
 
 </div>
@@ -1012,69 +1084,50 @@ Não sei
 </div>
 
 <div class="campo">
-
-<label>Última vez em que foi visto</label>
-
-<input
-type="datetime-local"
-id="ultimaVez">
-
+<label>ÚLTIMA VEZ EM QUE FOI VISTO</label>
+<input type="datetime-local" id="ultimaVez">
 </div>
 
 <div class="campo">
-
-<label>Ponto de referência</label>
-
-<input
-id="pontoReferencia"
-placeholder="Ex.: próximo à praça">
-
+<label>PONTO DE REFERÊNCIA</label>
+<input id="pontoReferencia" placeholder="EX.: PRÓXIMO À PRAÇA">
 </div>
 
 <div class="campo">
-
-<label>Observações</label>
-
+<label>OBSERVAÇÕES</label>
 <textarea id="observacoes"></textarea>
-
 </div>
 
 </div>
 
 <div class="bloco">
 
-<h2>Dados do tutor</h2>
+<h2>DADOS DO TUTOR</h2>
 
 <div class="campo">
-
-<label>Nome do tutor</label>
-
+<label>NOME DO TUTOR</label>
 <input id="tutorNome">
-
 </div>
 
 <div class="campo">
-
-<label>Contato do tutor</label>
-
+<label>CONTATO DO TUTOR</label>
 <input id="tutorContato">
-
 </div>
 
 <div class="campo">
 
-<label>Deseja exibir os dados do tutor publicamente?</label>
+<label>DESEJA EXIBIR OS DADOS DO TUTOR PUBLICAMENTE?</label>
 
 <div class="opcoes">
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'whatsappPublico','Sim')">
-Sim
+SIM
 </button>
 
 <button type="button" class="opcao"
 onclick="selecionar(this,'whatsappPublico','Não')">
-Não
+NÃO
 </button>
 
 </div>
@@ -1084,29 +1137,20 @@ Não
 </div>
 
 <div class="campo">
-
-<label>Endereço do tutor</label>
-
+<label>ENDEREÇO DO TUTOR</label>
 <input id="endereco">
-
 </div>
 
 <div class="linha">
 
 <div class="campo">
-
-<label>Bairro</label>
-
+<label>BAIRRO</label>
 <input id="bairro">
-
 </div>
 
 <div class="campo">
-
-<label>Cidade</label>
-
+<label>CIDADE</label>
 <input id="cidade">
-
 </div>
 
 </div>
@@ -1115,16 +1159,11 @@ Não
 
 <div class="bloco">
 
-<button
-type="submit"
-class="botao">
-Cadastrar PET
+<button type="submit" class="botao">
+CADASTRAR PET
 </button>
 
-<div
-id="mensagem"
-class="mensagem">
-</div>
+<div id="mensagem" class="mensagem"></div>
 
 </div>
 
@@ -1132,92 +1171,86 @@ class="mensagem">
 
 <div class="rodape-navegacao">
 
-<button
-class="botao"
+<button class="botao"
 onclick="abrirPagina('match')">
 MATCH
 </button>
 
-<button
-class="botao botao-secundario"
+<button class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-Início
+INÍCIO
 </button>
 
 </div>
 
 </section>
 
-<!-- MATCH -->
+<!-- =========================
+     MATCH
+========================= -->
 
 <section id="match" class="pagina">
 
 <h2>MATCH</h2>
 
 <p style="margin:10px 0 25px;color:#666">
-Encontre animais perdidos, encontrados ou disponíveis para adoção.
+ENCONTRE ANIMAIS PERDIDOS, ENCONTRADOS OU DISPONÍVEIS PARA ADOÇÃO.
 </p>
 
 <div class="filtro-match">
 
 <label for="filtroStatus">
-O que você deseja visualizar?
+O QUE VOCÊ DESEJA VISUALIZAR?
 </label>
 
-<select
-id="filtroStatus"
-onchange="aplicarFiltro()">
+<select id="filtroStatus" onchange="aplicarFiltro()">
 
-<option value="Todos">Todos os PETs</option>
-<option value="Perdido">Perdidos</option>
-<option value="Encontrado">Encontrados</option>
-<option value="Para adoção">Para adoção</option>
-<option value="Adotado">Adotados</option>
+<option value="Todos">TODOS OS PETS</option>
+<option value="Perdido">PERDIDOS</option>
+<option value="Encontrado">ENCONTRADOS</option>
+<option value="Para adoção">PARA ADOÇÃO</option>
+<option value="Adotado">ADOTADOS</option>
 
 </select>
 
 </div>
 
-<div
-id="listaPets"
-class="lista-pets">
+<div id="listaPets" class="lista-pets">
 
 <div class="carregando">
-Carregando PETs...
+CARREGANDO PETS...
 </div>
 
 </div>
 
 <div class="rodape-navegacao">
 
-<button
-class="botao"
+<button class="botao"
 onclick="abrirPagina('pet')">
-Cadastrar PET
+CADASTRAR PET
 </button>
 
-<button
-class="botao botao-secundario"
+<button class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-Início
+INÍCIO
 </button>
 
 </div>
 
 </section>
 
-<!-- MAPA -->
+<!-- =========================
+     MAPA
+========================= -->
 
 <section id="mapa" class="pagina">
 
 <h2>MAPA</h2>
 
-<div
-id="mapaInfo"
-class="mapa-info">
+<div id="mapaInfo" class="mapa-info">
 
 <p style="color:#666;">
-Selecione "Como chegar" em um comentário para visualizar o local informado.
+SELECIONE "COMO CHEGAR" EM UM COMENTÁRIO PARA VISUALIZAR O LOCAL INFORMADO.
 </p>
 
 </div>
@@ -1233,23 +1266,18 @@ loading="lazy">
 
 </div>
 
-<div
-id="botaoMapaArea"
-style="text-align:center;">
-</div>
+<div id="botaoMapaArea" style="text-align:center;"></div>
 
 <div class="rodape-navegacao">
 
-<button
-class="botao"
+<button class="botao"
 onclick="abrirPagina('match')">
 MATCH
 </button>
 
-<button
-class="botao botao-secundario"
+<button class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-Início
+INÍCIO
 </button>
 
 </div>
@@ -1258,11 +1286,11 @@ Início
 
 </main>
 
-<!-- MODAL -->
+<!-- =========================
+     MODAL
+========================= -->
 
-<div
-id="modal"
-class="modal">
+<div id="modal" class="modal">
 
 <div class="modal-conteudo">
 
@@ -1271,7 +1299,7 @@ id="modalFotoMini"
 class="modal-foto-mini"
 style="display:none"
 onclick="abrirFotoAmpliada()"
-alt="Foto do PET">
+alt="FOTO DO PET">
 
 <div class="modal-dados">
 
@@ -1286,14 +1314,14 @@ id="alterarStatusArea"
 class="alterar-status"
 style="display:none;">
 
-<h3>Atualizar situação do PET</h3>
+<h3>ATUALIZAR SITUAÇÃO DO PET</h3>
 
 <select id="novoStatus">
 
-<option value="Perdido">Perdido</option>
-<option value="Encontrado">Encontrado</option>
-<option value="Para adoção">Para adoção</option>
-<option value="Adotado">Adotado</option>
+<option value="Perdido">PERDIDO</option>
+<option value="Encontrado">ENCONTRADO</option>
+<option value="Para adoção">PARA ADOÇÃO</option>
+<option value="Adotado">ADOTADO</option>
 
 </select>
 
@@ -1301,265 +1329,193 @@ style="display:none;">
 type="button"
 class="botao-status"
 onclick="alterarStatusPet()">
-Atualizar status
+ATUALIZAR STATUS
 </button>
 
-<div
-id="mensagemStatus"
-class="mensagem">
-</div>
+<div id="mensagemStatus" class="mensagem"></div>
 
 </div>
 
-<!-- EDIÇÃO COMPLETA -->
+<!-- EDIÇÃO -->
 
 <div
 id="edicaoCadastro"
 class="edicao-cadastro"
 style="display:none;">
 
-<h3>Editar cadastro do PET</h3>
+<h3>EDITAR CADASTRO DO PET</h3>
 
 <div class="campo">
-
-<label>Nome</label>
-
+<label>NOME</label>
 <input id="editNome">
-
 </div>
 
 <div class="campo">
-
-<label>Status</label>
+<label>STATUS</label>
 
 <select id="editStatus">
-
-<option value="Perdido">Perdido</option>
-<option value="Para adoção">Para adoção</option>
-<option value="Encontrado">Encontrado</option>
-<option value="Adotado">Adotado</option>
-
+<option value="Perdido">PERDIDO</option>
+<option value="Para adoção">PARA ADOÇÃO</option>
+<option value="Encontrado">ENCONTRADO</option>
+<option value="Adotado">ADOTADO</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Idade</label>
+<label>IDADE</label>
 
 <select id="editIdade">
-
-<option value="">Selecione</option>
-<option value="Filhote (até 1 ano)">Filhote (até 1 ano)</option>
-<option value="Jovem (1 a 3 anos)">Jovem (1 a 3 anos)</option>
-<option value="Adulto (3 a 8 anos)">Adulto (3 a 8 anos)</option>
-<option value="Idoso (8+ anos)">Idoso (8+ anos)</option>
-
+<option value="">SELECIONE</option>
+<option value="Filhote (até 1 ano)">FILHOTE (ATÉ 1 ANO)</option>
+<option value="Jovem (1 a 3 anos)">JOVEM (1 A 3 ANOS)</option>
+<option value="Adulto (3 a 8 anos)">ADULTO (3 A 8 ANOS)</option>
+<option value="Idoso (8+ anos)">IDOSO (8+ ANOS)</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Peso (kg)</label>
-
-<input
-type="number"
-id="editPeso"
-min="0"
-step="0.1">
-
+<label>PESO (KG)</label>
+<input type="number" id="editPeso" min="0" step="0.1">
 </div>
 
 <div class="campo">
-
-<label>Espécie</label>
+<label>ESPÉCIE</label>
 
 <select id="editEspecie">
-
-<option value="">Selecione</option>
-<option value="Cão">Cão</option>
-<option value="Gato">Gato</option>
-<option value="Outro">Outro</option>
-
+<option value="">SELECIONE</option>
+<option value="Cão">CÃO</option>
+<option value="Gato">GATO</option>
+<option value="Outro">OUTRO</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Raça</label>
-
+<label>RAÇA</label>
 <input id="editRaca">
-
 </div>
 
 <div class="campo">
-
-<label>Sexo</label>
+<label>SEXO</label>
 
 <select id="editSexo">
-
-<option value="">Selecione</option>
-<option value="Macho">Macho</option>
-<option value="Fêmea">Fêmea</option>
-<option value="Não identificado">Não identificado</option>
-
+<option value="">SELECIONE</option>
+<option value="Macho">MACHO</option>
+<option value="Fêmea">FÊMEA</option>
+<option value="Não identificado">NÃO IDENTIFICADO</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Porte</label>
+<label>PORTE</label>
 
 <select id="editPorte">
-
-<option value="">Selecione</option>
-<option value="Pequeno">Pequeno</option>
-<option value="Médio">Médio</option>
-<option value="Grande">Grande</option>
-
+<option value="">SELECIONE</option>
+<option value="Pequeno">PEQUENO</option>
+<option value="Médio">MÉDIO</option>
+<option value="Grande">GRANDE</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Cor</label>
-
+<label>COR</label>
 <input id="editCor">
-
 </div>
 
 <div class="campo">
-
-<label>Castrado</label>
+<label>CASTRADO</label>
 
 <select id="editCastrado">
-
-<option value="">Selecione</option>
-<option value="Sim">Sim</option>
-<option value="Não">Não</option>
-<option value="Não sei">Não sei</option>
-
+<option value="">SELECIONE</option>
+<option value="Sim">SIM</option>
+<option value="Não">NÃO</option>
+<option value="Não sei">NÃO SEI</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Vacinado</label>
+<label>VACINADO</label>
 
 <select id="editVacinado">
-
-<option value="">Selecione</option>
-<option value="Sim">Sim</option>
-<option value="Não">Não</option>
-<option value="Não sei">Não sei</option>
-
+<option value="">SELECIONE</option>
+<option value="Sim">SIM</option>
+<option value="Não">NÃO</option>
+<option value="Não sei">NÃO SEI</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Nome do tutor</label>
-
+<label>NOME DO TUTOR</label>
 <input id="editTutorNome">
-
 </div>
 
 <div class="campo">
-
-<label>Contato do tutor</label>
-
+<label>CONTATO DO TUTOR</label>
 <input id="editTutorContato">
-
 </div>
 
 <div class="campo">
-
-<label>WhatsApp público</label>
+<label>WHATSAPP PÚBLICO</label>
 
 <select id="editWhatsappPublico">
-
-<option value="">Selecione</option>
-<option value="Sim">Sim</option>
-<option value="Não">Não</option>
-
+<option value="">SELECIONE</option>
+<option value="Sim">SIM</option>
+<option value="Não">NÃO</option>
 </select>
 
 </div>
 
 <div class="campo">
-
-<label>Endereço</label>
-
+<label>ENDEREÇO</label>
 <input id="editEndereco">
-
 </div>
 
 <div class="campo">
-
-<label>Bairro</label>
-
+<label>BAIRRO</label>
 <input id="editBairro">
-
 </div>
 
 <div class="campo">
-
-<label>Cidade</label>
-
+<label>CIDADE</label>
 <input id="editCidade">
-
 </div>
 
 <div class="campo">
-
-<label>Ponto de referência</label>
-
+<label>PONTO DE REFERÊNCIA</label>
 <input id="editPontoReferencia">
-
 </div>
 
 <div class="campo">
-
-<label>Última vez visto</label>
-
-<input
-type="datetime-local"
-id="editUltimaVez">
-
+<label>ÚLTIMA VEZ VISTO</label>
+<input type="datetime-local" id="editUltimaVez">
 </div>
 
 <div class="campo">
-
-<label>Observações</label>
-
+<label>OBSERVAÇÕES</label>
 <textarea id="editObservacoes"></textarea>
-
 </div>
 
 <button
 type="button"
 class="botao-editar"
 onclick="salvarEdicaoPet()">
-Salvar alterações
+SALVAR ALTERAÇÕES
 </button>
 
 <button
 type="button"
 class="botao-cancelar"
 onclick="fecharEdicao()">
-Cancelar
+CANCELAR
 </button>
 
-<div
-id="mensagemEdicao"
-class="mensagem">
-</div>
+<div id="mensagemEdicao" class="mensagem"></div>
 
 </div>
 
@@ -1568,7 +1524,7 @@ type="button"
 class="botao"
 style="margin-top:20px;"
 onclick="abrirEdicao()">
-✏️ Editar cadastro
+✏️ EDITAR CADASTRO
 </button>
 
 <!-- COMENTÁRIOS -->
@@ -1576,50 +1532,45 @@ onclick="abrirEdicao()">
 <div class="comentarios-bloco">
 
 <h3 class="comentarios-titulo">
-Comentários sobre o PET
+COMENTÁRIOS SOBRE O PET
 </h3>
 
 <div class="form-comentario">
 
-<label>Comentário sobre o PET</label>
+<label>COMENTÁRIO SOBRE O PET</label>
 
 <textarea
 id="comentarioTexto"
-placeholder="Ex.: Vi ele perto da padaria.">
+placeholder="EX.: VI ELE PERTO DA PADARIA.">
 </textarea>
 
-<label>Seu nome</label>
+<label>SEU NOME</label>
 
 <input
 id="comentarioNome"
-placeholder="Digite seu nome">
+placeholder="DIGITE SEU NOME">
 
-<label>Onde você viu o PET?</label>
+<label>ONDE VOCÊ VIU O PET?</label>
 
 <input
 id="comentarioLocal"
-placeholder="Ex.: perto da Padaria Central">
+placeholder="EX.: PERTO DA PADARIA CENTRAL">
 
 <button
 type="button"
 class="botao-comentar"
 onclick="enviarComentario()">
-Comentar
+COMENTAR
 </button>
 
-<div
-id="mensagemComentario"
-class="mensagem">
-</div>
+<div id="mensagemComentario" class="mensagem"></div>
 
 </div>
 
-<div
-id="listaComentarios"
-class="lista-comentarios">
+<div id="listaComentarios" class="lista-comentarios">
 
 <div class="carregando-comentarios">
-Carregando comentários...
+CARREGANDO COMENTÁRIOS...
 </div>
 
 </div>
@@ -1638,7 +1589,7 @@ Carregando comentários...
 id="botaoVoltarFlutuante"
 class="botao-voltar-flutuante"
 onclick="fecharModal()">
-← Voltar
+← VOLTAR
 </button>
 
 <!-- FOTO AMPLIADA -->
@@ -1650,12 +1601,12 @@ onclick="fecharFotoAmpliada()">
 
 <img
 id="fotoAmpliadaImagem"
-alt="Foto ampliada do PET">
+alt="FOTO AMPLIADA DO PET">
 
 </div>
 
 <footer>
-REDE PET — Protótipo
+REDE PET — PROTÓTIPO
 </footer>
 
 <iframe
@@ -1690,6 +1641,24 @@ function abrirPagina(nome){
     if(!pagina)return;
 
     pagina.classList.add("ativa");
+
+    document
+        .querySelectorAll(".navegacao button")
+        .forEach(b => b.classList.remove("ativa"));
+
+    const botoes={
+        inicio:"navInicio",
+        pet:"navPet",
+        match:"navMatch",
+        mapa:"navMapa"
+    };
+
+    const botaoAtivo =
+        document.getElementById(botoes[nome]);
+
+    if(botaoAtivo){
+        botaoAtivo.classList.add("ativa");
+    }
 
     window.scrollTo({
         top:0,
@@ -1743,7 +1712,6 @@ function alterarPeso(valor){
     peso += valor;
 
     if(peso < 0)peso = 0;
-
     if(peso > 100)peso = 100;
 
     document
@@ -1803,7 +1771,7 @@ document
         document.getElementById("mensagem");
 
     mensagem.style.display="block";
-    mensagem.textContent="Salvando cadastro...";
+    mensagem.textContent="SALVANDO CADASTRO...";
 
     try{
 
@@ -1816,7 +1784,7 @@ document
         const token =
             gerarTokenProprietario();
 
-        const dados = {
+        const dados={
 
             foto:foto,
 
@@ -1885,10 +1853,7 @@ document
             tokenProprietario:token
         };
 
-        enviarPost(
-            "cadastrarPet",
-            dados
-        );
+        enviarPost("cadastrarPet",dados);
 
         localStorage.setItem(
             "redePetUltimoToken",
@@ -1896,13 +1861,14 @@ document
         );
 
         mensagem.textContent =
-            "PET cadastrado com sucesso!";
+            "PET CADASTRADO COM SUCESSO!";
 
         this.reset();
 
         peso=0;
 
-        document.getElementById("pesoValor").textContent="0";
+        document.getElementById("pesoValor")
+            .textContent="0";
 
         document
             .querySelectorAll(".opcao")
@@ -1915,7 +1881,7 @@ document
         console.error(erro);
 
         mensagem.textContent =
-            "Erro ao preparar o cadastro.";
+            "ERRO AO PREPARAR O CADASTRO.";
     }
 
 });
@@ -1978,7 +1944,7 @@ function carregarPets(){
         document.getElementById("listaPets");
 
     lista.innerHTML =
-        '<div class="carregando">Carregando PETs...</div>';
+        '<div class="carregando">CARREGANDO PETS...</div>';
 
     const callback =
         "redePetCallback_" +
@@ -2025,7 +1991,7 @@ function carregarPets(){
 
         lista.innerHTML =
             '<div class="carregando">' +
-            'Não foi possível carregar os PETs.' +
+            'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
             '</div>';
 
         delete window[callback];
@@ -2036,19 +2002,93 @@ function carregarPets(){
 
 /* =========================
    PEGAR CAMPO
-   ========================= */
+========================= */
+
+/*
+   Esta função procura o campo pelo NOME.
+   Ela NÃO depende da posição da coluna.
+*/
 
 function campoPet(pet,...nomes){
+
+    if(!pet)return "";
 
     for(const nome of nomes){
 
         if(
-            pet &&
-            pet[nome] !== undefined &&
-            pet[nome] !== null &&
-            String(pet[nome]).trim() !== ""
+            Object.prototype.hasOwnProperty.call(
+                pet,
+                nome
+            )
         ){
-            return pet[nome];
+
+            const valor=pet[nome];
+
+            if(
+                valor !== undefined &&
+                valor !== null &&
+                String(valor).trim() !== ""
+            ){
+                return valor;
+            }
+        }
+    }
+
+    return "";
+}
+
+/* =========================
+   CAMPO POR CHAVE NORMALIZADA
+========================= */
+
+function normalizarChave(texto){
+
+    return String(texto || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-zA-Z0-9]/g,"")
+        .toLowerCase();
+}
+
+/*
+   Fallback seguro para diferenças como:
+
+   Raça
+   Raca
+   raça
+   RACA
+   raca
+*/
+
+function campoPetFlexivel(pet,...nomes){
+
+    if(!pet)return "";
+
+    const chaves =
+        Object.keys(pet);
+
+    for(const nome of nomes){
+
+        const procurada =
+            normalizarChave(nome);
+
+        const chaveEncontrada =
+            chaves.find(chave =>
+                normalizarChave(chave) === procurada
+            );
+
+        if(chaveEncontrada){
+
+            const valor =
+                pet[chaveEncontrada];
+
+            if(
+                valor !== undefined &&
+                valor !== null &&
+                String(valor).trim() !== ""
+            ){
+                return valor;
+            }
         }
     }
 
@@ -2065,19 +2105,27 @@ function normalizarStatus(valor){
         String(valor || "").trim();
 
     if(
-        texto === "Perdido" ||
-        texto === "Para adoção" ||
-        texto === "Encontrado" ||
-        texto === "Adotado"
-    ){
-        return texto;
-    }
+        texto.toLowerCase()==="perdido"
+    )return "Perdido";
+
+    if(
+        texto.toLowerCase()==="para adoção" ||
+        texto.toLowerCase()==="para adocao"
+    )return "Para adoção";
+
+    if(
+        texto.toLowerCase()==="encontrado"
+    )return "Encontrado";
+
+    if(
+        texto.toLowerCase()==="adotado"
+    )return "Adotado";
 
     return texto || "Sem status";
 }
 
 /* =========================
-   RENDERIZAR
+   RENDERIZAR MATCH
 ========================= */
 
 function renderizarPets(){
@@ -2095,7 +2143,7 @@ function renderizarPets(){
 
             const status =
                 normalizarStatus(
-                    campoPet(
+                    campoPetFlexivel(
                         pet,
                         "Status",
                         "status"
@@ -2111,7 +2159,7 @@ function renderizarPets(){
 
         lista.innerHTML =
             '<div class="carregando">' +
-            'Nenhum PET encontrado para este filtro.' +
+            'NENHUM PET ENCONTRADO PARA ESTE FILTRO.' +
             '</div>';
 
         return;
@@ -2129,22 +2177,24 @@ function renderizarPets(){
         };
 
         const foto =
-            campoPet(
+            campoPetFlexivel(
                 pet,
                 "Foto",
                 "foto"
             );
 
         const nome =
-            campoPet(
+            campoPetFlexivel(
                 pet,
                 "Nome",
-                "nome"
+                "nome",
+                "Nome do PET",
+                "Nome do Pet"
             ) || "PET";
 
         const status =
             normalizarStatus(
-                campoPet(
+                campoPetFlexivel(
                     pet,
                     "Status",
                     "status"
@@ -2152,7 +2202,7 @@ function renderizarPets(){
             );
 
         let imagem =
-            '<div class="pet-sem-foto">Sem foto</div>';
+            '<div class="pet-sem-foto">SEM FOTO</div>';
 
         if(foto){
 
@@ -2194,7 +2244,7 @@ function abrirModal(pet){
     petAtual=pet;
 
     const foto =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Foto",
             "foto"
@@ -2214,10 +2264,12 @@ function abrirModal(pet){
     }
 
     const nome =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Nome",
-            "nome"
+            "nome",
+            "Nome do PET",
+            "Nome do Pet"
         ) || "PET";
 
     document
@@ -2230,7 +2282,7 @@ function abrirModal(pet){
         .getElementById("novoStatus")
         .value =
         normalizarStatus(
-            campoPet(
+            campoPetFlexivel(
                 pet,
                 "Status",
                 "status"
@@ -2273,125 +2325,135 @@ function abrirModal(pet){
 }
 
 /* =========================
-   DADOS CORRETOS
+   DADOS DO PET
 ========================= */
 
 function mostrarDadosPet(pet){
 
+    /*
+       IMPORTANTE:
+       Cada informação abaixo busca EXCLUSIVAMENTE
+       seu próprio campo.
+
+       Assim NOME não pode cair em RAÇA,
+       RAÇA não pode cair em SEXO etc.
+    */
+
     const status =
         normalizarStatus(
-            campoPet(
+            campoPetFlexivel(
                 pet,
-                "Status",
-                "status"
+                "Status"
             )
         );
 
     const especie =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Especie",
-            "Espécie",
-            "especie"
+            "Espécie"
+        );
+
+    const especieOutro =
+        campoPetFlexivel(
+            pet,
+            "Especie Outro",
+            "Espécie Outro",
+            "especieOutro"
         );
 
     const raca =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Raca",
-            "Raça",
-            "raca"
+            "Raça"
         );
 
     const sexo =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Sexo",
-            "sexo"
+            "Sexo"
         );
 
     const idade =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Idade",
-            "idade"
+            "Idade"
         );
 
     const peso =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Peso",
-            "peso"
+            "Peso"
         );
 
     const castrado =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Castrado",
-            "castrado"
+            "Castrado"
         );
 
     const vacinado =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Vacinado",
-            "vacinado"
+            "Vacinado"
         );
 
     const porte =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Porte",
-            "porte"
+            "Porte"
         );
 
     const cor =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Cor",
-            "cor"
+            "Cor"
         );
 
     const ultimaVez =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Ultima Vez",
             "Última vez",
-            "ultimaVez"
+            "UltimaVez",
+            "ÚltimaVez"
         );
 
     const pontoReferencia =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Ponto Referencia",
             "Ponto de referência",
-            "pontoReferencia"
+            "PontoReferencia"
         );
 
     const observacoes =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Observacoes",
-            "Observações",
-            "observacoes"
+            "Observações"
         );
 
     let html="";
 
-    html += criarDado("Status",status);
-
-    html += criarDado("Espécie",especie);
-
-    html += criarDado("Raça",raca);
-
-    html += criarDado("Sexo",sexo);
-
-    html += criarDado("Idade",idade);
-
     /*
-       PESO:
-       fica obrigatoriamente como número + kg.
+       MESMA ORDEM DO CADASTRO
     */
+
+    html += criarDado("STATUS DO ANIMAL",status);
+
+    html += criarDado("NOME DO PET",
+        campoPetFlexivel(
+            pet,
+            "Nome",
+            "nome",
+            "Nome do PET",
+            "Nome do Pet"
+        )
+    );
+
+    html += criarDado("IDADE",idade);
 
     let pesoTexto="-";
 
@@ -2405,64 +2467,59 @@ function mostrarDadosPet(pet){
             Number(
                 String(peso)
                 .replace(",",".")
-                .replace("kg","")
+                .replace(/kg/gi,"")
                 .trim()
             );
 
         if(!isNaN(numero)){
-
             pesoTexto =
-                numero + " kg";
+                numero + " KG";
         }
     }
 
-    html += criarDado(
-        "Peso",
-        pesoTexto
-    );
+    html += criarDado("PESO APROXIMADO",pesoTexto);
+
+    html += criarDado("ESPÉCIE",especie);
+
+    if(
+        String(especie).toLowerCase()==="outro" &&
+        especieOutro
+    ){
+        html += criarDado(
+            "ESPECIFIQUE A ESPÉCIE",
+            especieOutro
+        );
+    }
+
+    html += criarDado("RAÇA",raca);
+
+    html += criarDado("SEXO",sexo);
+
+    html += criarDado("PORTE",porte);
+
+    html += criarDado("COR",cor);
+
+    html += criarDado("É CASTRADO?",castrado);
+
+    html += criarDado("É VACINADO?",vacinado);
 
     html += criarDado(
-        "Castrado",
-        castrado
-    );
-
-    html += criarDado(
-        "Vacinado",
-        vacinado
-    );
-
-    html += criarDado(
-        "Porte",
-        porte
-    );
-
-    html += criarDado(
-        "Cor",
-        cor
-    );
-
-    html += criarDado(
-        "Última vez visto",
+        "ÚLTIMA VEZ EM QUE FOI VISTO",
         ultimaVez
     );
 
-    /*
-       PONTO DE REFERÊNCIA:
-       separado das observações.
-    */
-
     html += criarDado(
-        "Ponto de referência",
+        "PONTO DE REFERÊNCIA",
         pontoReferencia
     );
 
     html += criarDado(
-        "Observações",
+        "OBSERVAÇÕES",
         observacoes
     );
 
     const whatsapp =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "WhatsApp Publico",
             "WhatsApp público",
@@ -2470,17 +2527,15 @@ function mostrarDadosPet(pet){
         );
 
     if(
-        String(whatsapp).trim()
-        .toLowerCase()
-        === "sim"
+        String(whatsapp).trim().toLowerCase()==="sim"
     ){
 
         html +=
             '<hr style="margin:18px 0">';
 
         html += criarDado(
-            "Nome do tutor",
-            campoPet(
+            "NOME DO TUTOR",
+            campoPetFlexivel(
                 pet,
                 "Tutor Nome",
                 "Nome do tutor",
@@ -2489,8 +2544,8 @@ function mostrarDadosPet(pet){
         );
 
         html += criarDado(
-            "Contato do tutor",
-            campoPet(
+            "CONTATO DO TUTOR",
+            campoPetFlexivel(
                 pet,
                 "Tutor Contato",
                 "Contato do tutor",
@@ -2537,9 +2592,10 @@ function verificarPermissaoEdicao(){
         );
 
     const tokenPet =
-        campoPet(
+        campoPetFlexivel(
             petAtual,
             "Token Proprietario",
+            "Token Proprietário",
             "tokenProprietario"
         );
 
@@ -2601,44 +2657,82 @@ function preencherEdicao(){
     const pet=petAtual;
 
     document.getElementById("editNome").value =
-        campoPet(pet,"Nome","nome");
+        campoPetFlexivel(
+            pet,
+            "Nome",
+            "nome",
+            "Nome do PET",
+            "Nome do Pet"
+        );
 
     document.getElementById("editStatus").value =
         normalizarStatus(
-            campoPet(pet,"Status","status")
+            campoPetFlexivel(
+                pet,
+                "Status"
+            )
         );
 
     document.getElementById("editIdade").value =
-        campoPet(pet,"Idade","idade");
+        campoPetFlexivel(
+            pet,
+            "Idade"
+        );
 
     document.getElementById("editPeso").value =
         limparNumero(
-            campoPet(pet,"Peso","peso")
+            campoPetFlexivel(
+                pet,
+                "Peso"
+            )
         );
 
     document.getElementById("editEspecie").value =
-        campoPet(pet,"Especie","Espécie","especie");
+        campoPetFlexivel(
+            pet,
+            "Especie",
+            "Espécie"
+        );
 
     document.getElementById("editRaca").value =
-        campoPet(pet,"Raca","Raça","raca");
+        campoPetFlexivel(
+            pet,
+            "Raca",
+            "Raça"
+        );
 
     document.getElementById("editSexo").value =
-        campoPet(pet,"Sexo","sexo");
+        campoPetFlexivel(
+            pet,
+            "Sexo"
+        );
 
     document.getElementById("editPorte").value =
-        campoPet(pet,"Porte","porte");
+        campoPetFlexivel(
+            pet,
+            "Porte"
+        );
 
     document.getElementById("editCor").value =
-        campoPet(pet,"Cor","cor");
+        campoPetFlexivel(
+            pet,
+            "Cor"
+        );
 
     document.getElementById("editCastrado").value =
-        campoPet(pet,"Castrado","castrado");
+        campoPetFlexivel(
+            pet,
+            "Castrado"
+        );
 
     document.getElementById("editVacinado").value =
-        campoPet(pet,"Vacinado","vacinado");
+        campoPetFlexivel(
+            pet,
+            "Vacinado"
+        );
 
     document.getElementById("editTutorNome").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Tutor Nome",
             "Nome do tutor",
@@ -2646,7 +2740,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editTutorContato").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Tutor Contato",
             "Contato do tutor",
@@ -2654,7 +2748,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editWhatsappPublico").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "WhatsApp Publico",
             "WhatsApp público",
@@ -2662,7 +2756,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editEndereco").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Endereco",
             "Endereço",
@@ -2670,43 +2764,41 @@ function preencherEdicao(){
         );
 
     document.getElementById("editBairro").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Bairro",
-            "bairro"
+            "Bairro"
         );
 
     document.getElementById("editCidade").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
-            "Cidade",
-            "cidade"
+            "Cidade"
         );
 
     document.getElementById("editPontoReferencia").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Ponto Referencia",
             "Ponto de referência",
-            "pontoReferencia"
+            "PontoReferencia"
         );
 
     document.getElementById("editUltimaVez").value =
         formatarDataInput(
-            campoPet(
+            campoPetFlexivel(
                 pet,
                 "Ultima Vez",
                 "Última vez",
-                "ultimaVez"
+                "UltimaVez",
+                "ÚltimaVez"
             )
         );
 
     document.getElementById("editObservacoes").value =
-        campoPet(
+        campoPetFlexivel(
             pet,
             "Observacoes",
-            "Observações",
-            "observacoes"
+            "Observações"
         );
 }
 
@@ -2726,7 +2818,7 @@ function salvarEdicaoPet(){
     if(!token){
 
         mostrarMensagemEdicao(
-            "Não foi possível identificar o responsável pelo cadastro."
+            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL PELO CADASTRO."
         );
 
         return;
@@ -2735,7 +2827,7 @@ function salvarEdicaoPet(){
     const dados={
 
         id:
-            campoPet(
+            campoPetFlexivel(
                 petAtual,
                 "ID",
                 "id"
@@ -2744,110 +2836,70 @@ function salvarEdicaoPet(){
         tokenProprietario:token,
 
         nome:
-            document.getElementById(
-                "editNome"
-            ).value,
+            document.getElementById("editNome").value,
 
         status:
-            document.getElementById(
-                "editStatus"
-            ).value,
+            document.getElementById("editStatus").value,
 
         idade:
-            document.getElementById(
-                "editIdade"
-            ).value,
+            document.getElementById("editIdade").value,
 
         peso:
             Number(
-                document.getElementById(
-                    "editPeso"
-                ).value || 0
+                document.getElementById("editPeso").value || 0
             ),
 
         especie:
-            document.getElementById(
-                "editEspecie"
-            ).value,
+            document.getElementById("editEspecie").value,
 
         raca:
-            document.getElementById(
-                "editRaca"
-            ).value,
+            document.getElementById("editRaca").value,
 
         sexo:
-            document.getElementById(
-                "editSexo"
-            ).value,
+            document.getElementById("editSexo").value,
 
         porte:
-            document.getElementById(
-                "editPorte"
-            ).value,
+            document.getElementById("editPorte").value,
 
         cor:
-            document.getElementById(
-                "editCor"
-            ).value,
+            document.getElementById("editCor").value,
 
         castrado:
-            document.getElementById(
-                "editCastrado"
-            ).value,
+            document.getElementById("editCastrado").value,
 
         vacinado:
-            document.getElementById(
-                "editVacinado"
-            ).value,
+            document.getElementById("editVacinado").value,
 
         tutorNome:
-            document.getElementById(
-                "editTutorNome"
-            ).value,
+            document.getElementById("editTutorNome").value,
 
         tutorContato:
-            document.getElementById(
-                "editTutorContato"
-            ).value,
+            document.getElementById("editTutorContato").value,
 
         whatsappPublico:
-            document.getElementById(
-                "editWhatsappPublico"
-            ).value,
+            document.getElementById("editWhatsappPublico").value,
 
         endereco:
-            document.getElementById(
-                "editEndereco"
-            ).value,
+            document.getElementById("editEndereco").value,
 
         bairro:
-            document.getElementById(
-                "editBairro"
-            ).value,
+            document.getElementById("editBairro").value,
 
         cidade:
-            document.getElementById(
-                "editCidade"
-            ).value,
+            document.getElementById("editCidade").value,
 
         pontoReferencia:
-            document.getElementById(
-                "editPontoReferencia"
-            ).value,
+            document.getElementById("editPontoReferencia").value,
 
         ultimaVez:
-            document.getElementById(
-                "editUltimaVez"
-            ).value,
+            document.getElementById("editUltimaVez").value,
 
         observacoes:
-            document.getElementById(
-                "editObservacoes"
-            ).value
+            document.getElementById("editObservacoes").value
     };
 
     mostrarMensagemEdicao(
-        "Salvando alterações..."
+        "SALVANDO ALTERAÇÕES..."
     );
 
     enviarPost(
@@ -2856,11 +2908,6 @@ function salvarEdicaoPet(){
     );
 
     setTimeout(()=>{
-
-        /*
-           Atualiza imediatamente a visualização
-           sem precisar fechar o PET.
-        */
 
         petAtual["Nome"] =
             dados.nome;
@@ -2927,7 +2974,7 @@ function salvarEdicaoPet(){
         renderizarPets();
 
         mostrarMensagemEdicao(
-            "Cadastro atualizado com sucesso!"
+            "CADASTRO ATUALIZADO COM SUCESSO!"
         );
 
         setTimeout(
@@ -2966,7 +3013,7 @@ function alterarStatusPet(){
     if(!token){
 
         mostrarMensagemStatus(
-            "Não foi possível identificar o responsável pelo cadastro."
+            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL PELO CADASTRO."
         );
 
         return;
@@ -2980,7 +3027,7 @@ function alterarStatusPet(){
     const dados={
 
         id:
-            campoPet(
+            campoPetFlexivel(
                 petAtual,
                 "ID",
                 "id"
@@ -2992,7 +3039,7 @@ function alterarStatusPet(){
     };
 
     mostrarMensagemStatus(
-        "Atualizando status..."
+        "ATUALIZANDO STATUS..."
     );
 
     enviarPost(
@@ -3010,7 +3057,7 @@ function alterarStatusPet(){
         renderizarPets();
 
         mostrarMensagemStatus(
-            "Status atualizado com sucesso!"
+            "STATUS ATUALIZADO COM SUCESSO!"
         );
 
     },1200);
@@ -3078,7 +3125,7 @@ function abrirFotoAmpliada(){
     if(!petAtual)return;
 
     const foto =
-        campoPet(
+        campoPetFlexivel(
             petAtual,
             "Foto",
             "foto"
@@ -3115,7 +3162,7 @@ function carregarComentarios(petNome){
 
     lista.innerHTML =
         '<div class="carregando-comentarios">' +
-        'Carregando comentários...' +
+        'CARREGANDO COMENTÁRIOS...' +
         '</div>';
 
     const callback =
@@ -3135,7 +3182,7 @@ function carregarComentarios(petNome){
 
             lista.innerHTML =
                 '<div class="comentarios-vazio">' +
-                'Ainda não há comentários sobre este PET.' +
+                'AINDA NÃO HÁ COMENTÁRIOS SOBRE ESTE PET.' +
                 '</div>';
 
             delete window[callback];
@@ -3148,7 +3195,7 @@ function carregarComentarios(petNome){
             const comentario =
                 document.createElement("div");
 
-            comentario.className=
+            comentario.className =
                 "comentario-item";
 
             const curtido =
@@ -3166,7 +3213,7 @@ function carregarComentarios(petNome){
                 'onclick="abrirMapaDoComentario(\'' +
                 escaparJS(item.local) +
                 '\')">' +
-                'Como chegar' +
+                'COMO CHEGAR' +
                 '</button>' +
                 '</div>'
                 :
@@ -3234,7 +3281,7 @@ function carregarComentarios(petNome){
 
         lista.innerHTML =
             '<div class="comentarios-vazio">' +
-            'Não foi possível carregar os comentários.' +
+            'NÃO FOI POSSÍVEL CARREGAR OS COMENTÁRIOS.' +
             '</div>';
 
         delete window[callback];
@@ -3274,38 +3321,44 @@ function enviarComentario(){
     if(!comentario){
 
         mensagem.style.display="block";
-        mensagem.textContent=
-            "Digite um comentário sobre o PET.";
+        mensagem.textContent =
+            "DIGITE UM COMENTÁRIO SOBRE O PET.";
+
         return;
     }
 
     if(!nome){
 
         mensagem.style.display="block";
-        mensagem.textContent=
-            "Digite seu nome.";
+        mensagem.textContent =
+            "DIGITE SEU NOME.";
+
         return;
     }
 
     if(!local){
 
         mensagem.style.display="block";
-        mensagem.textContent=
-            "Informe onde você viu o PET.";
+        mensagem.textContent =
+            "INFORME ONDE VOCÊ VIU O PET.";
+
         return;
     }
 
     mensagem.style.display="block";
-    mensagem.textContent="Salvando comentário...";
+    mensagem.textContent =
+        "SALVANDO COMENTÁRIO...";
 
     enviarPost(
         "salvarComentario",
         {
             pet:
-                campoPet(
+                campoPetFlexivel(
                     petAtual,
                     "Nome",
-                    "nome"
+                    "nome",
+                    "Nome do PET",
+                    "Nome do Pet"
                 ),
 
             nome:nome,
@@ -3318,8 +3371,8 @@ function enviarComentario(){
 
     setTimeout(()=>{
 
-        mensagem.textContent=
-            "Comentário publicado!";
+        mensagem.textContent =
+            "COMENTÁRIO PUBLICADO!";
 
         document
             .getElementById("comentarioTexto")
@@ -3334,10 +3387,12 @@ function enviarComentario(){
             .value="";
 
         carregarComentarios(
-            campoPet(
+            campoPetFlexivel(
                 petAtual,
                 "Nome",
-                "nome"
+                "nome",
+                "Nome do PET",
+                "Nome do Pet"
             )
         );
 
@@ -3446,7 +3501,7 @@ function abrirMapaDoComentario(local){
 
     info.innerHTML =
         '<p>' +
-        '<strong>Local informado:</strong><br>' +
+        '<strong>LOCAL INFORMADO:</strong><br>' +
         escaparHTML(local) +
         '</p>';
 
@@ -3460,7 +3515,7 @@ function abrirMapaDoComentario(local){
         escaparHTML(url) +
         '" target="_blank" ' +
         'rel="noopener noreferrer">' +
-        '📍 Como chegar até o local' +
+        '📍 COMO CHEGAR ATÉ O LOCAL' +
         '</a>';
 
     fecharModal();
@@ -3480,7 +3535,7 @@ function limparNumero(valor){
         Number(
             String(valor)
             .replace(",",".")
-            .replace("kg","")
+            .replace(/kg/gi,"")
             .trim()
         );
 
@@ -3546,6 +3601,12 @@ document.addEventListener("keydown",function(event){
         fecharFotoAmpliada();
     }
 });
+
+/* =========================
+   INICIAR
+========================= */
+
+abrirPagina("inicio");
 
 </script>
 
