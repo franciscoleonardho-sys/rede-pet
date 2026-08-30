@@ -230,54 +230,24 @@ textarea {
    MATCH
    ===================================================== */
 
-.match-topo {
-    margin-bottom: 25px;
-}
-
-.match-topo h2 {
-    margin-bottom: 8px;
-}
-
-.match-descricao {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-
-/* =====================================================
-   FILTRO DO MATCH
-   ===================================================== */
-
 .filtro-match {
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 18px;
-    margin-bottom: 25px;
+    margin: 20px 0 25px;
 }
 
 .filtro-match label {
     display: block;
     font-weight: bold;
     color: #064e3b;
-    margin-bottom: 9px;
+    margin-bottom: 8px;
 }
 
-.filtro-status {
-    width: 100%;
+#filtroStatus {
     max-width: 350px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    background: white;
-    color: #333;
-    font-size: 15px;
 }
-
-
-/* =====================================================
-   LISTA DE PETS
-   ===================================================== */
 
 .lista-pets {
     display: grid;
@@ -286,25 +256,17 @@ textarea {
     gap: 20px;
 }
 
-
-/* =====================================================
-   CARD DO PET
-   ===================================================== */
-
 .pet-card {
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    transition:
-        transform .15s ease,
-        box-shadow .15s ease;
+    transition: transform .15s ease;
 }
 
 .pet-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 18px rgba(0,0,0,.08);
 }
 
 .pet-foto {
@@ -329,12 +291,12 @@ textarea {
 
 .pet-nome {
     font-size: 21px;
-    margin-bottom: 9px;
+    margin-bottom: 7px;
 }
 
 .pet-status {
     display: inline-block;
-    padding: 6px 11px;
+    padding: 5px 10px;
     border-radius: 20px;
     background: #e6ebe8;
     color: #064e3b;
@@ -395,6 +357,37 @@ textarea {
 
 .dado strong {
     color: #064e3b;
+}
+
+
+/* =====================================================
+   EDIÇÃO DO STATUS
+   ===================================================== */
+
+.edicao-status {
+    margin-top: 25px;
+    padding: 18px;
+    background: #f5f7f6;
+    border: 1px solid #dfe5e2;
+    border-radius: 10px;
+}
+
+.edicao-status h3 {
+    color: #064e3b;
+    margin-bottom: 12px;
+}
+
+.edicao-status select {
+    margin-bottom: 12px;
+}
+
+.botao-editar {
+    border: none;
+    background: #064e3b;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 
@@ -538,12 +531,6 @@ textarea {
     justify-content: center;
     font-size: 21px;
     line-height: 1;
-    transition: all .15s ease;
-    flex-shrink: 0;
-}
-
-.botao-curtir:hover {
-    background: #e5ebe8;
 }
 
 .botao-curtir.curtido {
@@ -553,16 +540,7 @@ textarea {
 
 
 /* =====================================================
-   OCULTAR CONTADOR DE CURTIDAS
-   ===================================================== */
-
-.contador-curtidas {
-    display: none !important;
-}
-
-
-/* =====================================================
-   COMO CHEGAR
+   MAPA
    ===================================================== */
 
 .botao-localizacao {
@@ -575,37 +553,6 @@ textarea {
     font-size: 13px;
     margin-top: 5px;
 }
-
-
-/* =====================================================
-   BOTÃO VOLTAR FLUTUANTE
-   ===================================================== */
-
-.botao-voltar-flutuante {
-    position: fixed;
-    z-index: 2000;
-    right: 18px;
-    bottom: 18px;
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 13px 18px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,.25);
-    display: none;
-}
-
-.botao-voltar-flutuante.visivel {
-    display: block;
-}
-
-
-/* =====================================================
-   MAPA
-   ===================================================== */
 
 .mapa-container {
     background: white;
@@ -637,7 +584,6 @@ textarea {
     color: white;
     padding: 13px 20px;
     border-radius: 7px;
-    cursor: pointer;
     font-size: 15px;
     font-weight: bold;
     margin-top: 15px;
@@ -675,7 +621,7 @@ textarea {
 
 
 /* =====================================================
-   RODAPÉ
+   NAVEGAÇÃO
    ===================================================== */
 
 .rodape-navegacao {
@@ -685,6 +631,37 @@ textarea {
     flex-wrap: wrap;
     margin-top: 35px;
 }
+
+
+/* =====================================================
+   BOTÃO VOLTAR FLUTUANTE
+   ===================================================== */
+
+.botao-voltar-flutuante {
+    position: fixed;
+    z-index: 2000;
+    right: 18px;
+    bottom: 18px;
+    border: none;
+    background: #064e3b;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,.25);
+    display: none;
+}
+
+.botao-voltar-flutuante.visivel {
+    display: block;
+}
+
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
 
 footer {
     text-align: center;
@@ -738,7 +715,6 @@ footer {
 
 
 <body>
-
 
 <header>
 
@@ -801,7 +777,6 @@ Visualizar PETs
 <section id="pet" class="pagina">
 
 <form id="formPet">
-
 
 <div class="bloco">
 
@@ -1265,7 +1240,6 @@ class="mensagem">
 
 </div>
 
-
 </form>
 
 
@@ -1300,53 +1274,45 @@ Início
 
 <section id="match" class="pagina">
 
-
-<div class="match-topo">
-
 <h2>
 MATCH
 </h2>
 
-<p class="match-descricao">
-Encontre PETs perdidos, encontrados ou disponíveis para adoção.
+<p style="margin:10px 0 20px;color:#666">
+
+Encontre PETs perdidos, encontrados ou disponíveis
+para adoção.
+
 </p>
 
-</div>
-
-
-<!-- =====================================================
-     FILTRO
-     ===================================================== -->
 
 <div class="filtro-match">
 
 <label for="filtroStatus">
-O que você deseja visualizar?
+O que você quer visualizar?
 </label>
 
-<select
-id="filtroStatus"
-class="filtro-status"
-onchange="filtrarPets()">
+<select id="filtroStatus"
+onchange="aplicarFiltro()">
 
 <option value="Todos">
-Todos os PETs
+Todos
 </option>
 
 <option value="Perdido">
-PETs perdidos
+Perdidos
 </option>
 
 <option value="Para adoção">
-PETs para adoção
+Para adoção
 </option>
 
 <option value="Encontrado">
-PETs encontrados
+Encontrados
 </option>
 
 <option value="Adotado">
-PETs adotados
+Adotados
 </option>
 
 </select>
@@ -1458,7 +1424,7 @@ Início
 
 
 <!-- =====================================================
-     MODAL DO PET
+     MODAL
      ===================================================== -->
 
 <div
@@ -1481,8 +1447,54 @@ alt="Foto do PET">
 
 <h2 id="modalNome"></h2>
 
-
 <div id="modalDados"></div>
+
+
+<!-- =====================================================
+     EDIÇÃO DO STATUS
+     ===================================================== -->
+
+<div
+id="edicaoStatus"
+class="edicao-status">
+
+<h3>
+Alterar status do PET
+</h3>
+
+<select id="novoStatus">
+
+<option value="Perdido">
+Perdido
+</option>
+
+<option value="Para adoção">
+Para adoção
+</option>
+
+<option value="Encontrado">
+Encontrado
+</option>
+
+<option value="Adotado">
+Adotado
+</option>
+
+</select>
+
+<button
+type="button"
+class="botao-editar"
+onclick="alterarStatusPet()">
+Salvar alteração
+</button>
+
+<div
+id="mensagemStatus"
+class="mensagem">
+</div>
+
+</div>
 
 
 <!-- =====================================================
@@ -1492,17 +1504,13 @@ alt="Foto do PET">
 <div class="comentarios-bloco">
 
 <h3 class="comentarios-titulo">
-
 Comentários sobre o PET
-
 </h3>
 
 
 <div class="form-comentario">
 
-
-<label
-for="comentarioTexto">
+<label for="comentarioTexto">
 Comentário sobre o PET
 </label>
 
@@ -1512,8 +1520,7 @@ placeholder="Ex.: Vi ele perto da padaria.">
 </textarea>
 
 
-<label
-for="comentarioNome">
+<label for="comentarioNome">
 Seu nome
 </label>
 
@@ -1522,8 +1529,7 @@ id="comentarioNome"
 placeholder="Digite seu nome">
 
 
-<label
-for="comentarioLocal">
+<label for="comentarioLocal">
 Onde você viu o PET?
 </label>
 
@@ -1558,9 +1564,7 @@ Carregando comentários...
 
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -1570,7 +1574,7 @@ Carregando comentários...
 
 
 <!-- =====================================================
-     BOTÃO VOLTAR FLUTUANTE
+     BOTÃO VOLTAR
      ===================================================== -->
 
 <button
@@ -1606,10 +1610,6 @@ REDE PET — Protótipo
 </footer>
 
 
-<!-- =====================================================
-     IFRAME INVISÍVEL
-     ===================================================== -->
-
 <iframe
 name="frameCadastro"
 id="frameCadastro"
@@ -1631,9 +1631,9 @@ let peso = 0;
 
 let petAtual = null;
 
-let localMapaAtual = "";
-
 let petsCarregados = [];
+
+let localMapaAtual = "";
 
 
 /* =====================================================
@@ -1644,34 +1644,24 @@ function abrirPagina(nome) {
 
     document
         .querySelectorAll(".pagina")
-        .forEach(
-            p =>
+        .forEach(p =>
             p.classList.remove("ativa")
         );
-
 
     const pagina =
         document.getElementById(nome);
 
-
-    if (!pagina) {
-        return;
-    }
-
+    if (!pagina) return;
 
     pagina.classList.add("ativa");
-
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 
-
     if (nome === "match") {
-
         carregarPets();
-
     }
 
 }
@@ -1681,43 +1671,27 @@ function abrirPagina(nome) {
    OPÇÕES
    ===================================================== */
 
-function selecionar(
-    botao,
-    campo,
-    valor
-) {
+function selecionar(botao, campo, valor) {
 
     const grupo =
         botao.parentElement;
 
-
     grupo
         .querySelectorAll(".opcao")
-        .forEach(
-            b =>
-            b.classList.remove(
-                "selecionada"
-            )
+        .forEach(b =>
+            b.classList.remove("selecionada")
         );
 
-
-    botao.classList.add(
-        "selecionada"
-    );
-
+    botao.classList.add("selecionada");
 
     document
         .getElementById(campo)
         .value = valor;
 
-
     if (campo === "especie") {
 
         const outro =
-            document.getElementById(
-                "especieOutro"
-            );
-
+            document.getElementById("especieOutro");
 
         outro.style.display =
             valor === "Outro"
@@ -1737,66 +1711,42 @@ function alterarPeso(valor) {
 
     peso += valor;
 
+    if (peso < 0) peso = 0;
 
-    if (peso < 0) {
-        peso = 0;
-    }
-
-
-    if (peso > 100) {
-        peso = 100;
-    }
-
+    if (peso > 100) peso = 100;
 
     document
-        .getElementById(
-            "pesoValor"
-        )
+        .getElementById("pesoValor")
         .textContent = peso;
 
 }
 
 
 /* =====================================================
-   CONVERTER IMAGEM
+   IMAGEM
    ===================================================== */
 
 function converterImagem(file) {
 
-    return new Promise(
-        (resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
-            if (!file) {
-
-                resolve("");
-
-                return;
-
-            }
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                function() {
-
-                    resolve(
-                        reader.result
-                    );
-
-                };
-
-
-            reader.onerror =
-                reject;
-
-
-            reader.readAsDataURL(file);
-
+        if (!file) {
+            resolve("");
+            return;
         }
-    );
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            () => resolve(reader.result);
+
+        reader.onerror =
+            reject;
+
+        reader.readAsDataURL(file);
+
+    });
 
 }
 
@@ -1813,36 +1763,23 @@ document
 
             event.preventDefault();
 
-
             const mensagem =
-                document.getElementById(
-                    "mensagem"
-                );
+                document.getElementById("mensagem");
 
-
-            mensagem.style.display =
-                "block";
-
+            mensagem.style.display = "block";
 
             mensagem.textContent =
                 "Salvando cadastro...";
-
 
             try {
 
                 const arquivo =
                     document
-                        .getElementById(
-                            "foto"
-                        )
+                        .getElementById("foto")
                         .files[0];
 
-
                 const foto =
-                    await converterImagem(
-                        arquivo
-                    );
-
+                    await converterImagem(arquivo);
 
                 const dados = {
 
@@ -1850,158 +1787,114 @@ document
 
                     status:
                         document
-                            .getElementById(
-                                "status"
-                            )
+                            .getElementById("status")
                             .value,
 
                     nome:
                         document
-                            .getElementById(
-                                "nome"
-                            )
+                            .getElementById("nome")
                             .value,
 
                     idade:
                         document
-                            .getElementById(
-                                "idade"
-                            )
+                            .getElementById("idade")
                             .value,
 
                     peso:
-                        peso,
+                        Number(peso) || 0,
 
                     castrado:
                         document
-                            .getElementById(
-                                "castrado"
-                            )
+                            .getElementById("castrado")
                             .value,
 
                     especie:
                         document
-                            .getElementById(
-                                "especie"
-                            )
+                            .getElementById("especie")
                             .value,
 
                     especieOutro:
                         document
-                            .getElementById(
-                                "especieOutro"
-                            )
+                            .getElementById("especieOutro")
                             .value,
 
                     vacinado:
                         document
-                            .getElementById(
-                                "vacinado"
-                            )
+                            .getElementById("vacinado")
                             .value,
 
                     raca:
                         document
-                            .getElementById(
-                                "raca"
-                            )
+                            .getElementById("raca")
                             .value,
 
                     sexo:
                         document
-                            .getElementById(
-                                "sexo"
-                            )
+                            .getElementById("sexo")
                             .value,
 
                     porte:
                         document
-                            .getElementById(
-                                "porte"
-                            )
+                            .getElementById("porte")
                             .value,
 
                     cor:
                         document
-                            .getElementById(
-                                "cor"
-                            )
+                            .getElementById("cor")
                             .value,
 
                     tutorNome:
                         document
-                            .getElementById(
-                                "tutorNome"
-                            )
+                            .getElementById("tutorNome")
                             .value,
 
                     tutorContato:
                         document
-                            .getElementById(
-                                "tutorContato"
-                            )
+                            .getElementById("tutorContato")
                             .value,
 
                     whatsappPublico:
                         document
-                            .getElementById(
-                                "whatsappPublico"
-                            )
+                            .getElementById("whatsappPublico")
                             .value,
 
                     endereco:
                         document
-                            .getElementById(
-                                "endereco"
-                            )
+                            .getElementById("endereco")
                             .value,
 
                     bairro:
                         document
-                            .getElementById(
-                                "bairro"
-                            )
+                            .getElementById("bairro")
                             .value,
 
                     cidade:
                         document
-                            .getElementById(
-                                "cidade"
-                            )
+                            .getElementById("cidade")
                             .value,
 
                     pontoReferencia:
                         document
-                            .getElementById(
-                                "pontoReferencia"
-                            )
+                            .getElementById("pontoReferencia")
                             .value,
 
                     ultimaVez:
                         document
-                            .getElementById(
-                                "ultimaVez"
-                            )
+                            .getElementById("ultimaVez")
                             .value,
 
                     observacoes:
                         document
-                            .getElementById(
-                                "observacoes"
-                            )
+                            .getElementById("observacoes")
                             .value
 
                 };
 
 
                 const formEnvio =
-                    document.createElement(
-                        "form"
-                    );
+                    document.createElement("form");
 
-
-                formEnvio.method =
-                    "POST";
+                formEnvio.method = "POST";
 
                 formEnvio.action =
                     URL_APPS_SCRIPT;
@@ -2023,9 +1916,7 @@ document
                 adicionarCampo(
                     formEnvio,
                     "dados",
-                    JSON.stringify(
-                        dados
-                    )
+                    JSON.stringify(dados)
                 );
 
 
@@ -2033,56 +1924,37 @@ document
                     formEnvio
                 );
 
-
                 formEnvio.submit();
 
 
-                setTimeout(
-                    function() {
+                setTimeout(() => {
 
-                        mensagem.textContent =
-                            "PET cadastrado com sucesso!";
+                    mensagem.textContent =
+                        "PET cadastrado com sucesso!";
 
+                    formEnvio.remove();
 
-                        formEnvio.remove();
+                    document
+                        .getElementById("formPet")
+                        .reset();
 
+                    peso = 0;
 
-                        document
-                            .getElementById(
-                                "formPet"
+                    document
+                        .getElementById("pesoValor")
+                        .textContent = "0";
+
+                    document
+                        .querySelectorAll(".opcao")
+                        .forEach(b =>
+                            b.classList.remove(
+                                "selecionada"
                             )
-                            .reset();
+                        );
 
+                    carregarPets();
 
-                        peso = 0;
-
-
-                        document
-                            .getElementById(
-                                "pesoValor"
-                            )
-                            .textContent =
-                            "0";
-
-
-                        document
-                            .querySelectorAll(
-                                ".opcao"
-                            )
-                            .forEach(
-                                b =>
-                                b.classList
-                                .remove(
-                                    "selecionada"
-                                )
-                            );
-
-
-                        carregarPets();
-
-                    },
-                    1200
-                );
+                }, 1500);
 
 
             } catch (erro) {
@@ -2090,9 +1962,7 @@ document
                 mensagem.textContent =
                     "Erro ao preparar o cadastro.";
 
-                console.error(
-                    erro
-                );
+                console.error(erro);
 
             }
 
@@ -2101,197 +1971,148 @@ document
 
 
 /* =====================================================
-   AUXILIAR PARA FORMULÁRIOS
+   AUXILIAR
    ===================================================== */
 
-function adicionarCampo(
-    formulario,
-    nome,
-    valor
-) {
+function adicionarCampo(formulario, nome, valor) {
 
     const campo =
-        document.createElement(
-            "input"
-        );
+        document.createElement("input");
 
+    campo.type = "hidden";
 
-    campo.type =
-        "hidden";
+    campo.name = nome;
 
+    campo.value = valor;
 
-    campo.name =
-        nome;
-
-
-    campo.value =
-        valor;
-
-
-    formulario.appendChild(
-        campo
-    );
+    formulario.appendChild(campo);
 
 }
 
 
 /* =====================================================
-   CARREGAR PETS — JSONP
+   CARREGAR PETS
    ===================================================== */
 
 function carregarPets() {
 
     const lista =
-        document.getElementById(
-            "listaPets"
-        );
-
+        document.getElementById("listaPets");
 
     lista.innerHTML =
-        '<div class="carregando">' +
-        'Carregando PETs...' +
-        '</div>';
+        '<div class="carregando">Carregando PETs...</div>';
 
-
-    const nomeCallback =
+    const callback =
         "redePetCallback_" +
         Date.now() +
         "_" +
-        Math.floor(
-            Math.random() * 100000
-        );
-
+        Math.floor(Math.random() * 100000);
 
     let finalizado = false;
 
-
-    window[nomeCallback] =
+    window[callback] =
         function(pets) {
 
-            if (finalizado) {
-                return;
-            }
-
+            if (finalizado) return;
 
             finalizado = true;
 
+            petsCarregados =
+                Array.isArray(pets)
+                    ? pets
+                    : [];
 
-            try {
+            aplicarFiltro();
 
-                petsCarregados =
-                    Array.isArray(pets)
-                        ? pets
-                        : [];
-
-
-                renderizarPets(
-                    petsCarregados
-                );
-
-
-            } finally {
-
-                delete window[
-                    nomeCallback
-                ];
-
-            }
+            delete window[callback];
 
         };
 
 
     const script =
-        document.createElement(
-            "script"
-        );
-
+        document.createElement("script");
 
     script.src =
         URL_APPS_SCRIPT +
         "?acao=listarPets" +
         "&callback=" +
-        nomeCallback +
+        callback +
         "&t=" +
-        Date.now() +
-        "_" +
-        Math.random();
-
+        Date.now();
 
     script.async = true;
 
 
-    script.onerror =
-        function() {
+    script.onerror = function() {
 
-            if (finalizado) {
-                return;
-            }
+        if (finalizado) return;
 
+        finalizado = true;
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Não foi possível carregar os PETs.' +
+            '</div>';
+
+        delete window[callback];
+
+    };
+
+
+    document.body.appendChild(script);
+
+
+    setTimeout(function() {
+
+        if (!finalizado) {
 
             finalizado = true;
-
 
             lista.innerHTML =
                 '<div class="carregando">' +
                 'Não foi possível carregar os PETs.' +
                 '</div>';
 
+            delete window[callback];
 
-            delete window[
-                nomeCallback
-            ];
+        }
 
-        };
-
-
-    document
-        .body
-        .appendChild(
-            script
-        );
-
-
-    setTimeout(
-        function() {
-
-            if (!finalizado) {
-
-                finalizado = true;
-
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'Verificando PETs cadastrados...' +
-                    '</div>';
-
-            }
-
-        },
-        10000
-    );
+    }, 10000);
 
 }
 
 
 /* =====================================================
-   RENDERIZAR PETS
+   NORMALIZAR TEXTO
    ===================================================== */
 
-function renderizarPets(pets) {
+function normalizarTexto(valor) {
+
+    return String(valor || "")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+}
+
+
+/* =====================================================
+   FILTRO
+   ===================================================== */
+
+function aplicarFiltro() {
 
     const lista =
-        document.getElementById(
-            "listaPets"
-        );
+        document.getElementById("listaPets");
 
+    const filtro =
+        document.getElementById("filtroStatus")
+            .value;
 
     lista.innerHTML = "";
 
-
-    if (
-        !pets ||
-        !pets.length
-    ) {
+    if (!petsCarregados.length) {
 
         lista.innerHTML =
             '<div class="carregando">' +
@@ -2303,42 +2124,22 @@ function renderizarPets(pets) {
     }
 
 
-    const filtro =
-        document.getElementById(
-            "filtroStatus"
-        ).value;
+    const filtrados =
+        petsCarregados.filter(function(pet) {
 
-
-    const petsFiltrados =
-        pets.filter(
-            function(pet) {
-
-                const status =
-                    String(
-                        pet["Status"] ||
-                        ""
-                    ).trim();
-
-
-                if (
-                    filtro === "Todos"
-                ) {
-
-                    return true;
-
-                }
-
-
-                return status.toLowerCase() ===
-                    filtro.toLowerCase();
-
+            if (filtro === "Todos") {
+                return true;
             }
-        );
+
+            return (
+                normalizarTexto(pet["Status"]) ===
+                normalizarTexto(filtro)
+            );
+
+        });
 
 
-    if (
-        !petsFiltrados.length
-    ) {
+    if (!filtrados.length) {
 
         lista.innerHTML =
             '<div class="carregando">' +
@@ -2350,105 +2151,69 @@ function renderizarPets(pets) {
     }
 
 
-    petsFiltrados.forEach(
-        function(pet) {
+    filtrados.forEach(function(pet) {
 
-            const card =
-                document.createElement(
-                    "article"
-                );
+        const card =
+            document.createElement("article");
 
+        card.className =
+            "pet-card";
 
-            card.className =
-                "pet-card";
-
-
-            card.onclick =
-                function() {
-
-                    abrirModal(
-                        pet
-                    );
-
-                };
+        card.onclick =
+            function() {
+                abrirModal(pet);
+            };
 
 
-            const foto =
-                pet["Foto"] ||
-                "";
+        const foto =
+            pet["Foto"] || "";
+
+        let imagem =
+            '<div class="pet-sem-foto">' +
+            'Sem foto' +
+            '</div>';
 
 
-            let imagem =
-                '<div class="pet-sem-foto">' +
-                'Sem foto' +
-                '</div>';
+        if (foto) {
 
-
-            if (foto) {
-
-                imagem =
-                    '<img ' +
-                    'class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(
-                        foto
-                    ) +
-                    '" ' +
-                    'alt="Foto do PET">' ;
-
-            }
-
-
-            const nome =
-                pet["Nome"] ||
-                "PET";
-
-
-            const status =
-                pet["Status"] ||
-                "Sem status";
-
-
-            card.innerHTML =
-
-                imagem +
-
-                '<div class="pet-resumo">' +
-
-                '<h3 class="pet-nome">' +
-                escaparHTML(
-                    nome
-                ) +
-                '</h3>' +
-
-                '<span class="pet-status">' +
-                escaparHTML(
-                    status
-                ) +
-                '</span>' +
-
-                '</div>';
-
-
-            lista.appendChild(
-                card
-            );
+            imagem =
+                '<img ' +
+                'class="pet-foto" ' +
+                'src="' +
+                escaparHTML(foto) +
+                '" ' +
+                'alt="Foto do PET">';
 
         }
-    );
-
-}
 
 
-/* =====================================================
-   FILTRAR PETS
-   ===================================================== */
+        const nome =
+            pet["Nome"] || "PET";
 
-function filtrarPets() {
+        const status =
+            pet["Status"] || "Sem status";
 
-    renderizarPets(
-        petsCarregados
-    );
+
+        card.innerHTML =
+
+            imagem +
+
+            '<div class="pet-resumo">' +
+
+            '<h3 class="pet-nome">' +
+            escaparHTML(nome) +
+            '</h3>' +
+
+            '<span class="pet-status">' +
+            escaparHTML(status) +
+            '</span>' +
+
+            '</div>';
+
+
+        lista.appendChild(card);
+
+    });
 
 }
 
@@ -2459,111 +2224,65 @@ function filtrarPets() {
 
 function abrirModal(pet) {
 
-    petAtual =
-        pet;
-
+    petAtual = pet;
 
     const modal =
-        document.getElementById(
-            "modal"
-        );
-
+        document.getElementById("modal");
 
     const foto =
-        pet["Foto"] ||
-        "";
-
+        pet["Foto"] || "";
 
     const imagem =
-        document.getElementById(
-            "modalFotoMini"
-        );
+        document.getElementById("modalFotoMini");
 
 
     if (foto) {
 
-        imagem.src =
-            foto;
+        imagem.src = foto;
 
-        imagem.style.display =
-            "block";
+        imagem.style.display = "block";
 
     } else {
 
-        imagem.style.display =
-            "none";
+        imagem.style.display = "none";
 
     }
 
 
     document
-        .getElementById(
-            "modalNome"
-        )
+        .getElementById("modalNome")
         .textContent =
-        pet["Nome"] ||
-        "PET";
+            pet["Nome"] || "PET";
 
 
     const dados =
-        document.getElementById(
-            "modalDados"
-        );
+        document.getElementById("modalDados");
 
 
     dados.innerHTML =
 
-        criarDado(
-            "Status",
-            pet["Status"]
-        ) +
+        criarDado("Status", pet["Status"]) +
 
-        criarDado(
-            "Espécie",
-            pet["Especie"]
-        ) +
+        criarDado("Espécie", pet["Especie"]) +
 
-        criarDado(
-            "Raça",
-            pet["Raca"]
-        ) +
+        criarDado("Raça", pet["Raca"]) +
 
-        criarDado(
-            "Sexo",
-            pet["Sexo"]
-        ) +
+        criarDado("Sexo", pet["Sexo"]) +
 
-        criarDado(
-            "Idade",
-            pet["Idade"]
-        ) +
+        criarDado("Idade", pet["Idade"]) +
 
         criarDado(
             "Peso",
-            pet["Peso"]
-                ? pet["Peso"] + " kg"
-                : "-"
+            formatarPeso(pet["Peso"])
         ) +
 
-        criarDado(
-            "Castrado",
-            pet["Castrado"]
-        ) +
+        criarDado("Castrado", pet["Castrado"]) +
 
-        criarDado(
-            "Vacinado",
-            pet["Vacinado"]
-        ) +
+        criarDado("Vacinado", pet["Vacinado"]) +
 
-        criarDado(
-            "Porte",
-            pet["Porte"]
-        ) +
+        criarDado("Porte", pet["Porte"]) +
 
-        criarDado(
-            "Cor",
-            pet["Cor"]
-        ) +
+        criarDado("Cor", pet["Cor"]) +
 
         criarDado(
             "Última vez visto",
@@ -2582,8 +2301,9 @@ function abrirModal(pet) {
 
 
     if (
-        pet["WhatsApp Publico"] ===
-        "Sim"
+        String(pet["WhatsApp Publico"])
+            .trim()
+            .toLowerCase() === "sim"
     ) {
 
         dados.innerHTML +=
@@ -2604,50 +2324,42 @@ function abrirModal(pet) {
 
 
     document
-        .getElementById(
-            "comentarioTexto"
-        )
+        .getElementById("novoStatus")
+        .value =
+            pet["Status"] || "Perdido";
+
+
+    document
+        .getElementById("mensagemStatus")
+        .style.display = "none";
+
+
+    document
+        .getElementById("comentarioTexto")
         .value = "";
 
-
     document
-        .getElementById(
-            "comentarioNome"
-        )
+        .getElementById("comentarioNome")
         .value = "";
 
-
     document
-        .getElementById(
-            "comentarioLocal"
-        )
+        .getElementById("comentarioLocal")
         .value = "";
 
-
     document
-        .getElementById(
-            "mensagemComentario"
-        )
-        .style.display =
-        "none";
+        .getElementById("mensagemComentario")
+        .style.display = "none";
 
 
-    modal.classList.add(
-        "aberto"
-    );
+    modal.classList.add("aberto");
 
 
     document
-        .getElementById(
-            "botaoVoltarFlutuante"
-        )
-        .classList.add(
-            "visivel"
-        );
+        .getElementById("botaoVoltarFlutuante")
+        .classList.add("visivel");
 
 
-    document.body.style.overflow =
-        "hidden";
+    document.body.style.overflow = "hidden";
 
 
     carregarComentarios(
@@ -2658,31 +2370,210 @@ function abrirModal(pet) {
 
 
 /* =====================================================
+   PESO
+   ===================================================== */
+
+function formatarPeso(valor) {
+
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
+
+        return "-";
+
+    }
+
+
+    let texto =
+        String(valor)
+            .trim()
+            .replace(",", ".");
+
+
+    texto =
+        texto
+            .replace(/\s*kg\s*/gi, "")
+            .trim();
+
+
+    const numero =
+        Number(texto);
+
+
+    if (isNaN(numero)) {
+
+        return escaparHTML(valor);
+
+    }
+
+
+    return numero + " kg";
+
+}
+
+
+/* =====================================================
    CRIAR DADO
    ===================================================== */
 
-function criarDado(
-    titulo,
-    valor
-) {
+function criarDado(titulo, valor) {
 
     return (
 
         '<div class="dado">' +
 
         '<strong>' +
-        escaparHTML(
-            titulo
-        ) +
+        escaparHTML(titulo) +
         ':</strong> ' +
 
-        escaparHTML(
-            valor || "-"
-        ) +
+        escaparHTML(valor || "-") +
 
         '</div>'
 
     );
+
+}
+
+
+/* =====================================================
+   ALTERAR STATUS
+   ===================================================== */
+
+function alterarStatusPet() {
+
+    if (!petAtual) return;
+
+
+    const novoStatus =
+        document
+            .getElementById("novoStatus")
+            .value;
+
+
+    const mensagem =
+        document
+            .getElementById("mensagemStatus");
+
+
+    let chave =
+        localStorage.getItem(
+            "redePetChave_" +
+            petAtual["ID"]
+        );
+
+
+    if (!chave) {
+
+        chave =
+            prompt(
+                "Digite a chave de edição deste PET:"
+            );
+
+        if (!chave) return;
+
+    }
+
+
+    mensagem.style.display = "block";
+
+    mensagem.textContent =
+        "Salvando alteração...";
+
+
+    const dados = {
+
+        id:
+            petAtual["ID"],
+
+        novoStatus:
+            novoStatus,
+
+        chave:
+            chave
+
+    };
+
+
+    const formEnvio =
+        document.createElement("form");
+
+
+    formEnvio.method = "POST";
+
+    formEnvio.action =
+        URL_APPS_SCRIPT;
+
+    formEnvio.target =
+        "frameCadastro";
+
+    formEnvio.style.display =
+        "none";
+
+
+    adicionarCampo(
+        formEnvio,
+        "acao",
+        "alterarStatusPet"
+    );
+
+
+    adicionarCampo(
+        formEnvio,
+        "dados",
+        JSON.stringify(dados)
+    );
+
+
+    document.body.appendChild(
+        formEnvio
+    );
+
+    formEnvio.submit();
+
+
+    setTimeout(function() {
+
+        mensagem.textContent =
+            "Status alterado com sucesso!";
+
+
+        petAtual["Status"] =
+            novoStatus;
+
+
+        petsCarregados =
+            petsCarregados.map(function(pet) {
+
+                if (
+                    String(pet["ID"]) ===
+                    String(petAtual["ID"])
+                ) {
+
+                    pet["Status"] =
+                        novoStatus;
+
+                }
+
+                return pet;
+
+            });
+
+
+        aplicarFiltro();
+
+
+        setTimeout(function() {
+
+            fecharModal();
+
+        }, 1200);
+
+
+        formEnvio.remove();
+
+    }, 1200);
 
 }
 
@@ -2693,32 +2584,17 @@ function criarDado(
 
 function fecharModal() {
 
-    const modal =
-        document.getElementById(
-            "modal"
-        );
-
-
-    modal.classList.remove(
-        "aberto"
-    );
-
+    document
+        .getElementById("modal")
+        .classList.remove("aberto");
 
     document
-        .getElementById(
-            "botaoVoltarFlutuante"
-        )
-        .classList.remove(
-            "visivel"
-        );
+        .getElementById("botaoVoltarFlutuante")
+        .classList.remove("visivel");
 
+    document.body.style.overflow = "";
 
-    document.body.style.overflow =
-        "";
-
-
-    petAtual =
-        null;
+    petAtual = null;
 
 }
 
@@ -2739,53 +2615,33 @@ function abrirFotoAmpliada() {
     }
 
 
-    const foto =
-        document.getElementById(
-            "fotoAmpliada"
-        );
+    document
+        .getElementById("fotoAmpliadaImagem")
+        .src =
+            petAtual["Foto"];
 
 
-    const imagem =
-        document.getElementById(
-            "fotoAmpliadaImagem"
-        );
-
-
-    imagem.src =
-        petAtual["Foto"];
-
-
-    foto.classList.add(
-        "aberta"
-    );
+    document
+        .getElementById("fotoAmpliada")
+        .classList.add("aberta");
 
 }
 
-
-/* =====================================================
-   FECHAR FOTO
-   ===================================================== */
 
 function fecharFotoAmpliada() {
 
     document
-        .getElementById(
-            "fotoAmpliada"
-        )
-        .classList.remove(
-            "aberta"
-        );
+        .getElementById("fotoAmpliada")
+        .classList.remove("aberta");
 
 }
 
 
 /* =====================================================
-   CARREGAR COMENTÁRIOS
+   COMENTÁRIOS
    ===================================================== */
 
-function carregarComentarios(
-    petNome
-) {
+function carregarComentarios(petNome) {
 
     const lista =
         document.getElementById(
@@ -2799,214 +2655,166 @@ function carregarComentarios(
         '</div>';
 
 
-    const nomeCallback =
+    const callback =
         "comentariosCallback_" +
         Date.now() +
         "_" +
-        Math.floor(
-            Math.random() * 100000
-        );
+        Math.floor(Math.random() * 100000);
 
 
-    window[nomeCallback] =
+    window[callback] =
         function(comentarios) {
 
-            try {
+            lista.innerHTML = "";
+
+
+            if (
+                !comentarios ||
+                !comentarios.length
+            ) {
 
                 lista.innerHTML =
-                    "";
+                    '<div class="comentarios-vazio">' +
+                    'Ainda não há comentários sobre este PET.' +
+                    '</div>';
+
+                delete window[callback];
+
+                return;
+
+            }
 
 
-                if (
-                    !comentarios ||
-                    !comentarios.length
-                ) {
+            comentarios.forEach(function(item) {
 
-                    lista.innerHTML =
-                        '<div class="comentarios-vazio">' +
-                        'Ainda não há comentários sobre este PET.' +
+                const comentario =
+                    document.createElement("div");
+
+                comentario.className =
+                    "comentario-item";
+
+
+                const curtido =
+                    comentarioJaCurtido(item.id);
+
+
+                const coracao =
+                    curtido ? "♥" : "♡";
+
+
+                const classeCurtido =
+                    curtido ? " curtido" : "";
+
+
+                let localHTML = "";
+
+
+                if (item.local) {
+
+                    localHTML =
+
+                        '<div class="comentario-local">' +
+
+                        escaparHTML(item.local) +
+
+                        '<br>' +
+
+                        '<button ' +
+                        'type="button" ' +
+                        'class="botao-localizacao" ' +
+                        'onclick="abrirMapaDoComentario(' +
+                        "'" +
+                        escaparJS(item.local) +
+                        "'" +
+                        ')">' +
+
+                        'Como chegar' +
+
+                        '</button>' +
+
                         '</div>';
-
-                    return;
 
                 }
 
 
-                comentarios.forEach(
-                    function(item) {
+                comentario.innerHTML =
 
-                        const comentario =
-                            document.createElement(
-                                "div"
-                            );
+                    '<div class="comentario-texto">' +
 
+                    escaparHTML(
+                        item.comentario
+                    ) +
 
-                        comentario.className =
-                            "comentario-item";
+                    '</div>' +
 
+                    localHTML +
 
-                        const curtido =
-                            comentarioJaCurtido(
-                                item.id
-                            );
+                    '<div class="comentario-rodape">' +
 
+                    '<div>' +
 
-                        const coracao =
-                            curtido
-                                ? "♥"
-                                : "♡";
+                    '<span class="comentario-autor">' +
 
+                    escaparHTML(
+                        item.nome
+                    ) +
 
-                        const classeCurtido =
-                            curtido
-                                ? " curtido"
-                                : "";
+                    '</span>' +
 
+                    ' · ' +
 
-                        let localHTML =
-                            "";
+                    '<span class="comentario-data">' +
 
+                    escaparHTML(
+                        item.dataHora
+                    ) +
 
-                        if (
-                            item.local
-                        ) {
+                    '</span>' +
 
-                            localHTML =
+                    '</div>' +
 
-                                '<div class="comentario-local">' +
+                    '<div>' +
 
-                                '📍 ' +
+                    '<button ' +
+                    'type="button" ' +
+                    'class="botao-curtir' +
+                    classeCurtido +
+                    '" ' +
+                    'data-id="' +
+                    escaparHTML(item.id) +
+                    '" ' +
+                    'onclick="curtirComentarioHTML(this)">' +
 
-                                escaparHTML(
-                                    item.local
-                                ) +
+                    coracao +
 
-                                '<br>' +
+                    '</button>' +
 
-                                '<button ' +
-                                'type="button" ' +
-                                'class="botao-localizacao" ' +
-                                'onclick="abrirMapaDoComentario(' +
-                                '\'' +
-                                escaparJS(
-                                    item.local
-                                ) +
-                                '\'' +
-                                ')">' +
+                    '</div>' +
 
-                                'Como chegar' +
-
-                                '</button>' +
-
-                                '</div>';
-
-                        }
+                    '</div>';
 
 
-                        comentario.innerHTML =
+                lista.appendChild(comentario);
 
-                            '<div class="comentario-texto">' +
-
-                            escaparHTML(
-                                item.comentario
-                            ) +
-
-                            '</div>' +
-
-                            localHTML +
-
-                            '<div class="comentario-rodape">' +
-
-                            '<div>' +
-
-                            '<span class="comentario-autor">' +
-
-                            escaparHTML(
-                                item.nome
-                            ) +
-
-                            '</span>' +
-
-                            ' · ' +
-
-                            '<span class="comentario-data">' +
-
-                            escaparHTML(
-                                item.dataHora
-                            ) +
-
-                            '</span>' +
-
-                            '</div>' +
-
-                            '<div style="display:flex;align-items:center;">' +
-
-                            '<button ' +
-                            'type="button" ' +
-                            'class="botao-curtir' +
-                            classeCurtido +
-                            '" ' +
-                            'aria-label="Curtir comentário" ' +
-                            'data-id="' +
-                            escaparHTML(
-                                item.id
-                            ) +
-                            '" ' +
-                            'onclick="curtirComentarioHTML(this)">' +
-
-                            coracao +
-
-                            '</button>' +
-
-                            '<span class="contador-curtidas">' +
-
-                            (
-                                item.curtidas
-                                    ? item.curtidas
-                                    : ""
-                            ) +
-
-                            '</span>' +
-
-                            '</div>' +
-
-                            '</div>';
+            });
 
 
-                        lista.appendChild(
-                            comentario
-                        );
-
-                    }
-                );
-
-
-            } finally {
-
-                delete window[
-                    nomeCallback
-                ];
-
-            }
+            delete window[callback];
 
         };
 
 
     const script =
-        document.createElement(
-            "script"
-        );
+        document.createElement("script");
 
 
     script.src =
         URL_APPS_SCRIPT +
         "?acao=listarComentarios" +
         "&pet=" +
-        encodeURIComponent(
-            petNome
-        ) +
+        encodeURIComponent(petNome) +
         "&callback=" +
-        nomeCallback +
+        callback +
         "&t=" +
         Date.now();
 
@@ -3022,19 +2830,12 @@ function carregarComentarios(
                 'Não foi possível carregar os comentários.' +
                 '</div>';
 
-
-            delete window[
-                nomeCallback
-            ];
+            delete window[callback];
 
         };
 
 
-    document
-        .body
-        .appendChild(
-            script
-        );
+    document.body.appendChild(script);
 
 }
 
@@ -3045,34 +2846,26 @@ function carregarComentarios(
 
 function enviarComentario() {
 
-    if (!petAtual) {
-        return;
-    }
+    if (!petAtual) return;
 
 
     const comentario =
         document
-            .getElementById(
-                "comentarioTexto"
-            )
+            .getElementById("comentarioTexto")
             .value
             .trim();
 
 
     const nome =
         document
-            .getElementById(
-                "comentarioNome"
-            )
+            .getElementById("comentarioNome")
             .value
             .trim();
 
 
     const local =
         document
-            .getElementById(
-                "comentarioLocal"
-            )
+            .getElementById("comentarioLocal")
             .value
             .trim();
 
@@ -3085,8 +2878,7 @@ function enviarComentario() {
 
     if (!comentario) {
 
-        mensagem.style.display =
-            "block";
+        mensagem.style.display = "block";
 
         mensagem.textContent =
             "Digite um comentário sobre o PET.";
@@ -3098,8 +2890,7 @@ function enviarComentario() {
 
     if (!nome) {
 
-        mensagem.style.display =
-            "block";
+        mensagem.style.display = "block";
 
         mensagem.textContent =
             "Digite seu nome.";
@@ -3111,8 +2902,7 @@ function enviarComentario() {
 
     if (!local) {
 
-        mensagem.style.display =
-            "block";
+        mensagem.style.display = "block";
 
         mensagem.textContent =
             "Informe onde você viu o PET.";
@@ -3122,8 +2912,7 @@ function enviarComentario() {
     }
 
 
-    mensagem.style.display =
-        "block";
+    mensagem.style.display = "block";
 
     mensagem.textContent =
         "Salvando comentário...";
@@ -3132,8 +2921,7 @@ function enviarComentario() {
     const dados = {
 
         pet:
-            petAtual["Nome"] ||
-            "",
+            petAtual["Nome"] || "",
 
         nome:
             nome,
@@ -3148,22 +2936,16 @@ function enviarComentario() {
 
 
     const formEnvio =
-        document.createElement(
-            "form"
-        );
+        document.createElement("form");
 
 
-    formEnvio.method =
-        "POST";
-
+    formEnvio.method = "POST";
 
     formEnvio.action =
         URL_APPS_SCRIPT;
 
-
     formEnvio.target =
         "frameCadastro";
-
 
     formEnvio.style.display =
         "none";
@@ -3179,9 +2961,7 @@ function enviarComentario() {
     adicionarCampo(
         formEnvio,
         "dados",
-        JSON.stringify(
-            dados
-        )
+        JSON.stringify(dados)
     );
 
 
@@ -3189,134 +2969,89 @@ function enviarComentario() {
         formEnvio
     );
 
-
     formEnvio.submit();
 
 
-    setTimeout(
-        function() {
+    setTimeout(function() {
 
-            mensagem.textContent =
-                "Comentário publicado!";
-
-
-            document
-                .getElementById(
-                    "comentarioTexto"
-                )
-                .value = "";
+        mensagem.textContent =
+            "Comentário publicado!";
 
 
-            document
-                .getElementById(
-                    "comentarioNome"
-                )
-                .value = "";
+        document
+            .getElementById("comentarioTexto")
+            .value = "";
+
+        document
+            .getElementById("comentarioNome")
+            .value = "";
+
+        document
+            .getElementById("comentarioLocal")
+            .value = "";
 
 
-            document
-                .getElementById(
-                    "comentarioLocal"
-                )
-                .value = "";
+        carregarComentarios(
+            petAtual["Nome"]
+        );
 
 
-            carregarComentarios(
-                petAtual["Nome"]
-            );
+        formEnvio.remove();
 
 
-            setTimeout(
-                function() {
+        setTimeout(function() {
 
-                    mensagem.style.display =
-                        "none";
+            mensagem.style.display =
+                "none";
 
-                },
-                1800
-            );
+        }, 1800);
 
 
-            formEnvio.remove();
-
-        },
-        1000
-    );
+    }, 1000);
 
 }
 
 
 /* =====================================================
-   CURTIR COMENTÁRIO
+   CURTIDA
    ===================================================== */
 
-function curtirComentarioHTML(
-    botao
-) {
+function curtirComentarioHTML(botao) {
 
     const id =
-        botao.getAttribute(
-            "data-id"
-        );
+        botao.getAttribute("data-id");
 
 
-    if (!id) {
-        return;
-    }
+    if (!id) return;
 
 
-    const jaCurtido =
-        comentarioJaCurtido(
-            id
-        );
+    if (comentarioJaCurtido(id)) return;
 
 
-    if (jaCurtido) {
-
-        return;
-
-    }
+    salvarCurtidaLocal(id);
 
 
-    salvarCurtidaLocal(
-        id
-    );
+    botao.classList.add("curtido");
 
-
-    botao.classList.add(
-        "curtido"
-    );
-
-
-    botao.innerHTML =
-        "♥";
+    botao.innerHTML = "♥";
 
 
     const dados = {
-
-        id:
-            id
-
+        id: id
     };
 
 
     const formEnvio =
-        document.createElement(
-            "form"
-        );
+        document.createElement("form");
 
 
-    formEnvio.method =
-        "POST";
-
+    formEnvio.method = "POST";
 
     formEnvio.action =
         URL_APPS_SCRIPT;
 
-
     formEnvio.target =
         "frameCadastro";
-
 
     formEnvio.style.display =
         "none";
@@ -3332,9 +3067,7 @@ function curtirComentarioHTML(
     adicionarCampo(
         formEnvio,
         "dados",
-        JSON.stringify(
-            dados
-        )
+        JSON.stringify(dados)
     );
 
 
@@ -3342,24 +3075,20 @@ function curtirComentarioHTML(
         formEnvio
     );
 
-
     formEnvio.submit();
 
 
-    setTimeout(
-        function() {
+    setTimeout(function() {
 
-            formEnvio.remove();
+        formEnvio.remove();
 
-        },
-        1000
-    );
+    }, 1000);
 
 }
 
 
 /* =====================================================
-   LOCAL STORAGE — CURTIDAS
+   CURTIDAS
    ===================================================== */
 
 function obterCurtidas() {
@@ -3383,13 +3112,8 @@ function obterCurtidas() {
 
 function comentarioJaCurtido(id) {
 
-    const curtidas =
-        obterCurtidas();
-
-
-    return curtidas.indexOf(
-        String(id)
-    ) !== -1;
+    return obterCurtidas()
+        .indexOf(String(id)) !== -1;
 
 }
 
@@ -3399,49 +3123,37 @@ function salvarCurtidaLocal(id) {
     const curtidas =
         obterCurtidas();
 
-
     const idString =
         String(id);
 
 
     if (
-        curtidas.indexOf(
-            idString
-        ) === -1
+        curtidas.indexOf(idString) === -1
     ) {
 
-        curtidas.push(
-            idString
-        );
+        curtidas.push(idString);
 
     }
 
 
     localStorage.setItem(
         "redePetCurtidas",
-        JSON.stringify(
-            curtidas
-        )
+        JSON.stringify(curtidas)
     );
 
 }
 
 
 /* =====================================================
-   ABRIR MAPA PELO COMENTÁRIO
+   MAPA
    ===================================================== */
 
-function abrirMapaDoComentario(
-    local
-) {
+function abrirMapaDoComentario(local) {
 
-    if (!local) {
-        return;
-    }
+    if (!local) return;
 
 
-    localMapaAtual =
-        local;
+    localMapaAtual = local;
 
 
     const mapa =
@@ -3463,9 +3175,7 @@ function abrirMapaDoComentario(
 
 
     const localEncoded =
-        encodeURIComponent(
-            local
-        );
+        encodeURIComponent(local);
 
 
     mapa.src =
@@ -3480,9 +3190,7 @@ function abrirMapaDoComentario(
 
         '<strong>Local informado:</strong><br>' +
 
-        escaparHTML(
-            local
-        ) +
+        escaparHTML(local) +
 
         '</p>';
 
@@ -3497,60 +3205,40 @@ function abrirMapaDoComentario(
         '<a ' +
         'class="botao-como-chegar" ' +
         'href="' +
-        escaparHTML(
-            urlGoogle
-        ) +
+        escaparHTML(urlGoogle) +
         '" ' +
         'target="_blank" ' +
         'rel="noopener noreferrer">' +
 
-        '📍 Como chegar até o local' +
+        'Como chegar até o local' +
 
         '</a>';
 
 
     fecharModal();
 
-
-    abrirPagina(
-        "mapa"
-    );
+    abrirPagina("mapa");
 
 }
 
 
 /* =====================================================
-   SEGURANÇA DO TEXTO
+   SEGURANÇA
    ===================================================== */
 
 function escaparHTML(valor) {
 
     return String(valor)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g, "&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g, "&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g, "&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g, "&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -3559,31 +3247,19 @@ function escaparJS(valor) {
 
     return String(valor)
 
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
+        .replace(/\\/g, "\\\\")
 
-        .replace(
-            /'/g,
-            "\\'"
-        )
+        .replace(/'/g, "\\'")
 
-        .replace(
-            /\r/g,
-            ""
-        )
+        .replace(/\r/g, "")
 
-        .replace(
-            /\n/g,
-            "\\n"
-        );
+        .replace(/\n/g, "\\n");
 
 }
 
 
 /* =====================================================
-   FECHAR MODAL CLICANDO FORA
+   FECHAR CLICANDO FORA
    ===================================================== */
 
 document
@@ -3592,10 +3268,7 @@ document
         "click",
         function(event) {
 
-            if (
-                event.target ===
-                this
-            ) {
+            if (event.target === this) {
 
                 fecharModal();
 
@@ -3606,17 +3279,14 @@ document
 
 
 /* =====================================================
-   TECLA ESC
+   ESC
    ===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key ===
-            "Escape"
-        ) {
+        if (event.key === "Escape") {
 
             fecharFotoAmpliada();
 
@@ -3626,7 +3296,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
