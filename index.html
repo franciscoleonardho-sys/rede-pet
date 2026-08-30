@@ -38,15 +38,17 @@ header {
     padding: 25px 18px;
 }
 
+/* ================= INÍCIO ================= */
+
 .inicio {
     text-align: center;
     padding: 55px 20px;
 }
 
 .inicio h1 {
-    color: #064e3b;
     font-size: 38px;
     margin-bottom: 12px;
+    color: #064e3b;
 }
 
 .inicio p {
@@ -79,8 +81,6 @@ button {
     border-radius: 7px;
     cursor: pointer;
     font-size: 15px;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .botao:hover {
@@ -92,9 +92,7 @@ button {
     color: #064e3b;
 }
 
-.navegacao {
-    display: none;
-}
+/* ================= PÁGINAS ================= */
 
 .pagina {
     display: none;
@@ -103,6 +101,8 @@ button {
 .pagina.ativa {
     display: block;
 }
+
+/* ================= FORMULÁRIO ================= */
 
 .bloco {
     background: white;
@@ -148,6 +148,8 @@ textarea {
     gap: 18px;
 }
 
+/* ================= OPÇÕES ================= */
+
 .opcoes {
     display: flex;
     gap: 10px;
@@ -161,8 +163,6 @@ textarea {
     padding: 11px 18px;
     border-radius: 7px;
     cursor: pointer;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .opcao.selecionada {
@@ -170,6 +170,8 @@ textarea {
     color: white;
     border-color: #064e3b;
 }
+
+/* ================= PESO ================= */
 
 .peso-controle {
     display: flex;
@@ -189,7 +191,6 @@ textarea {
     touch-action: manipulation;
     -webkit-user-select: none;
     user-select: none;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .peso-valor {
@@ -198,6 +199,8 @@ textarea {
     min-width: 80px;
     text-align: center;
 }
+
+/* ================= PETS ================= */
 
 .lista-pets {
     display: grid;
@@ -247,6 +250,8 @@ textarea {
     font-size: 12px;
     font-weight: bold;
 }
+
+/* ================= MODAL ================= */
 
 .modal {
     display: none;
@@ -312,6 +317,8 @@ textarea {
     color: #064e3b;
 }
 
+/* ================= MAPA ================= */
+
 .mapa-container {
     background: white;
     border: 1px solid #ddd;
@@ -325,6 +332,8 @@ textarea {
     border: none;
     border-radius: 8px;
 }
+
+/* ================= MENSAGENS ================= */
 
 .mensagem {
     display: none;
@@ -341,6 +350,8 @@ textarea {
     color: #777;
 }
 
+/* ================= RODAPÉ ================= */
+
 .rodape-navegacao {
     display: flex;
     justify-content: center;
@@ -355,6 +366,8 @@ footer {
     color: #777;
     font-size: 13px;
 }
+
+/* ================= RESPONSIVO ================= */
 
 @media (max-width: 700px) {
 
@@ -385,13 +398,13 @@ footer {
 
 <main class="container">
 
-<!-- INÍCIO -->
+<!-- ================= INÍCIO ================= -->
 
 <section id="inicio" class="pagina ativa">
 
     <div class="inicio">
 
-        <h1>REDE PET</h1>
+        <h1>O que é a REDE PET?</h1>
 
         <p>
             Uma plataforma comunitária e tecnológica
@@ -421,7 +434,7 @@ footer {
 </section>
 
 
-<!-- PET -->
+<!-- ================= PET ================= -->
 
 <section id="pet" class="pagina">
 
@@ -432,160 +445,109 @@ footer {
 <h2>Dados do PET</h2>
 
 <div class="campo">
-
 <label>Foto do animal</label>
-
-<input
-    type="file"
-    id="foto"
-    accept="image/*">
-
+<input type="file" id="foto" accept="image/*">
 </div>
 
-
 <div class="campo">
-
 <label>Status do animal</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Perdido')">
-    Perdido
+<button type="button" class="opcao"
+onclick="selecionar(this,'status','Perdido')">
+Perdido
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Para adoção')">
-    Para adoção
+<button type="button" class="opcao"
+onclick="selecionar(this,'status','Para adoção')">
+Para adoção
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Encontrado')">
-    Encontrado
+<button type="button" class="opcao"
+onclick="selecionar(this,'status','Encontrado')">
+Encontrado
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Adotado')">
-    Adotado
+<button type="button" class="opcao"
+onclick="selecionar(this,'status','Adotado')">
+Adotado
 </button>
 
 </div>
 
 <input type="hidden" id="status">
-
 </div>
 
-
 <div class="campo">
-
 <label>Nome do PET</label>
-
 <input id="nome" required>
-
 </div>
 
-
 <div class="campo">
-
 <label>Idade</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
-    Filhote (até 1 ano)
+<button type="button" class="opcao"
+onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
+Filhote (até 1 ano)
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
-    Jovem (1 a 3 anos)
+<button type="button" class="opcao"
+onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
+Jovem (1 a 3 anos)
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
-    Adulto (3 a 8 anos)
+<button type="button" class="opcao"
+onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
+Adulto (3 a 8 anos)
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Idoso (8+ anos)')">
-    Idoso (8+ anos)
+<button type="button" class="opcao"
+onclick="selecionar(this,'idade','Idoso (8+ anos)')">
+Idoso (8+ anos)
 </button>
 
 </div>
 
 <input type="hidden" id="idade">
-
 </div>
 
-
 <div class="campo">
-
 <label>Peso aproximado</label>
 
 <div class="peso-controle">
 
-<button
-    type="button"
-    onclick="alterarPeso(-1)">
-    −
-</button>
+<button type="button" onclick="alterarPeso(-1)">−</button>
 
 <div class="peso-valor">
 <span id="pesoValor">0</span> kg
 </div>
 
-<button
-    type="button"
-    onclick="alterarPeso(1)">
-    +
-</button>
+<button type="button" onclick="alterarPeso(1)">+</button>
 
 </div>
-
 </div>
-
 
 <div class="campo">
-
 <label>Espécie</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Cão')">
-    Cão
+<button type="button" class="opcao"
+onclick="selecionar(this,'especie','Cão')">
+Cão
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Gato')">
-    Gato
+<button type="button" class="opcao"
+onclick="selecionar(this,'especie','Gato')">
+Gato
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Outro')">
-    Outro
+<button type="button" class="opcao"
+onclick="selecionar(this,'especie','Outro')">
+Outro
 </button>
 
 </div>
@@ -593,203 +555,144 @@ footer {
 <input type="hidden" id="especie">
 
 <input
-    id="especieOutro"
-    placeholder="Se escolheu outro, especifique"
-    style="display:none;margin-top:10px">
+id="especieOutro"
+placeholder="Se escolheu outro, especifique"
+style="display:none;margin-top:10px">
 
 </div>
 
-
 <div class="campo">
-
 <label>Raça</label>
-
 <input id="raca">
-
 </div>
 
-
 <div class="campo">
-
 <label>Sexo</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Macho')">
-    Macho
+<button type="button" class="opcao"
+onclick="selecionar(this,'sexo','Macho')">
+Macho
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Fêmea')">
-    Fêmea
+<button type="button" class="opcao"
+onclick="selecionar(this,'sexo','Fêmea')">
+Fêmea
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Não identificado')">
-    Não identificado
+<button type="button" class="opcao"
+onclick="selecionar(this,'sexo','Não identificado')">
+Não identificado
 </button>
 
 </div>
 
 <input type="hidden" id="sexo">
-
 </div>
 
-
 <div class="campo">
-
 <label>Porte</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Pequeno')">
-    Pequeno
+<button type="button" class="opcao"
+onclick="selecionar(this,'porte','Pequeno')">
+Pequeno
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Médio')">
-    Médio
+<button type="button" class="opcao"
+onclick="selecionar(this,'porte','Médio')">
+Médio
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Grande')">
-    Grande
+<button type="button" class="opcao"
+onclick="selecionar(this,'porte','Grande')">
+Grande
 </button>
 
 </div>
 
 <input type="hidden" id="porte">
-
 </div>
-
 
 <div class="campo">
-
 <label>Cor</label>
-
 <input id="cor">
-
 </div>
-
 
 <div class="linha">
 
 <div class="campo">
-
 <label>É castrado?</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Sim')">
-    Sim
+<button type="button" class="opcao"
+onclick="selecionar(this,'castrado','Sim')">
+Sim
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Não')">
-    Não
+<button type="button" class="opcao"
+onclick="selecionar(this,'castrado','Não')">
+Não
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Não sei')">
-    Não sei
+<button type="button" class="opcao"
+onclick="selecionar(this,'castrado','Não sei')">
+Não sei
 </button>
 
 </div>
 
 <input type="hidden" id="castrado">
-
 </div>
 
-
 <div class="campo">
-
 <label>É vacinado?</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Sim')">
-    Sim
+<button type="button" class="opcao"
+onclick="selecionar(this,'vacinado','Sim')">
+Sim
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Não')">
-    Não
+<button type="button" class="opcao"
+onclick="selecionar(this,'vacinado','Não')">
+Não
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Não sei')">
-    Não sei
+<button type="button" class="opcao"
+onclick="selecionar(this,'vacinado','Não sei')">
+Não sei
 </button>
 
 </div>
 
 <input type="hidden" id="vacinado">
-
 </div>
 
 </div>
-
 
 <div class="campo">
-
 <label>Última vez em que foi visto</label>
-
-<input
-    type="datetime-local"
-    id="ultimaVez">
-
+<input type="datetime-local" id="ultimaVez">
 </div>
 
-
 <div class="campo">
-
 <label>Ponto de referência</label>
-
 <input
-    id="pontoReferencia"
-    placeholder="Ex.: próximo à praça">
-
+id="pontoReferencia"
+placeholder="Ex.: próximo à praça">
 </div>
-
 
 <div class="campo">
-
 <label>Observações</label>
-
 <textarea id="observacoes"></textarea>
-
 </div>
 
 </div>
-
 
 <!-- TUTOR -->
 
@@ -798,91 +701,62 @@ footer {
 <h2>Dados do tutor</h2>
 
 <div class="campo">
-
 <label>Nome do tutor</label>
-
 <input id="tutorNome">
-
 </div>
 
-
 <div class="campo">
-
 <label>Contato do tutor</label>
-
 <input id="tutorContato">
-
 </div>
 
-
 <div class="campo">
-
 <label>Deseja exibir os dados do tutor publicamente?</label>
 
 <div class="opcoes">
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'whatsappPublico','Sim')">
-    Sim
+<button type="button" class="opcao"
+onclick="selecionar(this,'whatsappPublico','Sim')">
+Sim
 </button>
 
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'whatsappPublico','Não')">
-    Não
+<button type="button" class="opcao"
+onclick="selecionar(this,'whatsappPublico','Não')">
+Não
 </button>
 
 </div>
 
 <input type="hidden" id="whatsappPublico">
-
 </div>
-
 
 <div class="campo">
-
 <label>Endereço do tutor</label>
-
 <input id="endereco">
-
 </div>
-
 
 <div class="linha">
 
 <div class="campo">
-
 <label>Bairro</label>
-
 <input id="bairro">
-
 </div>
 
 <div class="campo">
-
 <label>Cidade</label>
-
 <input id="cidade">
-
 </div>
 
 </div>
 
 </div>
-
 
 <div class="bloco">
 
 <button
-    type="submit"
-    class="botao"
-    id="botaoCadastrar">
-
-    Cadastrar PET
-
+type="submit"
+class="botao">
+Cadastrar PET
 </button>
 
 <div id="mensagem" class="mensagem"></div>
@@ -891,25 +765,21 @@ footer {
 
 </form>
 
-
 <div class="rodape-navegacao">
 
-<button
-    class="botao"
-    onclick="abrirPagina('match')">
-    MATCH
+<button class="botao"
+onclick="abrirPagina('match')">
+MATCH
 </button>
 
-<button
-    class="botao"
-    onclick="abrirPagina('mapa')">
-    MAPA
+<button class="botao"
+onclick="abrirPagina('mapa')">
+MAPA
 </button>
 
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
+<button class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+Início
 </button>
 
 </div>
@@ -917,7 +787,7 @@ footer {
 </section>
 
 
-<!-- MATCH -->
+<!-- ================= MATCH ================= -->
 
 <section id="match" class="pagina">
 
@@ -935,25 +805,21 @@ Carregando PETs...
 
 </div>
 
-
 <div class="rodape-navegacao">
 
-<button
-    class="botao"
-    onclick="abrirPagina('pet')">
-    PET
+<button class="botao"
+onclick="abrirPagina('pet')">
+PET
 </button>
 
-<button
-    class="botao"
-    onclick="abrirPagina('mapa')">
-    MAPA
+<button class="botao"
+onclick="abrirPagina('mapa')">
+MAPA
 </button>
 
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
+<button class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+Início
 </button>
 
 </div>
@@ -961,7 +827,7 @@ Carregando PETs...
 </section>
 
 
-<!-- MAPA -->
+<!-- ================= MAPA ================= -->
 
 <section id="mapa" class="pagina">
 
@@ -974,32 +840,28 @@ Localização dos PETs cadastrados.
 <div class="mapa-container">
 
 <iframe
-    class="mapa"
-    id="mapaFrame"
-    loading="lazy">
+class="mapa"
+src="https://www.google.com/maps"
+loading="lazy">
 </iframe>
 
 </div>
 
-
 <div class="rodape-navegacao">
 
-<button
-    class="botao"
-    onclick="abrirPagina('pet')">
-    PET
+<button class="botao"
+onclick="abrirPagina('pet')">
+PET
 </button>
 
-<button
-    class="botao"
-    onclick="abrirPagina('match')">
-    MATCH
+<button class="botao"
+onclick="abrirPagina('match')">
+MATCH
 </button>
 
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
+<button class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+Início
 </button>
 
 </div>
@@ -1009,22 +871,22 @@ Localização dos PETs cadastrados.
 </main>
 
 
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
 
 <div id="modal" class="modal">
 
 <div class="modal-conteudo">
 
 <button
-    class="fechar"
-    onclick="fecharModal()">
-    ×
+class="fechar"
+onclick="fecharModal()">
+×
 </button>
 
 <img
-    id="modalFoto"
-    class="modal-foto"
-    style="display:none">
+id="modalFoto"
+class="modal-foto"
+style="display:none">
 
 <div class="modal-dados">
 
@@ -1046,8 +908,12 @@ REDE PET — Protótipo
 
 <script>
 
+/* =====================================================
+   CONFIGURAÇÃO
+   ===================================================== */
+
 const URL_APPS_SCRIPT =
-'https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec';
+"https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
 
 let peso = 0;
 
@@ -1059,29 +925,22 @@ let peso = 0;
 function abrirPagina(nome) {
 
     document
-        .querySelectorAll('.pagina')
-        .forEach(function(pagina) {
-            pagina.classList.remove('ativa');
-        });
+        .querySelectorAll(".pagina")
+        .forEach(p => p.classList.remove("ativa"));
 
-    const pagina =
-        document.getElementById(nome);
+    const pagina = document.getElementById(nome);
 
     if (!pagina) return;
 
-    pagina.classList.add('ativa');
+    pagina.classList.add("ativa");
 
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth"
     });
 
-    if (nome === 'match') {
+    if (nome === "match") {
         carregarPets();
-    }
-
-    if (nome === 'mapa') {
-        carregarMapa();
     }
 }
 
@@ -1092,33 +951,25 @@ function abrirPagina(nome) {
 
 function selecionar(botao, campo, valor) {
 
-    const grupo =
-        botao.parentElement;
+    const grupo = botao.parentElement;
 
     grupo
-        .querySelectorAll('.opcao')
-        .forEach(function(b) {
-            b.classList.remove('selecionada');
-        });
+        .querySelectorAll(".opcao")
+        .forEach(b => b.classList.remove("selecionada"));
 
-    botao.classList.add('selecionada');
+    botao.classList.add("selecionada");
 
-    const elemento =
-        document.getElementById(campo);
+    document.getElementById(campo).value = valor;
 
-    if (elemento) {
-        elemento.value = valor;
-    }
-
-    if (campo === 'especie') {
+    if (campo === "especie") {
 
         const outro =
-            document.getElementById('especieOutro');
+            document.getElementById("especieOutro");
 
         outro.style.display =
-            valor === 'Outro'
-                ? 'block'
-                : 'none';
+            valor === "Outro"
+            ? "block"
+            : "none";
     }
 }
 
@@ -1131,16 +982,11 @@ function alterarPeso(valor) {
 
     peso += valor;
 
-    if (peso < 0) {
-        peso = 0;
-    }
-
-    if (peso > 100) {
-        peso = 100;
-    }
+    if (peso < 0) peso = 0;
+    if (peso > 100) peso = 100;
 
     document
-        .getElementById('pesoValor')
+        .getElementById("pesoValor")
         .textContent = peso;
 }
 
@@ -1151,15 +997,14 @@ function alterarPeso(valor) {
 
 function converterImagem(file) {
 
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
 
         if (!file) {
-            resolve('');
+            resolve("");
             return;
         }
 
-        const reader =
-            new FileReader();
+        const reader = new FileReader();
 
         reader.onload = function() {
             resolve(reader.result);
@@ -1177,221 +1022,160 @@ function converterImagem(file) {
    ===================================================== */
 
 document
-    .getElementById('formPet')
-    .addEventListener(
-        'submit',
-        async function(event) {
+.getElementById("formPet")
+.addEventListener("submit", async function(event) {
 
-            event.preventDefault();
+    event.preventDefault();
 
-            const mensagem =
-                document.getElementById('mensagem');
+    const mensagem =
+        document.getElementById("mensagem");
 
-            const botao =
-                document.getElementById('botaoCadastrar');
+    mensagem.style.display = "block";
 
-            mensagem.style.display = 'block';
+    mensagem.textContent =
+        "Enviando cadastro...";
 
-            mensagem.textContent =
-                'Cadastrando PET...';
+    try {
 
-            botao.disabled = true;
+        const arquivo =
+            document.getElementById("foto").files[0];
 
-            try {
+        const foto =
+            await converterImagem(arquivo);
 
-                const arquivo =
-                    document
-                        .getElementById('foto')
-                        .files[0];
+        const dados = {
 
-                const foto =
-                    await converterImagem(arquivo);
+            foto: foto,
 
-                const dados = {
+            status:
+                document.getElementById("status").value,
 
-                    foto: foto,
+            nome:
+                document.getElementById("nome").value,
 
-                    status:
-                        document
-                            .getElementById('status')
-                            .value,
+            idade:
+                document.getElementById("idade").value,
 
-                    nome:
-                        document
-                            .getElementById('nome')
-                            .value,
+            peso:
+                peso,
 
-                    idade:
-                        document
-                            .getElementById('idade')
-                            .value,
+            castrado:
+                document.getElementById("castrado").value,
 
-                    peso: peso,
+            especie:
+                document.getElementById("especie").value,
 
-                    castrado:
-                        document
-                            .getElementById('castrado')
-                            .value,
+            especieOutro:
+                document.getElementById("especieOutro").value,
 
-                    especie:
-                        document
-                            .getElementById('especie')
-                            .value,
+            vacinado:
+                document.getElementById("vacinado").value,
 
-                    especieOutro:
-                        document
-                            .getElementById('especieOutro')
-                            .value,
+            raca:
+                document.getElementById("raca").value,
 
-                    vacinado:
-                        document
-                            .getElementById('vacinado')
-                            .value,
+            sexo:
+                document.getElementById("sexo").value,
 
-                    raca:
-                        document
-                            .getElementById('raca')
-                            .value,
+            porte:
+                document.getElementById("porte").value,
 
-                    sexo:
-                        document
-                            .getElementById('sexo')
-                            .value,
+            cor:
+                document.getElementById("cor").value,
 
-                    porte:
-                        document
-                            .getElementById('porte')
-                            .value,
+            tutorNome:
+                document.getElementById("tutorNome").value,
 
-                    cor:
-                        document
-                            .getElementById('cor')
-                            .value,
+            tutorContato:
+                document.getElementById("tutorContato").value,
 
-                    tutorNome:
-                        document
-                            .getElementById('tutorNome')
-                            .value,
+            whatsappPublico:
+                document.getElementById("whatsappPublico").value,
 
-                    tutorContato:
-                        document
-                            .getElementById('tutorContato')
-                            .value,
+            endereco:
+                document.getElementById("endereco").value,
 
-                    whatsappPublico:
-                        document
-                            .getElementById('whatsappPublico')
-                            .value,
+            bairro:
+                document.getElementById("bairro").value,
 
-                    endereco:
-                        document
-                            .getElementById('endereco')
-                            .value,
+            cidade:
+                document.getElementById("cidade").value,
 
-                    bairro:
-                        document
-                            .getElementById('bairro')
-                            .value,
+            pontoReferencia:
+                document.getElementById("pontoReferencia").value,
 
-                    cidade:
-                        document
-                            .getElementById('cidade')
-                            .value,
+            ultimaVez:
+                document.getElementById("ultimaVez").value,
 
-                    pontoReferencia:
-                        document
-                            .getElementById('pontoReferencia')
-                            .value,
-
-                    ultimaVez:
-                        document
-                            .getElementById('ultimaVez')
-                            .value,
-
-                    observacoes:
-                        document
-                            .getElementById('observacoes')
-                            .value
-                };
+            observacoes:
+                document.getElementById("observacoes").value
+        };
 
 
-                /*
-                 * Usa o modo no-cors para permitir
-                 * o envio ao Web App do Apps Script.
-                 */
+        /*
+         * Envio usando no-cors.
+         * O Apps Script recebe o cadastro,
+         * mas o navegador não tenta ler a resposta.
+         */
 
-                await fetch(
-                    URL_APPS_SCRIPT,
-                    {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type':
-                                'text/plain;charset=utf-8'
-                        },
-                        body:
-                            JSON.stringify({
-                                acao:
-                                    'cadastrarPet',
-                                dados:
-                                    dados
-                            })
-                    }
-                );
+        await fetch(URL_APPS_SCRIPT, {
 
+            method: "POST",
 
-                /*
-                 * O modo no-cors não permite ler
-                 * a resposta do Apps Script.
-                 * Portanto, após o envio,
-                 * carregamos novamente os dados.
-                 */
+            mode: "no-cors",
 
-                mensagem.textContent =
-                    'PET cadastrado com sucesso!';
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
 
-                document
-                    .getElementById('formPet')
-                    .reset();
+            body: JSON.stringify({
+                acao: "cadastrarPet",
+                dados: dados
+            })
 
-                peso = 0;
-
-                document
-                    .getElementById('pesoValor')
-                    .textContent = '0';
-
-                document
-                    .querySelectorAll('.opcao')
-                    .forEach(function(b) {
-                        b.classList.remove(
-                            'selecionada'
-                        );
-                    });
-
-                document
-                    .getElementById('especieOutro')
-                    .style.display = 'none';
-
-                setTimeout(function() {
-
-                    abrirPagina('match');
-
-                }, 500);
+        });
 
 
-            } catch (erro) {
+        mensagem.textContent =
+            "PET cadastrado com sucesso!";
 
-                console.error(erro);
 
-                mensagem.textContent =
-                    'Não foi possível concluir o cadastro.';
+        document
+            .getElementById("formPet")
+            .reset();
 
-            } finally {
+        peso = 0;
 
-                botao.disabled = false;
-            }
-        }
-    );
+        document
+            .getElementById("pesoValor")
+            .textContent = "0";
+
+        document
+            .querySelectorAll(".opcao")
+            .forEach(b =>
+                b.classList.remove("selecionada")
+            );
+
+
+        /*
+         * Atualiza o MATCH imediatamente.
+         */
+
+        setTimeout(() => {
+            carregarPets();
+        }, 300);
+
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        mensagem.textContent =
+            "Não foi possível concluir o cadastro.";
+
+    }
+
+});
 
 
 /* =====================================================
@@ -1401,115 +1185,92 @@ document
 async function carregarPets() {
 
     const lista =
-        document.getElementById(
-            'listaPets'
-        );
+        document.getElementById("listaPets");
 
     lista.innerHTML =
-        '<div class="carregando">' +
-        'Carregando PETs...' +
-        '</div>';
+        '<div class="carregando">Carregando PETs...</div>';
 
     try {
 
         const resposta =
             await fetch(
                 URL_APPS_SCRIPT +
-                '?acao=listarPets'
+                "?acao=listarPets&t=" +
+                Date.now()
             );
 
-        const resultado =
+        const pets =
             await resposta.json();
 
-        let pets = [];
-
-        if (
-            resultado &&
-            Array.isArray(resultado.pets)
-        ) {
-
-            pets = resultado.pets;
-
-        } else if (
-            Array.isArray(resultado)
-        ) {
-
-            pets = resultado;
-        }
-
-        lista.innerHTML = '';
+        lista.innerHTML = "";
 
         if (!pets.length) {
 
             lista.innerHTML =
-                '<div class="carregando">' +
-                'Nenhum PET cadastrado ainda.' +
-                '</div>';
+                '<div class="carregando">Nenhum PET cadastrado ainda.</div>';
 
             return;
         }
 
 
-        pets.forEach(function(pet) {
+        pets.forEach(pet => {
 
             const card =
-                document.createElement(
-                    'article'
-                );
+                document.createElement("article");
 
             card.className =
-                'pet-card';
+                "pet-card";
 
             card.onclick =
-                function() {
-                    abrirModal(pet);
-                };
+                () => abrirModal(pet);
 
-
-            const foto =
-                pet['Foto'] || '';
 
             let imagem =
-                '<div class="pet-sem-foto">' +
-                'Sem foto' +
-                '</div>';
+                '<div class="pet-sem-foto">Sem foto</div>';
+
+            const foto =
+                pet.Foto ||
+                pet.foto ||
+                "";
 
             if (foto) {
 
                 imagem =
-                    '<img class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(foto) +
-                    '" ' +
-                    'alt="Foto do PET">';
+                    `<img
+                        class="pet-foto"
+                        src="${foto}"
+                        alt="Foto do PET">`;
             }
 
 
             const nome =
-                pet['Nome'] ||
-                'PET';
+                pet.Nome ||
+                pet.nome ||
+                "PET";
 
             const status =
-                pet['Status'] ||
-                'Sem status';
+                pet.Status ||
+                pet.status ||
+                "Sem status";
 
 
-            card.innerHTML =
+            card.innerHTML = `
 
-                imagem +
+                ${imagem}
 
-                '<div class="pet-resumo">' +
+                <div class="pet-resumo">
 
-                '<h3 class="pet-nome">' +
-                escaparHTML(nome) +
-                '</h3>' +
+                    <h3 class="pet-nome">
+                        ${nome}
+                    </h3>
 
-                '<span class="pet-status">' +
-                escaparHTML(status) +
-                '</span>' +
+                    <span class="pet-status">
+                        ${status}
+                    </span>
 
-                '</div>';
+                </div>
 
+            `;
 
             lista.appendChild(card);
 
@@ -1520,9 +1281,7 @@ async function carregarPets() {
         console.error(erro);
 
         lista.innerHTML =
-            '<div class="carregando">' +
-            'Não foi possível carregar os PETs.' +
-            '</div>';
+            '<div class="carregando">Não foi possível carregar os PETs.</div>';
     }
 }
 
@@ -1534,258 +1293,157 @@ async function carregarPets() {
 function abrirModal(pet) {
 
     const modal =
-        document.getElementById(
-            'modal'
-        );
-
-    const imagem =
-        document.getElementById(
-            'modalFoto'
-        );
+        document.getElementById("modal");
 
     const foto =
-        pet['Foto'] || '';
+        pet.Foto ||
+        pet.foto ||
+        "";
+
+    const imagem =
+        document.getElementById("modalFoto");
 
     if (foto) {
 
         imagem.src = foto;
-        imagem.style.display = 'block';
+        imagem.style.display = "block";
 
     } else {
 
-        imagem.removeAttribute('src');
-        imagem.style.display = 'none';
+        imagem.style.display = "none";
     }
 
 
     document
-        .getElementById('modalNome')
+        .getElementById("modalNome")
         .textContent =
-            pet['Nome'] || 'PET';
+            pet.Nome ||
+            pet.nome ||
+            "PET";
 
 
     const dados =
-        document.getElementById(
-            'modalDados'
-        );
+        document.getElementById("modalDados");
 
 
-    let html = '';
+    dados.innerHTML = `
 
-    html += criarDado(
-        'Status',
-        pet['Status']
-    );
+        <div class="dado">
+            <strong>Status:</strong>
+            ${pet.Status || pet.status || "-"}
+        </div>
 
-    html += criarDado(
-        'Espécie',
-        pet['Especie']
-    );
+        <div class="dado">
+            <strong>Espécie:</strong>
+            ${pet.Especie || pet.especie || "-"}
+        </div>
 
-    if (pet['Especie Outro']) {
+        <div class="dado">
+            <strong>Raça:</strong>
+            ${pet.Raca || pet.raca || "-"}
+        </div>
 
-        html += criarDado(
-            'Outra espécie',
-            pet['Especie Outro']
-        );
-    }
+        <div class="dado">
+            <strong>Sexo:</strong>
+            ${pet.Sexo || pet.sexo || "-"}
+        </div>
 
-    html += criarDado(
-        'Raça',
-        pet['Raca']
-    );
+        <div class="dado">
+            <strong>Idade:</strong>
+            ${pet.Idade || pet.idade || "-"}
+        </div>
 
-    html += criarDado(
-        'Sexo',
-        pet['Sexo']
-    );
+        <div class="dado">
+            <strong>Peso:</strong>
+            ${pet.Peso || pet.peso || "-"} kg
+        </div>
 
-    html += criarDado(
-        'Idade',
-        pet['Idade']
-    );
+        <div class="dado">
+            <strong>Porte:</strong>
+            ${pet.Porte || pet.porte || "-"}
+        </div>
 
-    html += criarDado(
-        'Peso',
-        pet['Peso']
-        ? pet['Peso'] + ' kg'
-        : ''
-    );
+        <div class="dado">
+            <strong>Cor:</strong>
+            ${pet.Cor || pet.cor || "-"}
+        </div>
 
-    html += criarDado(
-        'Porte',
-        pet['Porte']
-    );
+        <div class="dado">
+            <strong>Última vez visto:</strong>
+            ${pet["Última vez em que foi visto"] ||
+              pet["Ultima Vez"] ||
+              pet.ultimaVez ||
+              "-"}
+        </div>
 
-    html += criarDado(
-        'Cor',
-        pet['Cor']
-    );
+        <div class="dado">
+            <strong>Ponto de referência:</strong>
+            ${pet["Ponto de referência"] ||
+              pet["Ponto Referencia"] ||
+              pet.pontoReferencia ||
+              "-"}
+        </div>
 
-    html += criarDado(
-        'Castrado',
-        pet['Castrado']
-    );
+        <div class="dado">
+            <strong>Observações:</strong>
+            ${pet.Observacoes ||
+              pet.Observações ||
+              pet.observacoes ||
+              "-"}
+        </div>
 
-    html += criarDado(
-        'Vacinado',
-        pet['Vacinado']
-    );
+        ${
+            (
+                pet["WhatsApp Publico"] === "Sim" ||
+                pet.whatsappPublico === "Sim"
+            )
+            ?
+            `
 
-    html += criarDado(
-        'Última vez visto',
-        pet['Ultima Vez']
-    );
+            <hr style="margin:18px 0">
 
-    html += criarDado(
-        'Ponto de referência',
-        pet['Ponto Referencia']
-    );
+            <div class="dado">
+                <strong>Tutor:</strong>
+                ${pet["Tutor Nome"] ||
+                  pet.tutorNome ||
+                  "-"}
+            </div>
 
-    html += criarDado(
-        'Observações',
-        pet['Observacoes']
-    );
+            <div class="dado">
+                <strong>Contato:</strong>
+                ${pet["Tutor Contato"] ||
+                  pet.tutorContato ||
+                  "-"}
+            </div>
 
+            `
+            : ""
+        }
 
-    if (
-        pet['WhatsApp Publico'] ===
-        'Sim'
-    ) {
+    `;
 
-        html +=
-            '<hr style="margin:18px 0">';
-
-        html += criarDado(
-            'Tutor',
-            pet['Tutor Nome']
-        );
-
-        html += criarDado(
-            'Contato',
-            pet['Tutor Contato']
-        );
-    }
-
-
-    dados.innerHTML = html;
-
-    modal.classList.add('aberto');
-
-    document.body.style.overflow =
-        'hidden';
-}
-
-
-function criarDado(
-    titulo,
-    valor
-) {
-
-    if (
-        valor === undefined ||
-        valor === null ||
-        valor === ''
-    ) {
-        valor = '-';
-    }
-
-    return (
-        '<div class="dado">' +
-        '<strong>' +
-        escaparHTML(titulo) +
-        ':</strong> ' +
-        escaparHTML(String(valor)) +
-        '</div>'
-    );
+    modal.classList.add("aberto");
 }
 
 
 function fecharModal() {
 
     document
-        .getElementById('modal')
-        .classList.remove('aberto');
-
-    document.body.style.overflow =
-        '';
+        .getElementById("modal")
+        .classList.remove("aberto");
 }
 
 
 document
-    .getElementById('modal')
-    .addEventListener(
-        'click',
-        function(event) {
+.getElementById("modal")
+.addEventListener("click", function(event) {
 
-            if (
-                event.target === this
-            ) {
-                fecharModal();
-            }
-        }
-    );
-
-
-document
-    .addEventListener(
-        'keydown',
-        function(event) {
-
-            if (
-                event.key === 'Escape'
-            ) {
-                fecharModal();
-            }
-        }
-    );
-
-
-/* =====================================================
-   MAPA
-   ===================================================== */
-
-function carregarMapa() {
-
-    const mapa =
-        document.getElementById(
-            'mapaFrame'
-        );
-
-    /*
-     * O endereço anterior era inválido.
-     * Aqui deixamos o mapa do Google Maps
-     * incorporado na página.
-     */
-
-    if (!mapa.src) {
-
-        mapa.src =
-            'https://www.google.com/maps/d/embed?mid=1';
+    if (event.target === this) {
+        fecharModal();
     }
-}
 
+});
 
-/* =====================================================
-   SEGURANÇA DO TEXTO
-   ===================================================== */
-
-function escaparHTML(valor) {
-
-    return String(valor)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-}
-
-
-/* =====================================================
-   INÍCIO
-   ===================================================== */
-
-abrirPagina('inicio');
 
 </script>
 
