@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>REDE PET</title>
 
@@ -19,6 +20,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -222,7 +227,7 @@ textarea {
 
 
 /* =====================================================
-   PETS / MATCH
+   MATCH
    ===================================================== */
 
 .lista-pets {
@@ -282,7 +287,7 @@ textarea {
 
 
 /* =====================================================
-   MODAL DO PET
+   MODAL
    ===================================================== */
 
 .modal {
@@ -291,36 +296,27 @@ textarea {
     z-index: 1000;
     inset: 0;
     background: rgba(0,0,0,.65);
-    padding: 15px;
-    overflow: hidden;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .modal.aberto {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
 }
 
 .modal-conteudo {
     background: white;
     width: 100%;
     max-width: 750px;
-    max-height: 94vh;
+    margin: 20px auto;
     border-radius: 12px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
-    box-shadow: 0 10px 35px rgba(0,0,0,.25);
 }
-
-
-/* =====================================================
-   FOTO DO PET DENTRO DO MODAL
-   ===================================================== */
 
 .modal-foto-mini {
     width: 100%;
-    max-height: 430px;
+    max-height: 400px;
     object-fit: contain;
     background: #eee;
     display: block;
@@ -347,7 +343,6 @@ textarea {
 
 /* =====================================================
    FOTO AMPLIADA
-   UM CLIQUE ABRE / UM CLIQUE FECHA
    ===================================================== */
 
 .foto-ampliada {
@@ -355,7 +350,7 @@ textarea {
     position: fixed;
     z-index: 3000;
     inset: 0;
-    background: rgba(0,0,0,.94);
+    background: rgba(0,0,0,.92);
     align-items: center;
     justify-content: center;
     padding: 15px;
@@ -390,11 +385,6 @@ textarea {
     margin-bottom: 18px;
 }
 
-
-/* =====================================================
-   FORMULÁRIO — UM ÚNICO CAMPO DE COMENTÁRIO
-   ===================================================== */
-
 .form-comentario {
     background: #f5f7f6;
     border: 1px solid #dfe5e2;
@@ -428,15 +418,6 @@ textarea {
     cursor: pointer;
 }
 
-.botao-comentar:hover {
-    opacity: .9;
-}
-
-
-/* =====================================================
-   LISTA DE COMENTÁRIOS
-   ===================================================== */
-
 .lista-comentarios {
     display: flex;
     flex-direction: column;
@@ -452,17 +433,23 @@ textarea {
 
 .comentario-texto {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #222;
     white-space: pre-wrap;
     word-break: break-word;
+}
+
+.comentario-local {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
 }
 
 .comentario-rodape {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     color: #666;
     font-size: 13px;
 }
@@ -478,80 +465,86 @@ textarea {
 
 
 /* =====================================================
-   CORAÇÃO — MATCH
+   CORAÇÃO
    ===================================================== */
 
 .botao-curtir {
     width: 38px;
     height: 38px;
-
     border: 2px solid #064e3b;
-
     border-radius: 50%;
-
     background: transparent;
-
     color: #064e3b;
-
     cursor: pointer;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    font-size: 23px;
-
+    font-size: 21px;
     line-height: 1;
-
-    transition:
-        background .18s ease,
-        color .18s ease,
-        transform .12s ease;
+    transition: all .15s ease;
+    flex-shrink: 0;
 }
 
 .botao-curtir:hover {
     background: #e5ebe8;
-    transform: scale(1.05);
 }
-
-
-/*
-   CORAÇÃO CURTIDO
-
-   Não é emoji vermelho.
-   É o mesmo símbolo em verde,
-   preenchido com o verde da REDE PET.
-*/
 
 .botao-curtir.curtido {
     background: #064e3b;
     color: white;
 }
 
-.botao-curtir:active {
-    transform: scale(.94);
+.contador-curtidas {
+    font-size: 12px;
+    margin-left: 5px;
+    color: #064e3b;
 }
 
 
 /* =====================================================
-   COMENTÁRIOS VAZIOS / CARREGAMENTO
+   COMO CHEGAR
    ===================================================== */
 
-.comentarios-vazio {
-    color: #777;
-    padding: 15px 0;
-}
-
-.carregando-comentarios {
-    color: #777;
-    padding: 15px 0;
+.botao-localizacao {
+    border: none;
+    background: #064e3b;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 5px;
 }
 
 
 /* =====================================================
-   BOTÃO VOLTAR PARA MATCH
+   BOTÃO VOLTAR FLUTUANTE
+   ===================================================== */
+
+.botao-voltar-flutuante {
+    position: fixed;
+    z-index: 2000;
+    right: 18px;
+    bottom: 18px;
+    border: none;
+    background: #064e3b;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,.25);
+    display: none;
+}
+
+.botao-voltar-flutuante.visivel {
+    display: block;
+}
+
+
+/* =====================================================
+   BOTÃO VOLTAR FINAL
    ===================================================== */
 
 .voltar-match {
@@ -563,28 +556,14 @@ textarea {
 
 .botao-voltar-match {
     width: 100%;
-
     border: none;
-
     background: #064e3b;
-
     color: white;
-
-    padding: 16px;
-
-    border-radius: 8px;
-
+    padding: 14px;
+    border-radius: 7px;
     cursor: pointer;
-
-    font-size: 16px;
-
+    font-size: 15px;
     font-weight: bold;
-
-    transition: opacity .15s ease;
-}
-
-.botao-voltar-match:hover {
-    opacity: .9;
 }
 
 
@@ -606,9 +585,31 @@ textarea {
     border-radius: 8px;
 }
 
+.mapa-info {
+    margin-bottom: 15px;
+}
+
+.mapa-info strong {
+    color: #064e3b;
+}
+
+.botao-como-chegar {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    background: #064e3b;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
 
 /* =====================================================
-   MENSAGEM
+   MENSAGENS
    ===================================================== */
 
 .mensagem {
@@ -624,6 +625,16 @@ textarea {
     text-align: center;
     padding: 40px;
     color: #777;
+}
+
+.carregando-comentarios {
+    color: #777;
+    padding: 15px 0;
+}
+
+.comentarios-vazio {
+    color: #777;
+    padding: 15px 0;
 }
 
 
@@ -666,20 +677,21 @@ footer {
     }
 
     .modal-conteudo {
-        max-height: 96vh;
-        border-radius: 10px;
+        margin: 5px auto 30px;
     }
 
     .modal-foto-mini {
-        max-height: 320px;
-    }
-
-    .modal-dados {
-        padding: 20px;
+        max-height: 330px;
     }
 
     .comentario-rodape {
-        align-items: center;
+        align-items: flex-start;
+    }
+
+    .botao-voltar-flutuante {
+        right: 12px;
+        bottom: 12px;
+        padding: 12px 15px;
     }
 
 }
@@ -730,17 +742,13 @@ Por onde você quer começar?
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-
 Cadastrar seu PET
-
 </button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-
 Visualizar PETs
-
 </button>
 
 </div>
@@ -751,7 +759,7 @@ Visualizar PETs
 
 
 <!-- =====================================================
-     CADASTRO DO PET
+     CADASTRO
      ===================================================== -->
 
 <section id="pet" class="pagina">
@@ -788,39 +796,29 @@ Status do animal
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'status','Perdido')">
 Perdido
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'status','Para adoção')">
 Para adoção
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'status','Encontrado')">
 Encontrado
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'status','Adotado')">
 Adotado
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="status">
+<input type="hidden" id="status">
 
 </div>
 
@@ -831,9 +829,7 @@ id="status">
 Nome do PET
 </label>
 
-<input
-id="nome"
-required>
+<input id="nome" required>
 
 </div>
 
@@ -846,39 +842,29 @@ Idade
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
 Filhote (até 1 ano)
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
 Jovem (1 a 3 anos)
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
 Adulto (3 a 8 anos)
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'idade','Idoso (8+ anos)')">
 Idoso (8+ anos)
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="idade">
+<input type="hidden" id="idade">
 
 </div>
 
@@ -920,32 +906,24 @@ Espécie
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'especie','Cão')">
 Cão
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'especie','Gato')">
 Gato
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'especie','Outro')">
 Outro
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="especie">
+<input type="hidden" id="especie">
 
 <input
 id="especieOutro"
@@ -961,8 +939,7 @@ style="display:none;margin-top:10px">
 Raça
 </label>
 
-<input
-id="raca">
+<input id="raca">
 
 </div>
 
@@ -975,32 +952,24 @@ Sexo
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Macho')">
 Macho
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Fêmea')">
 Fêmea
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'sexo','Não identificado')">
 Não identificado
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="sexo">
+<input type="hidden" id="sexo">
 
 </div>
 
@@ -1013,32 +982,24 @@ Porte
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'porte','Pequeno')">
 Pequeno
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'porte','Médio')">
 Médio
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'porte','Grande')">
 Grande
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="porte">
+<input type="hidden" id="porte">
 
 </div>
 
@@ -1049,14 +1010,12 @@ id="porte">
 Cor
 </label>
 
-<input
-id="cor">
+<input id="cor">
 
 </div>
 
 
 <div class="linha">
-
 
 <div class="campo">
 
@@ -1066,32 +1025,24 @@ id="cor">
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Sim')">
 Sim
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Não')">
 Não
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'castrado','Não sei')">
 Não sei
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="castrado">
+<input type="hidden" id="castrado">
 
 </div>
 
@@ -1104,32 +1055,24 @@ id="castrado">
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Sim')">
 Sim
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Não')">
 Não
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'vacinado','Não sei')">
 Não sei
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="vacinado">
+<input type="hidden" id="vacinado">
 
 </div>
 
@@ -1168,8 +1111,7 @@ placeholder="Ex.: próximo à praça">
 Observações
 </label>
 
-<textarea
-id="observacoes"></textarea>
+<textarea id="observacoes"></textarea>
 
 </div>
 
@@ -1193,8 +1135,7 @@ Dados do tutor
 Nome do tutor
 </label>
 
-<input
-id="tutorNome">
+<input id="tutorNome">
 
 </div>
 
@@ -1205,8 +1146,7 @@ id="tutorNome">
 Contato do tutor
 </label>
 
-<input
-id="tutorContato">
+<input id="tutorContato">
 
 </div>
 
@@ -1219,25 +1159,19 @@ Deseja exibir os dados do tutor publicamente?
 
 <div class="opcoes">
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'whatsappPublico','Sim')">
 Sim
 </button>
 
-<button
-type="button"
-class="opcao"
+<button type="button" class="opcao"
 onclick="selecionar(this,'whatsappPublico','Não')">
 Não
 </button>
 
 </div>
 
-<input
-type="hidden"
-id="whatsappPublico">
+<input type="hidden" id="whatsappPublico">
 
 </div>
 
@@ -1248,8 +1182,7 @@ id="whatsappPublico">
 Endereço do tutor
 </label>
 
-<input
-id="endereco">
+<input id="endereco">
 
 </div>
 
@@ -1262,8 +1195,7 @@ id="endereco">
 Bairro
 </label>
 
-<input
-id="bairro">
+<input id="bairro">
 
 </div>
 
@@ -1273,8 +1205,7 @@ id="bairro">
 Cidade
 </label>
 
-<input
-id="cidade">
+<input id="cidade">
 
 </div>
 
@@ -1288,9 +1219,7 @@ id="cidade">
 <button
 type="submit"
 class="botao">
-
 Cadastrar PET
-
 </button>
 
 <div
@@ -1309,25 +1238,19 @@ class="mensagem">
 <button
 class="botao"
 onclick="abrirPagina('match')">
-
 MATCH
-
 </button>
 
 <button
 class="botao"
 onclick="abrirPagina('mapa')">
-
 MAPA
-
 </button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-
 Início
-
 </button>
 
 </div>
@@ -1345,8 +1268,7 @@ Início
 MATCH
 </h2>
 
-<p
-style="margin:10px 0 25px;color:#666">
+<p style="margin:10px 0 25px;color:#666">
 
 Clique na imagem do PET para visualizar
 todos os detalhes.
@@ -1370,25 +1292,19 @@ Carregando PETs...
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-
 Cadastrar PET
-
 </button>
 
 <button
 class="botao"
 onclick="abrirPagina('mapa')">
-
 MAPA
-
 </button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-
 Início
-
 </button>
 
 </div>
@@ -1406,17 +1322,22 @@ Início
 MAPA
 </h2>
 
-<p
-style="margin:10px 0 20px;color:#666">
+<div
+id="mapaInfo"
+class="mapa-info">
 
-Localização dos PETs cadastrados.
-
+<p style="color:#666;">
+Selecione "Como chegar" em um comentário
+para visualizar o local informado.
 </p>
+
+</div>
 
 
 <div class="mapa-container">
 
 <iframe
+id="mapaIframe"
 class="mapa"
 src="https://www.google.com/maps?q=Caruaru,+Pernambuco&output=embed"
 loading="lazy">
@@ -1425,30 +1346,30 @@ loading="lazy">
 </div>
 
 
+<div
+id="botaoMapaArea"
+style="text-align:center;">
+</div>
+
+
 <div class="rodape-navegacao">
 
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-
 Cadastrar PET
-
 </button>
 
 <button
 class="botao"
 onclick="abrirPagina('match')">
-
 MATCH
-
 </button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-
 Início
-
 </button>
 
 </div>
@@ -1459,7 +1380,7 @@ Início
 
 
 <!-- =====================================================
-     MODAL DOS DADOS DO PET
+     MODAL DO PET
      ===================================================== -->
 
 <div
@@ -1467,8 +1388,7 @@ id="modal"
 class="modal">
 
 <div
-class="modal-conteudo"
-id="modalConteudo">
+class="modal-conteudo">
 
 
 <img
@@ -1481,41 +1401,31 @@ alt="Foto do PET">
 
 <div class="modal-dados">
 
-<h2
-id="modalNome">
-</h2>
+<h2 id="modalNome"></h2>
 
 
-<div
-id="modalDados">
-</div>
+<div id="modalDados"></div>
 
 
 <!-- =====================================================
      ÚNICO CAMPO DE COMENTÁRIO
      ===================================================== -->
 
-<div
-class="comentarios-bloco">
+<div class="comentarios-bloco">
 
-
-<h3
-class="comentarios-titulo">
+<h3 class="comentarios-titulo">
 
 Comentários sobre o PET
 
 </h3>
 
 
-<div
-class="form-comentario">
+<div class="form-comentario">
 
 
 <label
 for="comentarioTexto">
-
 Comentário sobre o PET
-
 </label>
 
 <textarea
@@ -1526,9 +1436,7 @@ placeholder="Ex.: Vi ele perto da padaria.">
 
 <label
 for="comentarioNome">
-
 Seu nome
-
 </label>
 
 <input
@@ -1536,13 +1444,21 @@ id="comentarioNome"
 placeholder="Digite seu nome">
 
 
+<label
+for="comentarioLocal">
+Onde você viu o PET?
+</label>
+
+<input
+id="comentarioLocal"
+placeholder="Ex.: perto da Padaria Central">
+
+
 <button
 type="button"
 class="botao-comentar"
 onclick="enviarComentario()">
-
 Comentar
-
 </button>
 
 
@@ -1569,7 +1485,7 @@ Carregando comentários...
 
 
 <!-- =====================================================
-     VOLTAR PARA O MATCH
+     VOLTAR FINAL
      ===================================================== -->
 
 <div class="voltar-match">
@@ -1594,8 +1510,21 @@ onclick="fecharModal()">
 
 
 <!-- =====================================================
+     BOTÃO FLUTUANTE
+     ===================================================== -->
+
+<button
+id="botaoVoltarFlutuante"
+class="botao-voltar-flutuante"
+onclick="fecharModal()">
+
+← Voltar
+
+</button>
+
+
+<!-- =====================================================
      FOTO AMPLIADA
-     UM CLIQUE ABRE / UM CLIQUE FECHA
      ===================================================== -->
 
 <div
@@ -1618,7 +1547,7 @@ REDE PET — Protótipo
 
 
 <!-- =====================================================
-     FORMULÁRIO INVISÍVEL PARA CADASTRO
+     IFRAME INVISÍVEL
      ===================================================== -->
 
 <iframe
@@ -1629,7 +1558,6 @@ style="display:none">
 
 
 <script>
-
 
 /* =====================================================
    CONFIGURAÇÃO
@@ -1643,58 +1571,7 @@ let peso = 0;
 
 let petAtual = null;
 
-
-/* =====================================================
-   CACHE DOS PETS
-   ===================================================== */
-
-const CHAVE_CACHE_PETS =
-"redepet_pets_cache_v1";
-
-
-function salvarPetsCache(pets) {
-
-    try {
-
-        localStorage.setItem(
-            CHAVE_CACHE_PETS,
-            JSON.stringify(pets)
-        );
-
-    } catch (erro) {
-
-        console.warn(
-            "Não foi possível salvar cache.",
-            erro
-        );
-
-    }
-
-}
-
-
-function obterPetsCache() {
-
-    try {
-
-        const dados =
-            localStorage.getItem(
-                CHAVE_CACHE_PETS
-            );
-
-        if (!dados) {
-            return null;
-        }
-
-        return JSON.parse(dados);
-
-    } catch (erro) {
-
-        return null;
-
-    }
-
-}
+let localMapaAtual = "";
 
 
 /* =====================================================
@@ -1706,12 +1583,21 @@ function abrirPagina(nome) {
     document
         .querySelectorAll(".pagina")
         .forEach(
-            p => p.classList.remove("ativa")
+            p =>
+            p.classList.remove("ativa")
         );
 
-    document
-        .getElementById(nome)
-        .classList.add("ativa");
+
+    const pagina =
+        document.getElementById(nome);
+
+
+    if (!pagina) {
+        return;
+    }
+
+
+    pagina.classList.add("ativa");
 
 
     window.scrollTo({
@@ -1742,13 +1628,21 @@ function selecionar(
     const grupo =
         botao.parentElement;
 
+
     grupo
         .querySelectorAll(".opcao")
         .forEach(
-            b => b.classList.remove("selecionada")
+            b =>
+            b.classList.remove(
+                "selecionada"
+            )
         );
 
-    botao.classList.add("selecionada");
+
+    botao.classList.add(
+        "selecionada"
+    );
+
 
     document
         .getElementById(campo)
@@ -1762,10 +1656,11 @@ function selecionar(
                 "especieOutro"
             );
 
+
         outro.style.display =
             valor === "Outro"
-            ? "block"
-            : "none";
+                ? "block"
+                : "none";
 
     }
 
@@ -1780,16 +1675,21 @@ function alterarPeso(valor) {
 
     peso += valor;
 
+
     if (peso < 0) {
         peso = 0;
     }
+
 
     if (peso > 100) {
         peso = 100;
     }
 
+
     document
-        .getElementById("pesoValor")
+        .getElementById(
+            "pesoValor"
+        )
         .textContent = peso;
 
 }
@@ -1812,8 +1712,10 @@ function converterImagem(file) {
 
             }
 
+
             const reader =
                 new FileReader();
+
 
             reader.onload =
                 function() {
@@ -1824,8 +1726,10 @@ function converterImagem(file) {
 
                 };
 
+
             reader.onerror =
                 reject;
+
 
             reader.readAsDataURL(file);
 
@@ -1857,6 +1761,7 @@ document
             mensagem.style.display =
                 "block";
 
+
             mensagem.textContent =
                 "Salvando cadastro...";
 
@@ -1865,7 +1770,9 @@ document
 
                 const arquivo =
                     document
-                        .getElementById("foto")
+                        .getElementById(
+                            "foto"
+                        )
                         .files[0];
 
 
@@ -1881,17 +1788,23 @@ document
 
                     status:
                         document
-                            .getElementById("status")
+                            .getElementById(
+                                "status"
+                            )
                             .value,
 
                     nome:
                         document
-                            .getElementById("nome")
+                            .getElementById(
+                                "nome"
+                            )
                             .value,
 
                     idade:
                         document
-                            .getElementById("idade")
+                            .getElementById(
+                                "idade"
+                            )
                             .value,
 
                     peso:
@@ -1899,87 +1812,121 @@ document
 
                     castrado:
                         document
-                            .getElementById("castrado")
+                            .getElementById(
+                                "castrado"
+                            )
                             .value,
 
                     especie:
                         document
-                            .getElementById("especie")
+                            .getElementById(
+                                "especie"
+                            )
                             .value,
 
                     especieOutro:
                         document
-                            .getElementById("especieOutro")
+                            .getElementById(
+                                "especieOutro"
+                            )
                             .value,
 
                     vacinado:
                         document
-                            .getElementById("vacinado")
+                            .getElementById(
+                                "vacinado"
+                            )
                             .value,
 
                     raca:
                         document
-                            .getElementById("raca")
+                            .getElementById(
+                                "raca"
+                            )
                             .value,
 
                     sexo:
                         document
-                            .getElementById("sexo")
+                            .getElementById(
+                                "sexo"
+                            )
                             .value,
 
                     porte:
                         document
-                            .getElementById("porte")
+                            .getElementById(
+                                "porte"
+                            )
                             .value,
 
                     cor:
                         document
-                            .getElementById("cor")
+                            .getElementById(
+                                "cor"
+                            )
                             .value,
 
                     tutorNome:
                         document
-                            .getElementById("tutorNome")
+                            .getElementById(
+                                "tutorNome"
+                            )
                             .value,
 
                     tutorContato:
                         document
-                            .getElementById("tutorContato")
+                            .getElementById(
+                                "tutorContato"
+                            )
                             .value,
 
                     whatsappPublico:
                         document
-                            .getElementById("whatsappPublico")
+                            .getElementById(
+                                "whatsappPublico"
+                            )
                             .value,
 
                     endereco:
                         document
-                            .getElementById("endereco")
+                            .getElementById(
+                                "endereco"
+                            )
                             .value,
 
                     bairro:
                         document
-                            .getElementById("bairro")
+                            .getElementById(
+                                "bairro"
+                            )
                             .value,
 
                     cidade:
                         document
-                            .getElementById("cidade")
+                            .getElementById(
+                                "cidade"
+                            )
                             .value,
 
                     pontoReferencia:
                         document
-                            .getElementById("pontoReferencia")
+                            .getElementById(
+                                "pontoReferencia"
+                            )
                             .value,
 
                     ultimaVez:
                         document
-                            .getElementById("ultimaVez")
+                            .getElementById(
+                                "ultimaVez"
+                            )
                             .value,
 
                     observacoes:
                         document
-                            .getElementById("observacoes")
+                            .getElementById(
+                                "observacoes"
+                            )
                             .value
 
                 };
@@ -2004,45 +1951,21 @@ document
                     "none";
 
 
-                const campoAcao =
-                    document.createElement(
-                        "input"
-                    );
-
-                campoAcao.type =
-                    "hidden";
-
-                campoAcao.name =
-                    "acao";
-
-                campoAcao.value =
-                    "cadastrarPet";
+                adicionarCampo(
+                    formEnvio,
+                    "acao",
+                    "cadastrarPet"
+                );
 
 
-                const campoDados =
-                    document.createElement(
-                        "input"
-                    );
-
-                campoDados.type =
-                    "hidden";
-
-                campoDados.name =
-                    "dados";
-
-                campoDados.value =
+                adicionarCampo(
+                    formEnvio,
+                    "dados",
                     JSON.stringify(
                         dados
-                    );
-
-
-                formEnvio.appendChild(
-                    campoAcao
+                    )
                 );
 
-                formEnvio.appendChild(
-                    campoDados
-                );
 
                 document.body.appendChild(
                     formEnvio
@@ -2093,29 +2016,10 @@ document
                             );
 
 
-                        /*
-                           Limpa cache para obrigar
-                           uma nova leitura da planilha.
-                        */
-
-                        try {
-
-                            localStorage.removeItem(
-                                CHAVE_CACHE_PETS
-                            );
-
-                        } catch (erro) {}
-
-
-                        /*
-                           Atualiza o MATCH.
-                        */
-
                         carregarPets();
 
-
                     },
-                    1000
+                    1200
                 );
 
 
@@ -2135,121 +2039,42 @@ document
 
 
 /* =====================================================
-   RENDERIZAR PETS
+   AUXILIAR PARA FORMULÁRIOS
    ===================================================== */
 
-function renderizarPets(pets) {
+function adicionarCampo(
+    formulario,
+    nome,
+    valor
+) {
 
-    const lista =
-        document.getElementById(
-            "listaPets"
+    const campo =
+        document.createElement(
+            "input"
         );
 
 
-    lista.innerHTML = "";
+    campo.type =
+        "hidden";
 
 
-    if (
-        !pets ||
-        !pets.length
-    ) {
-
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'Nenhum PET cadastrado ainda.' +
-            '</div>';
-
-        return;
-
-    }
+    campo.name =
+        nome;
 
 
-    pets.forEach(
-        function(pet) {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
+    campo.value =
+        valor;
 
 
-            card.className =
-                "pet-card";
-
-
-            card.onclick =
-                function() {
-
-                    abrirModal(
-                        pet
-                    );
-
-                };
-
-
-            const foto =
-                pet["Foto"] ||
-                "";
-
-
-            let imagem =
-                '<div class="pet-sem-foto">' +
-                'Sem foto' +
-                '</div>';
-
-
-            if (foto) {
-
-                imagem =
-                    '<img ' +
-                    'class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(foto) +
-                    '" ' +
-                    'alt="Foto do PET">';
-
-            }
-
-
-            const nome =
-                pet["Nome"] ||
-                "PET";
-
-
-            const status =
-                pet["Status"] ||
-                "Sem status";
-
-
-            card.innerHTML =
-
-                imagem +
-
-                '<div class="pet-resumo">' +
-
-                '<h3 class="pet-nome">' +
-                escaparHTML(nome) +
-                '</h3>' +
-
-                '<span class="pet-status">' +
-                escaparHTML(status) +
-                '</span>' +
-
-                '</div>';
-
-
-            lista.appendChild(
-                card
-            );
-
-        }
+    formulario.appendChild(
+        campo
     );
 
 }
 
 
 /* =====================================================
-   CARREGAR PETS — CACHE + JSONP
+   CARREGAR PETS — JSONP
    ===================================================== */
 
 function carregarPets() {
@@ -2260,53 +2085,141 @@ function carregarPets() {
         );
 
 
-    /*
-       Primeiro mostra o cache imediatamente.
-       Isso evita a sensação de que não existem PETs.
-    */
+    lista.innerHTML =
+        '<div class="carregando">' +
+        'Carregando PETs...' +
+        '</div>';
 
-    const cache =
-        obterPetsCache();
-
-
-    if (
-        cache &&
-        cache.length
-    ) {
-
-        renderizarPets(cache);
-
-    } else {
-
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'Carregando PETs...' +
-            '</div>';
-
-    }
-
-
-    /*
-       Depois busca os dados atuais da planilha
-       em segundo plano.
-    */
 
     const nomeCallback =
         "redePetCallback_" +
-        Date.now();
+        Date.now() +
+        "_" +
+        Math.floor(
+            Math.random() * 100000
+        );
+
+
+    let finalizado = false;
 
 
     window[nomeCallback] =
         function(pets) {
 
+            if (finalizado) {
+                return;
+            }
+
+
+            finalizado = true;
+
+
             try {
 
-                salvarPetsCache(
-                    pets || []
-                );
+                lista.innerHTML =
+                    "";
 
-                renderizarPets(
-                    pets || []
+
+                if (
+                    !pets ||
+                    !pets.length
+                ) {
+
+                    lista.innerHTML =
+                        '<div class="carregando">' +
+                        'Nenhum PET cadastrado ainda.' +
+                        '</div>';
+
+                    return;
+
+                }
+
+
+                pets.forEach(
+                    function(pet) {
+
+                        const card =
+                            document.createElement(
+                                "article"
+                            );
+
+
+                        card.className =
+                            "pet-card";
+
+
+                        card.onclick =
+                            function() {
+
+                                abrirModal(
+                                    pet
+                                );
+
+                            };
+
+
+                        const foto =
+                            pet["Foto"] ||
+                            "";
+
+
+                        let imagem =
+                            '<div class="pet-sem-foto">' +
+                            'Sem foto' +
+                            '</div>';
+
+
+                        if (foto) {
+
+                            imagem =
+                                '<img ' +
+                                'class="pet-foto" ' +
+                                'src="' +
+                                escaparHTML(
+                                    foto
+                                ) +
+                                '" ' +
+                                'alt="Foto do PET">';
+
+                        }
+
+
+                        const nome =
+                            pet["Nome"] ||
+                            "PET";
+
+
+                        const status =
+                            pet["Status"] ||
+                            "Sem status";
+
+
+                        card.innerHTML =
+
+                            imagem +
+
+                            '<div class="pet-resumo">' +
+
+                            '<h3 class="pet-nome">' +
+                            escaparHTML(
+                                nome
+                            ) +
+                            '</h3>' +
+
+                            '<span class="pet-status">' +
+                            escaparHTML(
+                                status
+                            ) +
+                            '</span>' +
+
+                            '</div>';
+
+
+                        lista.appendChild(
+                            card
+                        );
+
+                    }
                 );
 
 
@@ -2333,28 +2246,29 @@ function carregarPets() {
         "&callback=" +
         nomeCallback +
         "&t=" +
-        Date.now();
+        Date.now() +
+        "_" +
+        Math.random();
+
+
+    script.async = true;
 
 
     script.onerror =
         function() {
 
-            /*
-               Se já temos cache,
-               mantemos o que está na tela.
-            */
-
-            if (
-                !cache ||
-                !cache.length
-            ) {
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'Não foi possível carregar os PETs.' +
-                    '</div>';
-
+            if (finalizado) {
+                return;
             }
+
+
+            finalizado = true;
+
+
+            lista.innerHTML =
+                '<div class="carregando">' +
+                'Não foi possível carregar os PETs.' +
+                '</div>';
 
 
             delete window[
@@ -2366,29 +2280,46 @@ function carregarPets() {
 
     document
         .body
-        .appendChild(script);
+        .appendChild(
+            script
+        );
+
+
+    setTimeout(
+        function() {
+
+            if (!finalizado) {
+
+                finalizado = true;
+
+
+                lista.innerHTML =
+                    '<div class="carregando">' +
+                    'Verificando PETs cadastrados...' +
+                    '</div>';
+
+            }
+
+        },
+        8000
+    );
 
 }
 
 
 /* =====================================================
-   ABRIR MODAL DO PET
+   ABRIR MODAL
    ===================================================== */
 
 function abrirModal(pet) {
 
-    petAtual = pet;
+    petAtual =
+        pet;
 
 
     const modal =
         document.getElementById(
             "modal"
-        );
-
-
-    const modalConteudo =
-        document.getElementById(
-            "modalConteudo"
         );
 
 
@@ -2542,6 +2473,13 @@ function abrirModal(pet) {
 
     document
         .getElementById(
+            "comentarioLocal"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
             "mensagemComentario"
         )
         .style.display =
@@ -2553,13 +2491,13 @@ function abrirModal(pet) {
     );
 
 
-    /*
-       Muito importante:
-       sempre que abrir um PET,
-       começa no topo.
-    */
-
-    modalConteudo.scrollTop = 0;
+    document
+        .getElementById(
+            "botaoVoltarFlutuante"
+        )
+        .classList.add(
+            "visivel"
+        );
 
 
     document.body.style.overflow =
@@ -2587,7 +2525,9 @@ function criarDado(
         '<div class="dado">' +
 
         '<strong>' +
-        escaparHTML(titulo) +
+        escaparHTML(
+            titulo
+        ) +
         ':</strong> ' +
 
         escaparHTML(
@@ -2607,12 +2547,23 @@ function criarDado(
 
 function fecharModal() {
 
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+
+    modal.classList.remove(
+        "aberto"
+    );
+
+
     document
         .getElementById(
-            "modal"
+            "botaoVoltarFlutuante"
         )
         .classList.remove(
-            "aberto"
+            "visivel"
         );
 
 
@@ -2620,7 +2571,8 @@ function fecharModal() {
         "";
 
 
-    petAtual = null;
+    petAtual =
+        null;
 
 }
 
@@ -2666,7 +2618,6 @@ function abrirFotoAmpliada() {
 
 /* =====================================================
    FECHAR FOTO
-   UM CLIQUE FECHA
    ===================================================== */
 
 function fecharFotoAmpliada() {
@@ -2704,7 +2655,11 @@ function carregarComentarios(
 
     const nomeCallback =
         "comentariosCallback_" +
-        Date.now();
+        Date.now() +
+        "_" +
+        Math.floor(
+            Math.random() * 100000
+        );
 
 
     window[nomeCallback] =
@@ -2712,7 +2667,8 @@ function carregarComentarios(
 
             try {
 
-                lista.innerHTML = "";
+                lista.innerHTML =
+                    "";
 
 
                 if (
@@ -2743,92 +2699,130 @@ function carregarComentarios(
                             "comentario-item";
 
 
-                        /*
-                           Identificação única do comentário.
-                        */
-
-                        const idComentario =
-                            item.id ||
-                            (
-                                petNome +
-                                "|" +
-                                item.nome +
-                                "|" +
-                                item.comentario +
-                                "|" +
-                                item.dataHora
+                        const curtido =
+                            comentarioJaCurtido(
+                                item.id
                             );
 
 
-                        const estaCurtido =
-                            verificarCurtida(
-                                idComentario
-                            );
+                        const coracao =
+                            curtido
+                                ? "♥"
+                                : "♡";
+
+
+                        const classeCurtido =
+                            curtido
+                                ? " curtido"
+                                : "";
+
+
+                        let localHTML =
+                            "";
+
+
+                        if (
+                            item.local
+                        ) {
+
+                            localHTML =
+
+                                '<div class="comentario-local">' +
+
+                                '📍 ' +
+
+                                escaparHTML(
+                                    item.local
+                                ) +
+
+                                '<br>' +
+
+                                '<button ' +
+                                'type="button" ' +
+                                'class="botao-localizacao" ' +
+                                'onclick="abrirMapaDoComentario(' +
+                                '\'' +
+                                escaparJS(
+                                    item.local
+                                ) +
+                                '\'' +
+                                ')">' +
+
+                                'Como chegar' +
+
+                                '</button>' +
+
+                                '</div>';
+
+                        }
 
 
                         comentario.innerHTML =
 
-                            /*
-                               COMENTÁRIO PRIMEIRO
-                            */
-
                             '<div class="comentario-texto">' +
+
                             escaparHTML(
                                 item.comentario
                             ) +
+
                             '</div>' +
 
-                            /*
-                               DEPOIS NOME + DATA + CORAÇÃO
-                            */
+                            localHTML +
 
                             '<div class="comentario-rodape">' +
 
                             '<div>' +
 
                             '<span class="comentario-autor">' +
+
                             escaparHTML(
                                 item.nome
                             ) +
+
                             '</span>' +
 
                             ' · ' +
 
                             '<span class="comentario-data">' +
+
                             escaparHTML(
                                 item.dataHora
                             ) +
+
                             '</span>' +
 
                             '</div>' +
 
+                            '<div style="display:flex;align-items:center;">' +
+
                             '<button ' +
                             'type="button" ' +
-                            'class="botao-curtir ' +
-                            (
-                                estaCurtido
-                                ? "curtido"
-                                : ""
-                            ) +
+                            'class="botao-curtir' +
+                            classeCurtido +
                             '" ' +
                             'aria-label="Curtir comentário" ' +
-                            'aria-pressed="' +
-                            (
-                                estaCurtido
-                                ? "true"
-                                : "false"
-                            ) +
-                            '" ' +
                             'data-id="' +
                             escaparHTML(
-                                idComentario
+                                item.id
                             ) +
                             '" ' +
-                            'onclick="curtirComentario(this)">' +
+                            'onclick="curtirComentarioHTML(this)">' +
 
-                            '♥' +
+                            coracao +
 
                             '</button>' +
+
+                            '<span class="contador-curtidas">' +
+
+                            (
+                                item.curtidas
+                                    ? item.curtidas
+                                    : ""
+                            ) +
+
+                            '</span>' +
+
+                            '</div>' +
 
                             '</div>';
 
@@ -2871,6 +2865,9 @@ function carregarComentarios(
         Date.now();
 
 
+    script.async = true;
+
+
     script.onerror =
         function() {
 
@@ -2889,135 +2886,9 @@ function carregarComentarios(
 
     document
         .body
-        .appendChild(script);
-
-}
-
-
-/* =====================================================
-   IDENTIFICAÇÃO DAS CURTIDAS
-   ===================================================== */
-
-const CHAVE_CURTIDAS =
-"redepet_curtidas_v1";
-
-
-function obterCurtidas() {
-
-    try {
-
-        const dados =
-            localStorage.getItem(
-                CHAVE_CURTIDAS
-            );
-
-        if (!dados) {
-            return {};
-        }
-
-        return JSON.parse(
-            dados
+        .appendChild(
+            script
         );
-
-    } catch (erro) {
-
-        return {};
-
-    }
-
-}
-
-
-function salvarCurtidas(curtidas) {
-
-    try {
-
-        localStorage.setItem(
-            CHAVE_CURTIDAS,
-            JSON.stringify(
-                curtidas
-            )
-        );
-
-    } catch (erro) {
-
-        console.warn(
-            "Não foi possível salvar curtida.",
-            erro
-        );
-
-    }
-
-}
-
-
-function verificarCurtida(id) {
-
-    const curtidas =
-        obterCurtidas();
-
-    return !!curtidas[id];
-
-}
-
-
-/* =====================================================
-   CURTIR / MATCH
-   ===================================================== */
-
-function curtirComentario(botao) {
-
-    const id =
-        botao.getAttribute(
-            "data-id"
-        );
-
-
-    if (!id) {
-        return;
-    }
-
-
-    const curtidas =
-        obterCurtidas();
-
-
-    const estaCurtido =
-        !!curtidas[id];
-
-
-    if (estaCurtido) {
-
-        delete curtidas[id];
-
-        botao.classList.remove(
-            "curtido"
-        );
-
-        botao.setAttribute(
-            "aria-pressed",
-            "false"
-        );
-
-    } else {
-
-        curtidas[id] = true;
-
-        botao.classList.add(
-            "curtido"
-        );
-
-        botao.setAttribute(
-            "aria-pressed",
-            "true"
-        );
-
-    }
-
-
-    salvarCurtidas(
-        curtidas
-    );
 
 }
 
@@ -3029,9 +2900,7 @@ function curtirComentario(botao) {
 function enviarComentario() {
 
     if (!petAtual) {
-
         return;
-
     }
 
 
@@ -3048,6 +2917,15 @@ function enviarComentario() {
         document
             .getElementById(
                 "comentarioNome"
+            )
+            .value
+            .trim();
+
+
+    const local =
+        document
+            .getElementById(
+                "comentarioLocal"
             )
             .value
             .trim();
@@ -3085,6 +2963,19 @@ function enviarComentario() {
     }
 
 
+    if (!local) {
+
+        mensagem.style.display =
+            "block";
+
+        mensagem.textContent =
+            "Informe onde você viu o PET.";
+
+        return;
+
+    }
+
+
     mensagem.style.display =
         "block";
 
@@ -3095,13 +2986,17 @@ function enviarComentario() {
     const dados = {
 
         pet:
-            petAtual["Nome"] || "",
+            petAtual["Nome"] ||
+            "",
 
         nome:
             nome,
 
         comentario:
-            comentario
+            comentario,
+
+        local:
+            local
 
     };
 
@@ -3115,54 +3010,32 @@ function enviarComentario() {
     formEnvio.method =
         "POST";
 
+
     formEnvio.action =
         URL_APPS_SCRIPT;
 
+
     formEnvio.target =
         "frameCadastro";
+
 
     formEnvio.style.display =
         "none";
 
 
-    const campoAcao =
-        document.createElement(
-            "input"
-        );
-
-    campoAcao.type =
-        "hidden";
-
-    campoAcao.name =
-        "acao";
-
-    campoAcao.value =
-        "salvarComentario";
-
-
-    const campoDados =
-        document.createElement(
-            "input"
-        );
-
-    campoDados.type =
-        "hidden";
-
-    campoDados.name =
-        "dados";
-
-    campoDados.value =
-        JSON.stringify(
-            dados
-        );
-
-
-    formEnvio.appendChild(
-        campoAcao
+    adicionarCampo(
+        formEnvio,
+        "acao",
+        "salvarComentario"
     );
 
-    formEnvio.appendChild(
-        campoDados
+
+    adicionarCampo(
+        formEnvio,
+        "dados",
+        JSON.stringify(
+            dados
+        )
     );
 
 
@@ -3188,9 +3061,19 @@ function enviarComentario() {
                 .value = "";
 
 
-            /*
-               Recarrega a conversa.
-            */
+            document
+                .getElementById(
+                    "comentarioNome"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "comentarioLocal"
+                )
+                .value = "";
+
 
             carregarComentarios(
                 petAtual["Nome"]
@@ -3218,31 +3101,357 @@ function enviarComentario() {
 
 
 /* =====================================================
+   CURTIR COMENTÁRIO
+   ===================================================== */
+
+function curtirComentarioHTML(
+    botao
+) {
+
+    const id =
+        botao.getAttribute(
+            "data-id"
+        );
+
+
+    if (!id) {
+        return;
+    }
+
+
+    const jaCurtido =
+        comentarioJaCurtido(
+            id
+        );
+
+
+    if (jaCurtido) {
+
+        return;
+
+    }
+
+
+    salvarCurtidaLocal(
+        id
+    );
+
+
+    botao.classList.add(
+        "curtido"
+    );
+
+
+    botao.innerHTML =
+        "♥";
+
+
+    const contador =
+        botao.parentElement
+            .querySelector(
+                ".contador-curtidas"
+            );
+
+
+    if (contador) {
+
+        const atual =
+            parseInt(
+                contador.textContent
+            ) || 0;
+
+
+        contador.textContent =
+            atual + 1;
+
+    }
+
+
+    const dados = {
+
+        id:
+            id
+
+    };
+
+
+    const formEnvio =
+        document.createElement(
+            "form"
+        );
+
+
+    formEnvio.method =
+        "POST";
+
+
+    formEnvio.action =
+        URL_APPS_SCRIPT;
+
+
+    formEnvio.target =
+        "frameCadastro";
+
+
+    formEnvio.style.display =
+        "none";
+
+
+    adicionarCampo(
+        formEnvio,
+        "acao",
+        "curtirComentario"
+    );
+
+
+    adicionarCampo(
+        formEnvio,
+        "dados",
+        JSON.stringify(
+            dados
+        )
+    );
+
+
+    document.body.appendChild(
+        formEnvio
+    );
+
+
+    formEnvio.submit();
+
+
+    setTimeout(
+        function() {
+
+            formEnvio.remove();
+
+        },
+        1000
+    );
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE — CURTIDAS
+   ===================================================== */
+
+function obterCurtidas() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "redePetCurtidas"
+            ) || "[]"
+        );
+
+    } catch (erro) {
+
+        return [];
+
+    }
+
+}
+
+
+function comentarioJaCurtido(id) {
+
+    const curtidas =
+        obterCurtidas();
+
+
+    return curtidas.indexOf(
+        String(id)
+    ) !== -1;
+
+}
+
+
+function salvarCurtidaLocal(id) {
+
+    const curtidas =
+        obterCurtidas();
+
+
+    const idString =
+        String(id);
+
+
+    if (
+        curtidas.indexOf(
+            idString
+        ) === -1
+    ) {
+
+        curtidas.push(
+            idString
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "redePetCurtidas",
+        JSON.stringify(
+            curtidas
+        )
+    );
+
+}
+
+
+/* =====================================================
+   ABRIR MAPA PELO COMENTÁRIO
+   ===================================================== */
+
+function abrirMapaDoComentario(
+    local
+) {
+
+    if (!local) {
+        return;
+    }
+
+
+    localMapaAtual =
+        local;
+
+
+    const mapa =
+        document.getElementById(
+            "mapaIframe"
+        );
+
+
+    const info =
+        document.getElementById(
+            "mapaInfo"
+        );
+
+
+    const botaoArea =
+        document.getElementById(
+            "botaoMapaArea"
+        );
+
+
+    const localEncoded =
+        encodeURIComponent(
+            local
+        );
+
+
+    mapa.src =
+        "https://www.google.com/maps?q=" +
+        localEncoded +
+        "&output=embed";
+
+
+    info.innerHTML =
+
+        '<p>' +
+
+        '<strong>Local informado:</strong><br>' +
+
+        escaparHTML(
+            local
+        ) +
+
+        '</p>';
+
+
+    const urlGoogle =
+        "https://www.google.com/maps/dir/?api=1&destination=" +
+        localEncoded;
+
+
+    botaoArea.innerHTML =
+
+        '<a ' +
+        'class="botao-como-chegar" ' +
+        'href="' +
+        escaparHTML(
+            urlGoogle
+        ) +
+        '" ' +
+        'target="_blank" ' +
+        'rel="noopener noreferrer">' +
+
+        '📍 Como chegar até o local' +
+
+        '</a>';
+
+
+    fecharModal();
+
+
+    abrirPagina(
+        "mapa"
+    );
+
+}
+
+
+/* =====================================================
    SEGURANÇA DO TEXTO
    ===================================================== */
 
 function escaparHTML(valor) {
 
     return String(valor)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
+        );
+
+}
+
+
+function escaparJS(valor) {
+
+    return String(valor)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /\r/g,
+            ""
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
         );
 
 }
@@ -3286,32 +3495,10 @@ document.addEventListener(
 
             fecharFotoAmpliada();
 
-            fecharModal();
-
         }
 
     }
 );
-
-
-/* =====================================================
-   CLICAR NA FOTO AMPLIADA
-   UM CLIQUE FECHA
-   ===================================================== */
-
-document
-    .getElementById(
-        "fotoAmpliada"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-            fecharFotoAmpliada();
-
-        }
-    );
-
 
 </script>
 
