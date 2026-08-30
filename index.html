@@ -282,7 +282,7 @@ textarea {
 
 
 /* =====================================================
-   MODAL DOS DADOS DO PET
+   MODAL DO PET
    ===================================================== */
 
 .modal {
@@ -291,8 +291,8 @@ textarea {
     z-index: 1000;
     inset: 0;
     background: rgba(0,0,0,.65);
-    padding: 25px;
-    overflow-y: auto;
+    padding: 15px;
+    overflow: hidden;
 }
 
 .modal.aberto {
@@ -305,14 +305,22 @@ textarea {
     background: white;
     width: 100%;
     max-width: 750px;
+    max-height: 94vh;
     border-radius: 12px;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
 }
+
+
+/* =====================================================
+   FOTO DO PET DENTRO DO MODAL
+   ===================================================== */
 
 .modal-foto-mini {
     width: 100%;
-    max-height: 350px;
+    max-height: 430px;
     object-fit: contain;
     background: #eee;
     display: block;
@@ -338,7 +346,8 @@ textarea {
 
 
 /* =====================================================
-   VISUALIZAÇÃO AMPLIADA DA FOTO
+   FOTO AMPLIADA
+   UM CLIQUE ABRE / UM CLIQUE FECHA
    ===================================================== */
 
 .foto-ampliada {
@@ -346,7 +355,7 @@ textarea {
     position: fixed;
     z-index: 3000;
     inset: 0;
-    background: rgba(0,0,0,.92);
+    background: rgba(0,0,0,.94);
     align-items: center;
     justify-content: center;
     padding: 15px;
@@ -381,6 +390,11 @@ textarea {
     margin-bottom: 18px;
 }
 
+
+/* =====================================================
+   FORMULÁRIO — UM ÚNICO CAMPO DE COMENTÁRIO
+   ===================================================== */
+
 .form-comentario {
     background: #f5f7f6;
     border: 1px solid #dfe5e2;
@@ -414,6 +428,15 @@ textarea {
     cursor: pointer;
 }
 
+.botao-comentar:hover {
+    opacity: .9;
+}
+
+
+/* =====================================================
+   LISTA DE COMENTÁRIOS
+   ===================================================== */
+
 .lista-comentarios {
     display: flex;
     flex-direction: column;
@@ -429,7 +452,7 @@ textarea {
 
 .comentario-texto {
     font-size: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #222;
     white-space: pre-wrap;
     word-break: break-word;
@@ -439,7 +462,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 12px;
     color: #666;
     font-size: 13px;
 }
@@ -453,30 +476,68 @@ textarea {
     color: #777;
 }
 
+
+/* =====================================================
+   CORAÇÃO — MATCH
+   ===================================================== */
+
 .botao-curtir {
-    width: 36px;
-    height: 36px;
-    border: 1px solid #064e3b;
+    width: 38px;
+    height: 38px;
+
+    border: 2px solid #064e3b;
+
     border-radius: 50%;
+
     background: transparent;
+
     color: #064e3b;
+
     cursor: pointer;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    font-size: 20px;
+
+    font-size: 23px;
+
     line-height: 1;
-    transition: all .15s ease;
+
+    transition:
+        background .18s ease,
+        color .18s ease,
+        transform .12s ease;
 }
 
 .botao-curtir:hover {
     background: #e5ebe8;
+    transform: scale(1.05);
 }
+
+
+/*
+   CORAÇÃO CURTIDO
+
+   Não é emoji vermelho.
+   É o mesmo símbolo em verde,
+   preenchido com o verde da REDE PET.
+*/
 
 .botao-curtir.curtido {
     background: #064e3b;
     color: white;
 }
+
+.botao-curtir:active {
+    transform: scale(.94);
+}
+
+
+/* =====================================================
+   COMENTÁRIOS VAZIOS / CARREGAMENTO
+   ===================================================== */
 
 .comentarios-vazio {
     color: #777;
@@ -502,14 +563,28 @@ textarea {
 
 .botao-voltar-match {
     width: 100%;
+
     border: none;
-    background: #e5ebe8;
-    color: #064e3b;
-    padding: 14px;
-    border-radius: 7px;
+
+    background: #064e3b;
+
+    color: white;
+
+    padding: 16px;
+
+    border-radius: 8px;
+
     cursor: pointer;
-    font-size: 15px;
+
+    font-size: 16px;
+
     font-weight: bold;
+
+    transition: opacity .15s ease;
+}
+
+.botao-voltar-match:hover {
+    opacity: .9;
 }
 
 
@@ -587,15 +662,24 @@ footer {
     }
 
     .modal {
-        padding: 10px;
+        padding: 8px;
+    }
+
+    .modal-conteudo {
+        max-height: 96vh;
+        border-radius: 10px;
     }
 
     .modal-foto-mini {
-        max-height: 300px;
+        max-height: 320px;
+    }
+
+    .modal-dados {
+        padding: 20px;
     }
 
     .comentario-rodape {
-        align-items: flex-start;
+        align-items: center;
     }
 
 }
@@ -1383,7 +1467,8 @@ id="modal"
 class="modal">
 
 <div
-class="modal-conteudo">
+class="modal-conteudo"
+id="modalConteudo">
 
 
 <img
@@ -1560,6 +1645,59 @@ let petAtual = null;
 
 
 /* =====================================================
+   CACHE DOS PETS
+   ===================================================== */
+
+const CHAVE_CACHE_PETS =
+"redepet_pets_cache_v1";
+
+
+function salvarPetsCache(pets) {
+
+    try {
+
+        localStorage.setItem(
+            CHAVE_CACHE_PETS,
+            JSON.stringify(pets)
+        );
+
+    } catch (erro) {
+
+        console.warn(
+            "Não foi possível salvar cache.",
+            erro
+        );
+
+    }
+
+}
+
+
+function obterPetsCache() {
+
+    try {
+
+        const dados =
+            localStorage.getItem(
+                CHAVE_CACHE_PETS
+            );
+
+        if (!dados) {
+            return null;
+        }
+
+        return JSON.parse(dados);
+
+    } catch (erro) {
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
    NAVEGAÇÃO
    ===================================================== */
 
@@ -1574,6 +1712,7 @@ function abrirPagina(nome) {
     document
         .getElementById(nome)
         .classList.add("ativa");
+
 
     window.scrollTo({
         top: 0,
@@ -1955,8 +2094,21 @@ document
 
 
                         /*
-                           Atualiza o MATCH
-                           imediatamente.
+                           Limpa cache para obrigar
+                           uma nova leitura da planilha.
+                        */
+
+                        try {
+
+                            localStorage.removeItem(
+                                CHAVE_CACHE_PETS
+                            );
+
+                        } catch (erro) {}
+
+
+                        /*
+                           Atualiza o MATCH.
                         */
 
                         carregarPets();
@@ -1983,7 +2135,121 @@ document
 
 
 /* =====================================================
-   CARREGAR PETS — JSONP
+   RENDERIZAR PETS
+   ===================================================== */
+
+function renderizarPets(pets) {
+
+    const lista =
+        document.getElementById(
+            "listaPets"
+        );
+
+
+    lista.innerHTML = "";
+
+
+    if (
+        !pets ||
+        !pets.length
+    ) {
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Nenhum PET cadastrado ainda.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    pets.forEach(
+        function(pet) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "pet-card";
+
+
+            card.onclick =
+                function() {
+
+                    abrirModal(
+                        pet
+                    );
+
+                };
+
+
+            const foto =
+                pet["Foto"] ||
+                "";
+
+
+            let imagem =
+                '<div class="pet-sem-foto">' +
+                'Sem foto' +
+                '</div>';
+
+
+            if (foto) {
+
+                imagem =
+                    '<img ' +
+                    'class="pet-foto" ' +
+                    'src="' +
+                    escaparHTML(foto) +
+                    '" ' +
+                    'alt="Foto do PET">';
+
+            }
+
+
+            const nome =
+                pet["Nome"] ||
+                "PET";
+
+
+            const status =
+                pet["Status"] ||
+                "Sem status";
+
+
+            card.innerHTML =
+
+                imagem +
+
+                '<div class="pet-resumo">' +
+
+                '<h3 class="pet-nome">' +
+                escaparHTML(nome) +
+                '</h3>' +
+
+                '<span class="pet-status">' +
+                escaparHTML(status) +
+                '</span>' +
+
+                '</div>';
+
+
+            lista.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CARREGAR PETS — CACHE + JSONP
    ===================================================== */
 
 function carregarPets() {
@@ -1994,11 +2260,36 @@ function carregarPets() {
         );
 
 
-    lista.innerHTML =
-        '<div class="carregando">' +
-        'Carregando PETs...' +
-        '</div>';
+    /*
+       Primeiro mostra o cache imediatamente.
+       Isso evita a sensação de que não existem PETs.
+    */
 
+    const cache =
+        obterPetsCache();
+
+
+    if (
+        cache &&
+        cache.length
+    ) {
+
+        renderizarPets(cache);
+
+    } else {
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Carregando PETs...' +
+            '</div>';
+
+    }
+
+
+    /*
+       Depois busca os dados atuais da planilha
+       em segundo plano.
+    */
 
     const nomeCallback =
         "redePetCallback_" +
@@ -2010,103 +2301,12 @@ function carregarPets() {
 
             try {
 
-                lista.innerHTML = "";
+                salvarPetsCache(
+                    pets || []
+                );
 
-
-                if (
-                    !pets ||
-                    !pets.length
-                ) {
-
-                    lista.innerHTML =
-                        '<div class="carregando">' +
-                        'Nenhum PET cadastrado ainda.' +
-                        '</div>';
-
-                    return;
-
-                }
-
-
-                pets.forEach(
-                    function(pet) {
-
-                        const card =
-                            document.createElement(
-                                "article"
-                            );
-
-
-                        card.className =
-                            "pet-card";
-
-
-                        card.onclick =
-                            function() {
-
-                                abrirModal(
-                                    pet
-                                );
-
-                            };
-
-
-                        const foto =
-                            pet["Foto"] ||
-                            "";
-
-
-                        let imagem =
-                            '<div class="pet-sem-foto">' +
-                            'Sem foto' +
-                            '</div>';
-
-
-                        if (foto) {
-
-                            imagem =
-                                '<img ' +
-                                'class="pet-foto" ' +
-                                'src="' +
-                                escaparHTML(foto) +
-                                '" ' +
-                                'alt="Foto do PET">';
-
-                        }
-
-
-                        const nome =
-                            pet["Nome"] ||
-                            "PET";
-
-
-                        const status =
-                            pet["Status"] ||
-                            "Sem status";
-
-
-                        card.innerHTML =
-
-                            imagem +
-
-                            '<div class="pet-resumo">' +
-
-                            '<h3 class="pet-nome">' +
-                            escaparHTML(nome) +
-                            '</h3>' +
-
-                            '<span class="pet-status">' +
-                            escaparHTML(status) +
-                            '</span>' +
-
-                            '</div>';
-
-
-                        lista.appendChild(
-                            card
-                        );
-
-                    }
+                renderizarPets(
+                    pets || []
                 );
 
 
@@ -2139,10 +2339,22 @@ function carregarPets() {
     script.onerror =
         function() {
 
-            lista.innerHTML =
-                '<div class="carregando">' +
-                'Não foi possível carregar os PETs.' +
-                '</div>';
+            /*
+               Se já temos cache,
+               mantemos o que está na tela.
+            */
+
+            if (
+                !cache ||
+                !cache.length
+            ) {
+
+                lista.innerHTML =
+                    '<div class="carregando">' +
+                    'Não foi possível carregar os PETs.' +
+                    '</div>';
+
+            }
 
 
             delete window[
@@ -2171,6 +2383,12 @@ function abrirModal(pet) {
     const modal =
         document.getElementById(
             "modal"
+        );
+
+
+    const modalConteudo =
+        document.getElementById(
+            "modalConteudo"
         );
 
 
@@ -2335,6 +2553,19 @@ function abrirModal(pet) {
     );
 
 
+    /*
+       Muito importante:
+       sempre que abrir um PET,
+       começa no topo.
+    */
+
+    modalConteudo.scrollTop = 0;
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
     carregarComentarios(
         pet["Nome"]
     );
@@ -2383,6 +2614,10 @@ function fecharModal() {
         .classList.remove(
             "aberto"
         );
+
+
+    document.body.style.overflow =
+        "";
 
 
     petAtual = null;
@@ -2496,7 +2731,7 @@ function carregarComentarios(
 
 
                 comentarios.forEach(
-                    function(item, indice) {
+                    function(item) {
 
                         const comentario =
                             document.createElement(
@@ -2508,13 +2743,44 @@ function carregarComentarios(
                             "comentario-item";
 
 
+                        /*
+                           Identificação única do comentário.
+                        */
+
+                        const idComentario =
+                            item.id ||
+                            (
+                                petNome +
+                                "|" +
+                                item.nome +
+                                "|" +
+                                item.comentario +
+                                "|" +
+                                item.dataHora
+                            );
+
+
+                        const estaCurtido =
+                            verificarCurtida(
+                                idComentario
+                            );
+
+
                         comentario.innerHTML =
+
+                            /*
+                               COMENTÁRIO PRIMEIRO
+                            */
 
                             '<div class="comentario-texto">' +
                             escaparHTML(
                                 item.comentario
                             ) +
                             '</div>' +
+
+                            /*
+                               DEPOIS NOME + DATA + CORAÇÃO
+                            */
 
                             '<div class="comentario-rodape">' +
 
@@ -2538,11 +2804,29 @@ function carregarComentarios(
 
                             '<button ' +
                             'type="button" ' +
-                            'class="botao-curtir" ' +
+                            'class="botao-curtir ' +
+                            (
+                                estaCurtido
+                                ? "curtido"
+                                : ""
+                            ) +
+                            '" ' +
                             'aria-label="Curtir comentário" ' +
+                            'aria-pressed="' +
+                            (
+                                estaCurtido
+                                ? "true"
+                                : "false"
+                            ) +
+                            '" ' +
+                            'data-id="' +
+                            escaparHTML(
+                                idComentario
+                            ) +
+                            '" ' +
                             'onclick="curtirComentario(this)">' +
 
-                            '♡' +
+                            '♥' +
 
                             '</button>' +
 
@@ -2606,6 +2890,134 @@ function carregarComentarios(
     document
         .body
         .appendChild(script);
+
+}
+
+
+/* =====================================================
+   IDENTIFICAÇÃO DAS CURTIDAS
+   ===================================================== */
+
+const CHAVE_CURTIDAS =
+"redepet_curtidas_v1";
+
+
+function obterCurtidas() {
+
+    try {
+
+        const dados =
+            localStorage.getItem(
+                CHAVE_CURTIDAS
+            );
+
+        if (!dados) {
+            return {};
+        }
+
+        return JSON.parse(
+            dados
+        );
+
+    } catch (erro) {
+
+        return {};
+
+    }
+
+}
+
+
+function salvarCurtidas(curtidas) {
+
+    try {
+
+        localStorage.setItem(
+            CHAVE_CURTIDAS,
+            JSON.stringify(
+                curtidas
+            )
+        );
+
+    } catch (erro) {
+
+        console.warn(
+            "Não foi possível salvar curtida.",
+            erro
+        );
+
+    }
+
+}
+
+
+function verificarCurtida(id) {
+
+    const curtidas =
+        obterCurtidas();
+
+    return !!curtidas[id];
+
+}
+
+
+/* =====================================================
+   CURTIR / MATCH
+   ===================================================== */
+
+function curtirComentario(botao) {
+
+    const id =
+        botao.getAttribute(
+            "data-id"
+        );
+
+
+    if (!id) {
+        return;
+    }
+
+
+    const curtidas =
+        obterCurtidas();
+
+
+    const estaCurtido =
+        !!curtidas[id];
+
+
+    if (estaCurtido) {
+
+        delete curtidas[id];
+
+        botao.classList.remove(
+            "curtido"
+        );
+
+        botao.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+    } else {
+
+        curtidas[id] = true;
+
+        botao.classList.add(
+            "curtido"
+        );
+
+        botao.setAttribute(
+            "aria-pressed",
+            "true"
+        );
+
+    }
+
+
+    salvarCurtidas(
+        curtidas
+    );
 
 }
 
@@ -2777,8 +3189,7 @@ function enviarComentario() {
 
 
             /*
-               Recarrega a conversa
-               do PET.
+               Recarrega a conversa.
             */
 
             carregarComentarios(
@@ -2802,36 +3213,6 @@ function enviarComentario() {
         },
         1000
     );
-
-}
-
-
-/* =====================================================
-   CURTIR / MATCH
-   ===================================================== */
-
-function curtirComentario(botao) {
-
-    botao.classList.toggle(
-        "curtido"
-    );
-
-
-    if (
-        botao.classList.contains(
-            "curtido"
-        )
-    ) {
-
-        botao.innerHTML =
-            "♥";
-
-    } else {
-
-        botao.innerHTML =
-            "♡";
-
-    }
 
 }
 
@@ -2891,7 +3272,7 @@ document
 
 
 /* =====================================================
-   TECLA ESC FECHA FOTO
+   TECLA ESC
    ===================================================== */
 
 document.addEventListener(
@@ -2905,10 +3286,32 @@ document.addEventListener(
 
             fecharFotoAmpliada();
 
+            fecharModal();
+
         }
 
     }
 );
+
+
+/* =====================================================
+   CLICAR NA FOTO AMPLIADA
+   UM CLIQUE FECHA
+   ===================================================== */
+
+document
+    .getElementById(
+        "fotoAmpliada"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            fecharFotoAmpliada();
+
+        }
+    );
+
 
 </script>
 
