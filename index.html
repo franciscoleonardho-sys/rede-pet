@@ -3,401 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>REDE PET</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f7f6;
+color:#222;
+line-height:1.5
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7f6;
-    color: #222;
-    line-height: 1.5;
+header{
+background:#064e3b;
+color:white;
+padding:20px;
+text-align:center
 }
 
-header {
-    background: #064e3b;
-    color: white;
-    padding: 20px;
-    text-align: center;
+.logo{
+font-size:30px;
+font-weight:bold;
+letter-spacing:2px
 }
 
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
+.container{
+max-width:1100px;
+margin:auto;
+padding:25px 18px
 }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px 18px;
+.inicio{
+text-align:center;
+padding:55px 20px
 }
 
-/* INÍCIO */
-
-.inicio {
-    text-align: center;
-    padding: 55px 20px;
+.inicio h1{
+font-size:38px;
+margin-bottom:12px;
+color:#064e3b
 }
 
-.inicio h1 {
-    font-size: 38px;
-    margin-bottom: 12px;
-    color: #064e3b;
+.inicio p{
+color:#666;
+max-width:650px;
+margin:auto
 }
 
-.inicio p {
-    color: #666;
-    max-width: 650px;
-    margin: auto;
+.inicio h2{
+margin-top:40px;
+margin-bottom:20px
 }
 
-.inicio h2 {
-    margin-top: 40px;
-    margin-bottom: 20px;
+.botoes-inicio{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap
 }
 
-.botoes-inicio {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+button{font-family:inherit}
+
+.botao{
+border:none;
+background:#064e3b;
+color:white;
+padding:14px 25px;
+border-radius:7px;
+cursor:pointer;
+font-size:15px
 }
 
-button {
-    font-family: inherit;
+.botao:hover{opacity:.9}
+
+.botao:disabled{
+opacity:.6;
+cursor:not-allowed
 }
 
-.botao {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 14px 25px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
+.botao-secundario{
+background:#e5ebe8;
+color:#064e3b
 }
 
-.botao:hover {
-    opacity: .9;
+.navegacao{display:none}
+
+.pagina{display:none}
+
+.pagina.ativa{display:block}
+
+.bloco{
+background:white;
+border:1px solid #ddd;
+border-radius:10px;
+padding:25px;
+margin-bottom:25px
 }
 
-.botao-secundario {
-    background: #e5ebe8;
-    color: #064e3b;
+.bloco h2{
+color:#064e3b;
+margin-bottom:20px
 }
 
-/* NAVEGAÇÃO */
+.campo{margin-bottom:18px}
 
-.navegacao {
-    display: none;
+.campo label{
+display:block;
+font-weight:bold;
+margin-bottom:7px
 }
 
-/* PÁGINAS */
-
-.pagina {
-    display: none;
+input,select,textarea{
+width:100%;
+padding:11px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:15px
 }
 
-.pagina.ativa {
-    display: block;
+textarea{
+min-height:100px;
+resize:vertical
 }
 
-/* FORMULÁRIO */
-
-.bloco {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 25px;
+.linha{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px
 }
 
-.bloco h2 {
-    color: #064e3b;
-    margin-bottom: 20px;
+.opcoes{
+display:flex;
+gap:10px;
+flex-wrap:wrap
 }
 
-.campo {
-    margin-bottom: 18px;
+.opcao{
+border:1px solid #ccc;
+background:white;
+color:#333;
+padding:11px 18px;
+border-radius:7px;
+cursor:pointer
 }
 
-.campo label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
+.opcao.selecionada{
+background:#064e3b;
+color:white;
+border-color:#064e3b
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+.peso-controle{
+display:flex;
+align-items:center;
+gap:15px
 }
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
+.peso-controle button{
+width:45px;
+height:45px;
+border:none;
+border-radius:50%;
+background:#064e3b;
+color:white;
+font-size:25px;
+cursor:pointer
 }
 
-.linha {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+.peso-valor{
+font-size:22px;
+font-weight:bold;
+min-width:80px;
+text-align:center
 }
 
-/* OPÇÕES */
-
-.opcoes {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+.lista-pets{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px
 }
 
-.opcao {
-    border: 1px solid #ccc;
-    background: white;
-    color: #333;
-    padding: 11px 18px;
-    border-radius: 7px;
-    cursor: pointer;
+.pet-card{
+background:white;
+border:1px solid #ddd;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer
 }
 
-.opcao.selecionada {
-    background: #064e3b;
-    color: white;
-    border-color: #064e3b;
+.pet-foto{
+width:100%;
+height:240px;
+object-fit:cover;
+display:block
 }
 
-/* PESO */
-
-.peso-controle {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.pet-sem-foto{
+height:240px;
+background:#e6ebe8;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#777
 }
 
-.peso-controle button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    background: #064e3b;
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
-    touch-action: manipulation;
-    user-select: none;
+.pet-resumo{padding:15px}
+
+.pet-nome{
+font-size:21px;
+margin-bottom:7px
 }
 
-.peso-valor {
-    font-size: 22px;
-    font-weight: bold;
-    min-width: 80px;
-    text-align: center;
+.pet-status{
+display:inline-block;
+padding:5px 10px;
+border-radius:20px;
+background:#e6ebe8;
+color:#064e3b;
+font-size:12px;
+font-weight:bold
 }
 
-/* PETS */
-
-.lista-pets {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+inset:0;
+background:rgba(0,0,0,.65);
+padding:25px;
+overflow-y:auto
 }
 
-.pet-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
+.modal.aberto{
+display:flex;
+align-items:center;
+justify-content:center
 }
 
-.pet-foto {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    display: block;
+.modal-conteudo{
+background:white;
+width:100%;
+max-width:750px;
+border-radius:12px;
+overflow:hidden;
+position:relative
 }
 
-.pet-sem-foto {
-    height: 240px;
-    background: #e6ebe8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #777;
+.fechar{
+position:absolute;
+top:12px;
+right:12px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:rgba(0,0,0,.65);
+color:white;
+font-size:22px;
+cursor:pointer;
+z-index:2
 }
 
-.pet-resumo {
-    padding: 15px;
+.modal-foto{
+width:100%;
+max-height:500px;
+object-fit:contain;
+background:#eee
 }
 
-.pet-nome {
-    font-size: 21px;
-    margin-bottom: 7px;
+.modal-dados{padding:25px}
+
+.modal-dados h2{
+color:#064e3b;
+margin-bottom:15px
 }
 
-.pet-status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: #e6ebe8;
-    color: #064e3b;
-    font-size: 12px;
-    font-weight: bold;
+.dado{margin-bottom:8px}
+
+.dado strong{color:#064e3b}
+
+.mensagem{
+display:none;
+padding:15px;
+margin-top:15px;
+background:#e5ebe8;
+color:#064e3b;
+border-radius:7px
 }
 
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    padding: 25px;
-    overflow-y: auto;
+.carregando{
+text-align:center;
+padding:40px;
+color:#777
 }
 
-.modal.aberto {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.rodape-navegacao{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:35px
 }
 
-.modal-conteudo {
-    background: white;
-    width: 100%;
-    max-width: 750px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
+.mapa-container{
+background:white;
+border:1px solid #ddd;
+border-radius:10px;
+padding:15px
 }
 
-.fechar {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0,0,0,.65);
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 2;
+.mapa-aviso{
+text-align:center;
+padding:70px 20px;
+color:#777
 }
 
-.modal-foto {
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    background: #eee;
+footer{
+text-align:center;
+padding:35px 15px;
+color:#777;
+font-size:13px
 }
 
-.modal-dados {
-    padding: 25px;
-}
+@media(max-width:700px){
 
-.modal-dados h2 {
-    color: #064e3b;
-    margin-bottom: 15px;
-}
+.inicio h1{font-size:30px}
 
-.dado {
-    margin-bottom: 8px;
-}
+.linha{grid-template-columns:1fr}
 
-.dado strong {
-    color: #064e3b;
-}
+.modal{padding:10px}
 
-/* MAPA */
+.modal-foto{max-height:400px}
 
-.mapa-container {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.mapa {
-    width: 100%;
-    height: 500px;
-    border: none;
-    border-radius: 8px;
-}
-
-.mapa-erro {
-    text-align: center;
-    padding: 60px 20px;
-    color: #777;
-}
-
-/* MENSAGENS */
-
-.mensagem {
-    display: none;
-    padding: 15px;
-    margin-top: 15px;
-    background: #e5ebe8;
-    color: #064e3b;
-    border-radius: 7px;
-}
-
-.carregando {
-    text-align: center;
-    padding: 40px;
-    color: #777;
-}
-
-/* RODAPÉ */
-
-.rodape-navegacao {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 35px;
-}
-
-footer {
-    text-align: center;
-    padding: 35px 15px;
-    color: #777;
-    font-size: 13px;
-}
-
-/* RESPONSIVO */
-
-@media (max-width: 700px) {
-
-    .inicio h1 {
-        font-size: 30px;
-    }
-
-    .linha {
-        grid-template-columns: 1fr;
-    }
-
-    .modal {
-        padding: 10px;
-    }
-
-    .modal-foto {
-        max-height: 400px;
-    }
 }
 </style>
 </head>
@@ -405,7 +343,7 @@ footer {
 <body>
 
 <header>
-    <div class="logo">REDE PET</div>
+<div class="logo">REDE PET</div>
 </header>
 
 <main class="container">
@@ -414,34 +352,34 @@ footer {
 
 <section id="inicio" class="pagina ativa">
 
-    <div class="inicio">
+<div class="inicio">
 
-        <h1>O que é a REDE PET?</h1>
+<h1>O que é a REDE PET?</h1>
 
-        <p>
-            Uma plataforma comunitária e tecnológica
-            voltada à proteção e ao reencontro de animais.
-        </p>
+<p>
+Uma plataforma comunitária e tecnológica
+voltada à proteção e ao reencontro de animais.
+</p>
 
-        <h2>Por onde você quer começar?</h2>
+<h2>Por onde você quer começar?</h2>
 
-        <div class="botoes-inicio">
+<div class="botoes-inicio">
 
-            <button
-                class="botao"
-                onclick="abrirPagina('pet')">
-                Cadastrar seu PET
-            </button>
+<button
+class="botao"
+onclick="abrirPagina('pet')">
+Cadastrar seu PET
+</button>
 
-            <button
-                class="botao botao-secundario"
-                onclick="abrirPagina('match')">
-                Visualizar PETs
-            </button>
+<button
+class="botao botao-secundario"
+onclick="abrirPagina('match')">
+Visualizar PETs
+</button>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
@@ -458,10 +396,7 @@ footer {
 
 <div class="campo">
 <label>Foto do animal</label>
-<input
-    type="file"
-    id="foto"
-    accept="image/*">
+<input type="file" id="foto" accept="image/*">
 </div>
 
 
@@ -582,9 +517,9 @@ Outro
 <input type="hidden" id="especie">
 
 <input
-    id="especieOutro"
-    placeholder="Se escolheu outro, especifique"
-    style="display:none;margin-top:10px">
+id="especieOutro"
+placeholder="Se escolheu outro, especifique"
+style="display:none;margin-top:10px">
 
 </div>
 
@@ -721,9 +656,7 @@ Não sei
 
 <label>Última vez em que foi visto</label>
 
-<input
-    type="datetime-local"
-    id="ultimaVez">
+<input type="datetime-local" id="ultimaVez">
 
 </div>
 
@@ -733,8 +666,8 @@ Não sei
 <label>Ponto de referência</label>
 
 <input
-    id="pontoReferencia"
-    placeholder="Ex.: próximo à praça">
+id="pontoReferencia"
+placeholder="Ex.: próximo à praça">
 
 </div>
 
@@ -760,7 +693,6 @@ Não sei
 <label>Nome do tutor</label>
 <input id="tutorNome">
 </div>
-
 
 <div class="campo">
 <label>Contato do tutor</label>
@@ -817,12 +749,10 @@ Não
 <div class="bloco">
 
 <button
-    type="submit"
-    class="botao"
-    id="botaoCadastrar">
-
-    Cadastrar PET
-
+type="submit"
+class="botao"
+id="botaoCadastrar">
+Cadastrar PET
 </button>
 
 <div id="mensagem" class="mensagem"></div>
@@ -865,13 +795,8 @@ Clique na imagem do PET para visualizar todos os detalhes.
 </p>
 
 <div id="listaPets" class="lista-pets">
-
-<div class="carregando">
-Carregando PETs...
+<div class="carregando">Carregando PETs...</div>
 </div>
-
-</div>
-
 
 <div class="rodape-navegacao">
 
@@ -907,12 +832,11 @@ Localização dos PETs cadastrados.
 
 <div class="mapa-container">
 
-<div class="mapa-erro">
-Mapa será disponibilizado nesta área.
+<div class="mapa-aviso">
+O mapa será disponibilizado nesta área.
 </div>
 
 </div>
-
 
 <div class="rodape-navegacao">
 
@@ -944,16 +868,12 @@ Início
 
 <div class="modal-conteudo">
 
-<button
-    class="fechar"
-    onclick="fecharModal()">
-×
-</button>
+<button class="fechar" onclick="fecharModal()">×</button>
 
 <img
-    id="modalFoto"
-    class="modal-foto"
-    style="display:none">
+id="modalFoto"
+class="modal-foto"
+style="display:none">
 
 <div class="modal-dados">
 
@@ -976,8 +896,11 @@ REDE PET — Protótipo
 <script>
 
 /* =====================================================
-   VARIÁVEIS
+   CONFIGURAÇÃO
    ===================================================== */
+
+const URL_APPS_SCRIPT =
+"https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
 
 let peso = 0;
 
@@ -986,26 +909,29 @@ let peso = 0;
    NAVEGAÇÃO
    ===================================================== */
 
-function abrirPagina(nome) {
+function abrirPagina(nome){
 
-    document
-        .querySelectorAll(".pagina")
-        .forEach(p => p.classList.remove("ativa"));
+document
+.querySelectorAll(".pagina")
+.forEach(function(p){
+p.classList.remove("ativa");
+});
 
-    const pagina = document.getElementById(nome);
+const pagina=document.getElementById(nome);
 
-    if (pagina) {
-        pagina.classList.add("ativa");
-    }
+if(pagina){
+pagina.classList.add("ativa");
+}
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-    if (nome === "match") {
-        carregarPets();
-    }
+if(nome==="match"){
+carregarPets();
+}
+
 }
 
 
@@ -1013,28 +939,29 @@ function abrirPagina(nome) {
    OPÇÕES
    ===================================================== */
 
-function selecionar(botao, campo, valor) {
+function selecionar(botao,campo,valor){
 
-    const grupo = botao.parentElement;
+const grupo=botao.parentElement;
 
-    grupo
-        .querySelectorAll(".opcao")
-        .forEach(b => b.classList.remove("selecionada"));
+grupo
+.querySelectorAll(".opcao")
+.forEach(function(b){
+b.classList.remove("selecionada");
+});
 
-    botao.classList.add("selecionada");
+botao.classList.add("selecionada");
 
-    document.getElementById(campo).value = valor;
+document.getElementById(campo).value=valor;
 
-    if (campo === "especie") {
+if(campo==="especie"){
 
-        const outro =
-            document.getElementById("especieOutro");
+const outro=document.getElementById("especieOutro");
 
-        outro.style.display =
-            valor === "Outro"
-            ? "block"
-            : "none";
-    }
+outro.style.display=
+valor==="Outro" ? "block" : "none";
+
+}
+
 }
 
 
@@ -1042,16 +969,15 @@ function selecionar(botao, campo, valor) {
    PESO
    ===================================================== */
 
-function alterarPeso(valor) {
+function alterarPeso(valor){
 
-    peso += valor;
+peso+=valor;
 
-    if (peso < 0) peso = 0;
-    if (peso > 100) peso = 100;
+if(peso<0)peso=0;
+if(peso>100)peso=100;
 
-    document
-        .getElementById("pesoValor")
-        .textContent = peso;
+document.getElementById("pesoValor").textContent=peso;
+
 }
 
 
@@ -1059,26 +985,29 @@ function alterarPeso(valor) {
    FOTO
    ===================================================== */
 
-function converterImagem(file) {
+function converterImagem(file){
 
-    return new Promise((resolve, reject) => {
+return new Promise(function(resolve,reject){
 
-        if (!file) {
-            resolve("");
-            return;
-        }
+if(!file){
+resolve("");
+return;
+}
 
-        const reader = new FileReader();
+const reader=new FileReader();
 
-        reader.onload = function() {
-            resolve(reader.result);
-        };
+reader.onload=function(){
+resolve(reader.result);
+};
 
-        reader.onerror = reject;
+reader.onerror=function(){
+reject(reader.error);
+};
 
-        reader.readAsDataURL(file);
+reader.readAsDataURL(file);
 
-    });
+});
+
 }
 
 
@@ -1088,269 +1017,291 @@ function converterImagem(file) {
 
 document
 .getElementById("formPet")
-.addEventListener("submit", async function(event) {
+.addEventListener("submit",async function(event){
 
-    event.preventDefault();
+event.preventDefault();
 
-    const mensagem =
-        document.getElementById("mensagem");
+const mensagem=document.getElementById("mensagem");
+const botao=document.getElementById("botaoCadastrar");
 
-    const botao =
-        document.getElementById("botaoCadastrar");
+mensagem.style.display="block";
+mensagem.textContent="Salvando cadastro...";
+botao.disabled=true;
 
-    mensagem.style.display = "block";
-    mensagem.textContent = "Salvando cadastro...";
+try{
 
-    botao.disabled = true;
+const arquivo=document.getElementById("foto").files[0];
 
-    try {
+const foto=await converterImagem(arquivo);
 
-        const arquivo =
-            document.getElementById("foto").files[0];
+const dados={
 
-        const foto =
-            await converterImagem(arquivo);
+foto:foto,
 
-        const dados = {
+status:
+document.getElementById("status").value,
 
-            foto: foto,
+nome:
+document.getElementById("nome").value,
 
-            status:
-                document.getElementById("status").value,
+idade:
+document.getElementById("idade").value,
 
-            nome:
-                document.getElementById("nome").value,
+peso:peso,
 
-            idade:
-                document.getElementById("idade").value,
+castrado:
+document.getElementById("castrado").value,
 
-            peso:
-                peso,
+especie:
+document.getElementById("especie").value,
 
-            castrado:
-                document.getElementById("castrado").value,
+especieOutro:
+document.getElementById("especieOutro").value,
 
-            especie:
-                document.getElementById("especie").value,
+vacinado:
+document.getElementById("vacinado").value,
 
-            especieOutro:
-                document.getElementById("especieOutro").value,
+raca:
+document.getElementById("raca").value,
 
-            vacinado:
-                document.getElementById("vacinado").value,
+sexo:
+document.getElementById("sexo").value,
 
-            raca:
-                document.getElementById("raca").value,
+porte:
+document.getElementById("porte").value,
 
-            sexo:
-                document.getElementById("sexo").value,
+cor:
+document.getElementById("cor").value,
 
-            porte:
-                document.getElementById("porte").value,
+tutorNome:
+document.getElementById("tutorNome").value,
 
-            cor:
-                document.getElementById("cor").value,
+tutorContato:
+document.getElementById("tutorContato").value,
 
-            tutorNome:
-                document.getElementById("tutorNome").value,
+whatsappPublico:
+document.getElementById("whatsappPublico").value,
 
-            tutorContato:
-                document.getElementById("tutorContato").value,
+endereco:
+document.getElementById("endereco").value,
 
-            whatsappPublico:
-                document.getElementById("whatsappPublico").value,
+bairro:
+document.getElementById("bairro").value,
 
-            endereco:
-                document.getElementById("endereco").value,
+cidade:
+document.getElementById("cidade").value,
 
-            bairro:
-                document.getElementById("bairro").value,
+pontoReferencia:
+document.getElementById("pontoReferencia").value,
 
-            cidade:
-                document.getElementById("cidade").value,
+ultimaVez:
+document.getElementById("ultimaVez").value,
 
-            pontoReferencia:
-                document.getElementById("pontoReferencia").value,
+observacoes:
+document.getElementById("observacoes").value
 
-            ultimaVez:
-                document.getElementById("ultimaVez").value,
-
-            observacoes:
-                document.getElementById("observacoes").value
-        };
+};
 
 
-        google.script.run
+/*
+ IMPORTANTE:
+ NÃO usamos Content-Type application/json.
+ Isso evita preflight CORS no GitHub.
+*/
 
-        .withSuccessHandler(function(resultado) {
+const resposta=await fetch(URL_APPS_SCRIPT,{
+method:"POST",
+body:JSON.stringify({
+acao:"cadastrarPet",
+dados:dados
+})
+});
 
-            botao.disabled = false;
+const texto=await resposta.text();
 
-            if (resultado && resultado.sucesso) {
+let resultado;
 
-                mensagem.textContent =
-                    "PET cadastrado com sucesso!";
+try{
 
-                document
-                    .getElementById("formPet")
-                    .reset();
+resultado=JSON.parse(texto);
 
-                peso = 0;
+}catch(e){
 
-                document
-                    .getElementById("pesoValor")
-                    .textContent = "0";
+throw new Error(
+"O Apps Script não retornou uma resposta válida."
+);
 
-                document
-                    .querySelectorAll(".opcao")
-                    .forEach(function(b) {
-                        b.classList.remove("selecionada");
-                    });
+}
 
-                document
-                    .getElementById("especieOutro")
-                    .style.display = "none";
 
-                /* Atualiza o MATCH imediatamente */
-                carregarPets();
+if(resultado.sucesso){
 
-            } else {
+mensagem.textContent=
+"PET cadastrado com sucesso!";
 
-                mensagem.textContent =
-                    (resultado && resultado.mensagem)
-                    ? resultado.mensagem
-                    : "Não foi possível realizar o cadastro.";
-            }
+document
+.getElementById("formPet")
+.reset();
 
-        })
+peso=0;
 
-        .withFailureHandler(function(erro) {
+document
+.getElementById("pesoValor")
+.textContent="0";
 
-            botao.disabled = false;
+document
+.querySelectorAll(".opcao")
+.forEach(function(b){
+b.classList.remove("selecionada");
+});
 
-            console.error(erro);
+document
+.getElementById("especieOutro")
+.style.display="none";
 
-            mensagem.textContent =
-                "Erro ao salvar o cadastro.";
+/*
+ Recarrega o MATCH diretamente
+ da planilha após o cadastro.
+*/
 
-        })
+setTimeout(function(){
+carregarPets();
+},300);
 
-        .cadastrarPet(dados);
+}else{
 
-    } catch (erro) {
+mensagem.textContent=
+resultado.mensagem ||
+"Não foi possível realizar o cadastro.";
 
-        botao.disabled = false;
+}
 
-        console.error(erro);
+}catch(erro){
 
-        mensagem.textContent =
-            "Erro ao preparar o cadastro.";
-    }
+console.error(erro);
+
+mensagem.textContent=
+"Erro ao salvar o cadastro: "+erro.message;
+
+}finally{
+
+botao.disabled=false;
+
+}
 
 });
 
 
 /* =====================================================
-   CARREGAR PETS
+   CARREGAR PETS DA PLANILHA
    ===================================================== */
 
-function carregarPets() {
+async function carregarPets(){
 
-    const lista =
-        document.getElementById("listaPets");
+const lista=document.getElementById("listaPets");
 
-    lista.innerHTML =
-        '<div class="carregando">Carregando PETs...</div>';
+lista.innerHTML=
+'<div class="carregando">Carregando PETs...</div>';
 
+try{
 
-    google.script.run
+const resposta=await fetch(
+URL_APPS_SCRIPT+"?acao=listarPets",
+{
+method:"GET",
+cache:"no-store"
+}
+);
 
-    .withSuccessHandler(function(pets) {
+const texto=await resposta.text();
 
-        lista.innerHTML = "";
+let pets;
 
-        if (!pets || !pets.length) {
+try{
 
-            lista.innerHTML =
-                '<div class="carregando">' +
-                'Nenhum PET cadastrado ainda.' +
-                '</div>';
+pets=JSON.parse(texto);
 
-            return;
-        }
+}catch(e){
 
+throw new Error(
+"Não foi possível ler os PETs da planilha."
+);
 
-        pets.forEach(function(pet) {
+}
 
-            const card =
-                document.createElement("article");
+lista.innerHTML="";
 
-            card.className = "pet-card";
+if(!Array.isArray(pets) || pets.length===0){
 
-            card.onclick =
-                function() {
-                    abrirModal(pet);
-                };
+lista.innerHTML=
+'<div class="carregando">'+
+'Nenhum PET cadastrado ainda.'+
+'</div>';
 
+return;
 
-            let foto =
-                pet["Foto"] || "";
-
-            let nome =
-                pet["Nome"] || "PET";
-
-            let status =
-                pet["Status"] || "Sem status";
+}
 
 
-            let imagem =
-                '<div class="pet-sem-foto">Sem foto</div>';
+pets.forEach(function(pet){
+
+const card=document.createElement("article");
+
+card.className="pet-card";
+
+card.onclick=function(){
+abrirModal(pet);
+};
 
 
-            if (foto) {
+const foto=pet["Foto"] || "";
+const nome=pet["Nome"] || "PET";
+const status=pet["Status"] || "Sem status";
 
-                imagem =
-                    '<img class="pet-foto" ' +
-                    'src="' + foto + '" ' +
-                    'alt="Foto do PET">';
-            }
+let imagem=
+'<div class="pet-sem-foto">Sem foto</div>';
 
+if(foto){
 
-            card.innerHTML =
+imagem=
+'<img class="pet-foto" '+
+'src="'+foto+'" '+
+'alt="Foto do PET">';
 
-                imagem +
-
-                '<div class="pet-resumo">' +
-
-                    '<h3 class="pet-nome">' +
-                        escaparHTML(nome) +
-                    '</h3>' +
-
-                    '<span class="pet-status">' +
-                        escaparHTML(status) +
-                    '</span>' +
-
-                '</div>';
+}
 
 
-            lista.appendChild(card);
+card.innerHTML=
 
-        });
+imagem+
 
-    })
+'<div class="pet-resumo">'+
 
-    .withFailureHandler(function(erro) {
+'<h3 class="pet-nome">'+
+escaparHTML(nome)+
+'</h3>'+
 
-        console.error(erro);
+'<span class="pet-status">'+
+escaparHTML(status)+
+'</span>'+
 
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'Não foi possível carregar os PETs.' +
-            '</div>';
+'</div>';
 
-    })
+lista.appendChild(card);
 
-    .listarPets();
+});
+
+}catch(erro){
+
+console.error(erro);
+
+lista.innerHTML=
+'<div class="carregando">'+
+'Erro ao carregar os PETs.'+
+'</div>';
+
+}
+
 }
 
 
@@ -1358,135 +1309,144 @@ function carregarPets() {
    MODAL
    ===================================================== */
 
-function abrirModal(pet) {
+function abrirModal(pet){
 
-    const modal =
-        document.getElementById("modal");
+const modal=document.getElementById("modal");
 
-    const foto =
-        pet["Foto"] || "";
+const foto=pet["Foto"] || "";
 
-    const imagem =
-        document.getElementById("modalFoto");
+const imagem=document.getElementById("modalFoto");
 
+if(foto){
 
-    if (foto) {
+imagem.src=foto;
+imagem.style.display="block";
 
-        imagem.src = foto;
-        imagem.style.display = "block";
+}else{
 
-    } else {
+imagem.style.display="none";
 
-        imagem.style.display = "none";
-
-    }
-
-
-    document
-        .getElementById("modalNome")
-        .textContent =
-            pet["Nome"] || "PET";
-
-
-    const dados =
-        document.getElementById("modalDados");
-
-
-    let html = "";
-
-    html += dado("Status", pet["Status"]);
-    html += dado("Espécie", pet["Especie"]);
-    html += dado("Raça", pet["Raca"]);
-    html += dado("Sexo", pet["Sexo"]);
-    html += dado("Idade", pet["Idade"]);
-    html += dado("Peso", pet["Peso"] ? pet["Peso"] + " kg" : "");
-    html += dado("Porte", pet["Porte"]);
-    html += dado("Cor", pet["Cor"]);
-    html += dado("Última vez visto", pet["Ultima Vez"]);
-    html += dado("Ponto de referência", pet["Ponto Referencia"]);
-    html += dado("Observações", pet["Observacoes"]);
-
-
-    if (pet["WhatsApp Publico"] === "Sim") {
-
-        html += '<hr style="margin:18px 0">';
-
-        html += dado(
-            "Tutor",
-            pet["Tutor Nome"]
-        );
-
-        html += dado(
-            "Contato",
-            pet["Tutor Contato"]
-        );
-    }
-
-
-    dados.innerHTML = html;
-
-    modal.classList.add("aberto");
 }
 
 
-function dado(nome, valor) {
+document
+.getElementById("modalNome")
+.textContent=
+pet["Nome"] || "PET";
 
-    if (!valor) {
-        valor = "-";
-    }
 
-    return (
-        '<div class="dado">' +
-            '<strong>' +
-                escaparHTML(nome) +
-            ':</strong> ' +
-            escaparHTML(String(valor)) +
-        '</div>'
-    );
+let html="";
+
+html+=dado("Status",pet["Status"]);
+html+=dado("Espécie",pet["Especie"]);
+html+=dado("Raça",pet["Raca"]);
+html+=dado("Sexo",pet["Sexo"]);
+html+=dado("Idade",pet["Idade"]);
+html+=dado(
+"Peso",
+pet["Peso"] ? pet["Peso"]+" kg" : ""
+);
+html+=dado("Porte",pet["Porte"]);
+html+=dado("Cor",pet["Cor"]);
+html+=dado(
+"Última vez visto",
+pet["Ultima Vez"]
+);
+html+=dado(
+"Ponto de referência",
+pet["Ponto Referencia"]
+);
+html+=dado(
+"Observações",
+pet["Observacoes"]
+);
+
+
+if(pet["WhatsApp Publico"]==="Sim"){
+
+html+='<hr style="margin:18px 0">';
+
+html+=dado(
+"Tutor",
+pet["Tutor Nome"]
+);
+
+html+=dado(
+"Contato",
+pet["Tutor Contato"]
+);
+
 }
 
 
-function fecharModal() {
+document
+.getElementById("modalDados")
+.innerHTML=html;
 
-    document
-        .getElementById("modal")
-        .classList.remove("aberto");
+modal.classList.add("aberto");
+
+}
+
+
+function dado(nome,valor){
+
+return(
+'<div class="dado">'+
+'<strong>'+
+escaparHTML(nome)+
+':</strong> '+
+escaparHTML(
+valor ? String(valor) : "-"
+)+
+'</div>'
+);
+
+}
+
+
+function fecharModal(){
+
+document
+.getElementById("modal")
+.classList.remove("aberto");
+
 }
 
 
 document
 .getElementById("modal")
-.addEventListener("click", function(event) {
+.addEventListener("click",function(event){
 
-    if (event.target === this) {
-        fecharModal();
-    }
+if(event.target===this){
+fecharModal();
+}
 
 });
 
 
 /* =====================================================
-   SEGURANÇA DE TEXTO
+   SEGURANÇA
    ===================================================== */
 
-function escaparHTML(texto) {
+function escaparHTML(texto){
 
-    return String(texto || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+return String(texto || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 }
 
 
 /* =====================================================
-   CARREGA MATCH AO ABRIR O APP
+   INICIALIZAÇÃO
    ===================================================== */
 
-window.addEventListener("load", function() {
+window.addEventListener("load",function(){
 
-    carregarPets();
+carregarPets();
 
 });
 
