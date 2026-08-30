@@ -11,721 +11,672 @@
 
 <style>
 
-/* =====================================================
-   CONFIGURAÇÃO GERAL
-   ===================================================== */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7f6;
-    color: #222;
-    line-height: 1.5;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7f6;
+    color:#222;
+    line-height:1.5;
 }
 
-header {
-    background: #064e3b;
-    color: white;
-    padding: 20px;
-    text-align: center;
+header{
+    background:#064e3b;
+    color:white;
+    padding:20px;
+    text-align:center;
 }
 
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    letter-spacing:2px;
 }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px 18px;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 18px;
 }
 
-/* =====================================================
-   INÍCIO
-   ===================================================== */
-
-.inicio {
-    text-align: center;
-    padding: 55px 20px;
+.pagina{
+    display:none;
 }
 
-.inicio h1 {
-    font-size: 38px;
-    margin-bottom: 12px;
+.pagina.ativa{
+    display:block;
 }
 
-.inicio p {
-    color: #666;
-    max-width: 650px;
-    margin: auto;
+/* INÍCIO */
+
+.inicio{
+    text-align:center;
+    padding:55px 20px;
 }
 
-.inicio h2 {
-    margin-top: 40px;
-    margin-bottom: 20px;
+.inicio h1{
+    font-size:38px;
+    margin-bottom:12px;
 }
 
-.botoes-inicio {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+.inicio p{
+    color:#666;
+    max-width:650px;
+    margin:auto;
 }
 
-button {
-    font-family: inherit;
+.inicio h2{
+    margin-top:40px;
+    margin-bottom:20px;
 }
 
-.botao {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 14px 25px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
+.botoes-inicio{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.botao:hover {
-    opacity: .9;
+/* BOTÕES */
+
+button{
+    font-family:inherit;
 }
 
-.botao-secundario {
-    background: #e5ebe8;
-    color: #064e3b;
+.botao{
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:14px 25px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:15px;
 }
 
-/* =====================================================
-   PÁGINAS
-   ===================================================== */
-
-.pagina {
-    display: none;
+.botao:hover{
+    opacity:.9;
 }
 
-.pagina.ativa {
-    display: block;
+.botao-secundario{
+    background:#e5ebe8;
+    color:#064e3b;
 }
 
-/* =====================================================
-   FORMULÁRIO
-   ===================================================== */
+/* BLOCOS */
 
-.bloco {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 25px;
+.bloco{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:25px;
+    margin-bottom:25px;
 }
 
-.bloco h2 {
-    color: #064e3b;
-    margin-bottom: 20px;
+.bloco h2{
+    color:#064e3b;
+    margin-bottom:20px;
 }
 
-.campo {
-    margin-bottom: 18px;
+.campo{
+    margin-bottom:18px;
 }
 
-.campo label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
+.campo label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
 input,
 select,
-textarea {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
 }
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
-.linha {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+.linha{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
-/* =====================================================
-   OPÇÕES
-   ===================================================== */
+/* OPÇÕES */
 
-.opcoes {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+.opcoes{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.opcao {
-    border: 1px solid #ccc;
-    background: white;
-    color: #333;
-    padding: 11px 18px;
-    border-radius: 7px;
-    cursor: pointer;
+.opcao{
+    border:1px solid #ccc;
+    background:white;
+    color:#333;
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-.opcao.selecionada {
-    background: #064e3b;
-    color: white;
-    border-color: #064e3b;
+.opcao.selecionada{
+    background:#064e3b;
+    color:white;
+    border-color:#064e3b;
 }
 
-/* =====================================================
-   PESO
-   ===================================================== */
+/* PESO */
 
-.peso-controle {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.peso-controle{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.peso-controle button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    background: #064e3b;
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
+.peso-controle button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#064e3b;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
 }
 
-.peso-valor {
-    font-size: 22px;
-    font-weight: bold;
-    min-width: 80px;
-    text-align: center;
+.peso-valor{
+    font-size:22px;
+    font-weight:bold;
+    min-width:80px;
+    text-align:center;
 }
 
-/* =====================================================
-   FILTRO
-   ===================================================== */
+/* FILTRO */
 
-.filtro-match {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 25px;
+.filtro-match{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:25px;
 }
 
-.filtro-match label {
-    display: block;
-    color: #064e3b;
-    font-weight: bold;
-    margin-bottom: 8px;
+.filtro-match label{
+    display:block;
+    color:#064e3b;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-#filtroStatus {
-    max-width: 350px;
+#filtroStatus{
+    max-width:350px;
 }
 
-/* =====================================================
-   MATCH
-   ===================================================== */
+/* CARDS */
 
-.lista-pets {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+.lista-pets{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
-.pet-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform .15s ease;
+.pet-card{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.15s;
 }
 
-.pet-card:hover {
-    transform: translateY(-2px);
+.pet-card:hover{
+    transform:translateY(-2px);
 }
 
-.pet-foto {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    display: block;
+.pet-foto{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    display:block;
 }
 
-.pet-sem-foto {
-    height: 240px;
-    background: #e6ebe8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #777;
+.pet-sem-foto{
+    height:240px;
+    background:#e6ebe8;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#777;
 }
 
-.pet-resumo {
-    padding: 15px;
+.pet-resumo{
+    padding:15px;
 }
 
-.pet-nome {
-    font-size: 21px;
-    margin-bottom: 8px;
+.pet-nome{
+    font-size:21px;
+    margin-bottom:8px;
 }
 
-.pet-status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: #e6ebe8;
-    color: #064e3b;
-    font-size: 12px;
-    font-weight: bold;
+.pet-status{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#e6ebe8;
+    color:#064e3b;
+    font-size:12px;
+    font-weight:bold;
 }
 
-/* =====================================================
-   MODAL
-   ===================================================== */
+/* MODAL */
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    padding: 20px;
-    overflow-y: auto;
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1000;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    padding:20px;
+    overflow-y:auto;
 }
 
-.modal.aberto {
-    display: block;
+.modal.aberto{
+    display:block;
 }
 
-.modal-conteudo {
-    background: white;
-    width: 100%;
-    max-width: 750px;
-    margin: 20px auto;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
+.modal-conteudo{
+    background:white;
+    width:100%;
+    max-width:750px;
+    margin:20px auto;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
 }
 
-.modal-foto-mini {
-    width: 100%;
-    max-height: 400px;
-    object-fit: contain;
-    background: #eee;
-    display: block;
-    cursor: zoom-in;
+.modal-foto-mini{
+    width:100%;
+    max-height:400px;
+    object-fit:contain;
+    background:#eee;
+    display:block;
+    cursor:zoom-in;
 }
 
-.modal-dados {
-    padding: 25px;
+.modal-dados{
+    padding:25px;
 }
 
-.modal-dados h2 {
-    color: #064e3b;
-    margin-bottom: 15px;
+.modal-dados h2{
+    color:#064e3b;
+    margin-bottom:15px;
 }
 
-.dado {
-    margin-bottom: 8px;
+.dado{
+    padding:9px 0;
+    border-bottom:1px solid #eee;
 }
 
-.dado strong {
-    color: #064e3b;
+.dado strong{
+    color:#064e3b;
 }
 
-/* =====================================================
-   FOTO AMPLIADA
-   ===================================================== */
+/* EDIÇÃO */
 
-.foto-ampliada {
-    display: none;
-    position: fixed;
-    z-index: 3000;
-    inset: 0;
-    background: rgba(0,0,0,.92);
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    cursor: zoom-out;
+.edicao-cadastro{
+    background:#f5f7f6;
+    border:1px solid #dfe5e2;
+    border-radius:10px;
+    padding:20px;
+    margin-top:25px;
 }
 
-.foto-ampliada.aberta {
-    display: flex;
+.edicao-cadastro h3{
+    color:#064e3b;
+    margin-bottom:18px;
 }
 
-.foto-ampliada img {
-    max-width: 96vw;
-    max-height: 94vh;
-    object-fit: contain;
-    display: block;
+.edicao-cadastro .campo{
+    margin-bottom:15px;
 }
 
-/* =====================================================
-   EDITAR CADASTRO
-   ===================================================== */
-
-.editar-cadastro {
-    background: #f5f7f6;
-    border: 1px solid #dfe5e2;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 25px;
-}
-
-.editar-cadastro h3 {
-    color: #064e3b;
-    margin-bottom: 18px;
+.edicao-cadastro .opcoes{
+    margin-bottom:5px;
 }
 
-.editar-cadastro .campo {
-    margin-bottom: 15px;
+.botao-editar{
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:12px 20px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.editar-cadastro .campo label {
-    color: #333;
+.botao-cancelar{
+    border:none;
+    background:#ddd;
+    color:#333;
+    padding:12px 20px;
+    border-radius:7px;
+    cursor:pointer;
+    margin-left:8px;
 }
 
-.editar-acoes {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
+/* STATUS */
 
-.botao-editar {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 7px;
-    cursor: pointer;
+.alterar-status{
+    background:#f5f7f6;
+    border:1px solid #dfe5e2;
+    border-radius:10px;
+    padding:18px;
+    margin-top:25px;
 }
 
-.botao-cancelar-edicao {
-    border: none;
-    background: #e5ebe8;
-    color: #064e3b;
-    padding: 12px 20px;
-    border-radius: 7px;
-    cursor: pointer;
+.alterar-status h3{
+    color:#064e3b;
+    margin-bottom:12px;
 }
 
-.editar-cadastro .opcao {
-    padding: 9px 14px;
+.alterar-status select{
+    margin-bottom:10px;
 }
 
-.editar-cadastro .opcao.selecionada {
-    background: #064e3b;
-    color: white;
+.botao-status{
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-/* =====================================================
-   COMENTÁRIOS
-   ===================================================== */
+/* COMENTÁRIOS */
 
-.comentarios-bloco {
-    margin-top: 28px;
-    padding-top: 25px;
-    border-top: 1px solid #ddd;
+.comentarios-bloco{
+    margin-top:28px;
+    padding-top:25px;
+    border-top:1px solid #ddd;
 }
 
-.comentarios-titulo {
-    color: #064e3b;
-    font-size: 22px;
-    margin-bottom: 18px;
+.comentarios-titulo{
+    color:#064e3b;
+    font-size:22px;
+    margin-bottom:18px;
 }
 
-.form-comentario {
-    background: #f5f7f6;
-    border: 1px solid #dfe5e2;
-    border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 22px;
+.form-comentario{
+    background:#f5f7f6;
+    border:1px solid #dfe5e2;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:22px;
 }
 
-.form-comentario label {
-    display: block;
-    font-weight: bold;
-    color: #064e3b;
-    margin-bottom: 7px;
+.form-comentario label{
+    display:block;
+    font-weight:bold;
+    color:#064e3b;
+    margin-bottom:7px;
 }
 
-.form-comentario textarea {
-    min-height: 90px;
-    margin-bottom: 15px;
+.form-comentario textarea{
+    min-height:90px;
+    margin-bottom:15px;
 }
 
-.form-comentario input {
-    margin-bottom: 15px;
+.form-comentario input{
+    margin-bottom:15px;
 }
 
-.botao-comentar {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 7px;
-    cursor: pointer;
+.botao-comentar{
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:12px 20px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-.lista-comentarios {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.lista-comentarios{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-.comentario-item {
-    background: #f8faf9;
-    border: 1px solid #e0e5e2;
-    border-radius: 10px;
-    padding: 15px 16px;
+.comentario-item{
+    background:#f8faf9;
+    border:1px solid #e0e5e2;
+    border-radius:10px;
+    padding:15px 16px;
 }
 
-.comentario-texto {
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #222;
-    white-space: pre-wrap;
-    word-break: break-word;
+.comentario-texto{
+    font-size:16px;
+    margin-bottom:8px;
+    white-space:pre-wrap;
+    word-break:break-word;
 }
 
-.comentario-local {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
+.comentario-local{
+    font-size:14px;
+    color:#555;
+    margin-bottom:10px;
 }
 
-.comentario-rodape {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: #666;
-    font-size: 13px;
+.comentario-rodape{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    color:#666;
+    font-size:13px;
 }
 
-.comentario-autor {
-    color: #064e3b;
-    font-weight: bold;
+.comentario-autor{
+    color:#064e3b;
+    font-weight:bold;
 }
 
-.comentario-data {
-    color: #777;
+.comentario-data{
+    color:#777;
 }
 
-/* =====================================================
-   CORAÇÃO
-   ===================================================== */
+/* CURTIR */
 
-.botao-curtir {
-    width: 38px;
-    height: 38px;
-    border: 2px solid #064e3b;
-    border-radius: 50%;
-    background: transparent;
-    color: #064e3b;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 21px;
-    line-height: 1;
-    transition: all .15s ease;
-    flex-shrink: 0;
+.botao-curtir{
+    width:38px;
+    height:38px;
+    border:2px solid #064e3b;
+    border-radius:50%;
+    background:transparent;
+    color:#064e3b;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
 }
 
-.botao-curtir:hover {
-    background: #e5ebe8;
+.botao-curtir.curtido{
+    background:#064e3b;
+    color:white;
 }
 
-.botao-curtir.curtido {
-    background: #064e3b;
-    color: white;
-}
+/* MAPA */
 
-/* =====================================================
-   COMO CHEGAR
-   ===================================================== */
+.mapa-container{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+}
 
-.botao-localizacao {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 9px 13px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    margin-top: 5px;
+.mapa{
+    width:100%;
+    height:500px;
+    border:none;
+    border-radius:8px;
 }
 
-.botao-como-chegar {
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 13px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 15px;
+.mapa-info{
+    margin-bottom:15px;
 }
 
-/* =====================================================
-   BOTÃO VOLTAR
-   ===================================================== */
+.mapa-info strong{
+    color:#064e3b;
+}
 
-.botao-voltar-flutuante {
-    position: fixed;
-    z-index: 2000;
-    right: 18px;
-    bottom: 18px;
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 13px 18px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,.25);
-    display: none;
+.botao-localizacao{
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:9px 13px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    margin-top:5px;
 }
 
-.botao-voltar-flutuante.visivel {
-    display: block;
+.botao-como-chegar{
+    display:inline-block;
+    text-decoration:none;
+    background:#064e3b;
+    color:white;
+    padding:13px 20px;
+    border-radius:7px;
+    margin-top:15px;
+    font-weight:bold;
 }
 
-/* =====================================================
-   MAPA
-   ===================================================== */
+/* MENSAGENS */
 
-.mapa-container {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
+.mensagem{
+    display:none;
+    padding:15px;
+    margin-top:15px;
+    background:#e5ebe8;
+    color:#064e3b;
+    border-radius:7px;
 }
 
-.mapa {
-    width: 100%;
-    height: 500px;
-    border: none;
-    border-radius: 8px;
+.carregando{
+    text-align:center;
+    padding:40px;
+    color:#777;
 }
 
-.mapa-info {
-    margin-bottom: 15px;
+.carregando-comentarios{
+    color:#777;
+    padding:15px 0;
 }
 
-.mapa-info strong {
-    color: #064e3b;
+.comentarios-vazio{
+    color:#777;
+    padding:15px 0;
 }
 
-/* =====================================================
-   MENSAGENS
-   ===================================================== */
+/* NAVEGAÇÃO */
 
-.mensagem {
-    display: none;
-    padding: 15px;
-    margin-top: 15px;
-    background: #e5ebe8;
-    color: #064e3b;
-    border-radius: 7px;
+.rodape-navegacao{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:35px;
 }
 
-.carregando {
-    text-align: center;
-    padding: 40px;
-    color: #777;
-}
+/* VOLTAR */
 
-.carregando-comentarios {
-    color: #777;
-    padding: 15px 0;
+.botao-voltar-flutuante{
+    position:fixed;
+    z-index:2000;
+    right:18px;
+    bottom:18px;
+    border:none;
+    background:#064e3b;
+    color:white;
+    padding:13px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
+    display:none;
 }
 
-.comentarios-vazio {
-    color: #777;
-    padding: 15px 0;
+.botao-voltar-flutuante.visivel{
+    display:block;
 }
+
+/* FOTO */
 
-/* =====================================================
-   RODAPÉ
-   ===================================================== */
+.foto-ampliada{
+    display:none;
+    position:fixed;
+    z-index:3000;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    cursor:zoom-out;
+}
 
-.rodape-navegacao {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 35px;
+.foto-ampliada.aberta{
+    display:flex;
 }
 
-footer {
-    text-align: center;
-    padding: 35px 15px;
-    color: #777;
-    font-size: 13px;
+.foto-ampliada img{
+    max-width:96vw;
+    max-height:94vh;
+    object-fit:contain;
 }
 
-/* =====================================================
-   RESPONSIVO
-   ===================================================== */
+/* RODAPÉ */
+
+footer{
+    text-align:center;
+    padding:35px 15px;
+    color:#777;
+    font-size:13px;
+}
 
-@media (max-width: 700px) {
+@media(max-width:700px){
 
-    .inicio h1 {
-        font-size: 30px;
+    .inicio h1{
+        font-size:30px;
     }
 
-    .linha {
-        grid-template-columns: 1fr;
+    .linha{
+        grid-template-columns:1fr;
     }
 
-    .modal {
-        padding: 8px;
+    .modal{
+        padding:8px;
     }
 
-    .modal-conteudo {
-        margin: 5px auto 30px;
+    .modal-conteudo{
+        margin:5px auto 30px;
     }
 
-    .modal-foto-mini {
-        max-height: 330px;
-    }
-
-    .comentario-rodape {
-        align-items: flex-start;
-    }
-
-    .botao-voltar-flutuante {
-        right: 12px;
-        bottom: 12px;
-        padding: 12px 15px;
+    .modal-foto-mini{
+        max-height:330px;
     }
 
 }
@@ -746,26 +697,20 @@ REDE PET
 
 <main class="container">
 
-<!-- =====================================================
-     INÍCIO
-     ===================================================== -->
+<!-- INÍCIO -->
 
 <section id="inicio" class="pagina ativa">
 
 <div class="inicio">
 
-<h1>
-O que é a REDE PET?
-</h1>
+<h1>O que é a REDE PET?</h1>
 
 <p>
 Uma plataforma comunitária e tecnológica
 voltada à proteção e ao reencontro de animais.
 </p>
 
-<h2>
-Por onde você quer começar?
-</h2>
+<h2>Por onde você quer começar?</h2>
 
 <div class="botoes-inicio">
 
@@ -787,9 +732,7 @@ Visualizar PETs
 
 </section>
 
-<!-- =====================================================
-     CADASTRO
-     ===================================================== -->
+<!-- CADASTRO -->
 
 <section id="pet" class="pagina">
 
@@ -797,15 +740,11 @@ Visualizar PETs
 
 <div class="bloco">
 
-<h2>
-Dados do PET
-</h2>
+<h2>Dados do PET</h2>
 
 <div class="campo">
 
-<label>
-Foto do animal
-</label>
+<label>Foto do animal</label>
 
 <input
 type="file"
@@ -816,9 +755,7 @@ accept="image/*">
 
 <div class="campo">
 
-<label>
-Status do animal
-</label>
+<label>Status do animal</label>
 
 <div class="opcoes">
 
@@ -850,9 +787,7 @@ Adotado
 
 <div class="campo">
 
-<label>
-Nome do PET
-</label>
+<label>Nome do PET</label>
 
 <input id="nome" required>
 
@@ -860,9 +795,7 @@ Nome do PET
 
 <div class="campo">
 
-<label>
-Idade
-</label>
+<label>Idade</label>
 
 <div class="opcoes">
 
@@ -894,9 +827,7 @@ Idoso (8+ anos)
 
 <div class="campo">
 
-<label>
-Peso aproximado
-</label>
+<label>Peso aproximado</label>
 
 <div class="peso-controle">
 
@@ -922,9 +853,7 @@ onclick="alterarPeso(1)">
 
 <div class="campo">
 
-<label>
-Espécie
-</label>
+<label>Espécie</label>
 
 <div class="opcoes">
 
@@ -956,9 +885,7 @@ style="display:none;margin-top:10px">
 
 <div class="campo">
 
-<label>
-Raça
-</label>
+<label>Raça</label>
 
 <input id="raca">
 
@@ -966,9 +893,7 @@ Raça
 
 <div class="campo">
 
-<label>
-Sexo
-</label>
+<label>Sexo</label>
 
 <div class="opcoes">
 
@@ -995,9 +920,7 @@ Não identificado
 
 <div class="campo">
 
-<label>
-Porte
-</label>
+<label>Porte</label>
 
 <div class="opcoes">
 
@@ -1024,9 +947,7 @@ Grande
 
 <div class="campo">
 
-<label>
-Cor
-</label>
+<label>Cor</label>
 
 <input id="cor">
 
@@ -1036,9 +957,7 @@ Cor
 
 <div class="campo">
 
-<label>
-É castrado?
-</label>
+<label>É castrado?</label>
 
 <div class="opcoes">
 
@@ -1065,9 +984,7 @@ Não sei
 
 <div class="campo">
 
-<label>
-É vacinado?
-</label>
+<label>É vacinado?</label>
 
 <div class="opcoes">
 
@@ -1096,9 +1013,7 @@ Não sei
 
 <div class="campo">
 
-<label>
-Última vez em que foi visto
-</label>
+<label>Última vez em que foi visto</label>
 
 <input
 type="datetime-local"
@@ -1108,9 +1023,7 @@ id="ultimaVez">
 
 <div class="campo">
 
-<label>
-Ponto de referência
-</label>
+<label>Ponto de referência</label>
 
 <input
 id="pontoReferencia"
@@ -1120,9 +1033,7 @@ placeholder="Ex.: próximo à praça">
 
 <div class="campo">
 
-<label>
-Observações
-</label>
+<label>Observações</label>
 
 <textarea id="observacoes"></textarea>
 
@@ -1132,15 +1043,11 @@ Observações
 
 <div class="bloco">
 
-<h2>
-Dados do tutor
-</h2>
+<h2>Dados do tutor</h2>
 
 <div class="campo">
 
-<label>
-Nome do tutor
-</label>
+<label>Nome do tutor</label>
 
 <input id="tutorNome">
 
@@ -1148,9 +1055,7 @@ Nome do tutor
 
 <div class="campo">
 
-<label>
-Contato do tutor
-</label>
+<label>Contato do tutor</label>
 
 <input id="tutorContato">
 
@@ -1158,9 +1063,7 @@ Contato do tutor
 
 <div class="campo">
 
-<label>
-Deseja exibir os dados do tutor publicamente?
-</label>
+<label>Deseja exibir os dados do tutor publicamente?</label>
 
 <div class="opcoes">
 
@@ -1182,9 +1085,7 @@ Não
 
 <div class="campo">
 
-<label>
-Endereço do tutor
-</label>
+<label>Endereço do tutor</label>
 
 <input id="endereco">
 
@@ -1194,9 +1095,7 @@ Endereço do tutor
 
 <div class="campo">
 
-<label>
-Bairro
-</label>
+<label>Bairro</label>
 
 <input id="bairro">
 
@@ -1204,9 +1103,7 @@ Bairro
 
 <div class="campo">
 
-<label>
-Cidade
-</label>
+<label>Cidade</label>
 
 <input id="cidade">
 
@@ -1251,19 +1148,14 @@ Início
 
 </section>
 
-<!-- =====================================================
-     MATCH
-     ===================================================== -->
+<!-- MATCH -->
 
 <section id="match" class="pagina">
 
-<h2>
-MATCH
-</h2>
+<h2>MATCH</h2>
 
 <p style="margin:10px 0 25px;color:#666">
-Encontre animais perdidos, encontrados ou disponíveis
-para adoção.
+Encontre animais perdidos, encontrados ou disponíveis para adoção.
 </p>
 
 <div class="filtro-match">
@@ -1276,25 +1168,11 @@ O que você deseja visualizar?
 id="filtroStatus"
 onchange="aplicarFiltro()">
 
-<option value="Todos">
-Todos os PETs
-</option>
-
-<option value="Perdido">
-Perdidos
-</option>
-
-<option value="Encontrado">
-Encontrados
-</option>
-
-<option value="Para adoção">
-Para adoção
-</option>
-
-<option value="Adotado">
-Adotados
-</option>
+<option value="Todos">Todos os PETs</option>
+<option value="Perdido">Perdidos</option>
+<option value="Encontrado">Encontrados</option>
+<option value="Para adoção">Para adoção</option>
+<option value="Adotado">Adotados</option>
 
 </select>
 
@@ -1328,23 +1206,18 @@ Início
 
 </section>
 
-<!-- =====================================================
-     MAPA
-     ===================================================== -->
+<!-- MAPA -->
 
 <section id="mapa" class="pagina">
 
-<h2>
-MAPA
-</h2>
+<h2>MAPA</h2>
 
 <div
 id="mapaInfo"
 class="mapa-info">
 
 <p style="color:#666;">
-Selecione "Como chegar" em um comentário
-para visualizar o local informado.
+Selecione "Como chegar" em um comentário para visualizar o local informado.
 </p>
 
 </div>
@@ -1385,16 +1258,13 @@ Início
 
 </main>
 
-<!-- =====================================================
-     MODAL DO PET
-     ===================================================== -->
+<!-- MODAL -->
 
 <div
 id="modal"
 class="modal">
 
-<div
-class="modal-conteudo">
+<div class="modal-conteudo">
 
 <img
 id="modalFotoMini"
@@ -1409,56 +1279,65 @@ alt="Foto do PET">
 
 <div id="modalDados"></div>
 
-<!-- =====================================================
-     EDITAR CADASTRO COMPLETO
-     ===================================================== -->
+<!-- STATUS -->
 
 <div
-id="editarCadastroArea"
-class="editar-cadastro"
+id="alterarStatusArea"
+class="alterar-status"
 style="display:none;">
 
-<h3>
-Editar cadastro do PET
-</h3>
+<h3>Atualizar situação do PET</h3>
+
+<select id="novoStatus">
+
+<option value="Perdido">Perdido</option>
+<option value="Encontrado">Encontrado</option>
+<option value="Para adoção">Para adoção</option>
+<option value="Adotado">Adotado</option>
+
+</select>
+
+<button
+type="button"
+class="botao-status"
+onclick="alterarStatusPet()">
+Atualizar status
+</button>
+
+<div
+id="mensagemStatus"
+class="mensagem">
+</div>
+
+</div>
+
+<!-- EDIÇÃO COMPLETA -->
+
+<div
+id="edicaoCadastro"
+class="edicao-cadastro"
+style="display:none;">
+
+<h3>Editar cadastro do PET</h3>
 
 <div class="campo">
 
-<label>
-Nome
-</label>
+<label>Nome</label>
 
-<input id="editarNome">
+<input id="editNome">
 
 </div>
 
 <div class="campo">
 
-<label>
-Idade
-</label>
+<label>Status</label>
 
-<select id="editarIdade">
+<select id="editStatus">
 
-<option value="">
-Selecione
-</option>
-
-<option value="Filhote (até 1 ano)">
-Filhote (até 1 ano)
-</option>
-
-<option value="Jovem (1 a 3 anos)">
-Jovem (1 a 3 anos)
-</option>
-
-<option value="Adulto (3 a 8 anos)">
-Adulto (3 a 8 anos)
-</option>
-
-<option value="Idoso (8+ anos)">
-Idoso (8+ anos)
-</option>
+<option value="Perdido">Perdido</option>
+<option value="Para adoção">Para adoção</option>
+<option value="Encontrado">Encontrado</option>
+<option value="Adotado">Adotado</option>
 
 </select>
 
@@ -1466,42 +1345,42 @@ Idoso (8+ anos)
 
 <div class="campo">
 
-<label>
-Peso
-</label>
+<label>Idade</label>
+
+<select id="editIdade">
+
+<option value="">Selecione</option>
+<option value="Filhote (até 1 ano)">Filhote (até 1 ano)</option>
+<option value="Jovem (1 a 3 anos)">Jovem (1 a 3 anos)</option>
+<option value="Adulto (3 a 8 anos)">Adulto (3 a 8 anos)</option>
+<option value="Idoso (8+ anos)">Idoso (8+ anos)</option>
+
+</select>
+
+</div>
+
+<div class="campo">
+
+<label>Peso (kg)</label>
 
 <input
 type="number"
-id="editarPeso"
+id="editPeso"
 min="0"
-max="100"
-step="1">
+step="0.1">
 
 </div>
 
 <div class="campo">
 
-<label>
-Status
-</label>
+<label>Espécie</label>
 
-<select id="editarStatus">
+<select id="editEspecie">
 
-<option value="Perdido">
-Perdido
-</option>
-
-<option value="Para adoção">
-Para adoção
-</option>
-
-<option value="Encontrado">
-Encontrado
-</option>
-
-<option value="Adotado">
-Adotado
-</option>
+<option value="">Selecione</option>
+<option value="Cão">Cão</option>
+<option value="Gato">Gato</option>
+<option value="Outro">Outro</option>
 
 </select>
 
@@ -1509,27 +1388,22 @@ Adotado
 
 <div class="campo">
 
-<label>
-Castrado
-</label>
+<label>Raça</label>
 
-<select id="editarCastrado">
+<input id="editRaca">
 
-<option value="">
-Selecione
-</option>
+</div>
 
-<option value="Sim">
-Sim
-</option>
+<div class="campo">
 
-<option value="Não">
-Não
-</option>
+<label>Sexo</label>
 
-<option value="Não sei">
-Não sei
-</option>
+<select id="editSexo">
+
+<option value="">Selecione</option>
+<option value="Macho">Macho</option>
+<option value="Fêmea">Fêmea</option>
+<option value="Não identificado">Não identificado</option>
 
 </select>
 
@@ -1537,27 +1411,14 @@ Não sei
 
 <div class="campo">
 
-<label>
-Vacinado
-</label>
+<label>Porte</label>
 
-<select id="editarVacinado">
+<select id="editPorte">
 
-<option value="">
-Selecione
-</option>
-
-<option value="Sim">
-Sim
-</option>
-
-<option value="Não">
-Não
-</option>
-
-<option value="Não sei">
-Não sei
-</option>
+<option value="">Selecione</option>
+<option value="Pequeno">Pequeno</option>
+<option value="Médio">Médio</option>
+<option value="Grande">Grande</option>
 
 </select>
 
@@ -1565,37 +1426,22 @@ Não sei
 
 <div class="campo">
 
-<label>
-Raça
-</label>
+<label>Cor</label>
 
-<input id="editarRaca">
+<input id="editCor">
 
 </div>
 
 <div class="campo">
 
-<label>
-Sexo
-</label>
+<label>Castrado</label>
 
-<select id="editarSexo">
+<select id="editCastrado">
 
-<option value="">
-Selecione
-</option>
-
-<option value="Macho">
-Macho
-</option>
-
-<option value="Fêmea">
-Fêmea
-</option>
-
-<option value="Não identificado">
-Não identificado
-</option>
+<option value="">Selecione</option>
+<option value="Sim">Sim</option>
+<option value="Não">Não</option>
+<option value="Não sei">Não sei</option>
 
 </select>
 
@@ -1603,27 +1449,14 @@ Não identificado
 
 <div class="campo">
 
-<label>
-Porte
-</label>
+<label>Vacinado</label>
 
-<select id="editarPorte">
+<select id="editVacinado">
 
-<option value="">
-Selecione
-</option>
-
-<option value="Pequeno">
-Pequeno
-</option>
-
-<option value="Médio">
-Médio
-</option>
-
-<option value="Grande">
-Grande
-</option>
+<option value="">Selecione</option>
+<option value="Sim">Sim</option>
+<option value="Não">Não</option>
+<option value="Não sei">Não sei</option>
 
 </select>
 
@@ -1631,53 +1464,29 @@ Grande
 
 <div class="campo">
 
-<label>
-Cor
-</label>
+<label>Nome do tutor</label>
 
-<input id="editarCor">
+<input id="editTutorNome">
 
 </div>
 
 <div class="campo">
 
-<label>
-Nome do tutor
-</label>
+<label>Contato do tutor</label>
 
-<input id="editarTutorNome">
+<input id="editTutorContato">
 
 </div>
 
 <div class="campo">
 
-<label>
-Contato do tutor
-</label>
+<label>WhatsApp público</label>
 
-<input id="editarTutorContato">
+<select id="editWhatsappPublico">
 
-</div>
-
-<div class="campo">
-
-<label>
-WhatsApp público
-</label>
-
-<select id="editarWhatsappPublico">
-
-<option value="">
-Selecione
-</option>
-
-<option value="Sim">
-Sim
-</option>
-
-<option value="Não">
-Não
-</option>
+<option value="">Selecione</option>
+<option value="Sim">Sim</option>
+<option value="Não">Não</option>
 
 </select>
 
@@ -1685,89 +1494,67 @@ Não
 
 <div class="campo">
 
-<label>
-Endereço
-</label>
+<label>Endereço</label>
 
-<input id="editarEndereco">
+<input id="editEndereco">
 
 </div>
 
 <div class="campo">
 
-<label>
-Bairro
-</label>
+<label>Bairro</label>
 
-<input id="editarBairro">
+<input id="editBairro">
 
 </div>
 
 <div class="campo">
 
-<label>
-Cidade
-</label>
+<label>Cidade</label>
 
-<input id="editarCidade">
+<input id="editCidade">
 
 </div>
 
 <div class="campo">
 
-<label>
-Ponto de referência
-</label>
+<label>Ponto de referência</label>
 
-<input id="editarPontoReferencia">
+<input id="editPontoReferencia">
 
 </div>
 
 <div class="campo">
 
-<label>
-Última vez visto
-</label>
+<label>Última vez visto</label>
 
 <input
 type="datetime-local"
-id="editarUltimaVez">
+id="editUltimaVez">
 
 </div>
 
 <div class="campo">
 
-<label>
-Observações
-</label>
+<label>Observações</label>
 
-<textarea
-id="editarObservacoes"></textarea>
+<textarea id="editObservacoes"></textarea>
 
 </div>
-
-<div
-class="editar-acoes">
 
 <button
 type="button"
 class="botao-editar"
 onclick="salvarEdicaoPet()">
-
 Salvar alterações
-
 </button>
 
 <button
 type="button"
-class="botao-cancelar-edicao"
-onclick="fecharEdicaoPet()">
-
+class="botao-cancelar"
+onclick="fecharEdicao()">
 Cancelar
-
 </button>
-
-</div>
 
 <div
 id="mensagemEdicao"
@@ -1776,28 +1563,15 @@ class="mensagem">
 
 </div>
 
-<!-- =====================================================
-     BOTÃO EDITAR
-     ===================================================== -->
-
-<div
-id="botaoAbrirEdicao"
-style="display:none;margin-top:20px;">
-
 <button
 type="button"
 class="botao"
-onclick="abrirEdicaoPet()">
-
-Editar cadastro do PET
-
+style="margin-top:20px;"
+onclick="abrirEdicao()">
+✏️ Editar cadastro
 </button>
 
-</div>
-
-<!-- =====================================================
-     COMENTÁRIOS
-     ===================================================== -->
+<!-- COMENTÁRIOS -->
 
 <div class="comentarios-bloco">
 
@@ -1807,26 +1581,20 @@ Comentários sobre o PET
 
 <div class="form-comentario">
 
-<label for="comentarioTexto">
-Comentário sobre o PET
-</label>
+<label>Comentário sobre o PET</label>
 
 <textarea
 id="comentarioTexto"
 placeholder="Ex.: Vi ele perto da padaria.">
 </textarea>
 
-<label for="comentarioNome">
-Seu nome
-</label>
+<label>Seu nome</label>
 
 <input
 id="comentarioNome"
 placeholder="Digite seu nome">
 
-<label for="comentarioLocal">
-Onde você viu o PET?
-</label>
+<label>Onde você viu o PET?</label>
 
 <input
 id="comentarioLocal"
@@ -1836,9 +1604,7 @@ placeholder="Ex.: perto da Padaria Central">
 type="button"
 class="botao-comentar"
 onclick="enviarComentario()">
-
 Comentar
-
 </button>
 
 <div
@@ -1866,22 +1632,16 @@ Carregando comentários...
 
 </div>
 
-<!-- =====================================================
-     BOTÃO VOLTAR FLUTUANTE
-     ===================================================== -->
+<!-- VOLTAR -->
 
 <button
 id="botaoVoltarFlutuante"
 class="botao-voltar-flutuante"
 onclick="fecharModal()">
-
 ← Voltar
-
 </button>
 
-<!-- =====================================================
-     FOTO AMPLIADA
-     ===================================================== -->
+<!-- FOTO AMPLIADA -->
 
 <div
 id="fotoAmpliada"
@@ -1895,9 +1655,7 @@ alt="Foto ampliada do PET">
 </div>
 
 <footer>
-
 REDE PET — Protótipo
-
 </footer>
 
 <iframe
@@ -1908,66 +1666,54 @@ style="display:none">
 
 <script>
 
-/* =====================================================
-   CONFIGURAÇÃO
-   ===================================================== */
-
 const URL_APPS_SCRIPT =
 "https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
 
 let peso = 0;
-
 let petAtual = null;
-
 let petsCarregados = [];
-
 let localMapaAtual = "";
 
-/* =====================================================
+/* =========================
    NAVEGAÇÃO
-   ===================================================== */
+========================= */
 
-function abrirPagina(nome) {
+function abrirPagina(nome){
 
     document
         .querySelectorAll(".pagina")
-        .forEach(
-            p => p.classList.remove("ativa")
-        );
+        .forEach(p => p.classList.remove("ativa"));
 
     const pagina =
         document.getElementById(nome);
 
-    if (!pagina) {
-        return;
-    }
+    if(!pagina)return;
 
     pagina.classList.add("ativa");
 
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
 
-    if (nome === "match") {
+    if(nome === "match"){
         carregarPets();
     }
-
 }
 
-/* =====================================================
+/* =========================
    OPÇÕES
-   ===================================================== */
+========================= */
 
-function selecionar(botao, campo, valor) {
+function selecionar(botao,campo,valor){
 
     const grupo =
         botao.parentElement;
 
     grupo
         .querySelectorAll(".opcao")
-        .forEach(
-            b => b.classList.remove("selecionada")
+        .forEach(b =>
+            b.classList.remove("selecionada")
         );
 
     botao.classList.add("selecionada");
@@ -1976,7 +1722,7 @@ function selecionar(botao, campo, valor) {
         .getElementById(campo)
         .value = valor;
 
-    if (campo === "especie") {
+    if(campo === "especie"){
 
         const outro =
             document.getElementById("especieOutro");
@@ -1985,292 +1731,248 @@ function selecionar(botao, campo, valor) {
             valor === "Outro"
                 ? "block"
                 : "none";
-
     }
-
 }
 
-/* =====================================================
+/* =========================
    PESO
-   ===================================================== */
+========================= */
 
-function alterarPeso(valor) {
+function alterarPeso(valor){
 
     peso += valor;
 
-    if (peso < 0) {
-        peso = 0;
-    }
+    if(peso < 0)peso = 0;
 
-    if (peso > 100) {
-        peso = 100;
-    }
+    if(peso > 100)peso = 100;
 
     document
         .getElementById("pesoValor")
         .textContent = peso;
-
 }
 
-/* =====================================================
+/* =========================
    TOKEN
-   ===================================================== */
+========================= */
 
-function gerarTokenProprietario() {
+function gerarTokenProprietario(){
 
-    return (
-        "RP-" +
+    return "RP-" +
         Date.now().toString(36) +
         "-" +
-        Math.random().toString(36).substring(2, 12) +
+        Math.random().toString(36).substring(2,12) +
         "-" +
-        Math.random().toString(36).substring(2, 12)
-    );
-
+        Math.random().toString(36).substring(2,12);
 }
 
-/* =====================================================
-   CONVERTER IMAGEM
-   ===================================================== */
+/* =========================
+   IMAGEM
+========================= */
 
-function converterImagem(file) {
+function converterImagem(file){
 
-    return new Promise(
-        (resolve, reject) => {
+    return new Promise((resolve,reject)=>{
 
-            if (!file) {
-                resolve("");
-                return;
-            }
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function() {
-                    resolve(reader.result);
-                };
-
-            reader.onerror = reject;
-
-            reader.readAsDataURL(file);
-
+        if(!file){
+            resolve("");
+            return;
         }
-    );
 
+        const reader = new FileReader();
+
+        reader.onload =
+            () => resolve(reader.result);
+
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+    });
 }
 
-/* =====================================================
+/* =========================
    CADASTRO
-   ===================================================== */
+========================= */
 
 document
-    .getElementById("formPet")
-    .addEventListener(
-        "submit",
-        async function(event) {
+.getElementById("formPet")
+.addEventListener("submit",async function(event){
 
-            event.preventDefault();
+    event.preventDefault();
 
-            const mensagem =
-                document.getElementById("mensagem");
+    const mensagem =
+        document.getElementById("mensagem");
 
-            mensagem.style.display = "block";
+    mensagem.style.display="block";
+    mensagem.textContent="Salvando cadastro...";
 
-            mensagem.textContent =
-                "Salvando cadastro...";
+    try{
 
-            try {
+        const arquivo =
+            document.getElementById("foto").files[0];
 
-                const arquivo =
-                    document
-                        .getElementById("foto")
-                        .files[0];
+        const foto =
+            await converterImagem(arquivo);
 
-                const foto =
-                    await converterImagem(arquivo);
+        const token =
+            gerarTokenProprietario();
 
-                const token =
-                    gerarTokenProprietario();
+        const dados = {
 
-                const dados = {
+            foto:foto,
 
-                    foto: foto,
+            status:
+                document.getElementById("status").value,
 
-                    status:
-                        document.getElementById("status").value,
+            nome:
+                document.getElementById("nome").value,
 
-                    nome:
-                        document.getElementById("nome").value,
+            idade:
+                document.getElementById("idade").value,
 
-                    idade:
-                        document.getElementById("idade").value,
+            peso:Number(peso),
 
-                    peso: peso,
+            castrado:
+                document.getElementById("castrado").value,
 
-                    castrado:
-                        document.getElementById("castrado").value,
+            especie:
+                document.getElementById("especie").value,
 
-                    especie:
-                        document.getElementById("especie").value,
+            especieOutro:
+                document.getElementById("especieOutro").value,
 
-                    especieOutro:
-                        document.getElementById("especieOutro").value,
+            vacinado:
+                document.getElementById("vacinado").value,
 
-                    vacinado:
-                        document.getElementById("vacinado").value,
+            raca:
+                document.getElementById("raca").value,
 
-                    raca:
-                        document.getElementById("raca").value,
+            sexo:
+                document.getElementById("sexo").value,
 
-                    sexo:
-                        document.getElementById("sexo").value,
+            porte:
+                document.getElementById("porte").value,
 
-                    porte:
-                        document.getElementById("porte").value,
+            cor:
+                document.getElementById("cor").value,
 
-                    cor:
-                        document.getElementById("cor").value,
+            tutorNome:
+                document.getElementById("tutorNome").value,
 
-                    tutorNome:
-                        document.getElementById("tutorNome").value,
+            tutorContato:
+                document.getElementById("tutorContato").value,
 
-                    tutorContato:
-                        document.getElementById("tutorContato").value,
+            whatsappPublico:
+                document.getElementById("whatsappPublico").value,
 
-                    whatsappPublico:
-                        document.getElementById("whatsappPublico").value,
+            endereco:
+                document.getElementById("endereco").value,
 
-                    endereco:
-                        document.getElementById("endereco").value,
+            bairro:
+                document.getElementById("bairro").value,
 
-                    bairro:
-                        document.getElementById("bairro").value,
+            cidade:
+                document.getElementById("cidade").value,
 
-                    cidade:
-                        document.getElementById("cidade").value,
+            pontoReferencia:
+                document.getElementById("pontoReferencia").value,
 
-                    pontoReferencia:
-                        document.getElementById("pontoReferencia").value,
+            ultimaVez:
+                document.getElementById("ultimaVez").value,
 
-                    ultimaVez:
-                        document.getElementById("ultimaVez").value,
+            observacoes:
+                document.getElementById("observacoes").value,
 
-                    observacoes:
-                        document.getElementById("observacoes").value,
+            tokenProprietario:token
+        };
 
-                    tokenProprietario:
-                        token
+        enviarPost(
+            "cadastrarPet",
+            dados
+        );
 
-                };
+        localStorage.setItem(
+            "redePetUltimoToken",
+            token
+        );
 
-                const formEnvio =
-                    document.createElement("form");
+        mensagem.textContent =
+            "PET cadastrado com sucesso!";
 
-                formEnvio.method = "POST";
+        this.reset();
 
-                formEnvio.action =
-                    URL_APPS_SCRIPT;
+        peso=0;
 
-                formEnvio.target =
-                    "frameCadastro";
+        document.getElementById("pesoValor").textContent="0";
 
-                formEnvio.style.display = "none";
+        document
+            .querySelectorAll(".opcao")
+            .forEach(b =>
+                b.classList.remove("selecionada")
+            );
 
-                adicionarCampo(
-                    formEnvio,
-                    "acao",
-                    "cadastrarPet"
-                );
+    }catch(erro){
 
-                adicionarCampo(
-                    formEnvio,
-                    "dados",
-                    JSON.stringify(dados)
-                );
+        console.error(erro);
 
-                document.body.appendChild(formEnvio);
+        mensagem.textContent =
+            "Erro ao preparar o cadastro.";
+    }
 
-                formEnvio.submit();
+});
 
-                localStorage.setItem(
-                    "redePetUltimoToken",
-                    token
-                );
+/* =========================
+   POST
+========================= */
 
-                setTimeout(
-                    function() {
+function enviarPost(acao,dados){
 
-                        mensagem.textContent =
-                            "PET cadastrado com sucesso!";
+    const formulario =
+        document.createElement("form");
 
-                        formEnvio.remove();
+    formulario.method="POST";
+    formulario.action=URL_APPS_SCRIPT;
+    formulario.target="frameCadastro";
+    formulario.style.display="none";
 
-                        document
-                            .getElementById("formPet")
-                            .reset();
-
-                        peso = 0;
-
-                        document
-                            .getElementById("pesoValor")
-                            .textContent = "0";
-
-                        document
-                            .querySelectorAll(".opcao")
-                            .forEach(
-                                b =>
-                                b.classList.remove(
-                                    "selecionada"
-                                )
-                            );
-
-                        carregarPets();
-
-                    },
-                    1200
-                );
-
-            } catch (erro) {
-
-                mensagem.textContent =
-                    "Erro ao preparar o cadastro.";
-
-                console.error(erro);
-
-            }
-
-        }
+    adicionarCampo(
+        formulario,
+        "acao",
+        acao
     );
 
-/* =====================================================
-   AUXILIAR
-   ===================================================== */
+    adicionarCampo(
+        formulario,
+        "dados",
+        JSON.stringify(dados)
+    );
 
-function adicionarCampo(
-    formulario,
-    nome,
-    valor
-) {
+    document.body.appendChild(formulario);
+
+    formulario.submit();
+
+    setTimeout(
+        ()=>formulario.remove(),
+        1500
+    );
+}
+
+function adicionarCampo(formulario,nome,valor){
 
     const campo =
         document.createElement("input");
 
-    campo.type = "hidden";
-
-    campo.name = nome;
-
-    campo.value = valor;
+    campo.type="hidden";
+    campo.name=nome;
+    campo.value=valor;
 
     formulario.appendChild(campo);
-
 }
 
-/* =====================================================
+/* =========================
    CARREGAR PETS
-   ===================================================== */
+========================= */
 
-function carregarPets() {
+function carregarPets(){
 
     const lista =
         document.getElementById("listaPets");
@@ -2278,37 +1980,29 @@ function carregarPets() {
     lista.innerHTML =
         '<div class="carregando">Carregando PETs...</div>';
 
-    const nomeCallback =
+    const callback =
         "redePetCallback_" +
         Date.now() +
         "_" +
-        Math.floor(Math.random() * 100000);
+        Math.floor(Math.random()*100000);
 
-    let finalizado = false;
+    let finalizado=false;
 
-    window[nomeCallback] =
-        function(pets) {
+    window[callback]=function(pets){
 
-            if (finalizado) {
-                return;
-            }
+        if(finalizado)return;
 
-            finalizado = true;
+        finalizado=true;
 
-            try {
+        petsCarregados =
+            Array.isArray(pets)
+                ? pets
+                : [];
 
-                petsCarregados =
-                    pets || [];
+        renderizarPets();
 
-                renderizarPets();
-
-            } finally {
-
-                delete window[nomeCallback];
-
-            }
-
-        };
+        delete window[callback];
+    };
 
     const script =
         document.createElement("script");
@@ -2317,59 +2011,76 @@ function carregarPets() {
         URL_APPS_SCRIPT +
         "?acao=listarPets" +
         "&callback=" +
-        nomeCallback +
+        callback +
         "&t=" +
-        Date.now() +
-        "_" +
-        Math.random();
+        Date.now();
 
-    script.async = true;
+    script.async=true;
 
-    script.onerror =
-        function() {
+    script.onerror=function(){
 
-            if (finalizado) {
-                return;
-            }
+        if(finalizado)return;
 
-            finalizado = true;
+        finalizado=true;
 
-            lista.innerHTML =
-                '<div class="carregando">' +
-                'Não foi possível carregar os PETs.' +
-                '</div>';
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Não foi possível carregar os PETs.' +
+            '</div>';
 
-            delete window[nomeCallback];
-
-        };
+        delete window[callback];
+    };
 
     document.body.appendChild(script);
-
-    setTimeout(
-        function() {
-
-            if (!finalizado) {
-
-                finalizado = true;
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'Verificando PETs cadastrados...' +
-                    '</div>';
-
-            }
-
-        },
-        10000
-    );
-
 }
 
-/* =====================================================
-   RENDERIZAR PETS
-   ===================================================== */
+/* =========================
+   PEGAR CAMPO
+   ========================= */
 
-function renderizarPets() {
+function campoPet(pet,...nomes){
+
+    for(const nome of nomes){
+
+        if(
+            pet &&
+            pet[nome] !== undefined &&
+            pet[nome] !== null &&
+            String(pet[nome]).trim() !== ""
+        ){
+            return pet[nome];
+        }
+    }
+
+    return "";
+}
+
+/* =========================
+   NORMALIZAR STATUS
+========================= */
+
+function normalizarStatus(valor){
+
+    const texto =
+        String(valor || "").trim();
+
+    if(
+        texto === "Perdido" ||
+        texto === "Para adoção" ||
+        texto === "Encontrado" ||
+        texto === "Adotado"
+    ){
+        return texto;
+    }
+
+    return texto || "Sem status";
+}
+
+/* =========================
+   RENDERIZAR
+========================= */
+
+function renderizarPets(){
 
     const lista =
         document.getElementById("listaPets");
@@ -2377,24 +2088,26 @@ function renderizarPets() {
     const filtro =
         document.getElementById("filtroStatus").value;
 
-    lista.innerHTML = "";
+    lista.innerHTML="";
 
-    let pets =
-        petsCarregados.filter(
-            function(pet) {
+    const pets =
+        petsCarregados.filter(pet=>{
 
-                if (filtro === "Todos") {
-                    return true;
-                }
+            const status =
+                normalizarStatus(
+                    campoPet(
+                        pet,
+                        "Status",
+                        "status"
+                    )
+                );
 
-                return String(
-                    pet["Status"] || ""
-                ).trim() === filtro;
+            return filtro==="Todos"
+                ? true
+                : status===filtro;
+        });
 
-            }
-        );
-
-    if (!pets.length) {
+    if(!pets.length){
 
         lista.innerHTML =
             '<div class="carregando">' +
@@ -2402,230 +2115,420 @@ function renderizarPets() {
             '</div>';
 
         return;
-
     }
 
-    pets.forEach(
-        function(pet) {
+    pets.forEach(pet=>{
 
-            const card =
-                document.createElement("article");
+        const card =
+            document.createElement("article");
 
-            card.className = "pet-card";
+        card.className="pet-card";
 
-            card.onclick =
-                function() {
-                    abrirModal(pet);
-                };
+        card.onclick=()=>{
+            abrirModal(pet);
+        };
 
-            const foto =
-                pet["Foto"] || "";
+        const foto =
+            campoPet(
+                pet,
+                "Foto",
+                "foto"
+            );
 
-            let imagem =
-                '<div class="pet-sem-foto">Sem foto</div>';
+        const nome =
+            campoPet(
+                pet,
+                "Nome",
+                "nome"
+            ) || "PET";
 
-            if (foto) {
+        const status =
+            normalizarStatus(
+                campoPet(
+                    pet,
+                    "Status",
+                    "status"
+                )
+            );
 
-                imagem =
-                    '<img ' +
-                    'class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(foto) +
-                    '" ' +
-                    'alt="Foto do PET">';
+        let imagem =
+            '<div class="pet-sem-foto">Sem foto</div>';
 
-            }
+        if(foto){
 
-            const nome =
-                pet["Nome"] || "PET";
-
-            const status =
-                pet["Status"] || "Sem status";
-
-            card.innerHTML =
-                imagem +
-                '<div class="pet-resumo">' +
-                '<h3 class="pet-nome">' +
-                escaparHTML(nome) +
-                '</h3>' +
-                '<span class="pet-status">' +
-                escaparHTML(status) +
-                '</span>' +
-                '</div>';
-
-            lista.appendChild(card);
-
+            imagem =
+                '<img class="pet-foto" src="' +
+                escaparHTML(foto) +
+                '" alt="Foto do PET">';
         }
-    );
 
+        card.innerHTML =
+            imagem +
+
+            '<div class="pet-resumo">' +
+
+            '<h3 class="pet-nome">' +
+            escaparHTML(nome) +
+            '</h3>' +
+
+            '<span class="pet-status">' +
+            escaparHTML(status) +
+            '</span>' +
+
+            '</div>';
+
+        lista.appendChild(card);
+    });
 }
 
-/* =====================================================
-   FILTRO
-   ===================================================== */
-
-function aplicarFiltro() {
-
+function aplicarFiltro(){
     renderizarPets();
-
 }
 
-/* =====================================================
-   ABRIR MODAL
-   ===================================================== */
+/* =========================
+   MODAL
+========================= */
 
-function abrirModal(pet) {
+function abrirModal(pet){
 
-    petAtual = pet;
-
-    const modal =
-        document.getElementById("modal");
+    petAtual=pet;
 
     const foto =
-        pet["Foto"] || "";
+        campoPet(
+            pet,
+            "Foto",
+            "foto"
+        );
 
     const imagem =
         document.getElementById("modalFotoMini");
 
-    if (foto) {
+    if(foto){
 
-        imagem.src = foto;
+        imagem.src=foto;
+        imagem.style.display="block";
 
-        imagem.style.display = "block";
+    }else{
 
-    } else {
-
-        imagem.style.display = "none";
-
+        imagem.style.display="none";
     }
+
+    const nome =
+        campoPet(
+            pet,
+            "Nome",
+            "nome"
+        ) || "PET";
 
     document
         .getElementById("modalNome")
-        .textContent =
-        pet["Nome"] || "PET";
+        .textContent=nome;
 
-    const dados =
-        document.getElementById("modalDados");
+    mostrarDadosPet(pet);
 
-    dados.innerHTML =
-
-        criarDado("Status", pet["Status"]) +
-
-        criarDado("Espécie", pet["Especie"]) +
-
-        criarDado("Raça", pet["Raca"]) +
-
-        criarDado("Sexo", pet["Sexo"]) +
-
-        criarDado("Idade", pet["Idade"]) +
-
-        criarDado(
-            "Peso",
-            pet["Peso"]
-                ? pet["Peso"] + " kg"
-                : "-"
-        ) +
-
-        criarDado("Castrado", pet["Castrado"]) +
-
-        criarDado("Vacinado", pet["Vacinado"]) +
-
-        criarDado("Porte", pet["Porte"]) +
-
-        criarDado("Cor", pet["Cor"]) +
-
-        criarDado(
-            "Última vez visto",
-            pet["Ultima Vez"]
-        ) +
-
-        criarDado(
-            "Ponto de referência",
-            pet["Ponto Referencia"]
-        ) +
-
-        criarDado(
-            "Observações",
-            pet["Observacoes"]
+    document
+        .getElementById("novoStatus")
+        .value =
+        normalizarStatus(
+            campoPet(
+                pet,
+                "Status",
+                "status"
+            )
         );
-
-    if (
-        pet["WhatsApp Publico"] === "Sim"
-    ) {
-
-        dados.innerHTML +=
-
-            '<hr style="margin:18px 0">' +
-
-            criarDado(
-                "Tutor",
-                pet["Tutor Nome"]
-            ) +
-
-            criarDado(
-                "Contato",
-                pet["Tutor Contato"]
-            );
-
-    }
 
     verificarPermissaoEdicao();
 
     document
+        .getElementById("edicaoCadastro")
+        .style.display="none";
+
+    document
         .getElementById("comentarioTexto")
-        .value = "";
+        .value="";
 
     document
         .getElementById("comentarioNome")
-        .value = "";
+        .value="";
 
     document
         .getElementById("comentarioLocal")
-        .value = "";
+        .value="";
 
     document
         .getElementById("mensagemComentario")
-        .style.display = "none";
+        .style.display="none";
 
     document
-        .getElementById("editarCadastroArea")
-        .style.display = "none";
-
-    document
-        .getElementById("mensagemEdicao")
-        .style.display = "none";
-
-    modal.classList.add("aberto");
+        .getElementById("modal")
+        .classList.add("aberto");
 
     document
         .getElementById("botaoVoltarFlutuante")
         .classList.add("visivel");
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow="hidden";
 
-    carregarComentarios(
-        pet["Nome"]
+    carregarComentarios(nome);
+}
+
+/* =========================
+   DADOS CORRETOS
+========================= */
+
+function mostrarDadosPet(pet){
+
+    const status =
+        normalizarStatus(
+            campoPet(
+                pet,
+                "Status",
+                "status"
+            )
+        );
+
+    const especie =
+        campoPet(
+            pet,
+            "Especie",
+            "Espécie",
+            "especie"
+        );
+
+    const raca =
+        campoPet(
+            pet,
+            "Raca",
+            "Raça",
+            "raca"
+        );
+
+    const sexo =
+        campoPet(
+            pet,
+            "Sexo",
+            "sexo"
+        );
+
+    const idade =
+        campoPet(
+            pet,
+            "Idade",
+            "idade"
+        );
+
+    const peso =
+        campoPet(
+            pet,
+            "Peso",
+            "peso"
+        );
+
+    const castrado =
+        campoPet(
+            pet,
+            "Castrado",
+            "castrado"
+        );
+
+    const vacinado =
+        campoPet(
+            pet,
+            "Vacinado",
+            "vacinado"
+        );
+
+    const porte =
+        campoPet(
+            pet,
+            "Porte",
+            "porte"
+        );
+
+    const cor =
+        campoPet(
+            pet,
+            "Cor",
+            "cor"
+        );
+
+    const ultimaVez =
+        campoPet(
+            pet,
+            "Ultima Vez",
+            "Última vez",
+            "ultimaVez"
+        );
+
+    const pontoReferencia =
+        campoPet(
+            pet,
+            "Ponto Referencia",
+            "Ponto de referência",
+            "pontoReferencia"
+        );
+
+    const observacoes =
+        campoPet(
+            pet,
+            "Observacoes",
+            "Observações",
+            "observacoes"
+        );
+
+    let html="";
+
+    html += criarDado("Status",status);
+
+    html += criarDado("Espécie",especie);
+
+    html += criarDado("Raça",raca);
+
+    html += criarDado("Sexo",sexo);
+
+    html += criarDado("Idade",idade);
+
+    /*
+       PESO:
+       fica obrigatoriamente como número + kg.
+    */
+
+    let pesoTexto="-";
+
+    if(
+        peso !== "" &&
+        peso !== null &&
+        peso !== undefined
+    ){
+
+        const numero =
+            Number(
+                String(peso)
+                .replace(",",".")
+                .replace("kg","")
+                .trim()
+            );
+
+        if(!isNaN(numero)){
+
+            pesoTexto =
+                numero + " kg";
+        }
+    }
+
+    html += criarDado(
+        "Peso",
+        pesoTexto
     );
 
+    html += criarDado(
+        "Castrado",
+        castrado
+    );
+
+    html += criarDado(
+        "Vacinado",
+        vacinado
+    );
+
+    html += criarDado(
+        "Porte",
+        porte
+    );
+
+    html += criarDado(
+        "Cor",
+        cor
+    );
+
+    html += criarDado(
+        "Última vez visto",
+        ultimaVez
+    );
+
+    /*
+       PONTO DE REFERÊNCIA:
+       separado das observações.
+    */
+
+    html += criarDado(
+        "Ponto de referência",
+        pontoReferencia
+    );
+
+    html += criarDado(
+        "Observações",
+        observacoes
+    );
+
+    const whatsapp =
+        campoPet(
+            pet,
+            "WhatsApp Publico",
+            "WhatsApp público",
+            "whatsappPublico"
+        );
+
+    if(
+        String(whatsapp).trim()
+        .toLowerCase()
+        === "sim"
+    ){
+
+        html +=
+            '<hr style="margin:18px 0">';
+
+        html += criarDado(
+            "Nome do tutor",
+            campoPet(
+                pet,
+                "Tutor Nome",
+                "Nome do tutor",
+                "tutorNome"
+            )
+        );
+
+        html += criarDado(
+            "Contato do tutor",
+            campoPet(
+                pet,
+                "Tutor Contato",
+                "Contato do tutor",
+                "tutorContato"
+            )
+        );
+
+    }
+
+    document
+        .getElementById("modalDados")
+        .innerHTML=html;
 }
 
-/* =====================================================
-   PERMISSÃO DE EDIÇÃO
-   ===================================================== */
+/* =========================
+   PERMISSÃO
+========================= */
 
-function verificarPermissaoEdicao() {
+function verificarPermissaoEdicao(){
+
+    const area =
+        document.getElementById(
+            "alterarStatusArea"
+        );
 
     const botao =
-        document.getElementById(
-            "botaoAbrirEdicao"
+        document.querySelector(
+            '[onclick="abrirEdicao()"]'
         );
 
-    if (!petAtual) {
+    if(!petAtual){
 
-        botao.style.display = "none";
+        area.style.display="none";
+
+        if(botao)
+            botao.style.display="none";
 
         return;
-
     }
 
     const tokenLocal =
@@ -2634,758 +2537,576 @@ function verificarPermissaoEdicao() {
         );
 
     const tokenPet =
-        petAtual["Token Proprietario"] || "";
+        campoPet(
+            petAtual,
+            "Token Proprietario",
+            "tokenProprietario"
+        );
 
-    if (
+    if(
         tokenLocal &&
         tokenPet &&
-        tokenLocal === tokenPet
-    ) {
+        tokenLocal===String(tokenPet)
+    ){
 
-        botao.style.display = "block";
+        area.style.display="block";
 
-    } else {
+        if(botao)
+            botao.style.display="inline-block";
 
-        botao.style.display = "none";
+    }else{
 
+        area.style.display="none";
+
+        if(botao)
+            botao.style.display="none";
     }
-
 }
 
-/* =====================================================
+/* =========================
    ABRIR EDIÇÃO
-   ===================================================== */
+========================= */
 
-function abrirEdicaoPet() {
+function abrirEdicao(){
 
-    if (!petAtual) {
-        return;
-    }
+    if(!petAtual)return;
 
-    const tokenLocal =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        );
-
-    const tokenPet =
-        petAtual["Token Proprietario"] || "";
-
-    if (
-        !tokenLocal ||
-        !tokenPet ||
-        tokenLocal !== tokenPet
-    ) {
-
-        return;
-
-    }
+    preencherEdicao();
 
     document
-        .getElementById("editarNome")
-        .value =
-        petAtual["Nome"] || "";
+        .getElementById("edicaoCadastro")
+        .style.display="block";
 
     document
-        .getElementById("editarIdade")
-        .value =
-        petAtual["Idade"] || "";
-
-    document
-        .getElementById("editarPeso")
-        .value =
-        petAtual["Peso"] || 0;
-
-    document
-        .getElementById("editarStatus")
-        .value =
-        petAtual["Status"] || "Perdido";
-
-    document
-        .getElementById("editarCastrado")
-        .value =
-        petAtual["Castrado"] || "";
-
-    document
-        .getElementById("editarVacinado")
-        .value =
-        petAtual["Vacinado"] || "";
-
-    document
-        .getElementById("editarRaca")
-        .value =
-        petAtual["Raca"] || "";
-
-    document
-        .getElementById("editarSexo")
-        .value =
-        petAtual["Sexo"] || "";
-
-    document
-        .getElementById("editarPorte")
-        .value =
-        petAtual["Porte"] || "";
-
-    document
-        .getElementById("editarCor")
-        .value =
-        petAtual["Cor"] || "";
-
-    document
-        .getElementById("editarTutorNome")
-        .value =
-        petAtual["Tutor Nome"] || "";
-
-    document
-        .getElementById("editarTutorContato")
-        .value =
-        petAtual["Tutor Contato"] || "";
-
-    document
-        .getElementById("editarWhatsappPublico")
-        .value =
-        petAtual["WhatsApp Publico"] || "";
-
-    document
-        .getElementById("editarEndereco")
-        .value =
-        petAtual["Endereco"] || "";
-
-    document
-        .getElementById("editarBairro")
-        .value =
-        petAtual["Bairro"] || "";
-
-    document
-        .getElementById("editarCidade")
-        .value =
-        petAtual["Cidade"] || "";
-
-    document
-        .getElementById("editarPontoReferencia")
-        .value =
-        petAtual["Ponto Referencia"] || "";
-
-    document
-        .getElementById("editarUltimaVez")
-        .value =
-        converterParaDateTimeLocal(
-            petAtual["Ultima Vez"]
-        );
-
-    document
-        .getElementById("editarObservacoes")
-        .value =
-        petAtual["Observacoes"] || "";
-
-    document
-        .getElementById("editarCadastroArea")
-        .style.display = "block";
-
-    document
-        .getElementById("botaoAbrirEdicao")
-        .style.display = "none";
-
-    document
-        .getElementById("editarCadastroArea")
+        .getElementById("edicaoCadastro")
         .scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior:"smooth",
+            block:"start"
         });
-
 }
 
-/* =====================================================
-   FECHAR EDIÇÃO
-   ===================================================== */
-
-function fecharEdicaoPet() {
+function fecharEdicao(){
 
     document
-        .getElementById("editarCadastroArea")
-        .style.display = "none";
-
-    document
-        .getElementById("botaoAbrirEdicao")
-        .style.display = "block";
-
-    document
-        .getElementById("mensagemEdicao")
-        .style.display = "none";
-
+        .getElementById("edicaoCadastro")
+        .style.display="none";
 }
 
-/* =====================================================
-   SALVAR EDIÇÃO COMPLETA
-   ===================================================== */
+/* =========================
+   PREENCHER EDIÇÃO
+========================= */
 
-function salvarEdicaoPet() {
+function preencherEdicao(){
 
-    if (!petAtual) {
-        return;
-    }
+    const pet=petAtual;
+
+    document.getElementById("editNome").value =
+        campoPet(pet,"Nome","nome");
+
+    document.getElementById("editStatus").value =
+        normalizarStatus(
+            campoPet(pet,"Status","status")
+        );
+
+    document.getElementById("editIdade").value =
+        campoPet(pet,"Idade","idade");
+
+    document.getElementById("editPeso").value =
+        limparNumero(
+            campoPet(pet,"Peso","peso")
+        );
+
+    document.getElementById("editEspecie").value =
+        campoPet(pet,"Especie","Espécie","especie");
+
+    document.getElementById("editRaca").value =
+        campoPet(pet,"Raca","Raça","raca");
+
+    document.getElementById("editSexo").value =
+        campoPet(pet,"Sexo","sexo");
+
+    document.getElementById("editPorte").value =
+        campoPet(pet,"Porte","porte");
+
+    document.getElementById("editCor").value =
+        campoPet(pet,"Cor","cor");
+
+    document.getElementById("editCastrado").value =
+        campoPet(pet,"Castrado","castrado");
+
+    document.getElementById("editVacinado").value =
+        campoPet(pet,"Vacinado","vacinado");
+
+    document.getElementById("editTutorNome").value =
+        campoPet(
+            pet,
+            "Tutor Nome",
+            "Nome do tutor",
+            "tutorNome"
+        );
+
+    document.getElementById("editTutorContato").value =
+        campoPet(
+            pet,
+            "Tutor Contato",
+            "Contato do tutor",
+            "tutorContato"
+        );
+
+    document.getElementById("editWhatsappPublico").value =
+        campoPet(
+            pet,
+            "WhatsApp Publico",
+            "WhatsApp público",
+            "whatsappPublico"
+        );
+
+    document.getElementById("editEndereco").value =
+        campoPet(
+            pet,
+            "Endereco",
+            "Endereço",
+            "endereco"
+        );
+
+    document.getElementById("editBairro").value =
+        campoPet(
+            pet,
+            "Bairro",
+            "bairro"
+        );
+
+    document.getElementById("editCidade").value =
+        campoPet(
+            pet,
+            "Cidade",
+            "cidade"
+        );
+
+    document.getElementById("editPontoReferencia").value =
+        campoPet(
+            pet,
+            "Ponto Referencia",
+            "Ponto de referência",
+            "pontoReferencia"
+        );
+
+    document.getElementById("editUltimaVez").value =
+        formatarDataInput(
+            campoPet(
+                pet,
+                "Ultima Vez",
+                "Última vez",
+                "ultimaVez"
+            )
+        );
+
+    document.getElementById("editObservacoes").value =
+        campoPet(
+            pet,
+            "Observacoes",
+            "Observações",
+            "observacoes"
+        );
+}
+
+/* =========================
+   SALVAR EDIÇÃO
+========================= */
+
+function salvarEdicaoPet(){
+
+    if(!petAtual)return;
 
     const token =
         localStorage.getItem(
             "redePetUltimoToken"
         );
 
-    const tokenPet =
-        petAtual["Token Proprietario"] || "";
-
-    if (
-        !token ||
-        !tokenPet ||
-        token !== tokenPet
-    ) {
+    if(!token){
 
         mostrarMensagemEdicao(
-            "Você não tem permissão para editar este cadastro."
+            "Não foi possível identificar o responsável pelo cadastro."
         );
 
         return;
-
     }
 
-    const nome =
-        document
-            .getElementById("editarNome")
-            .value
-            .trim();
-
-    if (!nome) {
-
-        mostrarMensagemEdicao(
-            "Informe o nome do PET."
-        );
-
-        return;
-
-    }
-
-    const dados = {
+    const dados={
 
         id:
-            petAtual["ID"],
+            campoPet(
+                petAtual,
+                "ID",
+                "id"
+            ),
 
-        tokenProprietario:
-            token,
+        tokenProprietario:token,
 
         nome:
-            nome,
-
-        idade:
-            document
-                .getElementById("editarIdade")
-                .value,
-
-        peso:
-            document
-                .getElementById("editarPeso")
-                .value,
+            document.getElementById(
+                "editNome"
+            ).value,
 
         status:
-            document
-                .getElementById("editarStatus")
-                .value,
+            document.getElementById(
+                "editStatus"
+            ).value,
 
-        castrado:
-            document
-                .getElementById("editarCastrado")
-                .value,
+        idade:
+            document.getElementById(
+                "editIdade"
+            ).value,
 
-        vacinado:
-            document
-                .getElementById("editarVacinado")
-                .value,
+        peso:
+            Number(
+                document.getElementById(
+                    "editPeso"
+                ).value || 0
+            ),
+
+        especie:
+            document.getElementById(
+                "editEspecie"
+            ).value,
 
         raca:
-            document
-                .getElementById("editarRaca")
-                .value,
+            document.getElementById(
+                "editRaca"
+            ).value,
 
         sexo:
-            document
-                .getElementById("editarSexo")
-                .value,
+            document.getElementById(
+                "editSexo"
+            ).value,
 
         porte:
-            document
-                .getElementById("editarPorte")
-                .value,
+            document.getElementById(
+                "editPorte"
+            ).value,
 
         cor:
-            document
-                .getElementById("editarCor")
-                .value,
+            document.getElementById(
+                "editCor"
+            ).value,
+
+        castrado:
+            document.getElementById(
+                "editCastrado"
+            ).value,
+
+        vacinado:
+            document.getElementById(
+                "editVacinado"
+            ).value,
 
         tutorNome:
-            document
-                .getElementById("editarTutorNome")
-                .value,
+            document.getElementById(
+                "editTutorNome"
+            ).value,
 
         tutorContato:
-            document
-                .getElementById("editarTutorContato")
-                .value,
+            document.getElementById(
+                "editTutorContato"
+            ).value,
 
         whatsappPublico:
-            document
-                .getElementById("editarWhatsappPublico")
-                .value,
+            document.getElementById(
+                "editWhatsappPublico"
+            ).value,
 
         endereco:
-            document
-                .getElementById("editarEndereco")
-                .value,
+            document.getElementById(
+                "editEndereco"
+            ).value,
 
         bairro:
-            document
-                .getElementById("editarBairro")
-                .value,
+            document.getElementById(
+                "editBairro"
+            ).value,
 
         cidade:
-            document
-                .getElementById("editarCidade")
-                .value,
+            document.getElementById(
+                "editCidade"
+            ).value,
 
         pontoReferencia:
-            document
-                .getElementById("editarPontoReferencia")
-                .value,
+            document.getElementById(
+                "editPontoReferencia"
+            ).value,
 
         ultimaVez:
-            document
-                .getElementById("editarUltimaVez")
-                .value,
+            document.getElementById(
+                "editUltimaVez"
+            ).value,
 
         observacoes:
-            document
-                .getElementById("editarObservacoes")
-                .value
-
+            document.getElementById(
+                "editObservacoes"
+            ).value
     };
 
     mostrarMensagemEdicao(
         "Salvando alterações..."
     );
 
-    const formEnvio =
-        document.createElement("form");
-
-    formEnvio.method = "POST";
-
-    formEnvio.action =
-        URL_APPS_SCRIPT;
-
-    formEnvio.target =
-        "frameCadastro";
-
-    formEnvio.style.display = "none";
-
-    adicionarCampo(
-        formEnvio,
-        "acao",
-        "editarPet"
+    enviarPost(
+        "editarPet",
+        dados
     );
 
-    adicionarCampo(
-        formEnvio,
-        "dados",
-        JSON.stringify(dados)
-    );
+    setTimeout(()=>{
 
-    document.body.appendChild(
-        formEnvio
-    );
+        /*
+           Atualiza imediatamente a visualização
+           sem precisar fechar o PET.
+        */
 
-    formEnvio.submit();
+        petAtual["Nome"] =
+            dados.nome;
 
-    setTimeout(
-        function() {
+        petAtual["Status"] =
+            dados.status;
 
-            atualizarPetLocalmente(
-                dados
-            );
+        petAtual["Idade"] =
+            dados.idade;
 
-            mostrarMensagemEdicao(
-                "Cadastro atualizado com sucesso!"
-            );
+        petAtual["Peso"] =
+            dados.peso;
 
-            setTimeout(
-                function() {
+        petAtual["Especie"] =
+            dados.especie;
 
-                    fecharEdicaoPet();
+        petAtual["Raca"] =
+            dados.raca;
 
-                    atualizarModalPet();
+        petAtual["Sexo"] =
+            dados.sexo;
 
-                    carregarPets();
+        petAtual["Porte"] =
+            dados.porte;
 
-                },
-                1200
-            );
+        petAtual["Cor"] =
+            dados.cor;
 
-            formEnvio.remove();
+        petAtual["Castrado"] =
+            dados.castrado;
 
-        },
-        1200
-    );
+        petAtual["Vacinado"] =
+            dados.vacinado;
 
-}
+        petAtual["Tutor Nome"] =
+            dados.tutorNome;
 
-/* =====================================================
-   ATUALIZAR PET LOCALMENTE
-   ===================================================== */
+        petAtual["Tutor Contato"] =
+            dados.tutorContato;
 
-function atualizarPetLocalmente(dados) {
+        petAtual["WhatsApp Publico"] =
+            dados.whatsappPublico;
 
-    petAtual["Nome"] =
-        dados.nome;
+        petAtual["Endereco"] =
+            dados.endereco;
 
-    petAtual["Idade"] =
-        dados.idade;
+        petAtual["Bairro"] =
+            dados.bairro;
 
-    petAtual["Peso"] =
-        dados.peso;
+        petAtual["Cidade"] =
+            dados.cidade;
 
-    petAtual["Status"] =
-        dados.status;
+        petAtual["Ponto Referencia"] =
+            dados.pontoReferencia;
 
-    petAtual["Castrado"] =
-        dados.castrado;
+        petAtual["Ultima Vez"] =
+            dados.ultimaVez;
 
-    petAtual["Vacinado"] =
-        dados.vacinado;
+        petAtual["Observacoes"] =
+            dados.observacoes;
 
-    petAtual["Raca"] =
-        dados.raca;
+        mostrarDadosPet(petAtual);
 
-    petAtual["Sexo"] =
-        dados.sexo;
+        renderizarPets();
 
-    petAtual["Porte"] =
-        dados.porte;
-
-    petAtual["Cor"] =
-        dados.cor;
-
-    petAtual["Tutor Nome"] =
-        dados.tutorNome;
-
-    petAtual["Tutor Contato"] =
-        dados.tutorContato;
-
-    petAtual["WhatsApp Publico"] =
-        dados.whatsappPublico;
-
-    petAtual["Endereco"] =
-        dados.endereco;
-
-    petAtual["Bairro"] =
-        dados.bairro;
-
-    petAtual["Cidade"] =
-        dados.cidade;
-
-    petAtual["Ponto Referencia"] =
-        dados.pontoReferencia;
-
-    petAtual["Ultima Vez"] =
-        dados.ultimaVez;
-
-    petAtual["Observacoes"] =
-        dados.observacoes;
-
-}
-
-/* =====================================================
-   ATUALIZAR MODAL
-   ===================================================== */
-
-function atualizarModalPet() {
-
-    if (!petAtual) {
-        return;
-    }
-
-    document
-        .getElementById("modalNome")
-        .textContent =
-        petAtual["Nome"] || "PET";
-
-    const dados =
-        document.getElementById("modalDados");
-
-    dados.innerHTML =
-
-        criarDado(
-            "Status",
-            petAtual["Status"]
-        ) +
-
-        criarDado(
-            "Espécie",
-            petAtual["Especie"]
-        ) +
-
-        criarDado(
-            "Raça",
-            petAtual["Raca"]
-        ) +
-
-        criarDado(
-            "Sexo",
-            petAtual["Sexo"]
-        ) +
-
-        criarDado(
-            "Idade",
-            petAtual["Idade"]
-        ) +
-
-        criarDado(
-            "Peso",
-            petAtual["Peso"]
-                ? petAtual["Peso"] + " kg"
-                : "-"
-        ) +
-
-        criarDado(
-            "Castrado",
-            petAtual["Castrado"]
-        ) +
-
-        criarDado(
-            "Vacinado",
-            petAtual["Vacinado"]
-        ) +
-
-        criarDado(
-            "Porte",
-            petAtual["Porte"]
-        ) +
-
-        criarDado(
-            "Cor",
-            petAtual["Cor"]
-        ) +
-
-        criarDado(
-            "Última vez visto",
-            petAtual["Ultima Vez"]
-        ) +
-
-        criarDado(
-            "Ponto de referência",
-            petAtual["Ponto Referencia"]
-        ) +
-
-        criarDado(
-            "Observações",
-            petAtual["Observacoes"]
+        mostrarMensagemEdicao(
+            "Cadastro atualizado com sucesso!"
         );
 
-    if (
-        petAtual["WhatsApp Publico"] === "Sim"
-    ) {
+        setTimeout(
+            fecharEdicao,
+            1200
+        );
 
-        dados.innerHTML +=
-
-            '<hr style="margin:18px 0">' +
-
-            criarDado(
-                "Tutor",
-                petAtual["Tutor Nome"]
-            ) +
-
-            criarDado(
-                "Contato",
-                petAtual["Tutor Contato"]
-            );
-
-    }
-
+    },1200);
 }
 
-/* =====================================================
-   MENSAGEM DE EDIÇÃO
-   ===================================================== */
-
-function mostrarMensagemEdicao(texto) {
+function mostrarMensagemEdicao(texto){
 
     const mensagem =
         document.getElementById(
             "mensagemEdicao"
         );
 
-    mensagem.style.display = "block";
+    mensagem.style.display="block";
 
-    mensagem.textContent = texto;
-
+    mensagem.textContent=texto;
 }
 
-/* =====================================================
-   CONVERTER DATA
-   ===================================================== */
+/* =========================
+   ALTERAR STATUS
+========================= */
 
-function converterParaDateTimeLocal(valor) {
+function alterarStatusPet(){
 
-    if (!valor) {
-        return "";
-    }
+    if(!petAtual)return;
 
-    let texto = String(valor).trim();
-
-    const match =
-        texto.match(
-            /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/
+    const token =
+        localStorage.getItem(
+            "redePetUltimoToken"
         );
 
-    if (match) {
+    if(!token){
 
-        const dia =
-            match[1].padStart(2, "0");
-
-        const mes =
-            match[2].padStart(2, "0");
-
-        const ano =
-            match[3];
-
-        const hora =
-            (match[4] || "00")
-                .padStart(2, "0");
-
-        const minuto =
-            match[5] || "00";
-
-        return (
-            ano +
-            "-" +
-            mes +
-            "-" +
-            dia +
-            "T" +
-            hora +
-            ":" +
-            minuto
+        mostrarMensagemStatus(
+            "Não foi possível identificar o responsável pelo cadastro."
         );
 
+        return;
     }
 
-    if (
-        /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(texto)
-    ) {
+    const novoStatus =
+        document.getElementById(
+            "novoStatus"
+        ).value;
 
-        return texto.substring(
-            0,
-            16
+    const dados={
+
+        id:
+            campoPet(
+                petAtual,
+                "ID",
+                "id"
+            ),
+
+        tokenProprietario:token,
+
+        novoStatus:novoStatus
+    };
+
+    mostrarMensagemStatus(
+        "Atualizando status..."
+    );
+
+    enviarPost(
+        "alterarStatusPet",
+        dados
+    );
+
+    setTimeout(()=>{
+
+        petAtual["Status"] =
+            novoStatus;
+
+        mostrarDadosPet(petAtual);
+
+        renderizarPets();
+
+        mostrarMensagemStatus(
+            "Status atualizado com sucesso!"
         );
 
-    }
-
-    return "";
-
+    },1200);
 }
 
-/* =====================================================
+function mostrarMensagemStatus(texto){
+
+    const mensagem =
+        document.getElementById(
+            "mensagemStatus"
+        );
+
+    mensagem.style.display="block";
+
+    mensagem.textContent=texto;
+}
+
+/* =========================
    CRIAR DADO
-   ===================================================== */
+========================= */
 
-function criarDado(
-    titulo,
-    valor
-) {
+function criarDado(titulo,valor){
 
-    return (
-
+    return(
         '<div class="dado">' +
-
         '<strong>' +
         escaparHTML(titulo) +
         ':</strong> ' +
-
         escaparHTML(
-            valor || "-"
+            valor === undefined ||
+            valor === null ||
+            String(valor).trim()===""
+                ? "-"
+                : String(valor)
         ) +
-
         '</div>'
-
     );
-
 }
 
-/* =====================================================
+/* =========================
    FECHAR MODAL
-   ===================================================== */
+========================= */
 
-function fecharModal() {
-
-    const modal =
-        document.getElementById("modal");
-
-    modal.classList.remove("aberto");
+function fecharModal(){
 
     document
-        .getElementById(
-            "botaoVoltarFlutuante"
-        )
+        .getElementById("modal")
+        .classList.remove("aberto");
+
+    document
+        .getElementById("botaoVoltarFlutuante")
         .classList.remove("visivel");
 
-    document.body.style.overflow = "";
+    document.body.style.overflow="";
 
-    petAtual = null;
-
+    petAtual=null;
 }
 
-/* =====================================================
-   FOTO AMPLIADA
-   ===================================================== */
+/* =========================
+   FOTO
+========================= */
 
-function abrirFotoAmpliada() {
+function abrirFotoAmpliada(){
 
-    if (
-        !petAtual ||
-        !petAtual["Foto"]
-    ) {
-
-        return;
-
-    }
+    if(!petAtual)return;
 
     const foto =
-        document.getElementById(
-            "fotoAmpliada"
+        campoPet(
+            petAtual,
+            "Foto",
+            "foto"
         );
 
-    const imagem =
-        document.getElementById(
-            "fotoAmpliadaImagem"
-        );
+    if(!foto)return;
 
-    imagem.src =
-        petAtual["Foto"];
+    document
+        .getElementById("fotoAmpliadaImagem")
+        .src=foto;
 
-    foto.classList.add("aberta");
-
+    document
+        .getElementById("fotoAmpliada")
+        .classList.add("aberta");
 }
 
-/* =====================================================
-   FECHAR FOTO
-   ===================================================== */
-
-function fecharFotoAmpliada() {
+function fecharFotoAmpliada(){
 
     document
         .getElementById("fotoAmpliada")
         .classList.remove("aberta");
-
 }
 
-/* =====================================================
+/* =========================
    COMENTÁRIOS
-   ===================================================== */
+========================= */
 
-function carregarComentarios(petNome) {
+function carregarComentarios(petNome){
 
     const lista =
         document.getElementById(
@@ -3397,161 +3118,102 @@ function carregarComentarios(petNome) {
         'Carregando comentários...' +
         '</div>';
 
-    const nomeCallback =
+    const callback =
         "comentariosCallback_" +
         Date.now() +
         "_" +
-        Math.floor(Math.random() * 100000);
+        Math.floor(Math.random()*100000);
 
-    window[nomeCallback] =
-        function(comentarios) {
+    window[callback]=function(comentarios){
 
-            try {
+        lista.innerHTML="";
 
-                lista.innerHTML = "";
+        if(
+            !comentarios ||
+            !comentarios.length
+        ){
 
-                if (
-                    !comentarios ||
-                    !comentarios.length
-                ) {
+            lista.innerHTML =
+                '<div class="comentarios-vazio">' +
+                'Ainda não há comentários sobre este PET.' +
+                '</div>';
 
-                    lista.innerHTML =
-                        '<div class="comentarios-vazio">' +
-                        'Ainda não há comentários sobre este PET.' +
-                        '</div>';
+            delete window[callback];
 
-                    return;
+            return;
+        }
 
-                }
+        comentarios.forEach(item=>{
 
-                comentarios.forEach(
-                    function(item) {
+            const comentario =
+                document.createElement("div");
 
-                        const comentario =
-                            document.createElement(
-                                "div"
-                            );
+            comentario.className=
+                "comentario-item";
 
-                        comentario.className =
-                            "comentario-item";
+            const curtido =
+                comentarioJaCurtido(item.id);
 
-                        const curtido =
-                            comentarioJaCurtido(
-                                item.id
-                            );
+            const localHTML =
+                item.local
+                ?
+                '<div class="comentario-local">' +
+                '📍 ' +
+                escaparHTML(item.local) +
+                '<br>' +
+                '<button type="button" ' +
+                'class="botao-localizacao" ' +
+                'onclick="abrirMapaDoComentario(\'' +
+                escaparJS(item.local) +
+                '\')">' +
+                'Como chegar' +
+                '</button>' +
+                '</div>'
+                :
+                "";
 
-                        const coracao =
-                            curtido
-                                ? "♥"
-                                : "♡";
+            comentario.innerHTML=
 
-                        const classeCurtido =
-                            curtido
-                                ? " curtido"
-                                : "";
+                '<div class="comentario-texto">' +
+                escaparHTML(item.comentario) +
+                '</div>' +
 
-                        let localHTML = "";
+                localHTML +
 
-                        if (item.local) {
+                '<div class="comentario-rodape">' +
 
-                            localHTML =
+                '<div>' +
 
-                                '<div class="comentario-local">' +
+                '<span class="comentario-autor">' +
+                escaparHTML(item.nome) +
+                '</span>' +
 
-                                '📍 ' +
+                ' · ' +
 
-                                escaparHTML(
-                                    item.local
-                                ) +
+                '<span class="comentario-data">' +
+                escaparHTML(item.dataHora) +
+                '</span>' +
 
-                                '<br>' +
+                '</div>' +
 
-                                '<button ' +
-                                'type="button" ' +
-                                'class="botao-localizacao" ' +
-                                'onclick="abrirMapaDoComentario(\'' +
-                                escaparJS(item.local) +
-                                '\')">' +
+                '<button type="button" ' +
+                'class="botao-curtir' +
+                (curtido ? " curtido":"") +
+                '" ' +
+                'data-id="' +
+                escaparHTML(item.id) +
+                '" ' +
+                'onclick="curtirComentarioHTML(this)">' +
+                (curtido ? "♥":"♡") +
+                '</button>' +
 
-                                'Como chegar' +
+                '</div>';
 
-                                '</button>' +
+            lista.appendChild(comentario);
+        });
 
-                                '</div>';
-
-                        }
-
-                        comentario.innerHTML =
-
-                            '<div class="comentario-texto">' +
-
-                            escaparHTML(
-                                item.comentario
-                            ) +
-
-                            '</div>' +
-
-                            localHTML +
-
-                            '<div class="comentario-rodape">' +
-
-                            '<div>' +
-
-                            '<span class="comentario-autor">' +
-
-                            escaparHTML(
-                                item.nome
-                            ) +
-
-                            '</span>' +
-
-                            ' · ' +
-
-                            '<span class="comentario-data">' +
-
-                            escaparHTML(
-                                item.dataHora
-                            ) +
-
-                            '</span>' +
-
-                            '</div>' +
-
-                            '<div>' +
-
-                            '<button ' +
-                            'type="button" ' +
-                            'class="botao-curtir' +
-                            classeCurtido +
-                            '" ' +
-                            'aria-label="Curtir comentário" ' +
-                            'data-id="' +
-                            escaparHTML(item.id) +
-                            '" ' +
-                            'onclick="curtirComentarioHTML(this)">' +
-
-                            coracao +
-
-                            '</button>' +
-
-                            '</div>' +
-
-                            '</div>';
-
-                        lista.appendChild(
-                            comentario
-                        );
-
-                    }
-                );
-
-            } finally {
-
-                delete window[nomeCallback];
-
-            }
-
-        };
+        delete window[callback];
+    };
 
     const script =
         document.createElement("script");
@@ -3562,271 +3224,133 @@ function carregarComentarios(petNome) {
         "&pet=" +
         encodeURIComponent(petNome) +
         "&callback=" +
-        nomeCallback +
+        callback +
         "&t=" +
         Date.now();
 
-    script.async = true;
+    script.async=true;
 
-    script.onerror =
-        function() {
+    script.onerror=()=>{
 
-            lista.innerHTML =
-                '<div class="comentarios-vazio">' +
-                'Não foi possível carregar os comentários.' +
-                '</div>';
+        lista.innerHTML =
+            '<div class="comentarios-vazio">' +
+            'Não foi possível carregar os comentários.' +
+            '</div>';
 
-            delete window[nomeCallback];
-
-        };
+        delete window[callback];
+    };
 
     document.body.appendChild(script);
-
 }
 
-/* =====================================================
+/* =========================
    ENVIAR COMENTÁRIO
-   ===================================================== */
+========================= */
 
-function enviarComentario() {
+function enviarComentario(){
 
-    if (!petAtual) {
-        return;
-    }
+    if(!petAtual)return;
 
     const comentario =
-        document
-            .getElementById("comentarioTexto")
-            .value
-            .trim();
+        document.getElementById(
+            "comentarioTexto"
+        ).value.trim();
 
     const nome =
-        document
-            .getElementById("comentarioNome")
-            .value
-            .trim();
+        document.getElementById(
+            "comentarioNome"
+        ).value.trim();
 
     const local =
-        document
-            .getElementById("comentarioLocal")
-            .value
-            .trim();
+        document.getElementById(
+            "comentarioLocal"
+        ).value.trim();
 
     const mensagem =
         document.getElementById(
             "mensagemComentario"
         );
 
-    if (!comentario) {
+    if(!comentario){
 
-        mensagem.style.display = "block";
-
-        mensagem.textContent =
+        mensagem.style.display="block";
+        mensagem.textContent=
             "Digite um comentário sobre o PET.";
-
         return;
-
     }
 
-    if (!nome) {
+    if(!nome){
 
-        mensagem.style.display = "block";
-
-        mensagem.textContent =
+        mensagem.style.display="block";
+        mensagem.textContent=
             "Digite seu nome.";
-
         return;
-
     }
 
-    if (!local) {
+    if(!local){
 
-        mensagem.style.display = "block";
-
-        mensagem.textContent =
+        mensagem.style.display="block";
+        mensagem.textContent=
             "Informe onde você viu o PET.";
-
         return;
-
     }
 
-    mensagem.style.display = "block";
+    mensagem.style.display="block";
+    mensagem.textContent="Salvando comentário...";
 
-    mensagem.textContent =
-        "Salvando comentário...";
+    enviarPost(
+        "salvarComentario",
+        {
+            pet:
+                campoPet(
+                    petAtual,
+                    "Nome",
+                    "nome"
+                ),
 
-    const dados = {
+            nome:nome,
 
-        pet:
-            petAtual["Nome"] || "",
+            comentario:comentario,
 
-        nome:
-            nome,
-
-        comentario:
-            comentario,
-
-        local:
-            local
-
-    };
-
-    const formEnvio =
-        document.createElement("form");
-
-    formEnvio.method = "POST";
-
-    formEnvio.action =
-        URL_APPS_SCRIPT;
-
-    formEnvio.target =
-        "frameCadastro";
-
-    formEnvio.style.display = "none";
-
-    adicionarCampo(
-        formEnvio,
-        "acao",
-        "salvarComentario"
+            local:local
+        }
     );
 
-    adicionarCampo(
-        formEnvio,
-        "dados",
-        JSON.stringify(dados)
-    );
+    setTimeout(()=>{
 
-    document.body.appendChild(
-        formEnvio
-    );
+        mensagem.textContent=
+            "Comentário publicado!";
 
-    formEnvio.submit();
+        document
+            .getElementById("comentarioTexto")
+            .value="";
 
-    setTimeout(
-        function() {
+        document
+            .getElementById("comentarioNome")
+            .value="";
 
-            mensagem.textContent =
-                "Comentário publicado!";
+        document
+            .getElementById("comentarioLocal")
+            .value="";
 
-            document
-                .getElementById(
-                    "comentarioTexto"
-                )
-                .value = "";
+        carregarComentarios(
+            campoPet(
+                petAtual,
+                "Nome",
+                "nome"
+            )
+        );
 
-            document
-                .getElementById(
-                    "comentarioNome"
-                )
-                .value = "";
-
-            document
-                .getElementById(
-                    "comentarioLocal"
-                )
-                .value = "";
-
-            carregarComentarios(
-                petAtual["Nome"]
-            );
-
-            setTimeout(
-                function() {
-
-                    mensagem.style.display =
-                        "none";
-
-                },
-                1800
-            );
-
-            formEnvio.remove();
-
-        },
-        1000
-    );
-
+    },1000);
 }
 
-/* =====================================================
-   CURTIR COMENTÁRIO
-   ===================================================== */
-
-function curtirComentarioHTML(botao) {
-
-    const id =
-        botao.getAttribute("data-id");
-
-    if (!id) {
-        return;
-    }
-
-    const jaCurtido =
-        comentarioJaCurtido(id);
-
-    if (jaCurtido) {
-        return;
-    }
-
-    salvarCurtidaLocal(id);
-
-    botao.classList.add("curtido");
-
-    botao.innerHTML = "♥";
-
-    const dados = {
-        id: id
-    };
-
-    const formEnvio =
-        document.createElement("form");
-
-    formEnvio.method = "POST";
-
-    formEnvio.action =
-        URL_APPS_SCRIPT;
-
-    formEnvio.target =
-        "frameCadastro";
-
-    formEnvio.style.display = "none";
-
-    adicionarCampo(
-        formEnvio,
-        "acao",
-        "curtirComentario"
-    );
-
-    adicionarCampo(
-        formEnvio,
-        "dados",
-        JSON.stringify(dados)
-    );
-
-    document.body.appendChild(
-        formEnvio
-    );
-
-    formEnvio.submit();
-
-    setTimeout(
-        function() {
-
-            formEnvio.remove();
-
-        },
-        1000
-    );
-
-}
-
-/* =====================================================
+/* =========================
    CURTIDAS
-   ===================================================== */
+========================= */
 
-function obterCurtidas() {
+function obterCurtidas(){
 
-    try {
+    try{
 
         return JSON.parse(
             localStorage.getItem(
@@ -3834,26 +3358,19 @@ function obterCurtidas() {
             ) || "[]"
         );
 
-    } catch (erro) {
+    }catch(e){
 
         return [];
-
     }
-
 }
 
-function comentarioJaCurtido(id) {
+function comentarioJaCurtido(id){
 
-    const curtidas =
-        obterCurtidas();
-
-    return curtidas.indexOf(
-        String(id)
-    ) !== -1;
-
+    return obterCurtidas()
+        .indexOf(String(id)) !== -1;
 }
 
-function salvarCurtidaLocal(id) {
+function salvarCurtidaLocal(id){
 
     const curtidas =
         obterCurtidas();
@@ -3861,32 +3378,48 @@ function salvarCurtidaLocal(id) {
     const idString =
         String(id);
 
-    if (
-        curtidas.indexOf(idString) === -1
-    ) {
-
+    if(
+        curtidas.indexOf(idString)===-1
+    ){
         curtidas.push(idString);
-
     }
 
     localStorage.setItem(
         "redePetCurtidas",
         JSON.stringify(curtidas)
     );
-
 }
 
-/* =====================================================
+function curtirComentarioHTML(botao){
+
+    const id =
+        botao.getAttribute("data-id");
+
+    if(!id)return;
+
+    if(comentarioJaCurtido(id))return;
+
+    salvarCurtidaLocal(id);
+
+    botao.classList.add("curtido");
+
+    botao.innerHTML="♥";
+
+    enviarPost(
+        "curtirComentario",
+        {id:id}
+    );
+}
+
+/* =========================
    MAPA
-   ===================================================== */
+========================= */
 
-function abrirMapaDoComentario(local) {
+function abrirMapaDoComentario(local){
 
-    if (!local) {
-        return;
-    }
+    if(!local)return;
 
-    localMapaAtual = local;
+    localMapaAtual=local;
 
     const mapa =
         document.getElementById(
@@ -3898,129 +3431,123 @@ function abrirMapaDoComentario(local) {
             "mapaInfo"
         );
 
-    const botaoArea =
+    const area =
         document.getElementById(
             "botaoMapaArea"
         );
 
-    const localEncoded =
+    const encoded =
         encodeURIComponent(local);
 
     mapa.src =
         "https://www.google.com/maps?q=" +
-        localEncoded +
+        encoded +
         "&output=embed";
 
     info.innerHTML =
-
         '<p>' +
-
         '<strong>Local informado:</strong><br>' +
-
         escaparHTML(local) +
-
         '</p>';
 
-    const urlGoogle =
+    const url =
         "https://www.google.com/maps/dir/?api=1&destination=" +
-        localEncoded;
+        encoded;
 
-    botaoArea.innerHTML =
-
-        '<a ' +
-        'class="botao-como-chegar" ' +
+    area.innerHTML =
+        '<a class="botao-como-chegar" ' +
         'href="' +
-        escaparHTML(urlGoogle) +
-        '" ' +
-        'target="_blank" ' +
+        escaparHTML(url) +
+        '" target="_blank" ' +
         'rel="noopener noreferrer">' +
-
         '📍 Como chegar até o local' +
-
         '</a>';
 
     fecharModal();
 
     abrirPagina("mapa");
-
 }
 
-/* =====================================================
-   SEGURANÇA
-   ===================================================== */
+/* =========================
+   UTILIDADES
+========================= */
 
-function escaparHTML(valor) {
+function limparNumero(valor){
 
-    return String(valor)
+    if(valor === "" || valor === null)return "";
 
-        .replace(/&/g, "&amp;")
+    const numero =
+        Number(
+            String(valor)
+            .replace(",",".")
+            .replace("kg","")
+            .trim()
+        );
 
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
+    return isNaN(numero) ? "" : numero;
 }
 
-function escaparJS(valor) {
+function formatarDataInput(valor){
 
-    return String(valor)
+    if(!valor)return "";
 
-        .replace(/\\/g, "\\\\")
+    const texto=String(valor);
 
-        .replace(/'/g, "\\'")
+    if(
+        /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/
+        .test(texto)
+    ){
+        return texto.substring(0,16);
+    }
 
-        .replace(/\r/g, "")
-
-        .replace(/\n/g, "\\n");
-
+    return "";
 }
 
-/* =====================================================
-   FECHAR MODAL CLICANDO FORA
-   ===================================================== */
+function escaparHTML(valor){
+
+    return String(valor ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function escaparJS(valor){
+
+    return String(valor ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\r/g,"")
+        .replace(/\n/g,"\\n");
+}
+
+/* =========================
+   FECHAR CLICANDO FORA
+========================= */
 
 document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event) {
+.getElementById("modal")
+.addEventListener("click",function(event){
 
-            if (
-                event.target === this
-            ) {
-
-                fecharModal();
-
-            }
-
-        }
-    );
-
-/* =====================================================
-   ESC
-   ===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            fecharFotoAmpliada();
-
-        }
-
+    if(event.target===this){
+        fecharModal();
     }
-);
+});
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key==="Escape"){
+
+        fecharFotoAmpliada();
+    }
+});
 
 </script>
 
 </body>
-
 </html>
