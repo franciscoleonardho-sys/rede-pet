@@ -230,6 +230,55 @@ textarea {
    MATCH
    ===================================================== */
 
+.match-topo {
+    margin-bottom: 25px;
+}
+
+.match-topo h2 {
+    margin-bottom: 8px;
+}
+
+.match-descricao {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   FILTRO DO MATCH
+   ===================================================== */
+
+.filtro-match {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.filtro-match label {
+    display: block;
+    font-weight: bold;
+    color: #064e3b;
+    margin-bottom: 9px;
+}
+
+.filtro-status {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+    color: #333;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   LISTA DE PETS
+   ===================================================== */
+
 .lista-pets {
     display: grid;
     grid-template-columns:
@@ -237,17 +286,25 @@ textarea {
     gap: 20px;
 }
 
+
+/* =====================================================
+   CARD DO PET
+   ===================================================== */
+
 .pet-card {
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform .15s ease;
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
 }
 
 .pet-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
 }
 
 .pet-foto {
@@ -272,12 +329,12 @@ textarea {
 
 .pet-nome {
     font-size: 21px;
-    margin-bottom: 7px;
+    margin-bottom: 9px;
 }
 
 .pet-status {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 6px 11px;
     border-radius: 20px;
     background: #e6ebe8;
     color: #064e3b;
@@ -1097,6 +1154,10 @@ Observações
 </div>
 
 
+<!-- =====================================================
+     DADOS DO TUTOR
+     ===================================================== -->
+
 <div class="bloco">
 
 <h2>
@@ -1239,16 +1300,58 @@ Início
 
 <section id="match" class="pagina">
 
+
+<div class="match-topo">
+
 <h2>
 MATCH
 </h2>
 
-<p style="margin:10px 0 25px;color:#666">
-
-Clique na imagem do PET para visualizar
-todos os detalhes.
-
+<p class="match-descricao">
+Encontre PETs perdidos, encontrados ou disponíveis para adoção.
 </p>
+
+</div>
+
+
+<!-- =====================================================
+     FILTRO
+     ===================================================== -->
+
+<div class="filtro-match">
+
+<label for="filtroStatus">
+O que você deseja visualizar?
+</label>
+
+<select
+id="filtroStatus"
+class="filtro-status"
+onchange="filtrarPets()">
+
+<option value="Todos">
+Todos os PETs
+</option>
+
+<option value="Perdido">
+PETs perdidos
+</option>
+
+<option value="Para adoção">
+PETs para adoção
+</option>
+
+<option value="Encontrado">
+PETs encontrados
+</option>
+
+<option value="Adotado">
+PETs adotados
+</option>
+
+</select>
+
+</div>
 
 
 <div
@@ -1382,10 +1485,16 @@ alt="Foto do PET">
 <div id="modalDados"></div>
 
 
+<!-- =====================================================
+     COMENTÁRIOS
+     ===================================================== -->
+
 <div class="comentarios-bloco">
 
 <h3 class="comentarios-titulo">
+
 Comentários sobre o PET
+
 </h3>
 
 
@@ -1452,6 +1561,7 @@ Carregando comentários...
 
 </div>
 
+
 </div>
 
 </div>
@@ -1460,7 +1570,7 @@ Carregando comentários...
 
 
 <!-- =====================================================
-     ÚNICO BOTÃO VOLTAR — FLUTUANTE
+     BOTÃO VOLTAR FLUTUANTE
      ===================================================== -->
 
 <button
@@ -1522,6 +1632,8 @@ let peso = 0;
 let petAtual = null;
 
 let localMapaAtual = "";
+
+let petsCarregados = [];
 
 
 /* =====================================================
@@ -2025,7 +2137,6 @@ function adicionarCampo(
 
 /* =====================================================
    CARREGAR PETS — JSONP
-   VERSÃO MAIS RESISTENTE PARA WEB E CELULAR
    ===================================================== */
 
 function carregarPets() {
@@ -2047,7 +2158,7 @@ function carregarPets() {
         Date.now() +
         "_" +
         Math.floor(
-            Math.random() * 1000000
+            Math.random() * 100000
         );
 
 
@@ -2067,127 +2178,16 @@ function carregarPets() {
 
             try {
 
-                lista.innerHTML =
-                    "";
+                petsCarregados =
+                    Array.isArray(pets)
+                        ? pets
+                        : [];
 
 
-                if (
-                    !Array.isArray(pets) ||
-                    !pets.length
-                ) {
-
-                    lista.innerHTML =
-                        '<div class="carregando">' +
-                        'Nenhum PET cadastrado ainda.' +
-                        '</div>';
-
-                    return;
-
-                }
-
-
-                pets.forEach(
-                    function(pet) {
-
-                        const card =
-                            document.createElement(
-                                "article"
-                            );
-
-
-                        card.className =
-                            "pet-card";
-
-
-                        const foto =
-                            pet["Foto"] ||
-                            "";
-
-
-                        let imagem =
-                            '<div class="pet-sem-foto">' +
-                            'Sem foto' +
-                            '</div>';
-
-
-                        if (foto) {
-
-                            imagem =
-                                '<img ' +
-                                'class="pet-foto" ' +
-                                'src="' +
-                                escaparHTML(
-                                    foto
-                                ) +
-                                '" ' +
-                                'alt="Foto do PET" ' +
-                                'loading="lazy">';
-
-                        }
-
-
-                        const nome =
-                            pet["Nome"] ||
-                            "PET";
-
-
-                        const status =
-                            pet["Status"] ||
-                            "Sem status";
-
-
-                        card.innerHTML =
-
-                            imagem +
-
-                            '<div class="pet-resumo">' +
-
-                            '<h3 class="pet-nome">' +
-                            escaparHTML(
-                                nome
-                            ) +
-                            '</h3>' +
-
-                            '<span class="pet-status">' +
-                            escaparHTML(
-                                status
-                            ) +
-                            '</span>' +
-
-                            '</div>';
-
-
-                        card.addEventListener(
-                            "click",
-                            function() {
-
-                                abrirModal(
-                                    pet
-                                );
-
-                            }
-                        );
-
-
-                        lista.appendChild(
-                            card
-                        );
-
-                    }
+                renderizarPets(
+                    petsCarregados
                 );
 
-
-            } catch (erro) {
-
-                console.error(
-                    "Erro ao montar os PETs:",
-                    erro
-                );
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'Não foi possível exibir os PETs.' +
-                    '</div>';
 
             } finally {
 
@@ -2206,17 +2206,11 @@ function carregarPets() {
         );
 
 
-    script.type =
-        "text/javascript";
-
-
     script.src =
         URL_APPS_SCRIPT +
         "?acao=listarPets" +
         "&callback=" +
-        encodeURIComponent(
-            nomeCallback
-        ) +
+        nomeCallback +
         "&t=" +
         Date.now() +
         "_" +
@@ -2239,7 +2233,7 @@ function carregarPets() {
 
             lista.innerHTML =
                 '<div class="carregando">' +
-                'Não foi possível carregar os PETs. Tente novamente.' +
+                'Não foi possível carregar os PETs.' +
                 '</div>';
 
 
@@ -2251,37 +2245,11 @@ function carregarPets() {
 
 
     document
-        .head
+        .body
         .appendChild(
             script
         );
 
-
-    /*
-       Na versão web pode haver uma demora maior
-       na resposta do Apps Script.
-    */
-
-    setTimeout(
-        function() {
-
-            if (!finalizado) {
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'Ainda estamos carregando os PETs...' +
-                    '</div>';
-
-            }
-
-        },
-        8000
-    );
-
-
-    /*
-       Só encerra definitivamente depois de 20 segundos.
-    */
 
     setTimeout(
         function() {
@@ -2293,19 +2261,193 @@ function carregarPets() {
 
                 lista.innerHTML =
                     '<div class="carregando">' +
-                    'Não foi possível carregar os PETs agora. ' +
-                    'Atualize a página e tente novamente.' +
+                    'Verificando PETs cadastrados...' +
                     '</div>';
-
-
-                delete window[
-                    nomeCallback
-                ];
 
             }
 
         },
-        20000
+        10000
+    );
+
+}
+
+
+/* =====================================================
+   RENDERIZAR PETS
+   ===================================================== */
+
+function renderizarPets(pets) {
+
+    const lista =
+        document.getElementById(
+            "listaPets"
+        );
+
+
+    lista.innerHTML = "";
+
+
+    if (
+        !pets ||
+        !pets.length
+    ) {
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Nenhum PET cadastrado ainda.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    const filtro =
+        document.getElementById(
+            "filtroStatus"
+        ).value;
+
+
+    const petsFiltrados =
+        pets.filter(
+            function(pet) {
+
+                const status =
+                    String(
+                        pet["Status"] ||
+                        ""
+                    ).trim();
+
+
+                if (
+                    filtro === "Todos"
+                ) {
+
+                    return true;
+
+                }
+
+
+                return status.toLowerCase() ===
+                    filtro.toLowerCase();
+
+            }
+        );
+
+
+    if (
+        !petsFiltrados.length
+    ) {
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'Nenhum PET encontrado para este filtro.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    petsFiltrados.forEach(
+        function(pet) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "pet-card";
+
+
+            card.onclick =
+                function() {
+
+                    abrirModal(
+                        pet
+                    );
+
+                };
+
+
+            const foto =
+                pet["Foto"] ||
+                "";
+
+
+            let imagem =
+                '<div class="pet-sem-foto">' +
+                'Sem foto' +
+                '</div>';
+
+
+            if (foto) {
+
+                imagem =
+                    '<img ' +
+                    'class="pet-foto" ' +
+                    'src="' +
+                    escaparHTML(
+                        foto
+                    ) +
+                    '" ' +
+                    'alt="Foto do PET">' ;
+
+            }
+
+
+            const nome =
+                pet["Nome"] ||
+                "PET";
+
+
+            const status =
+                pet["Status"] ||
+                "Sem status";
+
+
+            card.innerHTML =
+
+                imagem +
+
+                '<div class="pet-resumo">' +
+
+                '<h3 class="pet-nome">' +
+                escaparHTML(
+                    nome
+                ) +
+                '</h3>' +
+
+                '<span class="pet-status">' +
+                escaparHTML(
+                    status
+                ) +
+                '</span>' +
+
+                '</div>';
+
+
+            lista.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FILTRAR PETS
+   ===================================================== */
+
+function filtrarPets() {
+
+    renderizarPets(
+        petsCarregados
     );
 
 }
@@ -2816,7 +2958,15 @@ function carregarComentarios(
 
                             '</button>' +
 
-                            '<span class="contador-curtidas"></span>' +
+                            '<span class="contador-curtidas">' +
+
+                            (
+                                item.curtidas
+                                    ? item.curtidas
+                                    : ""
+                            ) +
+
+                            '</span>' +
 
                             '</div>' +
 
@@ -2881,7 +3031,7 @@ function carregarComentarios(
 
 
     document
-        .head
+        .body
         .appendChild(
             script
         );
@@ -3140,12 +3290,6 @@ function curtirComentarioHTML(
 
     botao.innerHTML =
         "♥";
-
-
-    /*
-       O contador não é mais exibido
-       visualmente para o usuário.
-    */
 
 
     const dados = {
@@ -3474,24 +3618,7 @@ document.addEventListener(
             "Escape"
         ) {
 
-            if (
-                document
-                    .getElementById(
-                        "fotoAmpliada"
-                    )
-                    .classList
-                    .contains(
-                        "aberta"
-                    )
-            ) {
-
-                fecharFotoAmpliada();
-
-            } else {
-
-                fecharModal();
-
-            }
+            fecharFotoAmpliada();
 
         }
 
