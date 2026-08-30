@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>REDE PET</title>
 
 <style>
-
-/* =====================================================
-   REDE PET
-   PROTÓTIPO — MÓDULO 1
-
-   Identidade visual provisória.
-   A identidade definitiva será desenvolvida no Módulo 2.
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -26,163 +14,145 @@ content="width=device-width, initial-scale=1.0">
     padding:0;
 }
 
+:root{
+    --verde:#176b5b;
+    --verde-claro:#e8f4f1;
+    --fundo:#f4f8f7;
+    --texto:#263331;
+    --cinza:#6b7774;
+    --borda:#dce5e2;
+    --branco:#ffffff;
+}
+
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#f3f7f5;
-    color:#26332e;
+    background:var(--fundo);
+    color:var(--texto);
     line-height:1.5;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
-
 header{
-    background:#ffffff;
-    border-bottom:1px solid #dce7e2;
-    padding:22px;
+    background:var(--verde);
+    color:white;
+    padding:22px 20px;
     text-align:center;
 }
 
 .logo{
     font-size:30px;
-    font-weight:bold;
-    letter-spacing:3px;
-    color:#176b57;
+    font-weight:800;
+    letter-spacing:2px;
 }
 
-.subtitulo{
-    margin-top:5px;
-    font-size:12px;
-    color:#71817b;
+.sublogo{
+    font-size:13px;
+    opacity:.9;
+    margin-top:4px;
 }
-
-/* =========================
-   PORTA DE ENTRADA
-========================= */
 
 .entrada{
-    max-width:900px;
-    margin:70px auto;
-    padding:40px 20px;
+    max-width:850px;
+    margin:0 auto;
+    padding:80px 20px;
     text-align:center;
 }
 
 .entrada h1{
-    font-size:46px;
-    color:#176b57;
+    font-size:44px;
     margin-bottom:15px;
 }
 
 .entrada p{
     max-width:650px;
     margin:0 auto 35px;
-    color:#596a64;
-    font-size:17px;
+    color:var(--cinza);
+    font-size:18px;
 }
 
-.botao-principal,
-.botao-enviar,
-.botao-secundario{
+.botao{
     border:none;
-    background:#176b57;
+    background:var(--verde);
     color:white;
     padding:14px 28px;
-    border-radius:7px;
+    border-radius:8px;
     cursor:pointer;
-    font-size:15px;
+    font-size:16px;
     font-weight:bold;
 }
 
-.botao-principal:hover,
-.botao-enviar:hover,
-.botao-secundario:hover{
-    background:#0f4f40;
+.botao:hover{
+    opacity:.9;
 }
-
-/* =========================
-   SISTEMA
-========================= */
 
 .sistema{
     display:none;
-    max-width:1150px;
-    margin:35px auto;
+    max-width:1100px;
+    margin:30px auto;
     padding:20px;
 }
-
-/* =========================
-   ABAS
-========================= */
 
 .abas{
     display:flex;
     gap:5px;
-    border-bottom:2px solid #dce7e2;
-    margin-bottom:35px;
+    background:white;
+    border-radius:10px;
+    padding:5px;
+    margin-bottom:30px;
+    border:1px solid var(--borda);
 }
 
 .aba{
+    flex:1;
     border:none;
     background:transparent;
-    color:#52635d;
-    padding:14px 28px;
+    padding:14px;
     cursor:pointer;
     font-size:16px;
-    border-bottom:3px solid transparent;
-}
-
-.aba:hover{
-    color:#176b57;
+    font-weight:bold;
+    color:var(--cinza);
+    border-radius:7px;
 }
 
 .aba.ativa{
-    color:#176b57;
-    border-bottom-color:#176b57;
-    font-weight:bold;
+    background:var(--verde);
+    color:white;
 }
 
-.conteudo-aba{
+.conteudo{
     display:none;
 }
 
-.conteudo-aba.ativo{
+.conteudo.ativo{
     display:block;
 }
 
-/* =========================
-   TÍTULOS
-========================= */
-
-.titulo-secao{
+.titulo{
     font-size:30px;
-    color:#176b57;
-    margin-bottom:8px;
+    margin-bottom:5px;
 }
 
-.descricao-secao{
-    color:#687873;
-    margin-bottom:30px;
+.descricao{
+    color:var(--cinza);
+    margin-bottom:25px;
 }
-
-/* =========================
-   FORMULÁRIO
-========================= */
 
 form{
     background:white;
-    padding:30px;
-    border:1px solid #dce7e2;
-    border-radius:10px;
-    box-shadow:0 3px 12px rgba(0,0,0,.04);
+    border:1px solid var(--borda);
+    border-radius:12px;
+    padding:25px;
 }
 
-.titulo-formulario{
-    color:#176b57;
+.bloco{
+    margin-bottom:35px;
+}
+
+.bloco h3{
+    color:var(--verde);
+    margin-bottom:20px;
     font-size:21px;
-    margin:10px 0 20px;
-    padding-bottom:8px;
-    border-bottom:1px solid #dce7e2;
+    border-bottom:1px solid var(--borda);
+    padding-bottom:10px;
 }
 
 .campo{
@@ -195,18 +165,24 @@ form{
     margin-bottom:7px;
 }
 
-.campo input,
-.campo select,
-.campo textarea{
-    width:100%;
-    padding:11px;
-    border:1px solid #cbd8d3;
-    border-radius:6px;
-    font-size:15px;
-    background:#fff;
+.campo small{
+    display:block;
+    color:var(--cinza);
+    margin-top:5px;
 }
 
-.campo textarea{
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #cfdad6;
+    border-radius:7px;
+    font-size:15px;
+    background:white;
+}
+
+textarea{
     min-height:100px;
     resize:vertical;
 }
@@ -217,219 +193,164 @@ form{
     gap:20px;
 }
 
-/* =========================
-   BOTÕES DE ESCOLHA
-========================= */
-
 .opcoes{
     display:flex;
-    flex-wrap:wrap;
     gap:10px;
+    flex-wrap:wrap;
 }
 
 .opcao{
-    position:relative;
-}
-
-.opcao input{
-    position:absolute;
-    opacity:0;
-}
-
-.opcao label{
-    display:block;
-    border:1px solid #bfcfc8;
-    background:#fff;
-    padding:10px 18px;
-    border-radius:20px;
+    border:1px solid #cfdad6;
+    background:white;
+    padding:11px 18px;
+    border-radius:7px;
     cursor:pointer;
-    font-weight:normal;
+    font-weight:bold;
 }
 
-.opcao input:checked + label{
-    background:#176b57;
+.opcao.selecionada{
+    background:var(--verde);
     color:white;
-    border-color:#176b57;
+    border-color:var(--verde);
 }
 
-/* =========================
-   MENSAGENS
-========================= */
+.peso{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.peso button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:var(--verde);
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.peso-valor{
+    min-width:100px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.privacidade{
+    background:var(--verde-claro);
+    border-radius:9px;
+    padding:15px;
+    margin-top:10px;
+}
 
 .mensagem{
     display:none;
     margin-top:20px;
     padding:15px;
-    border-radius:7px;
-    background:#e5f3ed;
-    color:#176b57;
+    border-radius:8px;
+    background:#e8f4f1;
+    color:#176b5b;
+    font-weight:bold;
 }
 
-/* =========================
-   MATCH
-========================= */
-
-.lista-pets{
+.lista{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:22px;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px;
 }
 
-.pet-card{
+.card{
     background:white;
-    border:1px solid #dce7e2;
-    border-radius:10px;
+    border:1px solid var(--borda);
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 3px 10px rgba(0,0,0,.04);
 }
 
-.pet-imagem{
-    height:210px;
-    background:#e6efeb;
+.card-foto{
+    height:220px;
+    background:#e9efed;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#71817b;
-    font-size:14px;
+    color:var(--cinza);
 }
 
-.pet-imagem img{
+.card-foto img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.pet-conteudo{
-    padding:20px;
+.card-conteudo{
+    padding:18px;
 }
 
-.pet-nome{
+.card-nome{
     font-size:23px;
     margin-bottom:8px;
-    color:#26332e;
 }
 
 .status{
     display:inline-block;
-    background:#176b57;
-    color:white;
-    padding:5px 11px;
+    padding:6px 11px;
     border-radius:20px;
+    background:var(--verde-claro);
+    color:var(--verde);
     font-size:12px;
-    margin-bottom:14px;
+    font-weight:bold;
+    margin-bottom:12px;
 }
 
-.pet-info{
-    color:#596a64;
-    font-size:14px;
-    margin-bottom:8px;
+.card-info{
+    color:var(--cinza);
+    margin-bottom:7px;
 }
 
-.tutor{
-    border-top:1px solid #dce7e2;
+.tutor-publico{
     margin-top:15px;
     padding-top:15px;
-}
-
-.tutor strong{
-    display:block;
-    margin-bottom:7px;
-    color:#176b57;
+    border-top:1px solid var(--borda);
 }
 
 .comentarios{
-    border-top:1px solid #dce7e2;
-    margin-top:18px;
-    padding-top:18px;
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid var(--borda);
 }
 
-.comentarios textarea{
-    width:100%;
-    min-height:70px;
-    margin-top:8px;
-    padding:9px;
-    border:1px solid #cbd8d3;
-    border-radius:6px;
-    resize:vertical;
-}
-
-.botao-comentario{
-    margin-top:8px;
-    border:none;
-    background:#e1eee9;
-    color:#176b57;
-    padding:8px 13px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-/* =========================
-   MAPA
-========================= */
-
-.mapa-introducao{
+.mapa{
     background:white;
-    border:1px solid #dce7e2;
-    border-radius:10px;
+    border:1px solid var(--borda);
+    border-radius:12px;
+    min-height:400px;
     padding:25px;
-    margin-bottom:20px;
 }
 
-.mapa-introducao p{
-    color:#596a64;
+.mapa-placeholder{
+    min-height:350px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--cinza);
+    background:#edf4f2;
+    border-radius:10px;
 }
-
-.mapa-lista{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:15px;
-}
-
-.localizacao{
-    background:white;
-    border:1px solid #dce7e2;
-    border-radius:8px;
-    padding:18px;
-}
-
-.localizacao h3{
-    color:#176b57;
-    margin-bottom:6px;
-}
-
-.localizacao p{
-    color:#596a64;
-    font-size:14px;
-    margin-bottom:10px;
-}
-
-.botao-mapa{
-    display:inline-block;
-    text-decoration:none;
-    background:#176b57;
-    color:white;
-    padding:8px 12px;
-    border-radius:5px;
-    font-size:13px;
-}
-
-/* =========================
-   RODAPÉ
-========================= */
 
 footer{
     text-align:center;
-    padding:45px 20px;
-    margin-top:50px;
-    color:#71817b;
+    padding:40px 20px;
+    color:var(--cinza);
     font-size:13px;
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
-
 @media(max-width:700px){
+
+    .entrada{
+        padding:55px 20px;
+    }
 
     .entrada h1{
         font-size:34px;
@@ -440,13 +361,7 @@ footer{
     }
 
     .abas{
-        overflow-x:auto;
-    }
-
-    .aba{
-        flex:1;
-        white-space:nowrap;
-        padding:13px 15px;
+        flex-direction:column;
     }
 
     .sistema{
@@ -454,36 +369,26 @@ footer{
     }
 
     form{
-        padding:20px;
+        padding:18px;
     }
-
 }
 
 </style>
-
 </head>
-
 
 <body>
 
 <header>
 
-    <div class="logo">
-        REDE PET
-    </div>
+    <div class="logo">REDE PET</div>
 
-    <div class="subtitulo">
-        Plataforma comunitária de proteção e reencontro de animais
+    <div class="sublogo">
+        Proteção • Resgate • Reencontro
     </div>
 
 </header>
 
-
 <main>
-
-<!-- =====================================================
-     PORTA DE ENTRADA
-===================================================== -->
 
 <section class="entrada" id="entrada">
 
@@ -491,786 +396,527 @@ footer{
 
     <p>
         Uma plataforma comunitária e tecnológica
-        voltada à proteção, localização e reencontro
-        de animais.
+        para proteção, localização e reencontro de animais.
     </p>
 
-    <button
-        class="botao-principal"
-        onclick="entrarNaRede()">
-
+    <button class="botao" onclick="entrar()">
         ENTRAR NA REDE PET
-
     </button>
 
 </section>
 
 
-<!-- =====================================================
-     SISTEMA
-===================================================== -->
-
 <section class="sistema" id="sistema">
-
 
 <nav class="abas">
 
-    <button
-        class="aba ativa"
-        onclick="mostrarAba('pet',this)">
-        🐾 PET
+    <button class="aba ativa"
+            onclick="abrirAba('pet',this)">
+        PET
     </button>
 
-    <button
-        class="aba"
-        onclick="mostrarAba('match',this)">
-        🔎 MATCH
+    <button class="aba"
+            onclick="abrirAba('match',this)">
+        MATCH
     </button>
 
-    <button
-        class="aba"
-        onclick="mostrarAba('mapa',this)">
-        📍 MAPA
+    <button class="aba"
+            onclick="abrirAba('mapa',this)">
+        MAPA
     </button>
 
 </nav>
 
 
-<!-- =====================================================
-     PET
-===================================================== -->
+<!-- ================= PET ================= -->
 
-<section
-    id="pet"
-    class="conteudo-aba ativo">
+<section id="pet" class="conteudo ativo">
 
-<h2 class="titulo-secao">
-    Cadastro do PET
-</h2>
+<h2 class="titulo">Cadastrar PET</h2>
 
-<p class="descricao-secao">
-    Cadastre um animal para participar da REDE PET.
+<p class="descricao">
+    Informe os dados do animal. Os campos de identificação
+    interna serão gerados automaticamente pelo sistema.
 </p>
 
 
 <form id="formPet">
 
+<div class="bloco">
 
-<h3 class="titulo-formulario">
-    Dados do PET
-</h3>
+<h3>Dados do PET</h3>
 
 
 <div class="campo">
 
-<label for="foto">
-    Foto do animal
-</label>
+<label>Foto do animal</label>
 
 <input
     type="file"
     id="foto"
     accept="image/*">
 
+<small>
+A foto será utilizada para identificação do animal.
+</small>
+
 </div>
 
 
 <div class="campo">
 
-<label>
-    Status do animal
-</label>
+<label>Status do animal</label>
 
 <div class="opcoes">
 
-<div class="opcao">
-<input
-    type="radio"
-    name="status"
-    value="Perdido"
-    id="status1"
-    required>
-
-<label for="status1">
-    Perdido
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="status"
-    value="Para adoção"
-    id="status2">
-
-<label for="status2">
-    Para adoção
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="status"
-    value="Encontrado"
-    id="status3">
-
-<label for="status3">
-    Encontrado
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="status"
-    value="Adotado"
-    id="status4">
-
-<label for="status4">
-    Adotado
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="nome">
-    Nome do animal
-</label>
-
-<input
-    type="text"
-    id="nome"
-    required>
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    Idade
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="idade"
-    value="Filhote (até 1 ano)"
-    id="idade1"
-    required>
-
-<label for="idade1">
-    Filhote
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="idade"
-    value="Jovem (1 a 3 anos)"
-    id="idade2">
-
-<label for="idade2">
-    Jovem
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="idade"
-    value="Adulto (3 a 8 anos)"
-    id="idade3">
-
-<label for="idade3">
-    Adulto
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="idade"
-    value="Idoso (8 anos ou mais)"
-    id="idade4">
-
-<label for="idade4">
-    Idoso
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="peso">
-    Peso (kg)
-</label>
-
-<input
-    type="number"
-    id="peso"
-    min="0"
-    step="0.1"
-    placeholder="Ex.: 12.5">
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    É castrado?
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="castrado"
-    value="Sim"
-    id="cas1"
-    required>
-
-<label for="cas1">
-    Sim
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="castrado"
-    value="Não"
-    id="cas2">
-
-<label for="cas2">
-    Não
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="castrado"
-    value="Não sei"
-    id="cas3">
-
-<label for="cas3">
-    Não sei
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    É vacinado?
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="vacinado"
-    value="Sim"
-    id="vac1"
-    required>
-
-<label for="vac1">
-    Sim
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="vacinado"
-    value="Não"
-    id="vac2">
-
-<label for="vac2">
-    Não
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="vacinado"
-    value="Não sei"
-    id="vac3">
-
-<label for="vac3">
-    Não sei
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    Espécie
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="especie"
-    value="Cão"
-    id="esp1"
-    required>
-
-<label for="esp1">
-    🐶 Cão
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="especie"
-    value="Gato"
-    id="esp2">
-
-<label for="esp2">
-    🐱 Gato
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="especie"
-    value="Outro"
-    id="esp3">
-
-<label for="esp3">
-    Outro
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="raca">
-    Raça
-</label>
-
-<input
-    type="text"
-    id="raca">
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    Sexo
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="sexo"
-    value="Macho"
-    id="sex1"
-    required>
-
-<label for="sex1">
-    Macho
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="sexo"
-    value="Fêmea"
-    id="sex2">
-
-<label for="sex2">
-    Fêmea
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="sexo"
-    value="Não identificado"
-    id="sex3">
-
-<label for="sex3">
-    Não identificado
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    Porte
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="porte"
-    value="Pequeno"
-    id="por1"
-    required>
-
-<label for="por1">
-    Pequeno
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="porte"
-    value="Médio"
-    id="por2">
-
-<label for="por2">
-    Médio
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="porte"
-    value="Grande"
-    id="por3">
-
-<label for="por3">
-    Grande
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="cor">
-    Cor
-</label>
-
-<input
-    type="text"
-    id="cor">
-
-</div>
-
-
-<h3 class="titulo-formulario">
-    Dados do tutor
-</h3>
-
-
-<div class="linha">
-
-<div class="campo">
-
-<label for="tutor">
-    Nome do tutor
-</label>
-
-<input
-    type="text"
-    id="tutor"
-    required>
-
-</div>
-
-
-<div class="campo">
-
-<label for="contato">
-    Telefone / WhatsApp
-</label>
-
-<input
-    type="tel"
-    id="contato"
-    required>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="emailTutor">
-    E-mail do tutor
-</label>
-
-<input
-    type="email"
-    id="emailTutor">
-
-</div>
-
-
-<div class="campo">
-
-<label>
-    Exibir telefone/WhatsApp publicamente?
-</label>
-
-<div class="opcoes">
-
-<div class="opcao">
-<input
-    type="radio"
-    name="whatsappPublico"
-    value="Sim"
-    id="wh1"
-    required>
-
-<label for="wh1">
-    Sim
-</label>
-</div>
-
-<div class="opcao">
-<input
-    type="radio"
-    name="whatsappPublico"
-    value="Não"
-    id="wh2">
-
-<label for="wh2">
-    Não
-</label>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="linha">
-
-<div class="campo">
-
-<label for="bairro">
-    Bairro
-</label>
-
-<input
-    type="text"
-    id="bairro"
-    required>
-
-</div>
-
-
-<div class="campo">
-
-<label for="cidade">
-    Cidade
-</label>
-
-<input
-    type="text"
-    id="cidade"
-    required>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="endereco">
-    Endereço completo
-</label>
-
-<input
-    type="text"
-    id="endereco">
-
-</div>
-
-
-<div class="campo">
-
-<label for="referencia">
-    Ponto de referência
-</label>
-
-<input
-    type="text"
-    id="referencia">
-
-</div>
-
-
-<div class="campo">
-
-<label for="ultimaVez">
-    Última vez em que foi visto
-</label>
-
-<input
-    type="datetime-local"
-    id="ultimaVez">
-
-</div>
-
-
-<div class="campo">
-
-<label for="observacoes">
-    Observações
-</label>
-
-<textarea
-    id="observacoes"
-    placeholder="Informações importantes sobre o animal">
-</textarea>
-
-</div>
-
-
-<button
-    type="submit"
-    class="botao-enviar">
-
-    Cadastrar PET
-
+<button type="button"
+        class="opcao"
+        onclick="selecionar('status','Perdido',this)">
+Perdido
 </button>
 
+<button type="button"
+        class="opcao"
+        onclick="selecionar('status','Para adoção',this)">
+Para adoção
+</button>
 
-<div
-    class="mensagem"
-    id="mensagem">
+<button type="button"
+        class="opcao"
+        onclick="selecionar('status','Encontrado',this)">
+Encontrado
+</button>
 
-    Cadastro enviado com sucesso!
+<button type="button"
+        class="opcao"
+        onclick="selecionar('status','Adotado',this)">
+Adotado
+</button>
 
 </div>
 
+<input type="hidden" id="status">
+
+</div>
+
+
+<div class="campo">
+
+<label>Nome do PET</label>
+
+<input id="nome" required>
+
+</div>
+
+
+<div class="campo">
+
+<label>Idade</label>
+
+<select id="idade" required>
+
+<option value="">Selecione</option>
+<option>Filhote — até 1 ano</option>
+<option>Jovem — 1 a 3 anos</option>
+<option>Adulto — 3 a 8 anos</option>
+<option>Idoso — 8 anos ou mais</option>
+
+</select>
+
+</div>
+
+
+<div class="campo">
+
+<label>Peso aproximado</label>
+
+<div class="peso">
+
+<button type="button" onclick="alterarPeso(-1)">−</button>
+
+<div class="peso-valor">
+<span id="pesoValor">1</span> kg
+</div>
+
+<button type="button" onclick="alterarPeso(1)">+</button>
+
+</div>
+
+<input type="hidden" id="peso" value="1">
+
+</div>
+
+
+<div class="campo">
+
+<label>Espécie</label>
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('especie','Cão',this)">
+Cão
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('especie','Gato',this)">
+Gato
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('especie','Outro',this)">
+Outro
+</button>
+
+</div>
+
+<input type="hidden" id="especie">
+
+</div>
+
+
+<div class="campo" id="outroEspecieCampo" style="display:none">
+
+<label>Especifique a espécie</label>
+
+<input id="outraEspecie">
+
+</div>
+
+
+<div class="campo">
+
+<label>Raça</label>
+
+<input id="raca">
+
+</div>
+
+
+<div class="campo">
+
+<label>Sexo</label>
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('sexo','Macho',this)">
+Macho
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('sexo','Fêmea',this)">
+Fêmea
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('sexo','Não identificado',this)">
+Não identificado
+</button>
+
+</div>
+
+<input type="hidden" id="sexo">
+
+</div>
+
+
+<div class="campo">
+
+<label>Porte</label>
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('porte','Pequeno',this)">
+Pequeno
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('porte','Médio',this)">
+Médio
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('porte','Grande',this)">
+Grande
+</button>
+
+</div>
+
+<input type="hidden" id="porte">
+
+</div>
+
+
+<div class="campo">
+
+<label>Cor</label>
+
+<input id="cor">
+
+</div>
+
+
+<div class="campo">
+
+<label>É castrado?</label>
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('castrado','Sim',this)">
+Sim
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('castrado','Não',this)">
+Não
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('castrado','Não informado',this)">
+Não informado
+</button>
+
+</div>
+
+<input type="hidden" id="castrado">
+
+</div>
+
+
+<div class="campo">
+
+<label>É vacinado?</label>
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('vacinado','Sim',this)">
+Sim
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('vacinado','Não',this)">
+Não
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('vacinado','Não informado',this)">
+Não informado
+</button>
+
+</div>
+
+<input type="hidden" id="vacinado">
+
+</div>
+
+</div>
+
+
+<!-- ================= TUTOR ================= -->
+
+<div class="bloco">
+
+<h3>Dados do tutor</h3>
+
+<div class="campo">
+
+<label>Nome do tutor</label>
+
+<input id="tutor" required>
+
+</div>
+
+
+<div class="campo">
+
+<label>Telefone / WhatsApp</label>
+
+<input id="telefone" required>
+
+</div>
+
+
+<div class="campo">
+
+<label>Deseja tornar os dados do tutor públicos?</label>
+
+<div class="privacidade">
+
+<div class="opcoes">
+
+<button type="button"
+class="opcao"
+onclick="selecionar('publico','Sim',this)">
+Sim
+</button>
+
+<button type="button"
+class="opcao"
+onclick="selecionar('publico','Não',this)">
+Não
+</button>
+
+</div>
+
+<input type="hidden" id="publico">
+
+<small>
+Se "Não" for escolhido, nome e telefone permanecem
+disponíveis somente para administração.
+</small>
+
+</div>
+
+</div>
+
+
+<div class="campo">
+
+<label>Endereço</label>
+
+<input id="endereco">
+
+</div>
+
+
+<div class="linha">
+
+<div class="campo">
+
+<label>Bairro</label>
+
+<input id="bairro">
+
+</div>
+
+<div class="campo">
+
+<label>Cidade</label>
+
+<input id="cidade">
+
+</div>
+
+</div>
+
+
+<div class="campo">
+
+<label>Ponto de referência</label>
+
+<input id="referencia">
+
+</div>
+
+</div>
+
+
+<!-- ================= OCORRÊNCIA ================= -->
+
+<div class="bloco">
+
+<h3>Informações da ocorrência</h3>
+
+<div class="campo">
+
+<label>Última vez em que foi visto</label>
+
+<input type="datetime-local" id="ultimaVez">
+
+</div>
+
+
+<div class="campo">
+
+<label>Observações</label>
+
+<textarea id="observacoes"
+placeholder="Digite outras informações importantes sobre o animal."></textarea>
+
+</div>
+
+</div>
+
+
+<button class="botao" type="submit">
+CADASTRAR PET
+</button>
+
+<div class="mensagem" id="mensagem"></div>
 
 </form>
 
 </section>
 
 
-<!-- =====================================================
-     MATCH
-===================================================== -->
+<!-- ================= MATCH ================= -->
 
-<section
-    id="match"
-    class="conteudo-aba">
+<section id="match" class="conteudo">
 
-<h2 class="titulo-secao">
-    MATCH
-</h2>
+<h2 class="titulo">MATCH</h2>
 
-<p class="descricao-secao">
-    Consulte os animais cadastrados na REDE PET.
+<p class="descricao">
+Animais cadastrados na REDE PET.
 </p>
 
+<div class="lista" id="listaPets">
 
-<div
-    id="listaPets"
-    class="lista-pets">
-
-    <p>
-        Carregando animais...
-    </p>
+<p>Carregando animais...</p>
 
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     MAPA
-===================================================== -->
+<!-- ================= MAPA ================= -->
 
-<section
-    id="mapa"
-    class="conteudo-aba">
+<section id="mapa" class="conteudo">
 
-<h2 class="titulo-secao">
-    MAPA
-</h2>
+<h2 class="titulo">MAPA</h2>
 
+<p class="descricao">
+Localização aproximada dos animais cadastrados.
+</p>
 
-<div class="mapa-introducao">
+<div class="mapa">
 
-<h3>
-    Localização dos PETs
-</h3>
+<div class="mapa-placeholder">
+
+<div>
+
+<h3>Mapa da REDE PET</h3>
 
 <p>
-    Consulte onde os animais foram vistos ou
-    cadastrados. A localização apresentada
-    utiliza cidade, bairro e ponto de referência.
+As localizações dos animais aparecerão aqui
+conforme os cadastros forem realizados.
 </p>
 
 </div>
 
-
-<div
-    id="listaMapa"
-    class="mapa-lista">
-
-    <p>
-        Carregando localizações...
-    </p>
+</div>
 
 </div>
 
 </section>
-
 
 </section>
 
@@ -1279,7 +925,7 @@ footer{
 
 <footer>
 
-REDE PET — Protótipo funcional do Projeto Integrador
+REDE PET — Plataforma comunitária e tecnológica de proteção animal
 
 </footer>
 
@@ -1287,18 +933,18 @@ REDE PET — Protótipo funcional do Projeto Integrador
 <script>
 
 /* =====================================================
-   ENDEREÇO DO GOOGLE APPS SCRIPT
-===================================================== */
+   CONFIGURAÇÃO
+   ===================================================== */
 
-const URL_APPS_SCRIPT =
+const API_URL =
 "https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
 
 
 /* =====================================================
-   ENTRAR NA REDE
-===================================================== */
+   ENTRADA
+   ===================================================== */
 
-function entrarNaRede(){
+function entrar(){
 
     document.getElementById("entrada").style.display="none";
 
@@ -1306,49 +952,52 @@ function entrarNaRede(){
 
     carregarPets();
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+}
+
+
+/* =====================================================
+   ABAS
+   ===================================================== */
+
+function abrirAba(nome,botao){
+
+    document.querySelectorAll(".conteudo")
+    .forEach(el=>el.classList.remove("ativo"));
+
+    document.querySelectorAll(".aba")
+    .forEach(el=>el.classList.remove("ativa"));
+
+    document.getElementById(nome).classList.add("ativo");
+
+    botao.classList.add("ativa");
+
+    if(nome==="match"){
+        carregarPets();
+    }
 
 }
 
 
 /* =====================================================
-   TROCAR ABA
-===================================================== */
+   OPÇÕES
+   ===================================================== */
 
-function mostrarAba(nome,botao){
+function selecionar(campo,valor,botao){
 
-    document
-        .querySelectorAll(".conteudo-aba")
-        .forEach(function(aba){
+    document.getElementById(campo).value=valor;
 
-            aba.classList.remove("ativo");
+    const grupo=botao.parentElement;
 
-        });
+    grupo.querySelectorAll(".opcao")
+    .forEach(btn=>btn.classList.remove("selecionada"));
 
-
-    document
-        .querySelectorAll(".aba")
-        .forEach(function(btn){
-
-            btn.classList.remove("ativa");
-
-        });
+    botao.classList.add("selecionada");
 
 
-    document
-        .getElementById(nome)
-        .classList.add("ativo");
+    if(campo==="especie"){
 
-
-    botao.classList.add("ativa");
-
-
-    if(nome==="match" || nome==="mapa"){
-
-        carregarPets();
+        document.getElementById("outroEspecieCampo").style.display=
+            valor==="Outro" ? "block" : "none";
 
     }
 
@@ -1356,496 +1005,344 @@ function mostrarAba(nome,botao){
 
 
 /* =====================================================
-   OBTER VALOR DE RADIO
-===================================================== */
+   PESO
+   ===================================================== */
 
-function radio(nome){
+let pesoAtual=1;
 
-    const selecionado =
-        document.querySelector(
-            'input[name="'+nome+'"]:checked'
-        );
+function alterarPeso(valor){
 
-    return selecionado
-        ? selecionado.value
-        : "";
+    pesoAtual+=valor;
+
+    if(pesoAtual<1){
+        pesoAtual=1;
+    }
+
+    document.getElementById("pesoValor").textContent=pesoAtual;
+
+    document.getElementById("peso").value=pesoAtual;
 
 }
 
 
 /* =====================================================
-   CADASTRAR PET
-===================================================== */
+   FOTO
+   ===================================================== */
 
-document
-.getElementById("formPet")
-.addEventListener("submit",function(event){
+function lerFoto(){
+
+    return new Promise((resolve)=>{
+
+        const arquivo=
+            document.getElementById("foto").files[0];
+
+        if(!arquivo){
+
+            resolve("");
+
+            return;
+
+        }
+
+        const leitor=new FileReader();
+
+        leitor.onload=function(){
+
+            resolve(leitor.result);
+
+        };
+
+        leitor.readAsDataURL(arquivo);
+
+    });
+
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+   ===================================================== */
+
+document.getElementById("formPet")
+.addEventListener("submit",async function(event){
 
     event.preventDefault();
 
 
+    const mensagem=
+        document.getElementById("mensagem");
+
+    mensagem.style.display="block";
+
+    mensagem.textContent=
+        "Enviando cadastro...";
+
+
+    const foto=await lerFoto();
+
+
     const dados={
 
-        foto:"",
-        especie:radio("especie"),
-        raca:document.getElementById("raca").value,
         nome:document.getElementById("nome").value,
-        sexo:radio("sexo"),
-        idade:radio("idade"),
+
+        status:document.getElementById("status").value,
+
+        idade:document.getElementById("idade").value,
+
         peso:document.getElementById("peso").value,
-        castrado:radio("castrado"),
-        vacinado:radio("vacinado"),
-        porte:radio("porte"),
+
+        especie:
+            document.getElementById("especie").value==="Outro"
+            ? document.getElementById("outraEspecie").value
+            : document.getElementById("especie").value,
+
+        raca:document.getElementById("raca").value,
+
+        sexo:document.getElementById("sexo").value,
+
+        porte:document.getElementById("porte").value,
+
         cor:document.getElementById("cor").value,
 
-        whatsappPublico:
-            radio("whatsappPublico"),
+        castrado:document.getElementById("castrado").value,
 
-        tutor:
-            document.getElementById("tutor").value,
+        vacinado:document.getElementById("vacinado").value,
 
-        contato:
-            document.getElementById("contato").value,
+        tutor:document.getElementById("tutor").value,
 
-        emailTutor:
-            document.getElementById("emailTutor").value,
+        telefone:document.getElementById("telefone").value,
 
-        endereco:
-            document.getElementById("endereco").value,
+        publico:document.getElementById("publico").value,
 
-        bairro:
-            document.getElementById("bairro").value,
+        endereco:document.getElementById("endereco").value,
 
-        cidade:
-            document.getElementById("cidade").value,
+        bairro:document.getElementById("bairro").value,
 
-        referencia:
-            document.getElementById("referencia").value,
+        cidade:document.getElementById("cidade").value,
 
-        ultimaVez:
-            document.getElementById("ultimaVez").value,
+        referencia:document.getElementById("referencia").value,
+
+        ultimaVez:document.getElementById("ultimaVez").value,
 
         observacoes:
             document.getElementById("observacoes").value,
 
-        status:
-            radio("status"),
-
-        emailCriador:""
+        foto:foto
 
     };
 
 
-    fetch(URL_APPS_SCRIPT,{
-        method:"POST",
-
-        body:JSON.stringify({
-            acao:"cadastrarPet",
-            dados:dados
-        })
-
-    })
-
-    .then(function(resposta){
-
-        return resposta.json();
-
-    })
-
-    .then(function(resultado){
-
-        if(resultado.sucesso){
-
-            const mensagem =
-                document.getElementById("mensagem");
-
-            mensagem.style.display="block";
-
-            mensagem.innerHTML =
-                "PET cadastrado com sucesso! ID: "
-                + resultado.idPet;
-
-
-            document
-                .getElementById("formPet")
-                .reset();
-
-
-            carregarPets();
-
-        }else{
-
-            alert(
-                "Não foi possível cadastrar o PET."
-            );
-
-        }
-
-    })
-
-    .catch(function(erro){
-
-        console.error(erro);
-
-        alert(
-            "Erro ao comunicar com o sistema."
-        );
-
-    });
+    enviarParaAppsScript(dados);
 
 });
 
 
 /* =====================================================
-   CARREGAR PETS
-===================================================== */
+   ENVIO
+   ===================================================== */
 
-function carregarPets(){
+function enviarParaAppsScript(dados){
 
-    fetch(URL_APPS_SCRIPT +
-        "?acao=buscarPets")
+    const iframe=document.createElement("iframe");
 
-    .then(function(resposta){
+    iframe.name="redePetFrame";
 
-        return resposta.json();
+    iframe.style.display="none";
 
-    })
+    document.body.appendChild(iframe);
 
-    .then(function(pets){
 
-        montarMatch(pets);
+    const form=document.createElement("form");
 
-        montarMapa(pets);
+    form.method="POST";
 
-    })
+    form.action=API_URL;
 
-    .catch(function(erro){
+    form.target="redePetFrame";
 
-        console.error(erro);
+    form.style.display="none";
 
-        document
-            .getElementById("listaPets")
-            .innerHTML=
-            "<p>Não foi possível carregar os PETs.</p>";
+
+    Object.keys(dados).forEach(chave=>{
+
+        const input=document.createElement("input");
+
+        input.type="hidden";
+
+        input.name=chave;
+
+        input.value=dados[chave] || "";
+
+        form.appendChild(input);
 
     });
+
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+
+    setTimeout(()=>{
+
+        document.getElementById("mensagem").textContent=
+            "Cadastro enviado. Verifique a planilha Google Sheets.";
+
+        document.getElementById("formPet").reset();
+
+        pesoAtual=1;
+
+        document.getElementById("pesoValor").textContent="1";
+
+        document.getElementById("peso").value="1";
+
+    },3000);
 
 }
 
 
 /* =====================================================
    MATCH
-===================================================== */
+   ===================================================== */
 
-function montarMatch(pets){
+function carregarPets(){
 
-    const lista =
-        document.getElementById("listaPets");
+    const lista=document.getElementById("listaPets");
 
-    if(!pets || pets.length===0){
-
-        lista.innerHTML=
-            "<p>Nenhum PET cadastrado ainda.</p>";
-
-        return;
-
-    }
+    lista.innerHTML="<p>Carregando animais...</p>";
 
 
-    lista.innerHTML="";
+    fetch(API_URL+"?acao=pets")
+
+    .then(res=>res.json())
+
+    .then(pets=>{
+
+        lista.innerHTML="";
 
 
-    pets.forEach(function(pet){
+        if(!pets || pets.length===0){
 
-        const card =
-            document.createElement("article");
-
-        card.className="pet-card";
-
-
-        let imagem =
-            '<div class="pet-imagem">FOTO DO PET</div>';
-
-
-        if(pet.Foto){
-
-            imagem=
-                '<div class="pet-imagem">' +
-                '<img src="' +
-                pet.Foto +
-                '" alt="Foto de ' +
-                (pet.Nome || "PET") +
-                '">' +
-                '</div>';
-
-        }
-
-
-        let contato="Contato protegido";
-
-
-        if(
-            pet.Deseja_exibir_o_WhatsApp_publicamente ===
-            "Sim"
-        ){
-
-            contato=
-                pet.Contato || "Não informado";
-
-        }
-
-
-        card.innerHTML=
-
-            imagem +
-
-            '<div class="pet-conteudo">' +
-
-            '<h3 class="pet-nome">' +
-            (pet.Nome || "PET") +
-            '</h3>' +
-
-            '<span class="status">' +
-            (pet.Status || "Não informado") +
-            '</span>' +
-
-            '<p class="pet-info">' +
-            (pet.Espécie || "") +
-            ' • ' +
-            (pet.Sexo || "") +
-            ' • ' +
-            (pet.Porte || "") +
-            '</p>' +
-
-            '<p class="pet-info">' +
-            'Idade: ' +
-            (pet.Idade || "Não informado") +
-            '</p>' +
-
-            '<p class="pet-info">' +
-            'Cidade: ' +
-            (pet.Cidade || "Não informada") +
-            '</p>' +
-
-            '<div class="tutor">' +
-
-            '<strong>Dados do tutor</strong>' +
-
-            '<p class="pet-info">' +
-            'Nome: ' +
-            (pet.Nome_do_tutor || "Não informado") +
-            '</p>' +
-
-            '<p class="pet-info">' +
-            'Contato: ' +
-            contato +
-            '</p>' +
-
-            '</div>' +
-
-            '<div class="comentarios">' +
-
-            '<strong>Comentários</strong>' +
-
-            '<textarea id="comentario-' +
-            (pet.ID_do_Pet || "") +
-            '" placeholder="Adicione uma informação sobre este PET..."></textarea>' +
-
-            '<button class="botao-comentario" ' +
-            'onclick="enviarComentario(\'' +
-            (pet.ID_do_Pet || "") +
-            '\',\'' +
-            (pet.Nome || "") +
-            '\')">' +
-
-            'Enviar comentário' +
-
-            '</button>' +
-
-            '</div>' +
-
-            '</div>';
-
-
-        lista.appendChild(card);
-
-    });
-
-}
-
-
-/* =====================================================
-   MAPA
-===================================================== */
-
-function montarMapa(pets){
-
-    const lista =
-        document.getElementById("listaMapa");
-
-    if(!pets || pets.length===0){
-
-        lista.innerHTML=
-            "<p>Nenhuma localização disponível.</p>";
-
-        return;
-
-    }
-
-
-    lista.innerHTML="";
-
-
-    pets.forEach(function(pet){
-
-        if(!pet.Cidade && !pet.Bairro){
+            lista.innerHTML=
+                "<p>Nenhum PET cadastrado ainda.</p>";
 
             return;
 
         }
 
 
-        const localizacao =
-            [
-                pet.Bairro,
-                pet.Cidade
-            ]
-            .filter(Boolean)
-            .join(", ");
+        pets.forEach(pet=>{
+
+            const card=document.createElement("article");
+
+            card.className="card";
 
 
-        const busca =
-            encodeURIComponent(
-                [
-                    pet.Bairro,
-                    pet.Cidade
-                ]
-                .filter(Boolean)
-                .join(", ")
-            );
+            const foto=
+                pet.Foto_URL || pet.foto || "";
 
 
-        const item =
-            document.createElement("div");
+            card.innerHTML=`
 
-        item.className="localizacao";
+                <div class="card-foto">
 
+                    ${
+                        foto
+                        ?
+                        `<img src="${foto}" alt="Foto de ${pet.Nome || ""}">`
+                        :
+                        "Sem foto"
+                    }
 
-        item.innerHTML=
-
-            '<h3>📍 ' +
-            (pet.Nome || "PET") +
-            '</h3>' +
-
-            '<p><strong>Status:</strong> ' +
-            (pet.Status || "Não informado") +
-            '</p>' +
-
-            '<p><strong>Local:</strong> ' +
-            localizacao +
-            '</p>' +
-
-            '<p><strong>Referência:</strong> ' +
-            (pet.Ponto_de_referência || "Não informado") +
-            '</p>' +
-
-            '<a class="botao-mapa" ' +
-            'target="_blank" ' +
-            'href="https://www.google.com/maps/search/?api=1&query=' +
-            busca +
-            '">' +
-
-            'Como chegar / Ver no mapa' +
-
-            '</a>';
+                </div>
 
 
-        lista.appendChild(item);
+                <div class="card-conteudo">
 
-    });
-
-}
-
-
-/* =====================================================
-   COMENTÁRIO
-===================================================== */
-
-function enviarComentario(idPet,nomePet){
-
-    const campo =
-        document.getElementById(
-            "comentario-"+idPet
-        );
+                    <h3 class="card-nome">
+                        ${pet.Nome || "PET sem nome"}
+                    </h3>
 
 
-    if(!campo || !campo.value.trim()){
-
-        alert(
-            "Digite um comentário antes de enviar."
-        );
-
-        return;
-
-    }
+                    <span class="status">
+                        ${pet.Status || ""}
+                    </span>
 
 
-    const dados={
-
-        idPet:idPet,
-
-        nomePet:nomePet,
-
-        nomeUsuario:"",
-
-        emailUsuario:"",
-
-        comentario:campo.value
-
-    };
+                    <p class="card-info">
+                        ${pet.Especie || ""}
+                        ${pet.Raca ? " • "+pet.Raca : ""}
+                    </p>
 
 
-    fetch(URL_APPS_SCRIPT,{
+                    <p class="card-info">
+                        ${pet.Idade || ""}
+                        ${pet.Peso ? " • "+pet.Peso+" kg" : ""}
+                    </p>
 
-        method:"POST",
 
-        body:JSON.stringify({
+                    <p class="card-info">
+                        ${pet.Porte || ""}
+                        ${pet.Cor ? " • "+pet.Cor : ""}
+                    </p>
 
-            acao:"cadastrarComentario",
 
-            dados:dados
+                    <p class="card-info">
+                        ${pet.Cidade || ""}
+                        ${pet.Bairro ? " • "+pet.Bairro : ""}
+                    </p>
 
-        })
+
+                    ${
+                        pet.Tutor_Publico==="Sim"
+                        ?
+                        `
+                        <div class="tutor-publico">
+
+                            <strong>Dados do tutor</strong>
+
+                            <p class="card-info">
+                                ${pet.Nome_Tutor || ""}
+                            </p>
+
+                            <p class="card-info">
+                                ${pet.Telefone_Tutor || ""}
+                            </p>
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <div class="comentarios">
+
+                        <strong>Comentários</strong>
+
+                        <textarea
+                            placeholder="Adicionar uma informação sobre este PET..."
+                            data-pet="${pet.ID_Pet || ""}">
+                        </textarea>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            lista.appendChild(card);
+
+        });
 
     })
 
-    .then(function(resposta){
+    .catch(error=>{
 
-        return resposta.json();
+        lista.innerHTML=
+            "<p>Não foi possível carregar os animais neste momento.</p>";
 
-    })
-
-    .then(function(resultado){
-
-        if(resultado.sucesso){
-
-            campo.value="";
-
-            alert(
-                "Comentário enviado com sucesso."
-            );
-
-        }
-
-    })
-
-    .catch(function(erro){
-
-        console.error(erro);
-
-        alert(
-            "Não foi possível enviar o comentário."
-        );
+        console.error(error);
 
     });
 
@@ -1854,5 +1351,4 @@ function enviarComentario(idPet,nomePet){
 </script>
 
 </body>
-
 </html>
