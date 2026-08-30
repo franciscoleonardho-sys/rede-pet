@@ -1,41 +1,277 @@
 <div
-id="edicaoStatus"
-class="edicao-status">
+  id="edicaoStatus"
+  class="edicao-status">
 
-<h3>
-Alterar status do PET
-</h3>
+  <h3>
+    Editar cadastro do PET
+  </h3>
 
-<select id="novoStatus">
+  <label for="editNome">
+    Nome
+  </label>
 
-<option value="Perdido">
-Perdido
-</option>
+  <input
+    type="text"
+    id="editNome"
+    placeholder="Nome do PET">
 
-<option value="Para adoção">
-Para adoção
-</option>
 
-<option value="Encontrado">
-Encontrado
-</option>
+  <label for="editIdade">
+    Idade
+  </label>
 
-<option value="Adotado">
-Adotado
-</option>
+  <input
+    type="text"
+    id="editIdade"
+    placeholder="Idade">
 
-</select>
 
-<button
-type="button"
-class="botao-editar"
-onclick="alterarStatusPet()">
-Salvar alteração
-</button>
+  <label for="editPeso">
+    Peso
+  </label>
 
-<div
-id="mensagemStatus"
-class="mensagem">
-</div>
+  <input
+    type="number"
+    id="editPeso"
+    step="0.01"
+    placeholder="Peso">
+
+
+  <label for="editStatus">
+    Status
+  </label>
+
+  <select id="editStatus">
+
+    <option value="Perdido">
+      Perdido
+    </option>
+
+    <option value="Para adoção">
+      Para adoção
+    </option>
+
+    <option value="Encontrado">
+      Encontrado
+    </option>
+
+    <option value="Adotado">
+      Adotado
+    </option>
+
+  </select>
+
+
+  <label for="editCastrado">
+    Castrado
+  </label>
+
+  <select id="editCastrado">
+
+    <option value="">
+      Selecione
+    </option>
+
+    <option value="Sim">
+      Sim
+    </option>
+
+    <option value="Não">
+      Não
+    </option>
+
+  </select>
+
+
+  <label for="editVacinado">
+    Vacinado
+  </label>
+
+  <select id="editVacinado">
+
+    <option value="">
+      Selecione
+    </option>
+
+    <option value="Sim">
+      Sim
+    </option>
+
+    <option value="Não">
+      Não
+    </option>
+
+  </select>
+
+
+  <label for="editRaca">
+    Raça
+  </label>
+
+  <input
+    type="text"
+    id="editRaca"
+    placeholder="Raça">
+
+
+  <label for="editSexo">
+    Sexo
+  </label>
+
+  <select id="editSexo">
+
+    <option value="">
+      Selecione
+    </option>
+
+    <option value="Macho">
+      Macho
+    </option>
+
+    <option value="Fêmea">
+      Fêmea
+    </option>
+
+  </select>
+
+
+  <label for="editPorte">
+    Porte
+  </label>
+
+  <select id="editPorte">
+
+    <option value="">
+      Selecione
+    </option>
+
+    <option value="Pequeno">
+      Pequeno
+    </option>
+
+    <option value="Médio">
+      Médio
+    </option>
+
+    <option value="Grande">
+      Grande
+    </option>
+
+  </select>
+
+
+  <label for="editCor">
+    Cor
+  </label>
+
+  <input
+    type="text"
+    id="editCor"
+    placeholder="Cor">
+
+
+  <label for="editTutorNome">
+    Nome do tutor
+  </label>
+
+  <input
+    type="text"
+    id="editTutorNome"
+    placeholder="Nome do tutor">
+
+
+  <label for="editTutorContato">
+    Contato do tutor
+  </label>
+
+  <input
+    type="text"
+    id="editTutorContato"
+    placeholder="Contato">
+
+
+  <label for="editWhatsapp">
+    WhatsApp público
+  </label>
+
+  <input
+    type="text"
+    id="editWhatsapp"
+    placeholder="WhatsApp">
+
+
+  <label for="editEndereco">
+    Endereço
+  </label>
+
+  <input
+    type="text"
+    id="editEndereco"
+    placeholder="Endereço">
+
+
+  <label for="editBairro">
+    Bairro
+  </label>
+
+  <input
+    type="text"
+    id="editBairro"
+    placeholder="Bairro">
+
+
+  <label for="editCidade">
+    Cidade
+  </label>
+
+  <input
+    type="text"
+    id="editCidade"
+    placeholder="Cidade">
+
+
+  <label for="editPontoReferencia">
+    Ponto de referência
+  </label>
+
+  <input
+    type="text"
+    id="editPontoReferencia"
+    placeholder="Ponto de referência">
+
+
+  <label for="editUltimaVez">
+    Última vez visto
+  </label>
+
+  <input
+    type="text"
+    id="editUltimaVez"
+    placeholder="Última vez visto">
+
+
+  <label for="editObservacoes">
+    Observações
+  </label>
+
+  <textarea
+    id="editObservacoes"
+    placeholder="Observações"></textarea>
+
+
+  <button
+    type="button"
+    class="botao-editar"
+    onclick="salvarEdicaoPet()">
+
+    Salvar alterações
+
+  </button>
+
+
+  <div
+    id="mensagemStatus"
+    class="mensagem">
+  </div>
 
 </div>
