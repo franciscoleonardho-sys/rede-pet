@@ -1,2069 +1,362 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>REDE PET</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7f6;
-    color: #222;
-    line-height: 1.5;
-}
-
-header {
-    background: #064e3b;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px 18px;
-}
-
-/* =========================
-   INÍCIO
-========================= */
-
-.inicio {
-    text-align: center;
-    padding: 55px 20px;
-}
-
-.inicio h1 {
-    font-size: 38px;
-    margin-bottom: 12px;
-    color: #064e3b;
-}
-
-.inicio p {
-    color: #666;
-    max-width: 650px;
-    margin: auto;
-}
-
-.inicio h2 {
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.botoes-inicio {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-button {
-    font-family: inherit;
-}
-
-.botao {
-    border: none;
-    background: #064e3b;
-    color: white;
-    padding: 14px 25px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.botao:hover {
-    opacity: .9;
-}
-
-.botao-secundario {
-    background: #e5ebe8;
-    color: #064e3b;
-}
-
-/* =========================
-   NAVEGAÇÃO
-========================= */
-
-.navegacao {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #ddd;
-    flex-wrap: wrap;
-}
-
-.navegacao button {
-    border: none;
-    background: transparent;
-    padding: 13px 20px;
-    cursor: pointer;
-    color: #064e3b;
-    font-weight: bold;
-}
-
-.navegacao button.ativa {
-    border-bottom: 3px solid #064e3b;
-}
-
-.pagina {
-    display: none;
-}
-
-.pagina.ativa {
-    display: block;
-}
-
-/* =========================
-   FORMULÁRIO
-========================= */
-
-.bloco {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 25px;
-}
-
-.bloco h2 {
-    color: #064e3b;
-    margin-bottom: 20px;
-}
-
-.campo {
-    margin-bottom: 18px;
-}
-
-.campo label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-}
-
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.linha {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
-
-/* =========================
-   BOTÕES DE OPÇÃO
-========================= */
-
-.opcoes {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.opcao {
-    border: 1px solid #ccc;
-    background: white;
-    color: #333;
-    padding: 11px 18px;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-.opcao.selecionada {
-    background: #064e3b;
-    color: white;
-    border-color: #064e3b;
-}
-
-/* =========================
-   PESO
-========================= */
-
-.peso-controle {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.peso-controle button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    background: #064e3b;
-    color: white;
-    font-size: 25px;
-    cursor: pointer;
-
-    touch-action: manipulation;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.peso-valor {
-    font-size: 22px;
-    font-weight: bold;
-    min-width: 80px;
-    text-align: center;
-}
-
-/* =========================
-   MATCH
-========================= */
-
-.lista-pets {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.pet-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.pet-foto {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    display: block;
-}
-
-.pet-sem-foto {
-    height: 240px;
-    background: #e6ebe8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #777;
-}
-
-.pet-resumo {
-    padding: 15px;
-}
-
-.pet-nome {
-    font-size: 21px;
-    margin-bottom: 7px;
-}
-
-.pet-status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: #e6ebe8;
-    color: #064e3b;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    padding: 25px;
-    overflow-y: auto;
-}
-
-.modal.aberto {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-conteudo {
-    background: white;
-    width: 100%;
-    max-width: 750px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-}
-
-.fechar {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0,0,0,.65);
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.modal-foto {
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    background: #eee;
-}
-
-.modal-dados {
-    padding: 25px;
-}
-
-.modal-dados h2 {
-    color: #064e3b;
-    margin-bottom: 15px;
-}
-
-.dado {
-    margin-bottom: 8px;
-}
-
-.dado strong {
-    color: #064e3b;
-}
-
-/* =========================
-   MAPA
-========================= */
-
-.mapa-container {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.mapa {
-    width: 100%;
-    height: 500px;
-    border: none;
-    border-radius: 8px;
-}
-
-.mapa-aviso {
-    text-align: center;
-    padding: 30px 15px;
-    color: #666;
-}
-
-/* =========================
-   MENSAGENS
-========================= */
-
-.mensagem {
-    display: none;
-    padding: 15px;
-    margin-top: 15px;
-    background: #e5ebe8;
-    color: #064e3b;
-    border-radius: 7px;
-}
-
-.carregando {
-    text-align: center;
-    padding: 40px;
-    color: #777;
-}
-
-/* =========================
-   RODAPÉ
-========================= */
-
-.rodape-navegacao {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 35px;
-}
-
-footer {
-    text-align: center;
-    padding: 35px 15px;
-    color: #777;
-    font-size: 13px;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media (max-width: 700px) {
-
-    .inicio h1 {
-        font-size: 30px;
+const SPREADSHEET_ID = '10teKRWvBiP495Hf0-G9B4Kx5EuiLYlrHVq4qRqLU-wM';
+const ABA_PETS = 'Pets';
+
+/**
+ * =====================================================
+ * ACESSO AO WEB APP
+ * =====================================================
+ */
+function doGet(e) {
+  try {
+    const acao = e && e.parameter ? e.parameter.acao : '';
+
+    if (acao === 'listarPets') {
+      return respostaJSON(listarPets());
     }
 
-    .linha {
-        grid-template-columns: 1fr;
+    if (acao === 'testarConexao') {
+      return respostaJSON({
+        sucesso: true,
+        mensagem: 'Conexão com a planilha funcionando.'
+      });
     }
 
-    .navegacao {
-        flex-direction: column;
-    }
+    return HtmlService
+      .createHtmlOutput(
+        '<h2>REDE PET</h2><p>Serviço conectado corretamente.</p>'
+      )
+      .setTitle('REDE PET')
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 
-    .navegacao button {
-        width: 100%;
-        text-align: left;
-    }
-
-    .modal {
-        padding: 10px;
-    }
-
-    .modal-foto {
-        max-height: 400px;
-    }
+  } catch (erro) {
+    return respostaJSON({
+      sucesso: false,
+      mensagem: erro.message
+    });
+  }
 }
-</style>
-</head>
 
-<body>
 
-<header>
-    <div class="logo">REDE PET</div>
-</header>
+/**
+ * =====================================================
+ * RECEBER CADASTRO DO HTML
+ * =====================================================
+ */
+function doPost(e) {
+  try {
 
-<main class="container">
+    if (!e || !e.postData || !e.postData.contents) {
+      throw new Error('Nenhum dado foi recebido.');
+    }
 
-<!-- =========================
-     INÍCIO
-========================= -->
+    const dadosRecebidos = JSON.parse(e.postData.contents);
 
-<section id="inicio" class="pagina ativa">
+    const dados = dadosRecebidos.dados || dadosRecebidos;
 
-    <div class="inicio">
+    const resultado = cadastrarPet(dados);
 
-        <h1>REDE PET</h1>
+    return respostaJSON(resultado);
 
-        <p>
-            Uma plataforma comunitária e tecnológica
-            voltada à proteção e ao reencontro de animais.
-        </p>
+  } catch (erro) {
 
-        <h2>Por onde você quer começar?</h2>
-
-        <div class="botoes-inicio">
-
-            <button
-                class="botao"
-                onclick="abrirPagina('pet')">
-                Cadastrar seu PET
-            </button>
-
-            <button
-                class="botao botao-secundario"
-                onclick="abrirPagina('match')">
-                Visualizar PETs
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     NAVEGAÇÃO INTERNA
-========================= -->
-
-<nav class="navegacao">
-
-    <button onclick="abrirPagina('inicio')">
-        Início
-    </button>
-
-    <button onclick="abrirPagina('pet')">
-        PET
-    </button>
-
-    <button onclick="abrirPagina('match')">
-        MATCH
-    </button>
-
-    <button onclick="abrirPagina('mapa')">
-        MAPA
-    </button>
-
-</nav>
-
-
-<!-- =========================
-     PET
-========================= -->
-
-<section id="pet" class="pagina">
-
-<form id="formPet">
-
-<div class="bloco">
-
-<h2>Dados do PET</h2>
-
-<div class="campo">
-
-<label>Foto do animal</label>
-
-<input
-    type="file"
-    id="foto"
-    accept="image/*">
-
-</div>
-
-
-<div class="campo">
-
-<label>Status do animal</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Perdido')">
-    Perdido
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Para adoção')">
-    Para adoção
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Encontrado')">
-    Encontrado
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'status','Adotado')">
-    Adotado
-</button>
-
-</div>
-
-<input type="hidden" id="status">
-
-</div>
-
-
-<div class="campo">
-
-<label>Nome do PET</label>
-
-<input id="nome" required>
-
-</div>
-
-
-<div class="campo">
-
-<label>Idade</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
-    Filhote (até 1 ano)
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
-    Jovem (1 a 3 anos)
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
-    Adulto (3 a 8 anos)
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'idade','Idoso (8+ anos)')">
-    Idoso (8+ anos)
-</button>
-
-</div>
-
-<input type="hidden" id="idade">
-
-</div>
-
-
-<div class="campo">
-
-<label>Peso aproximado</label>
-
-<div class="peso-controle">
-
-<button
-    type="button"
-    onclick="alterarPeso(-1)">
-    −
-</button>
-
-<div class="peso-valor">
-    <span id="pesoValor">0</span> kg
-</div>
-
-<button
-    type="button"
-    onclick="alterarPeso(1)">
-    +
-</button>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>Espécie</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Cão')">
-    Cão
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Gato')">
-    Gato
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'especie','Outro')">
-    Outro
-</button>
-
-</div>
-
-<input type="hidden" id="especie">
-
-<input
-    id="especieOutro"
-    placeholder="Se escolheu outro, especifique"
-    style="display:none;margin-top:10px">
-
-</div>
-
-
-<div class="campo">
-
-<label>Raça</label>
-
-<input id="raca">
-
-</div>
-
-
-<div class="campo">
-
-<label>Sexo</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Macho')">
-    Macho
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Fêmea')">
-    Fêmea
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'sexo','Não identificado')">
-    Não identificado
-</button>
-
-</div>
-
-<input type="hidden" id="sexo">
-
-</div>
-
-
-<div class="campo">
-
-<label>Porte</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Pequeno')">
-    Pequeno
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Médio')">
-    Médio
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'porte','Grande')">
-    Grande
-</button>
-
-</div>
-
-<input type="hidden" id="porte">
-
-</div>
-
-
-<div class="campo">
-
-<label>Cor</label>
-
-<input id="cor">
-
-</div>
-
-
-<div class="linha">
-
-<div class="campo">
-
-<label>É castrado?</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Sim')">
-    Sim
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Não')">
-    Não
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'castrado','Não sei')">
-    Não sei
-</button>
-
-</div>
-
-<input type="hidden" id="castrado">
-
-</div>
-
-
-<div class="campo">
-
-<label>É vacinado?</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Sim')">
-    Sim
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Não')">
-    Não
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'vacinado','Não sei')">
-    Não sei
-</button>
-
-</div>
-
-<input type="hidden" id="vacinado">
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>Última vez em que foi visto</label>
-
-<input
-    type="datetime-local"
-    id="ultimaVez">
-
-</div>
-
-
-<div class="campo">
-
-<label>Ponto de referência</label>
-
-<input
-    id="pontoReferencia"
-    placeholder="Ex.: próximo à praça">
-
-</div>
-
-
-<div class="campo">
-
-<label>Observações</label>
-
-<textarea id="observacoes"></textarea>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     TUTOR
-========================= -->
-
-<div class="bloco">
-
-<h2>Dados do tutor</h2>
-
-<div class="campo">
-
-<label>Nome do tutor</label>
-
-<input id="tutorNome">
-
-</div>
-
-
-<div class="campo">
-
-<label>Contato do tutor</label>
-
-<input id="tutorContato">
-
-</div>
-
-
-<div class="campo">
-
-<label>
-Deseja exibir os dados do tutor publicamente?
-</label>
-
-<div class="opcoes">
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'whatsappPublico','Sim')">
-    Sim
-</button>
-
-<button
-    type="button"
-    class="opcao"
-    onclick="selecionar(this,'whatsappPublico','Não')">
-    Não
-</button>
-
-</div>
-
-<input type="hidden" id="whatsappPublico">
-
-</div>
-
-
-<div class="campo">
-
-<label>Endereço do tutor</label>
-
-<input id="endereco">
-
-</div>
-
-
-<div class="linha">
-
-<div class="campo">
-
-<label>Bairro</label>
-
-<input id="bairro">
-
-</div>
-
-<div class="campo">
-
-<label>Cidade</label>
-
-<input id="cidade">
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     CADASTRAR
-========================= -->
-
-<div class="bloco">
-
-<button
-    type="submit"
-    class="botao">
-    Cadastrar PET
-</button>
-
-<div
-    id="mensagem"
-    class="mensagem">
-</div>
-
-</div>
-
-</form>
-
-
-<div class="rodape-navegacao">
-
-<button
-    class="botao"
-    onclick="abrirPagina('match')">
-    MATCH
-</button>
-
-<button
-    class="botao"
-    onclick="abrirPagina('mapa')">
-    MAPA
-</button>
-
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MATCH
-========================= -->
-
-<section id="match" class="pagina">
-
-<h2>MATCH</h2>
-
-<p style="margin:10px 0 25px;color:#666">
-Clique na imagem do PET para visualizar todos os detalhes.
-</p>
-
-<div
-    id="listaPets"
-    class="lista-pets">
-
-<div class="carregando">
-    Carregando PETs...
-</div>
-
-</div>
-
-
-<div class="rodape-navegacao">
-
-<button
-    class="botao"
-    onclick="abrirPagina('pet')">
-    PET
-</button>
-
-<button
-    class="botao"
-    onclick="abrirPagina('mapa')">
-    MAPA
-</button>
-
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MAPA
-========================= -->
-
-<section id="mapa" class="pagina">
-
-<h2>MAPA</h2>
-
-<p style="margin:10px 0 20px;color:#666">
-Localização dos PETs cadastrados.
-</p>
-
-<div class="mapa-container">
-
-<div id="mapaConteudo">
-
-    <div class="mapa-aviso">
-        O mapa será carregado conforme as localizações
-        dos PETs cadastrados.
-    </div>
-
-</div>
-
-</div>
-
-
-<div class="rodape-navegacao">
-
-<button
-    class="botao"
-    onclick="abrirPagina('pet')">
-    PET
-</button>
-
-<button
-    class="botao"
-    onclick="abrirPagina('match')">
-    MATCH
-</button>
-
-<button
-    class="botao botao-secundario"
-    onclick="abrirPagina('inicio')">
-    Início
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div id="modal" class="modal">
-
-<div class="modal-conteudo">
-
-<button
-    class="fechar"
-    onclick="fecharModal()">
-    ×
-</button>
-
-<img
-    id="modalFoto"
-    class="modal-foto"
-    style="display:none">
-
-<div class="modal-dados">
-
-<h2 id="modalNome"></h2>
-
-<div id="modalDados"></div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<footer>
-
-REDE PET — Protótipo
-
-</footer>
-
-
-<script>
-
-/* =====================================================
-   CONFIGURAÇÃO
-===================================================== */
-
-const URL_APPS_SCRIPT =
-"https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
-
-let peso = 0;
-
-
-/* =====================================================
-   NAVEGAÇÃO
-===================================================== */
-
-function abrirPagina(nome) {
-
-    document
-        .querySelectorAll(".pagina")
-        .forEach(p => p.classList.remove("ativa"));
-
-    const pagina = document.getElementById(nome);
-
-    if (!pagina) return;
-
-    pagina.classList.add("ativa");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    return respostaJSON({
+      sucesso: false,
+      mensagem: erro.message
     });
 
-    if (nome === "match") {
-        carregarPets();
-    }
-
-    if (nome === "mapa") {
-        carregarMapa();
-    }
+  }
 }
 
 
-/* =====================================================
-   OPÇÕES
-===================================================== */
+/**
+ * =====================================================
+ * CADASTRAR PET
+ * =====================================================
+ */
+function cadastrarPet(dados) {
 
-function selecionar(botao, campo, valor) {
+  try {
 
-    const grupo = botao.parentElement;
+    const planilha = SpreadsheetApp.openById(SPREADSHEET_ID);
 
-    grupo
-        .querySelectorAll(".opcao")
-        .forEach(b =>
-            b.classList.remove("selecionada")
-        );
+    const aba = planilha.getSheetByName(ABA_PETS);
 
-    botao.classList.add("selecionada");
-
-    const campoElemento =
-        document.getElementById(campo);
-
-    if (campoElemento) {
-        campoElemento.value = valor;
+    if (!aba) {
+      throw new Error(
+        'A aba "Pets" não foi encontrada na planilha.'
+      );
     }
 
-    if (campo === "especie") {
+    const idPet =
+      dados.idPet ||
+      'PET-' +
+      Utilities
+        .getUuid()
+        .substring(0, 8)
+        .toUpperCase();
 
-        const outro =
-            document.getElementById("especieOutro");
+    const dataCadastro = new Date();
 
-        if (outro) {
+    /*
+     * Estrutura da linha:
+     *
+     * ID PET
+     * Foto
+     * Status
+     * Nome
+     * Idade
+     * Peso
+     * Castrado
+     * Espécie
+     * Espécie - Outro
+     * Vacinado
+     * Raça
+     * Sexo
+     * Porte
+     * Cor
+     * Última vez visto
+     * Ponto de referência
+     * Observações
+     * Nome do tutor
+     * Contato do tutor
+     * WhatsApp público
+     * Endereço
+     * Bairro
+     * Cidade
+     * Data do cadastro
+     */
 
-            outro.style.display =
-                valor === "Outro"
-                ? "block"
-                : "none";
-        }
-    }
-}
+    const linha = [
 
+      idPet,
 
-/* =====================================================
-   PESO
-===================================================== */
+      dados.foto || '',
 
-function alterarPeso(valor) {
+      dados.status || '',
 
-    peso += valor;
+      dados.nome || '',
 
-    if (peso < 0) {
-        peso = 0;
-    }
+      dados.idade || '',
 
-    if (peso > 100) {
-        peso = 100;
-    }
+      dados.peso || 0,
 
-    document
-        .getElementById("pesoValor")
-        .textContent = peso;
-}
+      dados.castrado || '',
 
+      dados.especie || '',
 
-/* =====================================================
-   FOTO → BASE64
-===================================================== */
+      dados.especieOutro || '',
 
-function converterImagem(file) {
+      dados.vacinado || '',
 
-    return new Promise((resolve, reject) => {
+      dados.raca || '',
 
-        if (!file) {
-            resolve("");
-            return;
-        }
+      dados.sexo || '',
 
-        const reader =
-            new FileReader();
+      dados.porte || '',
 
-        reader.onload = function() {
-            resolve(reader.result);
-        };
+      dados.cor || '',
 
-        reader.onerror = reject;
+      dados.ultimaVez || '',
 
-        reader.readAsDataURL(file);
-    });
-}
+      dados.pontoReferencia || '',
 
+      dados.observacoes || '',
 
-/* =====================================================
-   CADASTRO
-===================================================== */
+      dados.tutorNome || '',
 
-document
-    .getElementById("formPet")
-    .addEventListener("submit", async function(event) {
+      dados.tutorContato || '',
 
-    event.preventDefault();
+      dados.whatsappPublico || '',
 
-    const mensagem =
-        document.getElementById("mensagem");
+      dados.endereco || '',
 
-    mensagem.style.display = "block";
+      dados.bairro || '',
 
-    mensagem.textContent =
-        "Enviando cadastro...";
+      dados.cidade || '',
 
-    const arquivo =
-        document.getElementById("foto").files[0];
+      dataCadastro
 
-    let foto = "";
+    ];
 
-    try {
+    aba.appendRow(linha);
 
-        foto =
-            await converterImagem(arquivo);
+    SpreadsheetApp.flush();
 
-    } catch (erro) {
+    return {
 
-        mensagem.textContent =
-            "Não foi possível carregar a foto.";
+      sucesso: true,
 
-        return;
-    }
+      mensagem: 'PET cadastrado com sucesso!',
 
+      pet: {
 
-    const dados = {
+        idPet: idPet,
 
-        foto: foto,
+        foto: dados.foto || '',
 
-        status:
-            document.getElementById("status").value,
+        status: dados.status || '',
 
-        nome:
-            document.getElementById("nome").value,
+        nome: dados.nome || '',
 
-        idade:
-            document.getElementById("idade").value,
+        idade: dados.idade || '',
 
-        peso:
-            peso,
+        peso: dados.peso || 0,
 
-        castrado:
-            document.getElementById("castrado").value,
+        castrado: dados.castrado || '',
 
-        especie:
-            document.getElementById("especie").value,
+        especie: dados.especie || '',
 
-        especieOutro:
-            document.getElementById("especieOutro").value,
+        especieOutro: dados.especieOutro || '',
 
-        vacinado:
-            document.getElementById("vacinado").value,
+        vacinado: dados.vacinado || '',
 
-        raca:
-            document.getElementById("raca").value,
+        raca: dados.raca || '',
 
-        sexo:
-            document.getElementById("sexo").value,
+        sexo: dados.sexo || '',
 
-        porte:
-            document.getElementById("porte").value,
+        porte: dados.porte || '',
 
-        cor:
-            document.getElementById("cor").value,
+        cor: dados.cor || '',
 
-        tutorNome:
-            document.getElementById("tutorNome").value,
+        ultimaVez: dados.ultimaVez || '',
 
-        tutorContato:
-            document.getElementById("tutorContato").value,
+        pontoReferencia: dados.pontoReferencia || '',
 
-        whatsappPublico:
-            document.getElementById("whatsappPublico").value,
+        observacoes: dados.observacoes || '',
 
-        endereco:
-            document.getElementById("endereco").value,
+        tutorNome: dados.tutorNome || '',
 
-        bairro:
-            document.getElementById("bairro").value,
+        tutorContato: dados.tutorContato || '',
 
-        cidade:
-            document.getElementById("cidade").value,
+        whatsappPublico: dados.whatsappPublico || '',
 
-        pontoReferencia:
-            document.getElementById("pontoReferencia").value,
+        endereco: dados.endereco || '',
 
-        ultimaVez:
-            document.getElementById("ultimaVez").value,
+        bairro: dados.bairro || '',
 
-        observacoes:
-            document.getElementById("observacoes").value
+        cidade: dados.cidade || '',
+
+        dataCadastro: dataCadastro
+
+      }
+
     };
 
+  } catch (erro) {
 
-    try {
+    return {
 
-        const resposta =
-            await fetch(URL_APPS_SCRIPT, {
+      sucesso: false,
 
-                method: "POST",
+      mensagem: erro.message
 
-                body: JSON.stringify({
-                    acao: "cadastrarPet",
-                    dados: dados
-                })
-            });
+    };
 
+  }
 
-        const resultado =
-            await resposta.json();
-
-
-        if (resultado.sucesso) {
-
-            mensagem.textContent =
-                "PET cadastrado com sucesso!";
-
-            document
-                .getElementById("formPet")
-                .reset();
-
-            peso = 0;
-
-            document
-                .getElementById("pesoValor")
-                .textContent = "0";
-
-            document
-                .querySelectorAll("#formPet .opcao")
-                .forEach(b =>
-                    b.classList.remove("selecionada")
-                );
-
-            /* Atualiza imediatamente o MATCH */
-            await carregarPets();
-
-        } else {
-
-            mensagem.textContent =
-                resultado.mensagem ||
-                "Não foi possível realizar o cadastro.";
-        }
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        mensagem.textContent =
-            "Erro ao comunicar com o sistema.";
-    }
-
-});
-
-
-/* =====================================================
-   CARREGAR PETS
-===================================================== */
-
-async function carregarPets() {
-
-    const lista =
-        document.getElementById("listaPets");
-
-    lista.innerHTML =
-        '<div class="carregando">Carregando PETs...</div>';
-
-    try {
-
-        const resposta =
-            await fetch(
-                URL_APPS_SCRIPT +
-                "?acao=listarPets"
-            );
-
-        if (!resposta.ok) {
-            throw new Error("Erro HTTP " + resposta.status);
-        }
-
-        const pets =
-            await resposta.json();
-
-        lista.innerHTML = "";
-
-        if (!Array.isArray(pets) || pets.length === 0) {
-
-            lista.innerHTML =
-                '<div class="carregando">Nenhum PET cadastrado ainda.</div>';
-
-            return;
-        }
-
-
-        pets.forEach(pet => {
-
-            const card =
-                document.createElement("article");
-
-            card.className =
-                "pet-card";
-
-            card.onclick =
-                () => abrirModal(pet);
-
-
-            let imagem =
-                '<div class="pet-sem-foto">Sem foto</div>';
-
-
-            const foto =
-                pet.Foto ||
-                pet.foto ||
-                "";
-
-
-            if (foto) {
-
-                imagem =
-                    `<img
-                        class="pet-foto"
-                        src="${foto}"
-                        alt="Foto do PET">
-                    `;
-            }
-
-
-            const nome =
-                pet.Nome ||
-                pet.nome ||
-                "PET";
-
-
-            const status =
-                pet.Status ||
-                pet.status ||
-                "Sem status";
-
-
-            card.innerHTML = `
-
-                ${imagem}
-
-                <div class="pet-resumo">
-
-                    <h3 class="pet-nome">
-                        ${escaparHTML(nome)}
-                    </h3>
-
-                    <span class="pet-status">
-                        ${escaparHTML(status)}
-                    </span>
-
-                </div>
-            `;
-
-
-            lista.appendChild(card);
-
-        });
-
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'Não foi possível carregar os PETs.' +
-            '</div>';
-    }
 }
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/**
+ * =====================================================
+ * LISTAR PETS
+ * =====================================================
+ */
+function listarPets() {
 
-function abrirModal(pet) {
+  const planilha =
+    SpreadsheetApp.openById(SPREADSHEET_ID);
 
-    const modal =
-        document.getElementById("modal");
+  const aba =
+    planilha.getSheetByName(ABA_PETS);
 
-    const foto =
-        pet.Foto ||
-        pet.foto ||
-        "";
+  if (!aba) {
+    throw new Error(
+      'A aba "Pets" não existe.'
+    );
+  }
 
-    const imagem =
-        document.getElementById("modalFoto");
+  const dados =
+    aba.getDataRange().getValues();
 
+  if (dados.length <= 1) {
+    return [];
+  }
 
-    if (foto) {
+  const cabecalho =
+    dados[0];
 
-        imagem.src = foto;
-        imagem.style.display = "block";
+  return dados
+    .slice(1)
+    .filter(function(linha) {
 
-    } else {
+      return linha.some(function(valor) {
+        return valor !== '';
+      });
 
-        imagem.style.display = "none";
-    }
+    })
+    .map(function(linha) {
 
+      const pet = {};
 
-    document
-        .getElementById("modalNome")
-        .textContent =
-            pet.Nome ||
-            pet.nome ||
-            "PET";
+      cabecalho.forEach(function(coluna, indice) {
 
+        pet[coluna] =
+          linha[indice];
 
-    const dados =
-        document.getElementById("modalDados");
+      });
 
-
-    const status =
-        pet.Status ||
-        pet.status ||
-        "-";
-
-    const especie =
-        pet.Espécie ||
-        pet.especie ||
-        "-";
-
-    const raca =
-        pet.Raça ||
-        pet.raca ||
-        "-";
-
-    const sexo =
-        pet.Sexo ||
-        pet.sexo ||
-        "-";
-
-    const idade =
-        pet.Idade ||
-        pet.idade ||
-        "-";
-
-    const pesoPet =
-        pet.Peso ||
-        pet.peso ||
-        "";
-
-    const porte =
-        pet.Porte ||
-        pet.porte ||
-        "-";
-
-    const cor =
-        pet.Cor ||
-        pet.cor ||
-        "-";
-
-    const ultimaVez =
-        pet["Última vez em que foi visto"] ||
-        pet.ultimaVez ||
-        "-";
-
-    const pontoReferencia =
-        pet["Ponto de referência"] ||
-        pet.pontoReferencia ||
-        "-";
-
-    const observacoes =
-        pet.Observações ||
-        pet.observacoes ||
-        "-";
-
-
-    let html = `
-
-        <div class="dado">
-            <strong>Status:</strong>
-            ${escaparHTML(status)}
-        </div>
-
-        <div class="dado">
-            <strong>Espécie:</strong>
-            ${escaparHTML(especie)}
-        </div>
-
-        <div class="dado">
-            <strong>Raça:</strong>
-            ${escaparHTML(raca)}
-        </div>
-
-        <div class="dado">
-            <strong>Sexo:</strong>
-            ${escaparHTML(sexo)}
-        </div>
-
-        <div class="dado">
-            <strong>Idade:</strong>
-            ${escaparHTML(idade)}
-        </div>
-
-        <div class="dado">
-            <strong>Peso:</strong>
-            ${pesoPet ? escaparHTML(pesoPet) + " kg" : "-"}
-        </div>
-
-        <div class="dado">
-            <strong>Porte:</strong>
-            ${escaparHTML(porte)}
-        </div>
-
-        <div class="dado">
-            <strong>Cor:</strong>
-            ${escaparHTML(cor)}
-        </div>
-
-        <div class="dado">
-            <strong>Última vez visto:</strong>
-            ${escaparHTML(ultimaVez)}
-        </div>
-
-        <div class="dado">
-            <strong>Ponto de referência:</strong>
-            ${escaparHTML(pontoReferencia)}
-        </div>
-
-        <div class="dado">
-            <strong>Observações:</strong>
-            ${escaparHTML(observacoes)}
-        </div>
-    `;
-
-
-    const whatsappPublico =
-        pet.whatsappPublico ||
-        pet.WhatsApp_Publico ||
-        "";
-
-
-    if (whatsappPublico === "Sim") {
-
-        const tutorNome =
-            pet.tutorNome ||
-            pet.Tutor ||
-            "-";
-
-        const tutorContato =
-            pet.tutorContato ||
-            pet.Contato ||
-            "-";
-
-
-        html += `
-
-            <hr style="margin:18px 0">
-
-            <div class="dado">
-                <strong>Tutor:</strong>
-                ${escaparHTML(tutorNome)}
-            </div>
-
-            <div class="dado">
-                <strong>Contato:</strong>
-                ${escaparHTML(tutorContato)}
-            </div>
-
-        `;
-    }
-
-
-    dados.innerHTML = html;
-
-    modal.classList.add("aberto");
-
-    document.body.style.overflow = "hidden";
-}
-
-
-function fecharModal() {
-
-    document
-        .getElementById("modal")
-        .classList.remove("aberto");
-
-    document.body.style.overflow = "";
-}
-
-
-document
-    .getElementById("modal")
-    .addEventListener("click", function(event) {
-
-        if (event.target === this) {
-            fecharModal();
-        }
+      return pet;
 
     });
 
-
-/* ESC fecha o modal */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-        fecharModal();
-    }
-
-});
-
-
-/* =====================================================
-   MAPA
-===================================================== */
-
-async function carregarMapa() {
-
-    const mapa =
-        document.getElementById("mapaConteudo");
-
-    mapa.innerHTML = `
-
-        <div class="mapa-aviso">
-            Carregando localizações dos PETs...
-        </div>
-
-    `;
-
-
-    try {
-
-        const resposta =
-            await fetch(
-                URL_APPS_SCRIPT +
-                "?acao=listarPets"
-            );
-
-
-        if (!resposta.ok) {
-            throw new Error(
-                "Erro HTTP " + resposta.status
-            );
-        }
-
-
-        const pets =
-            await resposta.json();
-
-
-        /*
-         * Por enquanto mostramos as localizações
-         * cadastradas de forma segura.
-         *
-         * O mapa interativo será ligado às coordenadas
-         * posteriormente.
-         */
-
-
-        const petsComLocalizacao =
-            pets.filter(pet => {
-
-                const cidade =
-                    pet.Cidade ||
-                    pet.cidade ||
-                    "";
-
-                const bairro =
-                    pet.Bairro ||
-                    pet.bairro ||
-                    "";
-
-                const referencia =
-                    pet["Ponto de referência"] ||
-                    pet.pontoReferencia ||
-                    "";
-
-                return cidade ||
-                       bairro ||
-                       referencia;
-            });
-
-
-        if (!petsComLocalizacao.length) {
-
-            mapa.innerHTML = `
-
-                <div class="mapa-aviso">
-
-                    Ainda não existem localizações
-                    cadastradas para os PETs.
-
-                </div>
-
-            `;
-
-            return;
-        }
-
-
-        let listaHTML = `
-
-            <div style="
-                padding:20px;
-                text-align:left;
-            ">
-
-                <h3 style="
-                    color:#064e3b;
-                    margin-bottom:15px;
-                ">
-                    PETs cadastrados
-                </h3>
-
-        `;
-
-
-        petsComLocalizacao.forEach(pet => {
-
-            const nome =
-                pet.Nome ||
-                pet.nome ||
-                "PET";
-
-            const cidade =
-                pet.Cidade ||
-                pet.cidade ||
-                "";
-
-            const bairro =
-                pet.Bairro ||
-                pet.bairro ||
-                "";
-
-            const referencia =
-                pet["Ponto de referência"] ||
-                pet.pontoReferencia ||
-                "";
-
-
-            const destino =
-                encodeURIComponent(
-                    [
-                        referencia,
-                        bairro,
-                        cidade
-                    ]
-                    .filter(Boolean)
-                    .join(", ")
-                );
-
-
-            listaHTML += `
-
-                <div style="
-                    border:1px solid #ddd;
-                    border-radius:8px;
-                    padding:15px;
-                    margin-bottom:12px;
-                ">
-
-                    <strong style="
-                        color:#064e3b;
-                    ">
-                        ${escaparHTML(nome)}
-                    </strong>
-
-                    <div style="
-                        margin-top:6px;
-                        color:#666;
-                    ">
-
-                        ${escaparHTML(
-                            [
-                                referencia,
-                                bairro,
-                                cidade
-                            ]
-                            .filter(Boolean)
-                            .join(" — ")
-                        )}
-
-                    </div>
-
-                    ${
-                        destino
-                        ?
-                        `
-                        <a
-                            href="https://www.google.com/maps/search/?api=1&query=${destino}"
-                            target="_blank"
-                            rel="noopener"
-                            style="
-                                display:inline-block;
-                                margin-top:10px;
-                                padding:9px 14px;
-                                background:#064e3b;
-                                color:white;
-                                border-radius:6px;
-                                text-decoration:none;
-                            "
-                        >
-                            Ver localização
-                        </a>
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-            `;
-        });
-
-
-        listaHTML += `</div>`;
-
-
-        mapa.innerHTML =
-            listaHTML;
-
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        mapa.innerHTML = `
-
-            <div class="mapa-aviso">
-
-                Não foi possível carregar
-                as localizações dos PETs.
-
-            </div>
-
-        `;
-    }
 }
 
 
-/* =====================================================
-   SEGURANÇA — ESCAPAR HTML
-===================================================== */
+/**
+ * =====================================================
+ * TESTAR CONEXÃO
+ * =====================================================
+ */
+function testarConexao() {
 
-function escaparHTML(valor) {
+  const planilha =
+    SpreadsheetApp.openById(SPREADSHEET_ID);
 
-    if (valor === null ||
-        valor === undefined) {
+  const aba =
+    planilha.getSheetByName(ABA_PETS);
 
-        return "";
-    }
+  if (!aba) {
+    throw new Error(
+      'A aba Pets não existe.'
+    );
+  }
 
-    return String(valor)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+  Logger.log(
+    'Conexão OK: ' +
+    planilha.getName() +
+    ' → ' +
+    aba.getName()
+  );
+
+  return 'CONEXÃO OK';
+
 }
 
-</script>
 
-</body>
-</html>
+/**
+ * =====================================================
+ * RESPOSTA JSON
+ * =====================================================
+ */
+function respostaJSON(dados) {
+
+  return ContentService
+    .createTextOutput(
+      JSON.stringify(dados)
+    )
+    .setMimeType(
+      ContentService.MimeType.JSON
+    );
+
+}
