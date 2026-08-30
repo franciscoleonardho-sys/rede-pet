@@ -1,1610 +1,201 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+const ID_PLANILHA = "10teKRWvBiP495Hf0-G9B4Kx5EuiLYlrHVq4qRqLU-wM";
+const ABA_PETS = "Pets";
+const ABA_COMENTARIOS = "Comentários";
+const ABA_USUARIOS = "Usuários";
 
-<title>REDE PET</title>
+// ======================================================
+// ABRIR O SITE
+// ======================================================
 
-<style>
-
-/* =========================================================
-   REDE PET
-   MÓDULO 1 — ESTRUTURA E FUNCIONALIDADE
-
-   IDENTIDADE VISUAL PROVISÓRIA
-   A identidade visual definitiva será desenvolvida
-   posteriormente no Módulo 2.
-   ========================================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+function doGet() {
+  return HtmlService
+    .createHtmlOutputFromFile("index")
+    .setTitle("REDE PET");
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    color: #222;
-    line-height: 1.5;
+
+// ======================================================
+// CADASTRAR PET
+// ======================================================
+
+function cadastrarPet(dados) {
+
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_PETS);
+
+  if (!aba) {
+    throw new Error("A aba 'Pets' não foi encontrada.");
+  }
+
+  const idPet = gerarIdPet();
+  const dataCadastro = new Date();
+
+  aba.appendRow([
+    idPet,
+    dados.foto || "",
+    dados.especie || "",
+    dados.raca || "",
+    dados.nome || "",
+    dados.sexo || "",
+    dados.idade || "",
+    dados.peso || "",
+    dados.castrado || "",
+    dados.vacinado || "",
+    dados.porte || "",
+    dados.cor || "",
+    dados.whatsappPublico || "",
+    dados.tutor || "",
+    dados.contato || "",
+    dados.emailTutor || "",
+    dados.endereco || "",
+    dados.bairro || "",
+    dados.cidade || "",
+    dados.referencia || "",
+    dados.ultimaVez || "",
+    dados.observacoes || "",
+    dados.status || "",
+    dataCadastro,
+    dados.emailCriador || ""
+  ]);
+
+  return {
+    sucesso: true,
+    idPet: idPet,
+    mensagem: "PET cadastrado com sucesso!"
+  };
 }
 
-/* =========================
-   CABEÇALHO
-   ========================= */
 
-header {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 20px;
-    text-align: center;
+// ======================================================
+// GERAR ID AUTOMÁTICO
+// ======================================================
+
+function gerarIdPet() {
+
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_PETS);
+
+  const ultimaLinha = aba.getLastRow();
+
+  if (ultimaLinha < 2) {
+    return "PET-0001";
+  }
+
+  return "PET-" + String(ultimaLinha).padStart(4, "0");
 }
 
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
 
-.aviso {
-    margin-top: 5px;
-    font-size: 11px;
-    color: #777;
-}
+// ======================================================
+// CONSULTAR PETS
+// ======================================================
 
-/* =========================
-   PORTA DE ENTRADA
-   ========================= */
+function buscarPets() {
 
-.entrada {
-    max-width: 900px;
-    margin: 70px auto;
-    padding: 30px 20px;
-    text-align: center;
-}
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_PETS);
 
-.entrada h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
+  if (!aba) {
+    throw new Error("A aba 'Pets' não foi encontrada.");
+  }
 
-.entrada p {
-    max-width: 650px;
-    margin: auto;
-    margin-bottom: 30px;
-    color: #555;
-}
+  const dados = aba.getDataRange().getValues();
 
-.botao-principal {
-    border: none;
-    background: #333;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
+  if (dados.length <= 1) {
+    return [];
+  }
 
-.botao-principal:hover {
-    background: #111;
-}
+  const cabecalho = dados[0];
 
-/* =========================
-   SISTEMA
-   ========================= */
+  return dados.slice(1).map(function(linha) {
 
-.sistema {
-    display: none;
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 20px;
-}
+    let pet = {};
 
-/* =========================
-   ABAS
-   ========================= */
-
-.abas {
-    display: flex;
-    gap: 10px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 30px;
-}
-
-.aba {
-    border: none;
-    background: transparent;
-    padding: 14px 25px;
-    cursor: pointer;
-    font-size: 16px;
-    border-bottom: 3px solid transparent;
-}
-
-.aba.ativa {
-    border-bottom-color: #333;
-    font-weight: bold;
-}
-
-.conteudo-aba {
-    display: none;
-}
-
-.conteudo-aba.ativo {
-    display: block;
-}
-
-/* =========================
-   TÍTULOS
-   ========================= */
-
-.titulo {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-.descricao {
-    color: #666;
-    margin-bottom: 30px;
-}
-
-/* =========================
-   FORMULÁRIO
-   ========================= */
-
-form {
-    background: white;
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.titulo-grupo {
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.campo {
-    margin-bottom: 20px;
-}
-
-.campo label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.campo input,
-.campo select,
-.campo textarea {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-.campo textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.linha {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-/* =========================
-   FOTO
-   ========================= */
-
-.area-foto {
-    border: 2px dashed #ccc;
-    padding: 25px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 25px;
-}
-
-.area-foto input {
-    border: none;
-}
-
-/* =========================
-   BOTÕES DE OPÇÃO
-   ========================= */
-
-.opcoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.opcao {
-    position: relative;
-}
-
-.opcao input {
-    position: absolute;
-    opacity: 0;
-}
-
-.opcao label {
-    display: block;
-    padding: 10px 18px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: normal;
-    background: #fff;
-}
-
-.opcao input:checked + label {
-    background: #333;
-    color: white;
-    border-color: #333;
-}
-
-/* =========================
-   PESO
-   ========================= */
-
-.peso-controle {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.peso-controle button {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 5px;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.peso-controle input {
-    max-width: 120px;
-    text-align: center;
-}
-
-/* =========================
-   CAMPOS CONDICIONAIS
-   ========================= */
-
-.oculto {
-    display: none;
-}
-
-/* =========================
-   PRIVACIDADE
-   ========================= */
-
-.privacidade {
-    background: #f1f1f1;
-    padding: 15px;
-    border-radius: 6px;
-    margin: 20px 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.privacidade strong {
-    color: #222;
-}
-
-/* =========================
-   BOTÃO ENVIAR
-   ========================= */
-
-.botao-enviar {
-    border: none;
-    background: #333;
-    color: white;
-    padding: 13px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.botao-enviar:hover {
-    background: #111;
-}
-
-.mensagem {
-    display: none;
-    margin-top: 20px;
-    padding: 15px;
-    background: #eee;
-    border-radius: 5px;
-}
-
-/* =========================
-   MATCH
-   ========================= */
-
-.lista-pets {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 20px;
-}
-
-.pet-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.pet-imagem {
-    height: 210px;
-    background: #e5e5e5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #777;
-}
-
-.pet-conteudo {
-    padding: 18px;
-}
-
-.pet-nome {
-    font-size: 23px;
-    margin-bottom: 8px;
-}
-
-.status {
-    display: inline-block;
-    background: #eee;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-bottom: 12px;
-}
-
-.pet-info {
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-/* =========================
-   COMENTÁRIOS
-   ========================= */
-
-.comentarios {
-    border-top: 1px solid #ddd;
-    margin-top: 15px;
-    padding-top: 15px;
-}
-
-.comentarios textarea {
-    width: 100%;
-    min-height: 70px;
-    margin-top: 8px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* =========================
-   MAPA
-   ========================= */
-
-.mapa {
-    margin-top: 40px;
-    background: #eee;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    min-height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #666;
-}
-
-.mapa strong {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 8px;
-}
-
-/* =========================
-   RODAPÉ
-   ========================= */
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 50px;
-    color: #777;
-    font-size: 13px;
-}
-
-/* =========================
-   CELULAR
-   ========================= */
-
-@media (max-width: 700px) {
-
-    .entrada h1 {
-        font-size: 30px;
-    }
-
-    .linha {
-        grid-template-columns: 1fr;
-    }
-
-    .abas {
-        flex-direction: column;
-    }
-
-    .aba {
-        width: 100%;
-        text-align: left;
-    }
-
-    .sistema {
-        padding: 10px;
-    }
-
-    .opcoes {
-        flex-direction: column;
-    }
-
-    .opcao label {
-        text-align: center;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-
-    <div class="logo">
-        REDE PET
-    </div>
-
-    <div class="aviso">
-        Interface provisória — desenvolvimento do Projeto Integrador
-    </div>
-
-</header>
-
-
-<main>
-
-<!-- =====================================================
-     PORTA DE ENTRADA
-     ===================================================== -->
-
-<section class="entrada" id="entrada">
-
-    <h1>REDE PET</h1>
-
-    <p>
-        Uma plataforma comunitária e tecnológica
-        voltada à proteção e ao reencontro de animais.
-    </p>
-
-    <button
-        class="botao-principal"
-        onclick="entrarNaRede()">
-
-        ENTRAR NA REDE PET
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     SISTEMA
-     ===================================================== -->
-
-<section class="sistema" id="sistema">
-
-<nav class="abas">
-
-    <button
-        class="aba ativa"
-        onclick="mostrarAba('pet', this)">
-
-        PET
-
-    </button>
-
-    <button
-        class="aba"
-        onclick="mostrarAba('match', this)">
-
-        MATCH
-
-    </button>
-
-</nav>
-
-
-<!-- =====================================================
-     ABA PET
-     ===================================================== -->
-
-<section
-    id="pet"
-    class="conteudo-aba ativo">
-
-    <h2 class="titulo">
-        Cadastro do PET
-    </h2>
-
-    <p class="descricao">
-        Cadastre as informações do animal.
-        Os dados pessoais possuem opções de privacidade.
-    </p>
-
-
-<form id="formPet">
-
-
-<!-- =========================
-     DADOS DO PET
-     ========================= -->
-
-<h3 class="titulo-grupo">
-    DADOS DO PET
-</h3>
-
-
-<!-- FOTO -->
-
-<div class="area-foto">
-
-    <label for="foto">
-        <strong>Foto do animal</strong>
-    </label>
-
-    <br><br>
-
-    <input
-        type="file"
-        id="foto"
-        accept="image/*">
-
-</div>
-
-
-<!-- STATUS -->
-
-<div class="campo">
-
-<label>Status do PET</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="perdido"
-            name="status"
-            value="Perdido">
-
-        <label for="perdido">
-            Perdido
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="adocao"
-            name="status"
-            value="Para adoção">
-
-        <label for="adocao">
-            Para adoção
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="encontrado"
-            name="status"
-            value="Encontrado">
-
-        <label for="encontrado">
-            Encontrado
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="adotado"
-            name="status"
-            value="Adotado">
-
-        <label for="adotado">
-            Adotado
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- NOME -->
-
-<div class="campo">
-
-<label for="nome">
-    Nome do PET
-</label>
-
-<input
-    type="text"
-    id="nome"
-    placeholder="Nome do animal">
-
-</div>
-
-
-<!-- IDADE -->
-
-<div class="campo">
-
-<label>Idade</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="filhote"
-            name="idade"
-            value="Filhote">
-
-        <label for="filhote">
-            Filhote<br>
-            <small>Até 1 ano</small>
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="jovem"
-            name="idade"
-            value="Jovem">
-
-        <label for="jovem">
-            Jovem<br>
-            <small>1 a 3 anos</small>
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="adulto"
-            name="idade"
-            value="Adulto">
-
-        <label for="adulto">
-            Adulto<br>
-            <small>3 a 8 anos</small>
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="idoso"
-            name="idade"
-            value="Idoso">
-
-        <label for="idoso">
-            Idoso<br>
-            <small>8 anos ou mais</small>
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- PESO -->
-
-<div class="campo">
-
-<label for="peso">
-    Peso aproximado
-</label>
-
-<div class="peso-controle">
-
-<button
-    type="button"
-    onclick="alterarPeso(-1)">
-    −
-</button>
-
-<input
-    type="number"
-    id="peso"
-    value="1"
-    min="1"
-    step="1">
-
-<span>kg</span>
-
-<button
-    type="button"
-    onclick="alterarPeso(1)">
-    +
-</button>
-
-</div>
-
-</div>
-
-
-<!-- CASTRADO -->
-
-<div class="campo">
-
-<label>Castrado?</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="castradoSim"
-            name="castrado"
-            value="Sim">
-
-        <label for="castradoSim">
-            Sim
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="castradoNao"
-            name="castrado"
-            value="Não">
-
-        <label for="castradoNao">
-            Não
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="castradoNaoSei"
-            name="castrado"
-            value="Não sei">
-
-        <label for="castradoNaoSei">
-            Não sei
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- ESPÉCIE -->
-
-<div class="campo">
-
-<label>Espécie</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="cachorro"
-            name="especie"
-            value="Cachorro"
-            onchange="mostrarOutroPet(false)">
-
-        <label for="cachorro">
-            Cachorro
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="gato"
-            name="especie"
-            value="Gato"
-            onchange="mostrarOutroPet(false)">
-
-        <label for="gato">
-            Gato
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="outro"
-            name="especie"
-            value="Outro"
-            onchange="mostrarOutroPet(true)">
-
-        <label for="outro">
-            Outro
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<div
-    class="campo oculto"
-    id="campoOutroPet">
-
-<label for="outroPet">
-    Especifique o tipo de PET
-</label>
-
-<input
-    type="text"
-    id="outroPet"
-    placeholder="Ex.: coelho, pássaro...">
-
-</div>
-
-
-<!-- VACINADO -->
-
-<div class="campo">
-
-<label>Vacinado?</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="vacinadoSim"
-            name="vacinado"
-            value="Sim">
-
-        <label for="vacinadoSim">
-            Sim
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="vacinadoNao"
-            name="vacinado"
-            value="Não">
-
-        <label for="vacinadoNao">
-            Não
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="vacinadoNaoSei"
-            name="vacinado"
-            value="Não sei">
-
-        <label for="vacinadoNaoSei">
-            Não sei
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- RAÇA -->
-
-<div class="campo">
-
-<label for="raca">
-    Raça
-</label>
-
-<input
-    type="text"
-    id="raca"
-    placeholder="Digite a raça">
-
-</div>
-
-
-<!-- SEXO -->
-
-<div class="campo">
-
-<label>Sexo</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="macho"
-            name="sexo"
-            value="Macho">
-
-        <label for="macho">
-            Macho
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="femea"
-            name="sexo"
-            value="Fêmea">
-
-        <label for="femea">
-            Fêmea
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="sexoNaoIdentificado"
-            name="sexo"
-            value="Não identificado">
-
-        <label for="sexoNaoIdentificado">
-            Não identificado
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- PORTE -->
-
-<div class="campo">
-
-<label>Porte</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="pequeno"
-            name="porte"
-            value="Pequeno">
-
-        <label for="pequeno">
-            Pequeno
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="medio"
-            name="porte"
-            value="Médio">
-
-        <label for="medio">
-            Médio
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="grande"
-            name="porte"
-            value="Grande">
-
-        <label for="grande">
-            Grande
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- COR -->
-
-<div class="campo">
-
-<label for="cor">
-    Cor
-</label>
-
-<input
-    type="text"
-    id="cor"
-    placeholder="Cor ou características da pelagem">
-
-</div>
-
-
-<!-- OBSERVAÇÕES -->
-
-<div class="campo">
-
-<label for="observacoes">
-    Observações
-</label>
-
-<textarea
-    id="observacoes"
-    placeholder="Informações adicionais sobre o animal">
-</textarea>
-
-</div>
-
-
-<!-- =========================
-     DADOS DO TUTOR
-     ========================= -->
-
-<h3 class="titulo-grupo">
-    DADOS DO TUTOR
-</h3>
-
-
-<div class="campo">
-
-<label for="tutor">
-    Nome do tutor
-</label>
-
-<input
-    type="text"
-    id="tutor">
-
-</div>
-
-
-<div class="campo">
-
-<label for="contato">
-    Contato do tutor
-</label>
-
-<input
-    type="text"
-    id="contato">
-
-</div>
-
-
-<!-- WHATSAPP PÚBLICO -->
-
-<div class="campo">
-
-<label>
-    Deseja exibir o WhatsApp publicamente?
-</label>
-
-<div class="opcoes">
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="whatsappSim"
-            name="whatsappPublico"
-            value="Sim">
-
-        <label for="whatsappSim">
-            Sim
-        </label>
-    </div>
-
-    <div class="opcao">
-        <input
-            type="radio"
-            id="whatsappNao"
-            name="whatsappPublico"
-            value="Não">
-
-        <label for="whatsappNao">
-            Não
-        </label>
-    </div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="emailTutor">
-    E-mail do tutor
-</label>
-
-<input
-    type="email"
-    id="emailTutor">
-
-</div>
-
-
-<div class="privacidade">
-
-<strong>Privacidade e proteção de dados</strong>
-
-<br><br>
-
-Algumas informações pessoais poderão ser utilizadas
-internamente para identificação e comunicação sobre o PET.
-A exibição pública desses dados dependerá das opções
-de privacidade escolhidas pelo responsável pelo cadastro.
-
-</div>
-
-
-<!-- =========================
-     LOCALIZAÇÃO
-     ========================= -->
-
-<h3 class="titulo-grupo">
-    LOCALIZAÇÃO
-</h3>
-
-
-<div class="campo">
-
-<label for="bairro">
-    Bairro
-</label>
-
-<input
-    type="text"
-    id="bairro">
-
-</div>
-
-
-<div class="campo">
-
-<label for="cidade">
-    Cidade
-</label>
-
-<input
-    type="text"
-    id="cidade">
-
-</div>
-
-
-<div class="campo">
-
-<label for="referencia">
-    Ponto de referência
-</label>
-
-<input
-    type="text"
-    id="referencia">
-
-</div>
-
-
-<div class="campo">
-
-<label for="ultimaVez">
-    Última vez em que foi visto
-</label>
-
-<input
-    type="datetime-local"
-    id="ultimaVez">
-
-</div>
-
-
-<!-- =========================
-     DADOS AUTOMÁTICOS
-     ========================= -->
-
-<div class="privacidade">
-
-<strong>Dados automáticos</strong>
-
-<br><br>
-
-O ID do PET e a data do cadastro serão gerados
-automaticamente pelo sistema e não precisam ser
-informados pelo usuário.
-
-</div>
-
-
-<button
-    type="submit"
-    class="botao-enviar">
-
-    Cadastrar PET
-
-</button>
-
-
-<div
-    class="mensagem"
-    id="mensagem">
-
-    Cadastro realizado como demonstração.
-    A integração com a planilha será realizada
-    posteriormente.
-
-</div>
-
-
-</form>
-
-</section>
-
-
-<!-- =====================================================
-     MATCH
-     ===================================================== -->
-
-<section
-    id="match"
-    class="conteudo-aba">
-
-<h2 class="titulo">
-    MATCH
-</h2>
-
-<p class="descricao">
-    Consulte os animais cadastrados na REDE PET.
-</p>
-
-
-<div class="lista-pets">
-
-
-<!-- PET 1 -->
-
-<article class="pet-card">
-
-<div class="pet-imagem">
-    FOTO DO PET
-</div>
-
-<div class="pet-conteudo">
-
-<h3 class="pet-nome">
-    Mel
-</h3>
-
-<span class="status">
-    Perdido
-</span>
-
-<p class="pet-info">
-    Cão • Fêmea • Pequeno
-</p>
-
-<p class="pet-info">
-    Caruaru - PE
-</p>
-
-<p class="pet-info">
-    Última vez vista próxima à praça central.
-</p>
-
-<div class="comentarios">
-
-<strong>
-    Comentários
-</strong>
-
-<textarea
-    placeholder="Adicione uma informação sobre este PET...">
-</textarea>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- PET 2 -->
-
-<article class="pet-card">
-
-<div class="pet-imagem">
-    FOTO DO PET
-</div>
-
-<div class="pet-conteudo">
-
-<h3 class="pet-nome">
-    Thor
-</h3>
-
-<span class="status">
-    Para adoção
-</span>
-
-<p class="pet-info">
-    Cão • Macho • Médio
-</p>
-
-<p class="pet-info">
-    Caruaru - PE
-</p>
-
-<p class="pet-info">
-    Animal disponível para adoção responsável.
-</p>
-
-<div class="comentarios">
-
-<strong>
-    Comentários
-</strong>
-
-<textarea
-    placeholder="Adicione uma informação sobre este PET...">
-</textarea>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- PET 3 -->
-
-<article class="pet-card">
-
-<div class="pet-imagem">
-    FOTO DO PET
-</div>
-
-<div class="pet-conteudo">
-
-<h3 class="pet-nome">
-    Luna
-</h3>
-
-<span class="status">
-    Encontrado
-</span>
-
-<p class="pet-info">
-    Gato • Fêmea • Pequeno
-</p>
-
-<p class="pet-info">
-    Caruaru - PE
-</p>
-
-<p class="pet-info">
-    Encontrada recentemente.
-</p>
-
-<div class="comentarios">
-
-<strong>
-    Comentários
-</strong>
-
-<textarea
-    placeholder="Adicione uma informação sobre este PET...">
-</textarea>
-
-</div>
-
-</div>
-
-</article>
-
-</div>
-
-
-<!-- MAPA FUTURO -->
-
-<div class="mapa">
-
-<div>
-
-<strong>
-    MAPA DA REDE PET
-</strong>
-
-Mapa de localização dos animais cadastrados.
-
-<br><br>
-
-<small>
-    Funcionalidade prevista para as próximas etapas
-    do desenvolvimento.
-</small>
-
-</div>
-
-</div>
-
-
-</section>
-
-</section>
-
-</main>
-
-
-<footer>
-
-REDE PET — Protótipo desenvolvido para o Projeto Integrador
-
-</footer>
-
-
-<script>
-
-/* =========================================================
-   ENTRADA
-   ========================================================= */
-
-function entrarNaRede() {
-
-    document.getElementById("entrada").style.display = "none";
-
-    document.getElementById("sistema").style.display = "block";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    cabecalho.forEach(function(coluna, indice) {
+      pet[coluna] = linha[indice];
     });
 
+    return pet;
+
+  });
 }
 
 
-/* =========================================================
-   ABAS
-   ========================================================= */
+// ======================================================
+// CADASTRAR COMENTÁRIO
+// ======================================================
 
-function mostrarAba(nome, botao) {
+function cadastrarComentario(dados) {
 
-    const abas =
-        document.querySelectorAll(".conteudo-aba");
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_COMENTARIOS);
 
-    abas.forEach(function(aba) {
+  if (!aba) {
+    throw new Error("A aba 'Comentários' não foi encontrada.");
+  }
 
-        aba.classList.remove("ativo");
+  aba.appendRow([
+    new Date(),
+    dados.idPet || "",
+    dados.nomePet || "",
+    dados.nomeUsuario || "",
+    dados.emailUsuario || "",
+    dados.comentario || ""
+  ]);
 
-    });
-
-
-    const botoes =
-        document.querySelectorAll(".aba");
-
-    botoes.forEach(function(btn) {
-
-        btn.classList.remove("ativa");
-
-    });
-
-
-    document
-        .getElementById(nome)
-        .classList.add("ativo");
-
-
-    botao.classList.add("ativa");
-
+  return {
+    sucesso: true,
+    mensagem: "Comentário registrado."
+  };
 }
 
 
-/* =========================================================
-   PESO
-   ========================================================= */
+// ======================================================
+// CADASTRAR USUÁRIO
+// ======================================================
 
-function alterarPeso(valor) {
+function cadastrarUsuario(dados) {
 
-    const campo =
-        document.getElementById("peso");
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_USUARIOS);
 
-    let peso =
-        parseInt(campo.value) || 1;
+  if (!aba) {
+    throw new Error("A aba 'Usuários' não foi encontrada.");
+  }
 
-    peso += valor;
+  const idUsuario = gerarIdUsuario();
 
-    if (peso < 1) {
-        peso = 1;
-    }
+  aba.appendRow([
+    idUsuario,
+    dados.nome || "",
+    dados.telefone || "",
+    dados.email || "",
+    dados.cidade || "",
+    dados.tipoUsuario || "",
+    new Date(),
+    dados.status || "Ativo"
+  ]);
 
-    campo.value = peso;
-
+  return {
+    sucesso: true,
+    idUsuario: idUsuario
+  };
 }
 
 
-/* =========================================================
-   OUTRO PET
-   ========================================================= */
+// ======================================================
+// GERAR ID DO USUÁRIO
+// ======================================================
 
-function mostrarOutroPet(mostrar) {
+function gerarIdUsuario() {
 
-    const campo =
-        document.getElementById("campoOutroPet");
+  const planilha = SpreadsheetApp.openById(ID_PLANILHA);
+  const aba = planilha.getSheetByName(ABA_USUARIOS);
 
-    if (mostrar) {
+  const ultimaLinha = aba.getLastRow();
 
-        campo.style.display = "block";
+  if (ultimaLinha < 2) {
+    return "USR-0001";
+  }
 
-    } else {
-
-        campo.style.display = "none";
-
-        document.getElementById("outroPet").value = "";
-
-    }
-
+  return "USR-" + String(ultimaLinha).padStart(4, "0");
 }
-
-
-/* =========================================================
-   FORMULÁRIO — DEMONSTRAÇÃO
-   ========================================================= */
-
-document
-    .getElementById("formPet")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-        document
-            .getElementById("mensagem")
-            .style.display = "block";
-
-        document
-            .getElementById("mensagem")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-    });
-
-</script>
-
-</body>
-</html>
