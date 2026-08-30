@@ -1,1 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>REDE PET</title>
+
+    <style>
+        /* =====================================================
+           REDE PET — INTERFACE PROVISÓRIA
+           MÓDULO 1 — ESTRUTURA E FUNCIONALIDADE
+
+           A identidade visual definitiva será desenvolvida
+           posteriormente no Módulo 2 do Projeto Integrador.
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-provisorio {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .aviso-identidade {
+            margin-top: 6px;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .entrada {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .entrada h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .entrada p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+
+        .botao-principal {
+            border: none;
+            background: #333;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .botao-principal:hover {
+            background: #111;
+        }
+
+        .sistema {
+            display: none;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .abas {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 30px;
+        }
+
+        .aba {
+            border: none;
+            background: transparent;
+            padding: 14px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .aba.ativa {
+            border-bottom-color: #333;
+            font-weight: bold;
+        }
+
+        .conteudo-aba {
+            display: none;
+        }
+
+        .conteudo-aba.ativo {
+            display: block;
+        }
+
+        .titulo-secao {
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .descricao-secao {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .campo input,
+        .campo select,
+        .campo textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .campo textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .linha {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .botao-enviar {
+            border: none;
+            background: #333;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .botao-enviar:hover {
+            background: #111;
+        }
+
+        .mensagem {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #eeeeee;
+            border-radius: 5px;
+        }
+
+        .lista-pets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .pet-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pet-imagem {
+            height: 190px;
+            background: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .pet-conteudo {
+            padding: 18px;
+        }
+
+        .pet-nome {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #eeeeee;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .pet-info {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .comentarios {
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .comentarios textarea {
+            width: 100%;
+            min-height: 70px;
+            margin-top: 8px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .entrada h1 {
+                font-size: 30px;
+            }
+
+            .linha {
+                grid-template-columns: 1fr;
+            }
+
+            .abas {
+                flex-direction: column;
+            }
+
+            .aba {
+                width: 100%;
+                text-align: left;
+            }
+
+            .sistema {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         CABEÇALHO
+         IDENTIDADE VISUAL PROVISÓRIA
+         ===================================================== -->
+
+    <header>
+
+        <div class="logo-provisorio">
+            REDE PET
+        </div>
+
+        <div class="aviso-identidade">
+            Identidade visual provisória — desenvolvimento no Módulo 2
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PORTA DE ENTRADA
+         ===================================================== -->
+
+    <main>
+
+        <section class="entrada" id="entrada">
+
+            <h1>REDE PET</h1>
+
+            <p>
+                Uma plataforma comunitária e tecnológica
+                voltada à proteção e ao reencontro de animais.
+            </p>
+
+            <button class="botao-principal" onclick="entrarNaRede()">
+                ENTRAR NA REDE PET
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             SISTEMA
+             ================================================= -->
+
+        <section class="sistema" id="sistema">
+
+            <!-- ABAS -->
+
+            <nav class="abas">
+
+                <button
+                    class="aba ativa"
+                    onclick="mostrarAba('pet', this)">
+                    PET
+                </button>
+
+                <button
+                    class="aba"
+                    onclick="mostrarAba('match', this)">
+                    MATCH
+                </button>
+
+            </nav>
+
+
+            <!-- =================================================
+                 ABA PET
+                 ================================================= -->
+
+            <section
+                id="pet"
+                class="conteudo-aba ativo">
+
+                <h2 class="titulo-secao">
+                    Cadastro do PET
+                </h2>
+
+                <p class="descricao-secao">
+                    Cadastre as informações do animal.
+                    Preencha os campos conforme desejar.
+                </p>
+
+
+                <form id="formPet">
+
+                    <!-- 1 -->
+
+                    <div class="campo">
+                        <label for="idPet">
+                            ID do Pet
+                        </label>
+
+                        <input
+                            type="text"
+                            id="idPet"
+                            name="idPet">
+                    </div>
+
+
+                    <!-- 2 -->
+
+                    <div class="campo">
+                        <label for="foto">
+                            Foto
+                        </label>
+
+                        <input
+                            type="file"
+                            id="foto"
+                            name="foto"
+                            accept="image/*">
+                    </div>
+
+
+                    <!-- 3 + 4 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="especie">
+                                Espécie
+                            </label>
+
+                            <input
+                                type="text"
+                                id="especie"
+                                name="especie"
+                                placeholder="Ex.: Cão">
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="raca">
+                                Raça
+                            </label>
+
+                            <input
+                                type="text"
+                                id="raca"
+                                name="raca"
+                                placeholder="Ex.: Labrador">
+                        </div>
+
+                    </div>
+
+
+                    <!-- 5 -->
+
+                    <div class="campo">
+
+                        <label for="nome">
+                            Nome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome">
+                    </div>
+
+
+                    <!-- 6 + 7 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="sexo">
+                                Sexo
+                            </label>
+
+                            <select id="sexo" name="sexo">
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option>
+                                    Macho
+                                </option>
+
+                                <option>
+                                    Fêmea
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="idade">
+                                Idade
+                            </label>
+
+                            <input
+                                type="text"
+                                id="idade"
+                                name="idade"
+                                placeholder="Ex.: 3 anos">
+                        </div>
+
+                    </div>
+
+
+                    <!-- 8 + 11 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="peso">
+                                Peso
+                            </label>
+
+                            <input
+                                type="text"
+                                id="peso"
+                                name="peso"
+                                placeholder="Ex.: 12 kg">
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="porte">
+                                Porte
+                            </label>
+
+                            <select
+                                id="porte"
+                                name="porte">
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option>
+                                    Pequeno
+                                </option>
+
+                                <option>
+                                    Médio
+                                </option>
+
+                                <option>
+                                    Grande
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 9 + 10 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="castrado">
+                                É castrado?
+                            </label>
+
+                            <select
+                                id="castrado"
+                                name="castrado">
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option>
+                                    Sim
+                                </option>
+
+                                <option>
+                                    Não
+                                </option>
+
+                                <option>
+                                    Não informado
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="vacinado">
+                                É vacinado?
+                            </label>
+
+                            <select
+                                id="vacinado"
+                                name="vacinado">
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option>
+                                    Sim
+                                </option>
+
+                                <option>
+                                    Não
+                                </option>
+
+                                <option>
+                                    Não informado
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 12 -->
+
+                    <div class="campo">
+
+                        <label for="cor">
+                            Cor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cor"
+                            name="cor">
+                    </div>
+
+
+                    <!-- 13 -->
+
+                    <div class="campo">
+
+                        <label for="whatsapp">
+                            Deseja exibir o WhatsApp publicamente?
+                        </label>
+
+                        <select
+                            id="whatsapp"
+                            name="whatsapp">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option>
+                                Sim
+                            </option>
+
+                            <option>
+                                Não
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- 14 + 15 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="tutor">
+                                Nome do tutor
+                            </label>
+
+                            <input
+                                type="text"
+                                id="tutor"
+                                name="tutor">
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="contato">
+                                Contato do tutor
+                            </label>
+
+                            <input
+                                type="text"
+                                id="contato"
+                                name="contato">
+                        </div>
+
+                    </div>
+
+
+                    <!-- 16 -->
+
+                    <div class="campo">
+
+                        <label for="endereco">
+                            Endereço
+                        </label>
+
+                        <input
+                            type="text"
+                            id="endereco"
+                            name="endereco">
+                    </div>
+
+
+                    <!-- 17 + 18 -->
+
+                    <div class="linha">
+
+                        <div class="campo">
+
+                            <label for="bairro">
+                                Bairro
+                            </label>
+
+                            <input
+                                type="text"
+                                id="bairro"
+                                name="bairro">
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="cidade">
+                                Cidade
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cidade"
+                                name="cidade">
+                        </div>
+
+                    </div>
+
+
+                    <!-- 19 -->
+
+                    <div class="campo">
+
+                        <label for="referencia">
+                            Ponto de referência
+                        </label>
+
+                        <input
+                            type="text"
+                            id="referencia"
+                            name="referencia">
+                    </div>
+
+
+                    <!-- 20 -->
+
+                    <div class="campo">
+
+                        <label for="ultimaVez">
+                            Última vez em que foi visto
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="ultimaVez"
+                            name="ultimaVez">
+                    </div>
+
+
+                    <!-- 21 -->
+
+                    <div class="campo">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+                        <textarea
+                            id="observacoes"
+                            name="observacoes"
+                            placeholder="Informações adicionais sobre o animal">
+                        </textarea>
+
+                    </div>
+
+
+                    <!-- 22 -->
+
+                    <div class="campo">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+                        <select
+                            id="status"
+                            name="status">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option>
+                                Para adoção
+                            </option>
+
+                            <option>
+                                Perdido
+                            </option>
+
+                            <option>
+                                Encontrado / Procurando tutor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- 23 -->
+
+                    <div class="campo">
+
+                        <label for="dataCadastro">
+                            Data do cadastro
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataCadastro"
+                            name="dataCadastro">
+                    </div>
+
+
+                    <!-- 24 -->
+
+                    <div class="campo">
+
+                        <label for="email">
+                            E-mail do criador
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email">
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="botao-enviar">
+
+                        Cadastrar PET
+
+                    </button>
+
+
+                    <div
+                        class="mensagem"
+                        id="mensagem">
+
+                        Cadastro realizado apenas como
+                        demonstração neste protótipo.
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- =================================================
+                 ABA MATCH
+                 ================================================= -->
+
+            <section
+                id="match"
+                class="conteudo-aba">
+
+                <h2 class="titulo-secao">
+                    MATCH
+                </h2>
+
+                <p class="descricao-secao">
+                    Encontre informações sobre os animais
+                    cadastrados na REDE PET.
+                </p>
+
+
+                <div class="lista-pets">
+
+
+                    <!-- PET 1 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-imagem">
+                            FOTO DO PET
+                        </div>
+
+                        <div class="pet-conteudo">
+
+                            <h3 class="pet-nome">
+                                Mel
+                            </h3>
+
+                            <span class="status">
+                                Perdido
+                            </span>
+
+                            <p class="pet-info">
+                                Cão • Fêmea • Pequeno
+                            </p>
+
+                            <p class="pet-info">
+                                Caruaru - PE
+                            </p>
+
+                            <p class="pet-info">
+                                Última vez vista próxima
+                                à praça central.
+                            </p>
+
+
+                            <div class="comentarios">
+
+                                <strong>
+                                    Comentários
+                                </strong>
+
+                                <textarea
+                                    placeholder="Adicione uma informação sobre este PET...">
+                                </textarea>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PET 2 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-imagem">
+                            FOTO DO PET
+                        </div>
+
+                        <div class="pet-conteudo">
+
+                            <h3 class="pet-nome">
+                                Thor
+                            </h3>
+
+                            <span class="status">
+                                Para adoção
+                            </span>
+
+                            <p class="pet-info">
+                                Cão • Macho • Médio
+                            </p>
+
+                            <p class="pet-info">
+                                Caruaru - PE
+                            </p>
+
+                            <p class="pet-info">
+                                Animal disponível para
+                                adoção responsável.
+                            </p>
+
+
+                            <div class="comentarios">
+
+                                <strong>
+                                    Comentários
+                                </strong>
+
+                                <textarea
+                                    placeholder="Adicione uma informação sobre este PET...">
+                                </textarea>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PET 3 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-imagem">
+                            FOTO DO PET
+                        </div>
+
+                        <div class="pet-conteudo">
+
+                            <h3 class="pet-nome">
+                                Luna
+                            </h3>
+
+                            <span class="status">
+                                Encontrado / Procurando tutor
+                            </span>
+
+                            <p class="pet-info">
+                                Gato • Fêmea • Pequeno
+                            </p>
+
+                            <p class="pet-info">
+                                Caruaru - PE
+                            </p>
+
+                            <p class="pet-info">
+                                Encontrada recentemente.
+                            </p>
+
+
+                            <div class="comentarios">
+
+                                <strong>
+                                    Comentários
+                                </strong>
+
+                                <textarea
+                                    placeholder="Adicione uma informação sobre este PET...">
+                                </textarea>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        REDE PET — Protótipo desenvolvido para o Projeto Integrador
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         FUNCIONALIDADES PROVISÓRIAS
+         ===================================================== -->
+
+    <script>
+
+        function entrarNaRede() {
+
+            document.getElementById("entrada").style.display = "none";
+
+            document.getElementById("sistema").style.display = "block";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function mostrarAba(nome, botao) {
+
+            const abas =
+                document.querySelectorAll(".conteudo-aba");
+
+            abas.forEach(function(aba) {
+
+                aba.classList.remove("ativo");
+
+            });
+
+
+            const botoes =
+                document.querySelectorAll(".aba");
+
+            botoes.forEach(function(btn) {
+
+                btn.classList.remove("ativa");
+
+            });
+
+
+            document
+                .getElementById(nome)
+                .classList.add("ativo");
+
+
+            botao.classList.add("ativa");
+
+        }
+
+
+        document
+            .getElementById("formPet")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                document
+                    .getElementById("mensagem")
+                    .style.display = "block";
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            });
+
+    </script>
+
+</body>
+</html>
