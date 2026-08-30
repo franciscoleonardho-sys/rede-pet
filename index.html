@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>REDE PET</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -26,7 +30,7 @@ body{
 header{
     background:#064e3b;
     color:white;
-    padding:16px 20px;
+    padding:20px;
     text-align:center;
 }
 
@@ -34,43 +38,7 @@ header{
     font-size:30px;
     font-weight:bold;
     letter-spacing:2px;
-    margin-bottom:15px;
 }
-
-/* =========================
-   NAVEGAÇÃO SUPERIOR
-========================= */
-
-.navegacao{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.navegacao button{
-    border:none;
-    background:transparent;
-    color:white;
-    padding:10px 15px;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.navegacao button:hover{
-    background:rgba(255,255,255,.15);
-}
-
-.navegacao button.ativa{
-    background:white;
-    color:#064e3b;
-}
-
-/* =========================
-   GERAL
-========================= */
 
 .container{
     max-width:1100px;
@@ -134,7 +102,6 @@ button{
     border-radius:7px;
     cursor:pointer;
     font-size:15px;
-    font-weight:bold;
 }
 
 .botao:hover{
@@ -211,7 +178,6 @@ textarea{
     padding:11px 18px;
     border-radius:7px;
     cursor:pointer;
-    font-weight:normal;
 }
 
 .opcao.selecionada{
@@ -249,7 +215,7 @@ textarea{
 }
 
 /* =========================
-   MATCH
+   FILTRO
 ========================= */
 
 .filtro-match{
@@ -270,6 +236,10 @@ textarea{
 #filtroStatus{
     max-width:350px;
 }
+
+/* =========================
+   CARDS DOS PETS
+========================= */
 
 .lista-pets{
     display:grid;
@@ -372,7 +342,7 @@ textarea{
 }
 
 .dado{
-    padding:11px 0;
+    padding:9px 0;
     border-bottom:1px solid #eee;
 }
 
@@ -498,7 +468,6 @@ textarea{
     padding:12px 20px;
     border-radius:7px;
     cursor:pointer;
-    font-weight:bold;
 }
 
 .lista-comentarios{
@@ -603,7 +572,6 @@ textarea{
     cursor:pointer;
     font-size:13px;
     margin-top:5px;
-    font-weight:bold;
 }
 
 .botao-como-chegar{
@@ -647,15 +615,18 @@ textarea{
 }
 
 /* =========================
-   NAVEGAÇÃO INFERIOR
+   NAVEGAÇÃO NO RODAPÉ
 ========================= */
 
 .rodape-navegacao{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:10px;
     flex-wrap:wrap;
     margin-top:35px;
+    padding:20px 0 10px;
+    border-top:1px solid #ddd;
 }
 
 /* =========================
@@ -742,47 +713,19 @@ footer{
         max-height:330px;
     }
 
-    .navegacao button{
-        padding:8px 9px;
-        font-size:11px;
-    }
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">REDE PET</div>
-
-<!-- =========================
-     ABAS
-========================= -->
-
-<nav class="navegacao">
-
-<button id="navInicio"
-onclick="abrirPagina('inicio')">
-INÍCIO
-</button>
-
-<button id="navPet"
-onclick="abrirPagina('pet')">
-CADASTRO DE PET
-</button>
-
-<button id="navMatch"
-onclick="abrirPagina('match')">
-MATCH
-</button>
-
-<button id="navMapa"
-onclick="abrirPagina('mapa')">
-MAPA
-</button>
-
-</nav>
+<div class="logo">
+REDE PET
+</div>
 
 </header>
 
@@ -796,14 +739,14 @@ MAPA
 
 <div class="inicio">
 
-<h1>O QUE É A REDE PET?</h1>
+<h1>O que é a REDE PET?</h1>
 
 <p>
 Uma plataforma comunitária e tecnológica
 voltada à proteção e ao reencontro de animais.
 </p>
 
-<h2>POR ONDE VOCÊ QUER COMEÇAR?</h2>
+<h2>Por onde você quer começar?</h2>
 
 <div class="botoes-inicio">
 
@@ -823,7 +766,30 @@ VISUALIZAR PETS
 
 </div>
 
+<!-- NAVEGAÇÃO -->
+
+<div class="rodape-navegacao">
+
+<button class="botao" onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
+<button class="botao" onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button class="botao" onclick="abrirPagina('match')">
+MATCH
+</button>
+
+<button class="botao" onclick="abrirPagina('mapa')">
+MAPA
+</button>
+
+</div>
+
 </section>
+
 
 <!-- =========================
      CADASTRO
@@ -838,13 +804,19 @@ VISUALIZAR PETS
 <h2>DADOS DO PET</h2>
 
 <div class="campo">
-<label>FOTO DO ANIMAL</label>
-<input type="file" id="foto" accept="image/*">
+
+<label>Foto do animal</label>
+
+<input
+type="file"
+id="foto"
+accept="image/*">
+
 </div>
 
 <div class="campo">
 
-<label>STATUS DO ANIMAL</label>
+<label>Status do animal</label>
 
 <div class="opcoes">
 
@@ -875,13 +847,16 @@ ADOTADO
 </div>
 
 <div class="campo">
-<label>NOME DO PET</label>
+
+<label>Nome do PET</label>
+
 <input id="nome" required>
+
 </div>
 
 <div class="campo">
 
-<label>IDADE</label>
+<label>Idade</label>
 
 <div class="opcoes">
 
@@ -913,14 +888,14 @@ IDOSO (8+ ANOS)
 
 <div class="campo">
 
-<label>PESO APROXIMADO</label>
+<label>Peso aproximado</label>
 
 <div class="peso-controle">
 
 <button type="button" onclick="alterarPeso(-1)">−</button>
 
 <div class="peso-valor">
-<span id="pesoValor">0</span> KG
+<span id="pesoValor">0</span> kg
 </div>
 
 <button type="button" onclick="alterarPeso(1)">+</button>
@@ -931,7 +906,7 @@ IDOSO (8+ ANOS)
 
 <div class="campo">
 
-<label>ESPÉCIE</label>
+<label>Espécie</label>
 
 <div class="opcoes">
 
@@ -956,19 +931,22 @@ OUTRO
 
 <input
 id="especieOutro"
-placeholder="SE ESCOLHEU OUTRO, ESPECIFIQUE"
+placeholder="Se escolheu outro, especifique"
 style="display:none;margin-top:10px">
 
 </div>
 
 <div class="campo">
-<label>RAÇA</label>
+
+<label>Raça</label>
+
 <input id="raca">
+
 </div>
 
 <div class="campo">
 
-<label>SEXO</label>
+<label>Sexo</label>
 
 <div class="opcoes">
 
@@ -995,7 +973,7 @@ NÃO IDENTIFICADO
 
 <div class="campo">
 
-<label>PORTE</label>
+<label>Porte</label>
 
 <div class="opcoes">
 
@@ -1021,15 +999,18 @@ GRANDE
 </div>
 
 <div class="campo">
-<label>COR</label>
+
+<label>Cor</label>
+
 <input id="cor">
+
 </div>
 
 <div class="linha">
 
 <div class="campo">
 
-<label>É CASTRADO?</label>
+<label>É castrado?</label>
 
 <div class="opcoes">
 
@@ -1056,7 +1037,7 @@ NÃO SEI
 
 <div class="campo">
 
-<label>É VACINADO?</label>
+<label>É vacinado?</label>
 
 <div class="opcoes">
 
@@ -1084,39 +1065,57 @@ NÃO SEI
 </div>
 
 <div class="campo">
-<label>ÚLTIMA VEZ EM QUE FOI VISTO</label>
+
+<label>Última vez em que foi visto</label>
+
 <input type="datetime-local" id="ultimaVez">
+
 </div>
 
 <div class="campo">
-<label>PONTO DE REFERÊNCIA</label>
-<input id="pontoReferencia" placeholder="EX.: PRÓXIMO À PRAÇA">
+
+<label>Ponto de referência</label>
+
+<input
+id="pontoReferencia"
+placeholder="Ex.: próximo à praça">
+
 </div>
 
 <div class="campo">
-<label>OBSERVAÇÕES</label>
+
+<label>Observações</label>
+
 <textarea id="observacoes"></textarea>
+
 </div>
 
 </div>
+
 
 <div class="bloco">
 
 <h2>DADOS DO TUTOR</h2>
 
 <div class="campo">
-<label>NOME DO TUTOR</label>
+
+<label>Nome do tutor</label>
+
 <input id="tutorNome">
+
 </div>
 
 <div class="campo">
-<label>CONTATO DO TUTOR</label>
+
+<label>Contato do tutor</label>
+
 <input id="tutorContato">
+
 </div>
 
 <div class="campo">
 
-<label>DESEJA EXIBIR OS DADOS DO TUTOR PUBLICAMENTE?</label>
+<label>Deseja exibir os dados do tutor publicamente?</label>
 
 <div class="opcoes">
 
@@ -1137,25 +1136,35 @@ NÃO
 </div>
 
 <div class="campo">
-<label>ENDEREÇO DO TUTOR</label>
+
+<label>Endereço do tutor</label>
+
 <input id="endereco">
+
 </div>
 
 <div class="linha">
 
 <div class="campo">
-<label>BAIRRO</label>
+
+<label>Bairro</label>
+
 <input id="bairro">
+
 </div>
 
 <div class="campo">
-<label>CIDADE</label>
+
+<label>Cidade</label>
+
 <input id="cidade">
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 
 <div class="bloco">
 
@@ -1169,21 +1178,25 @@ CADASTRAR PET
 
 </form>
 
+
 <div class="rodape-navegacao">
 
-<button class="botao"
-onclick="abrirPagina('match')">
+<button class="botao" onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
+<button class="botao" onclick="abrirPagina('match')">
 MATCH
 </button>
 
-<button class="botao botao-secundario"
-onclick="abrirPagina('inicio')">
-INÍCIO
+<button class="botao" onclick="abrirPagina('mapa')">
+MAPA
 </button>
 
 </div>
 
 </section>
+
 
 <!-- =========================
      MATCH
@@ -1194,7 +1207,7 @@ INÍCIO
 <h2>MATCH</h2>
 
 <p style="margin:10px 0 25px;color:#666">
-ENCONTRE ANIMAIS PERDIDOS, ENCONTRADOS OU DISPONÍVEIS PARA ADOÇÃO.
+Encontre animais perdidos ou disponíveis para adoção.
 </p>
 
 <div class="filtro-match">
@@ -1206,10 +1219,14 @@ O QUE VOCÊ DESEJA VISUALIZAR?
 <select id="filtroStatus" onchange="aplicarFiltro()">
 
 <option value="Todos">TODOS OS PETS</option>
-<option value="Perdido">PERDIDOS</option>
-<option value="Encontrado">ENCONTRADOS</option>
-<option value="Para adoção">PARA ADOÇÃO</option>
-<option value="Adotado">ADOTADOS</option>
+
+<option value="Perdido">
+PERDIDOS
+</option>
+
+<option value="Para adoção">
+PARA ADOÇÃO
+</option>
 
 </select>
 
@@ -1225,19 +1242,22 @@ CARREGANDO PETS...
 
 <div class="rodape-navegacao">
 
-<button class="botao"
-onclick="abrirPagina('pet')">
-CADASTRAR PET
+<button class="botao" onclick="abrirPagina('inicio')">
+INÍCIO
 </button>
 
-<button class="botao botao-secundario"
-onclick="abrirPagina('inicio')">
-INÍCIO
+<button class="botao" onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button class="botao" onclick="abrirPagina('mapa')">
+MAPA
 </button>
 
 </div>
 
 </section>
+
 
 <!-- =========================
      MAPA
@@ -1250,7 +1270,7 @@ INÍCIO
 <div id="mapaInfo" class="mapa-info">
 
 <p style="color:#666;">
-SELECIONE "COMO CHEGAR" EM UM COMENTÁRIO PARA VISUALIZAR O LOCAL INFORMADO.
+Selecione <strong>COMO CHEGAR</strong> em um comentário para visualizar o local informado.
 </p>
 
 </div>
@@ -1266,18 +1286,23 @@ loading="lazy">
 
 </div>
 
-<div id="botaoMapaArea" style="text-align:center;"></div>
+<div
+id="botaoMapaArea"
+style="text-align:center;">
+</div>
 
 <div class="rodape-navegacao">
 
-<button class="botao"
-onclick="abrirPagina('match')">
-MATCH
+<button class="botao" onclick="abrirPagina('inicio')">
+INÍCIO
 </button>
 
-<button class="botao botao-secundario"
-onclick="abrirPagina('inicio')">
-INÍCIO
+<button class="botao" onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button class="botao" onclick="abrirPagina('match')">
+MATCH
 </button>
 
 </div>
@@ -1285,6 +1310,7 @@ INÍCIO
 </section>
 
 </main>
+
 
 <!-- =========================
      MODAL
@@ -1299,13 +1325,14 @@ id="modalFotoMini"
 class="modal-foto-mini"
 style="display:none"
 onclick="abrirFotoAmpliada()"
-alt="FOTO DO PET">
+alt="Foto do PET">
 
 <div class="modal-dados">
 
 <h2 id="modalNome"></h2>
 
 <div id="modalDados"></div>
+
 
 <!-- STATUS -->
 
@@ -1319,9 +1346,18 @@ style="display:none;">
 <select id="novoStatus">
 
 <option value="Perdido">PERDIDO</option>
-<option value="Encontrado">ENCONTRADO</option>
-<option value="Para adoção">PARA ADOÇÃO</option>
-<option value="Adotado">ADOTADO</option>
+
+<option value="Para adoção">
+PARA ADOÇÃO
+</option>
+
+<option value="Encontrado">
+ENCONTRADO
+</option>
+
+<option value="Adotado">
+ADOTADO
+</option>
 
 </select>
 
@@ -1336,6 +1372,7 @@ ATUALIZAR STATUS
 
 </div>
 
+
 <!-- EDIÇÃO -->
 
 <div
@@ -1346,12 +1383,12 @@ style="display:none;">
 <h3>EDITAR CADASTRO DO PET</h3>
 
 <div class="campo">
-<label>NOME</label>
+<label>Nome</label>
 <input id="editNome">
 </div>
 
 <div class="campo">
-<label>STATUS</label>
+<label>Status</label>
 
 <select id="editStatus">
 <option value="Perdido">PERDIDO</option>
@@ -1363,7 +1400,7 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>IDADE</label>
+<label>Idade</label>
 
 <select id="editIdade">
 <option value="">SELECIONE</option>
@@ -1376,12 +1413,12 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>PESO (KG)</label>
+<label>Peso (kg)</label>
 <input type="number" id="editPeso" min="0" step="0.1">
 </div>
 
 <div class="campo">
-<label>ESPÉCIE</label>
+<label>Espécie</label>
 
 <select id="editEspecie">
 <option value="">SELECIONE</option>
@@ -1393,12 +1430,12 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>RAÇA</label>
+<label>Raça</label>
 <input id="editRaca">
 </div>
 
 <div class="campo">
-<label>SEXO</label>
+<label>Sexo</label>
 
 <select id="editSexo">
 <option value="">SELECIONE</option>
@@ -1410,7 +1447,7 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>PORTE</label>
+<label>Porte</label>
 
 <select id="editPorte">
 <option value="">SELECIONE</option>
@@ -1422,12 +1459,12 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>COR</label>
+<label>Cor</label>
 <input id="editCor">
 </div>
 
 <div class="campo">
-<label>CASTRADO</label>
+<label>Castrado</label>
 
 <select id="editCastrado">
 <option value="">SELECIONE</option>
@@ -1439,7 +1476,7 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>VACINADO</label>
+<label>Vacinado</label>
 
 <select id="editVacinado">
 <option value="">SELECIONE</option>
@@ -1451,17 +1488,17 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>NOME DO TUTOR</label>
+<label>Nome do tutor</label>
 <input id="editTutorNome">
 </div>
 
 <div class="campo">
-<label>CONTATO DO TUTOR</label>
+<label>Contato do tutor</label>
 <input id="editTutorContato">
 </div>
 
 <div class="campo">
-<label>WHATSAPP PÚBLICO</label>
+<label>WhatsApp público</label>
 
 <select id="editWhatsappPublico">
 <option value="">SELECIONE</option>
@@ -1472,32 +1509,32 @@ style="display:none;">
 </div>
 
 <div class="campo">
-<label>ENDEREÇO</label>
+<label>Endereço</label>
 <input id="editEndereco">
 </div>
 
 <div class="campo">
-<label>BAIRRO</label>
+<label>Bairro</label>
 <input id="editBairro">
 </div>
 
 <div class="campo">
-<label>CIDADE</label>
+<label>Cidade</label>
 <input id="editCidade">
 </div>
 
 <div class="campo">
-<label>PONTO DE REFERÊNCIA</label>
+<label>Ponto de referência</label>
 <input id="editPontoReferencia">
 </div>
 
 <div class="campo">
-<label>ÚLTIMA VEZ VISTO</label>
+<label>Última vez visto</label>
 <input type="datetime-local" id="editUltimaVez">
 </div>
 
 <div class="campo">
-<label>OBSERVAÇÕES</label>
+<label>Observações</label>
 <textarea id="editObservacoes"></textarea>
 </div>
 
@@ -1519,13 +1556,16 @@ CANCELAR
 
 </div>
 
+
 <button
 type="button"
 class="botao"
 style="margin-top:20px;"
-onclick="abrirEdicao()">
+onclick="abrirEdicao()"
+id="botaoEditarCadastro">
 ✏️ EDITAR CADASTRO
 </button>
+
 
 <!-- COMENTÁRIOS -->
 
@@ -1537,24 +1577,24 @@ COMENTÁRIOS SOBRE O PET
 
 <div class="form-comentario">
 
-<label>COMENTÁRIO SOBRE O PET</label>
+<label>Comentário sobre o PET</label>
 
 <textarea
 id="comentarioTexto"
-placeholder="EX.: VI ELE PERTO DA PADARIA.">
+placeholder="Ex.: Vi ele perto da padaria.">
 </textarea>
 
-<label>SEU NOME</label>
+<label>Seu nome</label>
 
 <input
 id="comentarioNome"
-placeholder="DIGITE SEU NOME">
+placeholder="Digite seu nome">
 
-<label>ONDE VOCÊ VIU O PET?</label>
+<label>Onde você viu o PET?</label>
 
 <input
 id="comentarioLocal"
-placeholder="EX.: PERTO DA PADARIA CENTRAL">
+placeholder="Ex.: perto da Padaria Central">
 
 <button
 type="button"
@@ -1567,7 +1607,9 @@ COMENTAR
 
 </div>
 
-<div id="listaComentarios" class="lista-comentarios">
+<div
+id="listaComentarios"
+class="lista-comentarios">
 
 <div class="carregando-comentarios">
 CARREGANDO COMENTÁRIOS...
@@ -1583,6 +1625,7 @@ CARREGANDO COMENTÁRIOS...
 
 </div>
 
+
 <!-- VOLTAR -->
 
 <button
@@ -1591,6 +1634,7 @@ class="botao-voltar-flutuante"
 onclick="fecharModal()">
 ← VOLTAR
 </button>
+
 
 <!-- FOTO AMPLIADA -->
 
@@ -1601,9 +1645,10 @@ onclick="fecharFotoAmpliada()">
 
 <img
 id="fotoAmpliadaImagem"
-alt="FOTO AMPLIADA DO PET">
+alt="Foto ampliada do PET">
 
 </div>
+
 
 <footer>
 REDE PET — PROTÓTIPO
@@ -1615,6 +1660,7 @@ id="frameCadastro"
 style="display:none">
 </iframe>
 
+
 <script>
 
 const URL_APPS_SCRIPT =
@@ -1624,6 +1670,7 @@ let peso = 0;
 let petAtual = null;
 let petsCarregados = [];
 let localMapaAtual = "";
+
 
 /* =========================
    NAVEGAÇÃO
@@ -1642,24 +1689,6 @@ function abrirPagina(nome){
 
     pagina.classList.add("ativa");
 
-    document
-        .querySelectorAll(".navegacao button")
-        .forEach(b => b.classList.remove("ativa"));
-
-    const botoes={
-        inicio:"navInicio",
-        pet:"navPet",
-        match:"navMatch",
-        mapa:"navMapa"
-    };
-
-    const botaoAtivo =
-        document.getElementById(botoes[nome]);
-
-    if(botaoAtivo){
-        botaoAtivo.classList.add("ativa");
-    }
-
     window.scrollTo({
         top:0,
         behavior:"smooth"
@@ -1670,14 +1699,14 @@ function abrirPagina(nome){
     }
 }
 
+
 /* =========================
    OPÇÕES
 ========================= */
 
 function selecionar(botao,campo,valor){
 
-    const grupo =
-        botao.parentElement;
+    const grupo = botao.parentElement;
 
     grupo
         .querySelectorAll(".opcao")
@@ -1703,6 +1732,7 @@ function selecionar(botao,campo,valor){
     }
 }
 
+
 /* =========================
    PESO
 ========================= */
@@ -1712,12 +1742,14 @@ function alterarPeso(valor){
     peso += valor;
 
     if(peso < 0)peso = 0;
+
     if(peso > 100)peso = 100;
 
     document
         .getElementById("pesoValor")
         .textContent = peso;
 }
+
 
 /* =========================
    TOKEN
@@ -1732,6 +1764,7 @@ function gerarTokenProprietario(){
         "-" +
         Math.random().toString(36).substring(2,12);
 }
+
 
 /* =========================
    IMAGEM
@@ -1756,6 +1789,7 @@ function converterImagem(file){
         reader.readAsDataURL(file);
     });
 }
+
 
 /* =========================
    CADASTRO
@@ -1784,7 +1818,7 @@ document
         const token =
             gerarTokenProprietario();
 
-        const dados={
+        const dados = {
 
             foto:foto,
 
@@ -1853,7 +1887,10 @@ document
             tokenProprietario:token
         };
 
-        enviarPost("cadastrarPet",dados);
+        enviarPost(
+            "cadastrarPet",
+            dados
+        );
 
         localStorage.setItem(
             "redePetUltimoToken",
@@ -1885,6 +1922,7 @@ document
     }
 
 });
+
 
 /* =========================
    POST
@@ -1922,6 +1960,7 @@ function enviarPost(acao,dados){
     );
 }
 
+
 function adicionarCampo(formulario,nome,valor){
 
     const campo =
@@ -1933,6 +1972,7 @@ function adicionarCampo(formulario,nome,valor){
 
     formulario.appendChild(campo);
 }
+
 
 /* =========================
    CARREGAR PETS
@@ -2000,103 +2040,31 @@ function carregarPets(){
     document.body.appendChild(script);
 }
 
+
 /* =========================
    PEGAR CAMPO
 ========================= */
 
-/*
-   Esta função procura o campo pelo NOME.
-   Ela NÃO depende da posição da coluna.
-*/
-
 function campoPet(pet,...nomes){
-
-    if(!pet)return "";
 
     for(const nome of nomes){
 
         if(
-            Object.prototype.hasOwnProperty.call(
-                pet,
-                nome
-            )
+            pet &&
+            pet[nome] !== undefined &&
+            pet[nome] !== null &&
+            String(pet[nome]).trim() !== ""
         ){
-
-            const valor=pet[nome];
-
-            if(
-                valor !== undefined &&
-                valor !== null &&
-                String(valor).trim() !== ""
-            ){
-                return valor;
-            }
+            return pet[nome];
         }
     }
 
     return "";
 }
 
-/* =========================
-   CAMPO POR CHAVE NORMALIZADA
-========================= */
-
-function normalizarChave(texto){
-
-    return String(texto || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .replace(/[^a-zA-Z0-9]/g,"")
-        .toLowerCase();
-}
-
-/*
-   Fallback seguro para diferenças como:
-
-   Raça
-   Raca
-   raça
-   RACA
-   raca
-*/
-
-function campoPetFlexivel(pet,...nomes){
-
-    if(!pet)return "";
-
-    const chaves =
-        Object.keys(pet);
-
-    for(const nome of nomes){
-
-        const procurada =
-            normalizarChave(nome);
-
-        const chaveEncontrada =
-            chaves.find(chave =>
-                normalizarChave(chave) === procurada
-            );
-
-        if(chaveEncontrada){
-
-            const valor =
-                pet[chaveEncontrada];
-
-            if(
-                valor !== undefined &&
-                valor !== null &&
-                String(valor).trim() !== ""
-            ){
-                return valor;
-            }
-        }
-    }
-
-    return "";
-}
 
 /* =========================
-   NORMALIZAR STATUS
+   STATUS
 ========================= */
 
 function normalizarStatus(valor){
@@ -2105,24 +2073,66 @@ function normalizarStatus(valor){
         String(valor || "").trim();
 
     if(
-        texto.toLowerCase()==="perdido"
-    )return "Perdido";
+        texto.toLowerCase() === "perdido"
+    ){
+        return "Perdido";
+    }
 
     if(
-        texto.toLowerCase()==="para adoção" ||
-        texto.toLowerCase()==="para adocao"
-    )return "Para adoção";
+        texto.toLowerCase() === "para adoção" ||
+        texto.toLowerCase() === "para adocao"
+    ){
+        return "Para adoção";
+    }
 
     if(
-        texto.toLowerCase()==="encontrado"
-    )return "Encontrado";
+        texto.toLowerCase() === "encontrado"
+    ){
+        return "Encontrado";
+    }
 
     if(
-        texto.toLowerCase()==="adotado"
-    )return "Adotado";
+        texto.toLowerCase() === "adotado"
+    ){
+        return "Adotado";
+    }
 
     return texto || "Sem status";
 }
+
+
+/* =========================
+   STATUS OCULTO
+========================= */
+
+function petVisivelNoMatch(pet){
+
+    const status =
+        normalizarStatus(
+            campoPet(
+                pet,
+                "Status",
+                "status"
+            )
+        );
+
+    /*
+       PET ENCONTRADO OU ADOTADO
+       NÃO É APAGADO.
+       APENAS NÃO APARECE NO MATCH.
+    */
+
+    if(status === "Encontrado"){
+        return false;
+    }
+
+    if(status === "Adotado"){
+        return false;
+    }
+
+    return true;
+}
+
 
 /* =========================
    RENDERIZAR MATCH
@@ -2141,9 +2151,18 @@ function renderizarPets(){
     const pets =
         petsCarregados.filter(pet=>{
 
+            /*
+               PRIMEIRO:
+               esconde ENCONTRADO e ADOTADO.
+            */
+
+            if(!petVisivelNoMatch(pet)){
+                return false;
+            }
+
             const status =
                 normalizarStatus(
-                    campoPetFlexivel(
+                    campoPet(
                         pet,
                         "Status",
                         "status"
@@ -2159,7 +2178,7 @@ function renderizarPets(){
 
         lista.innerHTML =
             '<div class="carregando">' +
-            'NENHUM PET ENCONTRADO PARA ESTE FILTRO.' +
+            'NENHUM PET ENCONTRADO.' +
             '</div>';
 
         return;
@@ -2176,28 +2195,35 @@ function renderizarPets(){
             abrirModal(pet);
         };
 
+        /*
+           IMPORTANTE:
+           cada informação é buscada
+           pelo NOME DO CAMPO CORRETO.
+        */
+
         const foto =
-            campoPetFlexivel(
+            campoPet(
                 pet,
                 "Foto",
                 "foto"
             );
 
         const nome =
-            campoPetFlexivel(
+            campoPet(
                 pet,
                 "Nome",
                 "nome",
                 "Nome do PET",
-                "Nome do Pet"
+                "nomePet"
             ) || "PET";
 
         const status =
             normalizarStatus(
-                campoPetFlexivel(
+                campoPet(
                     pet,
                     "Status",
-                    "status"
+                    "status",
+                    "Status do animal"
                 )
             );
 
@@ -2207,12 +2233,16 @@ function renderizarPets(){
         if(foto){
 
             imagem =
-                '<img class="pet-foto" src="' +
+                '<img ' +
+                'class="pet-foto" ' +
+                'src="' +
                 escaparHTML(foto) +
-                '" alt="Foto do PET">';
+                '" ' +
+                'alt="Foto do PET">';
         }
 
         card.innerHTML =
+
             imagem +
 
             '<div class="pet-resumo">' +
@@ -2222,18 +2252,23 @@ function renderizarPets(){
             '</h3>' +
 
             '<span class="pet-status">' +
-            escaparHTML(status) +
+            escaparHTML(status.toUpperCase()) +
             '</span>' +
 
             '</div>';
 
         lista.appendChild(card);
+
     });
 }
 
+
 function aplicarFiltro(){
+
     renderizarPets();
+
 }
+
 
 /* =========================
    MODAL
@@ -2244,7 +2279,7 @@ function abrirModal(pet){
     petAtual=pet;
 
     const foto =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Foto",
             "foto"
@@ -2264,12 +2299,12 @@ function abrirModal(pet){
     }
 
     const nome =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Nome",
             "nome",
             "Nome do PET",
-            "Nome do Pet"
+            "nomePet"
         ) || "PET";
 
     document
@@ -2282,7 +2317,7 @@ function abrirModal(pet){
         .getElementById("novoStatus")
         .value =
         normalizarStatus(
-            campoPetFlexivel(
+            campoPet(
                 pet,
                 "Status",
                 "status"
@@ -2324,38 +2359,37 @@ function abrirModal(pet){
     carregarComentarios(nome);
 }
 
+
 /* =========================
-   DADOS DO PET
+   DETALHES COMPLETOS
 ========================= */
 
 function mostrarDadosPet(pet){
 
     /*
-       IMPORTANTE:
-       Cada informação abaixo busca EXCLUSIVAMENTE
-       seu próprio campo.
-
-       Assim NOME não pode cair em RAÇA,
-       RAÇA não pode cair em SEXO etc.
+       CADA CAMPO TEM SUA PRÓPRIA LEITURA.
+       NÃO USAMOS POSIÇÃO DA COLUNA.
     */
 
     const status =
         normalizarStatus(
-            campoPetFlexivel(
+            campoPet(
                 pet,
-                "Status"
+                "Status",
+                "status"
             )
         );
 
     const especie =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Especie",
-            "Espécie"
+            "Espécie",
+            "especie"
         );
 
     const especieOutro =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Especie Outro",
             "Espécie Outro",
@@ -2363,97 +2397,114 @@ function mostrarDadosPet(pet){
         );
 
     const raca =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Raca",
-            "Raça"
+            "Raça",
+            "raca"
         );
 
     const sexo =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Sexo"
+            "Sexo",
+            "sexo"
         );
 
     const idade =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Idade"
+            "Idade",
+            "idade"
         );
 
     const peso =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Peso"
+            "Peso",
+            "peso"
         );
 
     const castrado =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Castrado"
+            "Castrado",
+            "castrado"
         );
 
     const vacinado =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Vacinado"
+            "Vacinado",
+            "vacinado"
         );
 
     const porte =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Porte"
+            "Porte",
+            "porte"
         );
 
     const cor =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Cor"
+            "Cor",
+            "cor"
         );
 
     const ultimaVez =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Ultima Vez",
             "Última vez",
-            "UltimaVez",
-            "ÚltimaVez"
+            "ultimaVez"
         );
 
     const pontoReferencia =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Ponto Referencia",
             "Ponto de referência",
-            "PontoReferencia"
+            "pontoReferencia"
         );
 
     const observacoes =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Observacoes",
-            "Observações"
+            "Observações",
+            "observacoes"
         );
 
     let html="";
 
-    /*
-       MESMA ORDEM DO CADASTRO
-    */
-
-    html += criarDado("STATUS DO ANIMAL",status);
-
-    html += criarDado("NOME DO PET",
-        campoPetFlexivel(
-            pet,
-            "Nome",
-            "nome",
-            "Nome do PET",
-            "Nome do Pet"
-        )
+    html += criarDado(
+        "Status",
+        status
     );
 
-    html += criarDado("IDADE",idade);
+    html += criarDado(
+        "Espécie",
+        especie === "Outro" && especieOutro
+            ? "Outro — " + especieOutro
+            : especie
+    );
+
+    html += criarDado(
+        "Raça",
+        raca
+    );
+
+    html += criarDado(
+        "Sexo",
+        sexo
+    );
+
+    html += criarDado(
+        "Idade",
+        idade
+    );
 
     let pesoTexto="-";
 
@@ -2467,59 +2518,60 @@ function mostrarDadosPet(pet){
             Number(
                 String(peso)
                 .replace(",",".")
-                .replace(/kg/gi,"")
+                .replace("kg","")
                 .trim()
             );
 
         if(!isNaN(numero)){
+
             pesoTexto =
-                numero + " KG";
+                numero + " kg";
         }
     }
 
-    html += criarDado("PESO APROXIMADO",pesoTexto);
-
-    html += criarDado("ESPÉCIE",especie);
-
-    if(
-        String(especie).toLowerCase()==="outro" &&
-        especieOutro
-    ){
-        html += criarDado(
-            "ESPECIFIQUE A ESPÉCIE",
-            especieOutro
-        );
-    }
-
-    html += criarDado("RAÇA",raca);
-
-    html += criarDado("SEXO",sexo);
-
-    html += criarDado("PORTE",porte);
-
-    html += criarDado("COR",cor);
-
-    html += criarDado("É CASTRADO?",castrado);
-
-    html += criarDado("É VACINADO?",vacinado);
+    html += criarDado(
+        "Peso",
+        pesoTexto
+    );
 
     html += criarDado(
-        "ÚLTIMA VEZ EM QUE FOI VISTO",
+        "Castrado",
+        castrado
+    );
+
+    html += criarDado(
+        "Vacinado",
+        vacinado
+    );
+
+    html += criarDado(
+        "Porte",
+        porte
+    );
+
+    html += criarDado(
+        "Cor",
+        cor
+    );
+
+    html += criarDado(
+        "Última vez visto",
         ultimaVez
     );
 
     html += criarDado(
-        "PONTO DE REFERÊNCIA",
+        "Ponto de referência",
         pontoReferencia
     );
 
     html += criarDado(
-        "OBSERVAÇÕES",
+        "Observações",
         observacoes
     );
 
+
     const whatsapp =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "WhatsApp Publico",
             "WhatsApp público",
@@ -2527,15 +2579,18 @@ function mostrarDadosPet(pet){
         );
 
     if(
-        String(whatsapp).trim().toLowerCase()==="sim"
+        String(whatsapp)
+        .trim()
+        .toLowerCase()
+        === "sim"
     ){
 
         html +=
             '<hr style="margin:18px 0">';
 
         html += criarDado(
-            "NOME DO TUTOR",
-            campoPetFlexivel(
+            "Nome do tutor",
+            campoPet(
                 pet,
                 "Tutor Nome",
                 "Nome do tutor",
@@ -2544,8 +2599,8 @@ function mostrarDadosPet(pet){
         );
 
         html += criarDado(
-            "CONTATO DO TUTOR",
-            campoPetFlexivel(
+            "Contato do tutor",
+            campoPet(
                 pet,
                 "Tutor Contato",
                 "Contato do tutor",
@@ -2560,8 +2615,9 @@ function mostrarDadosPet(pet){
         .innerHTML=html;
 }
 
+
 /* =========================
-   PERMISSÃO
+   PERMISSÃO DO TUTOR
 ========================= */
 
 function verificarPermissaoEdicao(){
@@ -2572,16 +2628,14 @@ function verificarPermissaoEdicao(){
         );
 
     const botao =
-        document.querySelector(
-            '[onclick="abrirEdicao()"]'
+        document.getElementById(
+            "botaoEditarCadastro"
         );
 
     if(!petAtual){
 
         area.style.display="none";
-
-        if(botao)
-            botao.style.display="none";
+        botao.style.display="none";
 
         return;
     }
@@ -2592,32 +2646,35 @@ function verificarPermissaoEdicao(){
         );
 
     const tokenPet =
-        campoPetFlexivel(
+        campoPet(
             petAtual,
             "Token Proprietario",
             "Token Proprietário",
             "tokenProprietario"
         );
 
+    /*
+       SOMENTE O TOKEN GERADO
+       NO MOMENTO DO CADASTRO
+       PODE EDITAR.
+    */
+
     if(
         tokenLocal &&
         tokenPet &&
-        tokenLocal===String(tokenPet)
+        tokenLocal === String(tokenPet)
     ){
 
         area.style.display="block";
-
-        if(botao)
-            botao.style.display="inline-block";
+        botao.style.display="inline-block";
 
     }else{
 
         area.style.display="none";
-
-        if(botao)
-            botao.style.display="none";
+        botao.style.display="none";
     }
 }
+
 
 /* =========================
    ABRIR EDIÇÃO
@@ -2641,12 +2698,14 @@ function abrirEdicao(){
         });
 }
 
+
 function fecharEdicao(){
 
     document
         .getElementById("edicaoCadastro")
         .style.display="none";
 }
+
 
 /* =========================
    PREENCHER EDIÇÃO
@@ -2657,82 +2716,92 @@ function preencherEdicao(){
     const pet=petAtual;
 
     document.getElementById("editNome").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Nome",
             "nome",
             "Nome do PET",
-            "Nome do Pet"
+            "nomePet"
         );
 
     document.getElementById("editStatus").value =
         normalizarStatus(
-            campoPetFlexivel(
+            campoPet(
                 pet,
-                "Status"
+                "Status",
+                "status"
             )
         );
 
     document.getElementById("editIdade").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Idade"
+            "Idade",
+            "idade"
         );
 
     document.getElementById("editPeso").value =
         limparNumero(
-            campoPetFlexivel(
+            campoPet(
                 pet,
-                "Peso"
+                "Peso",
+                "peso"
             )
         );
 
     document.getElementById("editEspecie").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Especie",
-            "Espécie"
+            "Espécie",
+            "especie"
         );
 
     document.getElementById("editRaca").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Raca",
-            "Raça"
+            "Raça",
+            "raca"
         );
 
     document.getElementById("editSexo").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Sexo"
+            "Sexo",
+            "sexo"
         );
 
     document.getElementById("editPorte").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Porte"
+            "Porte",
+            "porte"
         );
 
     document.getElementById("editCor").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Cor"
+            "Cor",
+            "cor"
         );
 
     document.getElementById("editCastrado").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Castrado"
+            "Castrado",
+            "castrado"
         );
 
     document.getElementById("editVacinado").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Vacinado"
+            "Vacinado",
+            "vacinado"
         );
 
     document.getElementById("editTutorNome").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Tutor Nome",
             "Nome do tutor",
@@ -2740,7 +2809,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editTutorContato").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Tutor Contato",
             "Contato do tutor",
@@ -2748,7 +2817,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editWhatsappPublico").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "WhatsApp Publico",
             "WhatsApp público",
@@ -2756,7 +2825,7 @@ function preencherEdicao(){
         );
 
     document.getElementById("editEndereco").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Endereco",
             "Endereço",
@@ -2764,43 +2833,46 @@ function preencherEdicao(){
         );
 
     document.getElementById("editBairro").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Bairro"
+            "Bairro",
+            "bairro"
         );
 
     document.getElementById("editCidade").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
-            "Cidade"
+            "Cidade",
+            "cidade"
         );
 
     document.getElementById("editPontoReferencia").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Ponto Referencia",
             "Ponto de referência",
-            "PontoReferencia"
+            "pontoReferencia"
         );
 
     document.getElementById("editUltimaVez").value =
         formatarDataInput(
-            campoPetFlexivel(
+            campoPet(
                 pet,
                 "Ultima Vez",
                 "Última vez",
-                "UltimaVez",
-                "ÚltimaVez"
+                "ultimaVez"
             )
         );
 
     document.getElementById("editObservacoes").value =
-        campoPetFlexivel(
+        campoPet(
             pet,
             "Observacoes",
-            "Observações"
+            "Observações",
+            "observacoes"
         );
 }
+
 
 /* =========================
    SALVAR EDIÇÃO
@@ -2818,7 +2890,7 @@ function salvarEdicaoPet(){
     if(!token){
 
         mostrarMensagemEdicao(
-            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL PELO CADASTRO."
+            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL."
         );
 
         return;
@@ -2827,7 +2899,7 @@ function salvarEdicaoPet(){
     const dados={
 
         id:
-            campoPetFlexivel(
+            campoPet(
                 petAtual,
                 "ID",
                 "id"
@@ -2969,9 +3041,17 @@ function salvarEdicaoPet(){
         petAtual["Observacoes"] =
             dados.observacoes;
 
+        /*
+           Se virou ENCONTRADO ou ADOTADO,
+           ele desaparece do MATCH,
+           mas continua salvo.
+        */
+
         mostrarDadosPet(petAtual);
 
         renderizarPets();
+
+        verificarPermissaoEdicao();
 
         mostrarMensagemEdicao(
             "CADASTRO ATUALIZADO COM SUCESSO!"
@@ -2985,6 +3065,7 @@ function salvarEdicaoPet(){
     },1200);
 }
 
+
 function mostrarMensagemEdicao(texto){
 
     const mensagem =
@@ -2996,6 +3077,7 @@ function mostrarMensagemEdicao(texto){
 
     mensagem.textContent=texto;
 }
+
 
 /* =========================
    ALTERAR STATUS
@@ -3013,7 +3095,7 @@ function alterarStatusPet(){
     if(!token){
 
         mostrarMensagemStatus(
-            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL PELO CADASTRO."
+            "NÃO FOI POSSÍVEL IDENTIFICAR O RESPONSÁVEL."
         );
 
         return;
@@ -3027,7 +3109,7 @@ function alterarStatusPet(){
     const dados={
 
         id:
-            campoPetFlexivel(
+            campoPet(
                 petAtual,
                 "ID",
                 "id"
@@ -3063,6 +3145,7 @@ function alterarStatusPet(){
     },1200);
 }
 
+
 function mostrarMensagemStatus(texto){
 
     const mensagem =
@@ -3075,6 +3158,7 @@ function mostrarMensagemStatus(texto){
     mensagem.textContent=texto;
 }
 
+
 /* =========================
    CRIAR DADO
 ========================= */
@@ -3083,19 +3167,29 @@ function criarDado(titulo,valor){
 
     return(
         '<div class="dado">' +
+
         '<strong>' +
+
         escaparHTML(titulo) +
+
         ':</strong> ' +
+
         escaparHTML(
+
             valor === undefined ||
             valor === null ||
             String(valor).trim()===""
+
                 ? "-"
+
                 : String(valor)
+
         ) +
+
         '</div>'
     );
 }
+
 
 /* =========================
    FECHAR MODAL
@@ -3116,6 +3210,7 @@ function fecharModal(){
     petAtual=null;
 }
 
+
 /* =========================
    FOTO
 ========================= */
@@ -3125,7 +3220,7 @@ function abrirFotoAmpliada(){
     if(!petAtual)return;
 
     const foto =
-        campoPetFlexivel(
+        campoPet(
             petAtual,
             "Foto",
             "foto"
@@ -3142,12 +3237,14 @@ function abrirFotoAmpliada(){
         .classList.add("aberta");
 }
 
+
 function fecharFotoAmpliada(){
 
     document
         .getElementById("fotoAmpliada")
         .classList.remove("aberta");
 }
+
 
 /* =========================
    COMENTÁRIOS
@@ -3203,26 +3300,43 @@ function carregarComentarios(petNome){
 
             const localHTML =
                 item.local
+
                 ?
+
                 '<div class="comentario-local">' +
+
                 '📍 ' +
+
                 escaparHTML(item.local) +
+
                 '<br>' +
+
                 '<button type="button" ' +
+
                 'class="botao-localizacao" ' +
+
                 'onclick="abrirMapaDoComentario(\'' +
+
                 escaparJS(item.local) +
+
                 '\')">' +
+
                 'COMO CHEGAR' +
+
                 '</button>' +
+
                 '</div>'
+
                 :
+
                 "";
 
             comentario.innerHTML=
 
                 '<div class="comentario-texto">' +
+
                 escaparHTML(item.comentario) +
+
                 '</div>' +
 
                 localHTML +
@@ -3232,31 +3346,45 @@ function carregarComentarios(petNome){
                 '<div>' +
 
                 '<span class="comentario-autor">' +
+
                 escaparHTML(item.nome) +
+
                 '</span>' +
 
                 ' · ' +
 
                 '<span class="comentario-data">' +
+
                 escaparHTML(item.dataHora) +
+
                 '</span>' +
 
                 '</div>' +
 
                 '<button type="button" ' +
+
                 'class="botao-curtir' +
+
                 (curtido ? " curtido":"") +
+
                 '" ' +
+
                 'data-id="' +
+
                 escaparHTML(item.id) +
+
                 '" ' +
+
                 'onclick="curtirComentarioHTML(this)">' +
+
                 (curtido ? "♥":"♡") +
+
                 '</button>' +
 
                 '</div>';
 
             lista.appendChild(comentario);
+
         });
 
         delete window[callback];
@@ -3290,6 +3418,7 @@ function carregarComentarios(petNome){
     document.body.appendChild(script);
 }
 
+
 /* =========================
    ENVIAR COMENTÁRIO
 ========================= */
@@ -3321,8 +3450,9 @@ function enviarComentario(){
     if(!comentario){
 
         mensagem.style.display="block";
+
         mensagem.textContent =
-            "DIGITE UM COMENTÁRIO SOBRE O PET.";
+            "DIGITE UM COMENTÁRIO.";
 
         return;
     }
@@ -3330,6 +3460,7 @@ function enviarComentario(){
     if(!nome){
 
         mensagem.style.display="block";
+
         mensagem.textContent =
             "DIGITE SEU NOME.";
 
@@ -3339,6 +3470,7 @@ function enviarComentario(){
     if(!local){
 
         mensagem.style.display="block";
+
         mensagem.textContent =
             "INFORME ONDE VOCÊ VIU O PET.";
 
@@ -3346,19 +3478,21 @@ function enviarComentario(){
     }
 
     mensagem.style.display="block";
+
     mensagem.textContent =
         "SALVANDO COMENTÁRIO...";
 
     enviarPost(
         "salvarComentario",
         {
+
             pet:
-                campoPetFlexivel(
+                campoPet(
                     petAtual,
                     "Nome",
                     "nome",
                     "Nome do PET",
-                    "Nome do Pet"
+                    "nomePet"
                 ),
 
             nome:nome,
@@ -3387,17 +3521,18 @@ function enviarComentario(){
             .value="";
 
         carregarComentarios(
-            campoPetFlexivel(
+            campoPet(
                 petAtual,
                 "Nome",
                 "nome",
                 "Nome do PET",
-                "Nome do Pet"
+                "nomePet"
             )
         );
 
     },1000);
 }
+
 
 /* =========================
    CURTIDAS
@@ -3419,11 +3554,13 @@ function obterCurtidas(){
     }
 }
 
+
 function comentarioJaCurtido(id){
 
     return obterCurtidas()
         .indexOf(String(id)) !== -1;
 }
+
 
 function salvarCurtidaLocal(id){
 
@@ -3436,7 +3573,9 @@ function salvarCurtidaLocal(id){
     if(
         curtidas.indexOf(idString)===-1
     ){
+
         curtidas.push(idString);
+
     }
 
     localStorage.setItem(
@@ -3444,6 +3583,7 @@ function salvarCurtidaLocal(id){
         JSON.stringify(curtidas)
     );
 }
+
 
 function curtirComentarioHTML(botao){
 
@@ -3462,9 +3602,12 @@ function curtirComentarioHTML(botao){
 
     enviarPost(
         "curtirComentario",
-        {id:id}
+        {
+            id:id
+        }
     );
 }
+
 
 /* =========================
    MAPA
@@ -3501,8 +3644,11 @@ function abrirMapaDoComentario(local){
 
     info.innerHTML =
         '<p>' +
+
         '<strong>LOCAL INFORMADO:</strong><br>' +
+
         escaparHTML(local) +
+
         '</p>';
 
     const url =
@@ -3510,18 +3656,26 @@ function abrirMapaDoComentario(local){
         encoded;
 
     area.innerHTML =
+
         '<a class="botao-como-chegar" ' +
+
         'href="' +
+
         escaparHTML(url) +
+
         '" target="_blank" ' +
+
         'rel="noopener noreferrer">' +
+
         '📍 COMO CHEGAR ATÉ O LOCAL' +
+
         '</a>';
 
     fecharModal();
 
     abrirPagina("mapa");
 }
+
 
 /* =========================
    UTILIDADES
@@ -3535,12 +3689,13 @@ function limparNumero(valor){
         Number(
             String(valor)
             .replace(",",".")
-            .replace(/kg/gi,"")
+            .replace("kg","")
             .trim()
         );
 
     return isNaN(numero) ? "" : numero;
 }
+
 
 function formatarDataInput(valor){
 
@@ -3552,11 +3707,13 @@ function formatarDataInput(valor){
         /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/
         .test(texto)
     ){
+
         return texto.substring(0,16);
     }
 
     return "";
 }
+
 
 function escaparHTML(valor){
 
@@ -3568,6 +3725,7 @@ function escaparHTML(valor){
         .replace(/'/g,"&#039;");
 }
 
+
 function escaparJS(valor){
 
     return String(valor ?? "")
@@ -3576,6 +3734,7 @@ function escaparJS(valor){
         .replace(/\r/g,"")
         .replace(/\n/g,"\\n");
 }
+
 
 /* =========================
    FECHAR CLICANDO FORA
@@ -3586,9 +3745,13 @@ document
 .addEventListener("click",function(event){
 
     if(event.target===this){
+
         fecharModal();
+
     }
+
 });
+
 
 /* =========================
    ESC
@@ -3599,14 +3762,10 @@ document.addEventListener("keydown",function(event){
     if(event.key==="Escape"){
 
         fecharFotoAmpliada();
+
     }
+
 });
-
-/* =========================
-   INICIAR
-========================= */
-
-abrirPagina("inicio");
 
 </script>
 
