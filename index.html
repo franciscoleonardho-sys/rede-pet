@@ -593,15 +593,19 @@ textarea{
 
 /* Na página de CADASTRO, os três atalhos permanecem pequenos
    e lado a lado, em uma única linha. */
-#pet .rodape-navegacao{
-    grid-template-columns:repeat(3,minmax(0,1fr));
+/* PÁGINA DE CADASTRO: os 3 atalhos permanecem na mesma linha,
+   em TODOS os tamanhos de tela. */
+section#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
 }
 
-#pet .rodape-navegacao .botao:first-child,
-#pet .rodape-navegacao .botao:nth-child(2),
-#pet .rodape-navegacao .botao:nth-child(3){
-    grid-column:auto;
-    grid-row:auto;
+section#pet .rodape-navegacao .botao:first-child,
+section#pet .rodape-navegacao .botao:nth-child(2),
+section#pet .rodape-navegacao .botao:nth-child(3){
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100%;
+    min-width:0;
 }
 
 /* VOLTAR */
@@ -761,8 +765,12 @@ footer{
     }
 
 
-    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha */
-    #pet .rodape-navegacao .botao{
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha também no celular */
+    section#pet .rodape-navegacao{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+
+    section#pet .rodape-navegacao .botao{
         padding-left:6px;
         padding-right:6px;
         white-space:nowrap;
