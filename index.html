@@ -725,6 +725,23 @@ footer{
         grid-template-columns:1fr;
     }
 
+
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha no celular */
+    #pet .rodape-navegacao{
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:10px;
+    }
+
+    #pet .rodape-navegacao .botao{
+        width:100%;
+        min-width:0;
+        padding-left:6px;
+        padding-right:6px;
+        white-space:nowrap;
+        font-size:13px;
+    }
+
     .modal{
         padding:8px;
     }
