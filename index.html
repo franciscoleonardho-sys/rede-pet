@@ -502,7 +502,14 @@ textarea{
     height:500px;
     border:none;
     border-radius:8px;
+    overflow:hidden;
 }
+
+.mapa-redepet-legenda{display:flex;align-items:center;gap:8px;margin-top:10px;color:#666;font-size:12px;}
+.marcador-redepet{width:38px;height:38px;border-radius:50% 50% 50% 0;background:#064e3b;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.28);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;}
+.marcador-redepet span{transform:rotate(45deg);color:white;font-size:20px;}
+.popup-redepet strong{color:#064e3b;}
+@media(max-width:700px){.mapa{height:430px;}}
 
 .mapa-info{
     margin-bottom:15px;
@@ -794,6 +801,7 @@ footer{
 
 </style>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 
 <body>
@@ -1538,12 +1546,12 @@ PARA VISUALIZAR O LOCAL.
 
 <div class="mapa-container">
 
-<iframe
-id="mapaIframe"
-class="mapa"
-src="https://www.google.com/maps?q=Caruaru,+Pernambuco&output=embed"
-loading="lazy">
-</iframe>
+<div id="mapaIframe" class="mapa" aria-label="Mapa da REDE PET com animais por região"></div>
+
+<div class="mapa-redepet-legenda">
+<span>🐾</span>
+<span>Marcadores indicam a região aproximada onde há animais cadastrados.</span>
+</div>
 
 </div>
 
@@ -2093,6 +2101,8 @@ style="display:none">
 </iframe>
 
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
 <script>
 
 const URL_APPS_SCRIPT =
@@ -2103,6 +2113,8 @@ let peso = 0;
 let petAtual = null;
 let petsCarregados = [];
 let localMapaAtual = "";
+let mapaRedePet = null;
+let marcadoresMapa = [];
 
 
 /* =========================
@@ -2140,6 +2152,63 @@ function abrirPagina(nome){
 
     }
 
+}
+
+
+/* =========================
+   MAPA REDE PET
+========================= */
+
+function criarIconeRedePet(){
+    return L.divIcon({
+        className:"",
+        html:'<div class="marcador-redepet"><span>🐾</span></div>',
+        iconSize:[38,38],
+        iconAnchor:[19,38],
+        popupAnchor:[0,-34]
+    });
+}
+
+function inicializarMapaRedePet(){
+    if(typeof L === "undefined") return;
+    if(mapaRedePet){
+        mapaRedePet.invalidateSize();
+        return;
+    }
+
+    mapaRedePet = L.map("mapaIframe", {zoomControl:true}).setView([-8.2837,-35.9761],13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom:19,
+        attribution:'&copy; OpenStreetMap contributors'
+    }).addTo(mapaRedePet);
+
+    carregarMarcadoresMapaRedePet();
+    setTimeout(function(){ mapaRedePet.invalidateSize(); },200);
+}
+
+function carregarMarcadoresMapaRedePet(){
+    if(!mapaRedePet) return;
+
+    marcadoresMapa.forEach(function(m){ mapaRedePet.removeLayer(m); });
+    marcadoresMapa=[];
+
+    /* Demonstração do conceito: regiões aproximadas, nunca endereço exato. */
+    const animaisDemo=[
+        {nome:"Animal no Salgado",regiao:"Salgado",lat:-8.2920,lng:-35.9715},
+        {nome:"Animal na Cidade Jardim",regiao:"Cidade Jardim",lat:-8.3090,lng:-35.9570},
+        {nome:"Animal no Centro",regiao:"Centro",lat:-8.2837,lng:-35.9761}
+    ];
+
+    const icone=criarIconeRedePet();
+    animaisDemo.forEach(function(animal){
+        const marcador=L.marker([animal.lat,animal.lng],{icon:icone}).addTo(mapaRedePet);
+        marcador.bindPopup(
+            '<div class="popup-redepet"><strong>🐾 '+escaparHTML(animal.nome)+'</strong><br>'+
+            'Região: '+escaparHTML(animal.regiao)+'<br><small>Localização aproximada</small></div>'
+        );
+        marcadoresMapa.push(marcador);
+    });
 }
 
 
@@ -5025,11 +5094,7 @@ function abrirMapaDoComentario(
         local;
 
 
-    const mapa =
-        document.getElementById(
-            "mapaIframe"
-        );
-
+    inicializarMapaRedePet();
 
     const info =
         document.getElementById(
@@ -5047,12 +5112,6 @@ function abrirMapaDoComentario(
         encodeURIComponent(
             local
         );
-
-
-    mapa.src =
-        "https://www.google.com/maps?q=" +
-        encoded +
-        "&output=embed";
 
 
     info.innerHTML =
