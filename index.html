@@ -1939,7 +1939,7 @@ style="display:none">
 <script>
 
 const URL_APPS_SCRIPT =
-"https://script.google.com/a/macros/asces.edu.br/s/AKfycbxvz1nBq8g9DzKFnIkfpQ2PPg5O6R6mom52L1wqz75F5MOmmKCosSpTws9S5mZqUqVlhg/exec";
+"https://script.google.com/macros/s/AKfycbzLerm9nA6KQ4f2HtP7OMlQ-y6Chj7VQkrrR93VciZCxxLKfWdhGhaYupdjh6NWHlWn8g/exec";
 
 
 let peso = 0;
@@ -2744,6 +2744,7 @@ function renderizarPets(){
                 const idPet =
                     campoPet(
                         pet,
+                        "ID_Pet",
                         "ID",
                         "id"
                     );
@@ -3062,6 +3063,7 @@ function abrirModal(
         nome,
         campoPet(
             pet,
+            "ID_Pet",
             "ID",
             "id"
         )
@@ -3182,6 +3184,8 @@ function mostrarDadosPet(
     const ultimaVez =
         campoPet(
             pet,
+            "Última vez visto",
+            "Ultima vez visto",
             "Ultima Vez",
             "Última vez",
             "ultimaVez"
@@ -3191,6 +3195,7 @@ function mostrarDadosPet(
     const pontoReferencia =
         campoPet(
             pet,
+            "Ponto_Referencia",
             "Ponto Referencia",
             "Ponto de referência",
             "pontoReferencia"
@@ -3342,6 +3347,7 @@ function mostrarDadosPet(
     const whatsapp =
         campoPet(
             pet,
+            "Exibir WhatsApp público?",
             "WhatsApp Publico",
             "WhatsApp público",
             "whatsappPublico"
@@ -3748,6 +3754,7 @@ function preencherEdicao(){
         .value =
         campoPet(
             pet,
+            "Ponto_Referencia",
             "Ponto Referencia",
             "Ponto de referência",
             "pontoReferencia"
