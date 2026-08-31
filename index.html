@@ -646,52 +646,10 @@ footer{
     .botoes-inicio .botao{
         width:100%;
         min-width:0;
-        padding:13px 4px;
-        font-size:12px;
-        white-space:nowrap;
-        box-sizing:border-box;
-    }
-
-    /* Navegação mobile: dois atalhos lado a lado e o cadastro abaixo. */
-    .rodape-navegacao{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-        width:100%;
-        box-sizing:border-box;
-    }
-
-    .rodape-navegacao .botao{
-        width:100%;
-        min-width:0;
-        box-sizing:border-box;
         padding:13px 6px;
-        white-space:nowrap;
         font-size:13px;
-    }
-
-    /* MATCH: INÍCIO + MAPA em cima; CADASTRO DE PET embaixo. */
-    #match .rodape-navegacao .botao:nth-child(1){
-        order:3;
-        grid-column:1 / -1;
-    }
-    #match .rodape-navegacao .botao:nth-child(2){
-        order:2;
-    }
-    #match .rodape-navegacao .botao:nth-child(3){
-        order:1;
-    }
-
-    /* MAPA: MATCH + INÍCIO em cima; CADASTRO DE PET embaixo. */
-    #mapa .rodape-navegacao .botao:nth-child(1){
-        order:3;
-        grid-column:1 / -1;
-    }
-    #mapa .rodape-navegacao .botao:nth-child(2){
-        order:1;
-    }
-    #mapa .rodape-navegacao .botao:nth-child(3){
-        order:2;
+        white-space:nowrap;
+        letter-spacing:-0.2px;
     }
 
     .opcoes{
@@ -777,6 +735,34 @@ footer{
 
     .modal-foto-mini{
         max-height:330px;
+    }
+
+    /* NAVEGAÇÃO MOBILE: dois atalhos lado a lado e ação principal abaixo */
+    .rodape-navegacao{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .rodape-navegacao .botao{
+        width:100%;
+        min-width:0;
+        box-sizing:border-box;
+    }
+
+    .rodape-navegacao .botao:first-child{
+        grid-column:1 / -1;
+        grid-row:2;
+    }
+
+    .rodape-navegacao .botao:nth-child(2){
+        grid-column:2;
+        grid-row:1;
+    }
+
+    .rodape-navegacao .botao:nth-child(3){
+        grid-column:1;
+        grid-row:1;
     }
 
 }
@@ -2068,7 +2054,11 @@ alt="FOTO AMPLIADA DO PET">
 </div>
 
 
-<!-- RODAPÉ DE PROTÓTIPO REMOVIDO -->
+<footer>
+
+REDE PET — PROTÓTIPO
+
+</footer>
 
 
 <iframe
