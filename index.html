@@ -490,26 +490,19 @@ textarea{
 
 /* MAPA */
 
-.mapa-container{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:15px;
-}
-
-.mapa{
-    width:100%;
-    height:500px;
-    border:none;
-    border-radius:8px;
-    overflow:hidden;
-}
-
-.mapa-redepet-legenda{display:flex;align-items:center;gap:8px;margin-top:10px;color:#666;font-size:12px;}
-.marcador-redepet{width:38px;height:38px;border-radius:50% 50% 50% 0;background:#064e3b;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.28);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;}
-.marcador-redepet span{transform:rotate(45deg);color:white;font-size:20px;}
-.popup-redepet strong{color:#064e3b;}
-@media(max-width:700px){.mapa{height:430px;}}
+.mapa-container{background:white;border:1px solid #ddd;border-radius:10px;padding:15px;}
+.mapa{width:100%;height:500px;border:none;border-radius:8px;}
+.mapa-rede-pet{width:100%;overflow:hidden;border-radius:10px;background:#eef2ef;border:1px solid #d8dfdb;}
+.mapa-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:#fff;color:#064e3b;font-weight:bold;font-size:13px;}
+.mapa-legenda{font-size:11px;color:#666;font-weight:normal;}
+.mapa-cidade{position:relative;height:500px;overflow:hidden;background:linear-gradient(135deg,#e7ece9,#f4f5f1 45%,#e6ece8);}
+.estrada{position:absolute;background:#fff;box-shadow:0 0 0 1px rgba(180,190,185,.45);transform-origin:center;}
+.estrada-a{width:125%;height:34px;left:-10%;top:45%;transform:rotate(-18deg);}.estrada-b{width:120%;height:24px;left:-8%;top:23%;transform:rotate(28deg);}.estrada-c{width:110%;height:28px;left:-5%;top:70%;transform:rotate(12deg);}.estrada-d{width:25px;height:115%;left:57%;top:-8%;transform:rotate(18deg);}
+.rio{position:absolute;width:24px;height:125%;left:27%;top:-10%;background:rgba(116,170,185,.22);transform:rotate(-18deg);border-radius:50%;}
+.mapa-bairro{position:absolute;color:#77827d;font-size:10px;letter-spacing:.4px;font-weight:bold;pointer-events:none;}.bairro-1{left:8%;top:35%;}.bairro-2{right:8%;top:18%;}.bairro-3{right:12%;bottom:22%;}.bairro-4{left:12%;bottom:12%;}
+.marcador-pet{position:absolute;z-index:5;width:72px;height:72px;border:0;border-radius:50%;background:#fff;color:#064e3b;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .15s,box-shadow .15s;}.marcador-pet:hover,.marcador-pet.ativo{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.24);}.marcador-pet span{font-size:27px;line-height:1;}.marcador-pet small{font-size:9px;font-weight:bold;}.marcador-salgado{left:17%;top:25%;}.marcador-centro{left:53%;top:43%;}.marcador-cidade-jardim{right:14%;bottom:19%;}
+.mapa-nota{padding:11px 13px;background:#fff;color:#666;font-size:12px;line-height:1.4;border-top:1px solid #d8dfdb;}
+@media(max-width:700px){.mapa-cidade{height:430px;}.mapa-topo{align-items:flex-start;flex-direction:column;gap:3px;}.marcador-pet{width:64px;height:64px;}.marcador-pet span{font-size:24px;}.marcador-salgado{left:10%;top:25%;}.marcador-centro{left:46%;top:43%;}.marcador-cidade-jardim{right:7%;bottom:18%;}}
 
 .mapa-info{
     margin-bottom:15px;
@@ -801,7 +794,6 @@ footer{
 
 </style>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 
 <body>
@@ -1530,29 +1522,21 @@ class="pagina">
 MAPA
 </h2>
 
-<div
-id="mapaInfo"
-class="mapa-info">
-
-<p style="color:#666;">
-
-SELECIONE COMO CHEGAR EM UM COMENTÁRIO
-PARA VISUALIZAR O LOCAL.
-
-</p>
-
+<div id="mapaInfo" class="mapa-info">
+<p><strong>MAPA REDE PET</strong><br>VISUALIZE, DE FORMA APROXIMADA, AS REGIÕES ONDE HÁ ANIMAIS CADASTRADOS.</p>
 </div>
-
-
 <div class="mapa-container">
-
-<div id="mapaIframe" class="mapa" aria-label="Mapa da REDE PET com animais por região"></div>
-
-<div class="mapa-redepet-legenda">
-<span>🐾</span>
-<span>Marcadores indicam a região aproximada onde há animais cadastrados.</span>
+<div id="mapaRedePet" class="mapa-rede-pet" aria-label="Mapa da REDE PET com regiões e animais cadastrados">
+<div class="mapa-topo"><span>CARUARU • REDE PET</span><span class="mapa-legenda">🐾 ANIMAIS CADASTRADOS</span></div>
+<div class="mapa-cidade">
+<div class="estrada estrada-a"></div><div class="estrada estrada-b"></div><div class="estrada estrada-c"></div><div class="estrada estrada-d"></div><div class="rio"></div>
+<button class="marcador-pet marcador-salgado" onclick="selecionarRegiaoMapa('salgado')" aria-label="Salgado, 2 animais cadastrados"><span>🐾</span><small>SALGADO</small></button>
+<button class="marcador-pet marcador-centro" onclick="selecionarRegiaoMapa('centro')" aria-label="Centro, 1 animal cadastrado"><span>🐾</span><small>CENTRO</small></button>
+<button class="marcador-pet marcador-cidade-jardim" onclick="selecionarRegiaoMapa('cidade-jardim')" aria-label="Cidade Jardim, 1 animal cadastrado"><span>🐾</span><small>CIDADE JARDIM</small></button>
+<div class="mapa-bairro bairro-1">UNIVERSITÁRIO</div><div class="mapa-bairro bairro-2">PETRÓPOLIS</div><div class="mapa-bairro bairro-3">INDIANÓPOLIS</div><div class="mapa-bairro bairro-4">RIACHÃO</div>
 </div>
-
+<div class="mapa-nota">🐾 As marcações representam <strong>regiões aproximadas</strong>. O endereço exato não é exibido no mapa.</div>
+</div>
 </div>
 
 
@@ -2101,8 +2085,6 @@ style="display:none">
 </iframe>
 
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
 <script>
 
 const URL_APPS_SCRIPT =
@@ -2113,8 +2095,6 @@ let peso = 0;
 let petAtual = null;
 let petsCarregados = [];
 let localMapaAtual = "";
-let mapaRedePet = null;
-let marcadoresMapa = [];
 
 
 /* =========================
@@ -2152,63 +2132,6 @@ function abrirPagina(nome){
 
     }
 
-}
-
-
-/* =========================
-   MAPA REDE PET
-========================= */
-
-function criarIconeRedePet(){
-    return L.divIcon({
-        className:"",
-        html:'<div class="marcador-redepet"><span>🐾</span></div>',
-        iconSize:[38,38],
-        iconAnchor:[19,38],
-        popupAnchor:[0,-34]
-    });
-}
-
-function inicializarMapaRedePet(){
-    if(typeof L === "undefined") return;
-    if(mapaRedePet){
-        mapaRedePet.invalidateSize();
-        return;
-    }
-
-    mapaRedePet = L.map("mapaIframe", {zoomControl:true}).setView([-8.2837,-35.9761],13);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom:19,
-        attribution:'&copy; OpenStreetMap contributors'
-    }).addTo(mapaRedePet);
-
-    carregarMarcadoresMapaRedePet();
-    setTimeout(function(){ mapaRedePet.invalidateSize(); },200);
-}
-
-function carregarMarcadoresMapaRedePet(){
-    if(!mapaRedePet) return;
-
-    marcadoresMapa.forEach(function(m){ mapaRedePet.removeLayer(m); });
-    marcadoresMapa=[];
-
-    /* Demonstração do conceito: regiões aproximadas, nunca endereço exato. */
-    const animaisDemo=[
-        {nome:"Animal no Salgado",regiao:"Salgado",lat:-8.2920,lng:-35.9715},
-        {nome:"Animal na Cidade Jardim",regiao:"Cidade Jardim",lat:-8.3090,lng:-35.9570},
-        {nome:"Animal no Centro",regiao:"Centro",lat:-8.2837,lng:-35.9761}
-    ];
-
-    const icone=criarIconeRedePet();
-    animaisDemo.forEach(function(animal){
-        const marcador=L.marker([animal.lat,animal.lng],{icon:icone}).addTo(mapaRedePet);
-        marcador.bindPopup(
-            '<div class="popup-redepet"><strong>🐾 '+escaparHTML(animal.nome)+'</strong><br>'+
-            'Região: '+escaparHTML(animal.regiao)+'<br><small>Localização aproximada</small></div>'
-        );
-        marcadoresMapa.push(marcador);
-    });
 }
 
 
@@ -5079,74 +5002,35 @@ function curtirComentarioHTML(
    MAPA
 ========================= */
 
-function abrirMapaDoComentario(
-    local
-){
+function selecionarRegiaoMapa(regiao){
+    const dados={
+        salgado:{nome:"SALGADO",quantidade:"2 animais cadastrados",animais:"Thor • Perdido | Mel • Encontrado"},
+        centro:{nome:"CENTRO",quantidade:"1 animal cadastrado",animais:"Nina • Para adoção"},
+        "cidade-jardim":{nome:"CIDADE JARDIM",quantidade:"1 animal cadastrado",animais:"Rex • Perdido"}
+    };
+    const item=dados[regiao]; if(!item)return;
+    document.querySelectorAll('.marcador-pet').forEach(function(botao){botao.classList.remove('ativo');});
+    const botao=document.querySelector('.marcador-'+regiao); if(botao)botao.classList.add('ativo');
+    const info=document.getElementById('mapaInfo');
+    if(info)info.innerHTML='<p><strong>'+item.nome+'</strong><br>'+item.quantidade+'<br><span style="color:#666;">'+item.animais+'</span></p>';
+    const area=document.getElementById('botaoMapaArea');
+    if(area)area.innerHTML='<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao(\''+item.nome+'\')">📍 COMO CHEGAR À REGIÃO</button>';
+}
 
-    if(
-        !local
-    ){
-        return;
-    }
+function abrirNavegacaoRegiao(local){
+    const encoded=encodeURIComponent(local+', Caruaru, Pernambuco');
+    const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;
+    window.open(url,'_blank','noopener,noreferrer');
+}
 
-
-    localMapaAtual =
-        local;
-
-
-    inicializarMapaRedePet();
-
-    const info =
-        document.getElementById(
-            "mapaInfo"
-        );
-
-
-    const area =
-        document.getElementById(
-            "botaoMapaArea"
-        );
-
-
-    const encoded =
-        encodeURIComponent(
-            local
-        );
-
-
-    info.innerHTML =
-        '<p>' +
-        '<strong>LOCAL INFORMADO:</strong><br>' +
-        escaparHTML(
-            local
-        ) +
-        '</p>';
-
-
-    const url =
-        "https://www.google.com/maps/dir/?api=1&destination=" +
-        encoded;
-
-
-    area.innerHTML =
-        '<a class="botao-como-chegar" ' +
-        'href="' +
-        escaparHTML(
-            url
-        ) +
-        '" target="_blank" ' +
-        'rel="noopener noreferrer">' +
-        '📍 COMO CHEGAR ATÉ O LOCAL' +
-        '</a>';
-
-
-    fecharModal();
-
-
-    abrirPagina(
-        "mapa"
-    );
-
+function abrirMapaDoComentario(local){
+    if(!local)return;
+    localMapaAtual=local;
+    const info=document.getElementById('mapaInfo');
+    const area=document.getElementById('botaoMapaArea');
+    if(info)info.innerHTML='<p><strong>LOCAL INFORMADO:</strong><br>'+escaparHTML(local)+'<br><span style="color:#666;">O mapa apresenta regiões aproximadas. Para a rota, use o botão abaixo.</span></p>';
+    if(area){const encoded=encodeURIComponent(local);const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;area.innerHTML='<a class="botao-como-chegar" href="'+escaparHTML(url)+'" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR ATÉ O LOCAL</a>';}
+    fecharModal(); abrirPagina('mapa');
 }
 
 
