@@ -560,13 +560,48 @@ textarea{
 /* RODAPÉ DE NAVEGAÇÃO */
 
 .rodape-navegacao{
-    display:flex;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
-    flex-wrap:wrap;
     margin-top:35px;
     padding:20px 0;
     border-top:1px solid #ddd;
+}
+
+/* Nas páginas MATCH e MAPA: dois atalhos menores em cima
+   e CADASTRO DE PET sozinho na linha de baixo. */
+.rodape-navegacao .botao{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.rodape-navegacao .botao:first-child{
+    grid-column:1 / -1;
+    grid-row:2;
+}
+
+.rodape-navegacao .botao:nth-child(2){
+    grid-column:2;
+    grid-row:1;
+}
+
+.rodape-navegacao .botao:nth-child(3){
+    grid-column:1;
+    grid-row:1;
+}
+
+/* Na página de CADASTRO, os três atalhos permanecem pequenos
+   e lado a lado, em uma única linha. */
+#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+#pet .rodape-navegacao .botao:first-child,
+#pet .rodape-navegacao .botao:nth-child(2),
+#pet .rodape-navegacao .botao:nth-child(3){
+    grid-column:auto;
+    grid-row:auto;
 }
 
 /* VOLTAR */
@@ -726,16 +761,8 @@ footer{
     }
 
 
-    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha no celular */
-    #pet .rodape-navegacao{
-        display:grid;
-        grid-template-columns:repeat(3,minmax(0,1fr));
-        gap:10px;
-    }
-
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha */
     #pet .rodape-navegacao .botao{
-        width:100%;
-        min-width:0;
         padding-left:6px;
         padding-right:6px;
         white-space:nowrap;
@@ -754,33 +781,6 @@ footer{
         max-height:330px;
     }
 
-    /* NAVEGAÇÃO MOBILE: dois atalhos lado a lado e ação principal abaixo */
-    .rodape-navegacao{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-    }
-
-    .rodape-navegacao .botao{
-        width:100%;
-        min-width:0;
-        box-sizing:border-box;
-    }
-
-    .rodape-navegacao .botao:first-child{
-        grid-column:1 / -1;
-        grid-row:2;
-    }
-
-    .rodape-navegacao .botao:nth-child(2){
-        grid-column:2;
-        grid-row:1;
-    }
-
-    .rodape-navegacao .botao:nth-child(3){
-        grid-column:1;
-        grid-row:1;
-    }
 
 }
 
