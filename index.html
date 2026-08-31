@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
@@ -12,10 +11,6 @@ content="width=device-width, initial-scale=1.0">
 <title>REDE PET</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -32,24 +27,7 @@ body{
     background:#f5f7f6;
     color:#222;
     line-height:1.5;
-    overflow-x:hidden;
 }
-
-button,
-input,
-select,
-textarea{
-    font-family:inherit;
-}
-
-button{
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 header{
     background:#064e3b;
@@ -64,13 +42,7 @@ header{
     letter-spacing:2px;
 }
 
-
-/* =====================================================
-   ESTRUTURA
-===================================================== */
-
 .container{
-    width:100%;
     max-width:1100px;
     margin:auto;
     padding:25px 18px;
@@ -78,38 +50,29 @@ header{
 
 .pagina{
     display:none;
-    width:100%;
 }
 
 .pagina.ativa{
     display:block;
 }
 
-
-/* =====================================================
-   BOTÕES
-===================================================== */
+button{
+    font-family:inherit;
+}
 
 .botao{
     border:none;
     background:#064e3b;
     color:white;
     padding:14px 25px;
-    min-height:46px;
     border-radius:7px;
     cursor:pointer;
     font-size:15px;
     font-weight:bold;
-    transition:.15s ease;
-    touch-action:manipulation;
 }
 
 .botao:hover{
     opacity:.9;
-}
-
-.botao:active{
-    transform:scale(.98);
 }
 
 .botao-secundario{
@@ -117,10 +80,7 @@ header{
     color:#064e3b;
 }
 
-
-/* =====================================================
-   INÍCIO
-===================================================== */
+/* INÍCIO */
 
 .inicio{
     text-align:center;
@@ -146,19 +106,11 @@ header{
 .botoes-inicio{
     display:flex;
     justify-content:center;
-    align-items:stretch;
     gap:15px;
     flex-wrap:wrap;
 }
 
-.botoes-inicio .botao{
-    min-width:190px;
-}
-
-
-/* =====================================================
-   FORMULÁRIO
-===================================================== */
+/* FORMULÁRIO */
 
 .bloco{
     background:white;
@@ -175,7 +127,6 @@ header{
 
 .campo{
     margin-bottom:18px;
-    min-width:0;
 }
 
 .campo label{
@@ -188,22 +139,10 @@ input,
 select,
 textarea{
     width:100%;
-    max-width:100%;
-    min-width:0;
-    padding:12px;
+    padding:11px;
     border:1px solid #ccc;
     border-radius:6px;
     font-size:15px;
-    background:white;
-    color:#222;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    outline:none;
-    border-color:#064e3b;
-    box-shadow:0 0 0 2px rgba(6,78,59,.08);
 }
 
 textarea{
@@ -213,21 +152,14 @@ textarea{
 
 .linha{
     display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-columns:1fr 1fr;
     gap:18px;
 }
 
-
-/* =====================================================
-   OPÇÕES
-===================================================== */
-
 .opcoes{
     display:flex;
-    align-items:stretch;
     gap:10px;
     flex-wrap:wrap;
-    width:100%;
 }
 
 .opcao{
@@ -235,25 +167,8 @@ textarea{
     background:white;
     color:#333;
     padding:11px 18px;
-    min-height:44px;
     border-radius:7px;
     cursor:pointer;
-    font-size:14px;
-    font-weight:bold;
-    line-height:1.2;
-    flex:0 1 auto;
-    white-space:normal;
-    text-align:center;
-    touch-action:manipulation;
-    transition:.15s ease;
-}
-
-.opcao:hover{
-    border-color:#064e3b;
-}
-
-.opcao:active{
-    transform:scale(.98);
 }
 
 .opcao.selecionada{
@@ -262,30 +177,23 @@ textarea{
     border-color:#064e3b;
 }
 
-
-/* =====================================================
-   PESO
-===================================================== */
+/* PESO */
 
 .peso-controle{
     display:flex;
     align-items:center;
     gap:15px;
-    flex-wrap:nowrap;
 }
 
 .peso-controle button{
     width:45px;
     height:45px;
-    min-width:45px;
-    min-height:45px;
     border:none;
     border-radius:50%;
     background:#064e3b;
     color:white;
     font-size:25px;
     cursor:pointer;
-    touch-action:manipulation;
 }
 
 .peso-valor{
@@ -295,10 +203,7 @@ textarea{
     text-align:center;
 }
 
-
-/* =====================================================
-   MATCH
-===================================================== */
+/* MATCH */
 
 .filtro-match{
     background:white;
@@ -316,7 +221,6 @@ textarea{
 }
 
 #filtroStatus{
-    width:100%;
     max-width:350px;
 }
 
@@ -325,7 +229,6 @@ textarea{
     grid-template-columns:
         repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
-    width:100%;
 }
 
 .pet-card{
@@ -334,7 +237,6 @@ textarea{
     border-radius:10px;
     overflow:hidden;
     cursor:pointer;
-    min-width:0;
     transition:.15s;
 }
 
@@ -351,7 +253,6 @@ textarea{
 }
 
 .pet-sem-foto{
-    width:100%;
     height:240px;
     background:#e6ebe8;
     display:flex;
@@ -362,18 +263,15 @@ textarea{
 
 .pet-resumo{
     padding:15px;
-    min-width:0;
 }
 
 .pet-nome{
     font-size:21px;
     margin-bottom:8px;
-    overflow-wrap:anywhere;
 }
 
 .pet-status{
     display:inline-block;
-    max-width:100%;
     padding:5px 10px;
     border-radius:20px;
     background:#e6ebe8;
@@ -382,10 +280,7 @@ textarea{
     font-weight:bold;
 }
 
-
-/* =====================================================
-   MODAL
-===================================================== */
+/* MODAL */
 
 .modal{
     display:none;
@@ -395,7 +290,6 @@ textarea{
     background:rgba(0,0,0,.65);
     padding:20px;
     overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
 }
 
 .modal.aberto{
@@ -422,29 +316,23 @@ textarea{
 
 .modal-dados{
     padding:25px;
-    min-width:0;
 }
 
 .modal-dados h2{
     color:#064e3b;
     margin-bottom:15px;
-    overflow-wrap:anywhere;
 }
 
 .dado{
     padding:10px 0;
     border-bottom:1px solid #eee;
-    overflow-wrap:anywhere;
 }
 
 .dado strong{
     color:#064e3b;
 }
 
-
-/* =====================================================
-   EDIÇÃO
-===================================================== */
+/* EDIÇÃO */
 
 .edicao-cadastro{
     background:#f5f7f6;
@@ -464,11 +352,9 @@ textarea{
     background:#064e3b;
     color:white;
     padding:12px 20px;
-    min-height:44px;
     border-radius:7px;
     cursor:pointer;
     font-weight:bold;
-    touch-action:manipulation;
 }
 
 .botao-cancelar{
@@ -476,18 +362,12 @@ textarea{
     background:#ddd;
     color:#333;
     padding:12px 20px;
-    min-height:44px;
     border-radius:7px;
     cursor:pointer;
     margin-left:8px;
-    font-weight:bold;
-    touch-action:manipulation;
 }
 
-
-/* =====================================================
-   COMENTÁRIOS
-===================================================== */
+/* COMENTÁRIOS */
 
 .comentarios-bloco{
     margin-top:28px;
@@ -530,11 +410,9 @@ textarea{
     background:#064e3b;
     color:white;
     padding:12px 20px;
-    min-height:44px;
     border-radius:7px;
     cursor:pointer;
     font-weight:bold;
-    touch-action:manipulation;
 }
 
 .lista-comentarios{
@@ -548,14 +426,12 @@ textarea{
     border:1px solid #e0e5e2;
     border-radius:10px;
     padding:15px 16px;
-    min-width:0;
 }
 
 .comentario-texto{
     font-size:16px;
     margin-bottom:8px;
     white-space:pre-wrap;
-    overflow-wrap:anywhere;
     word-break:break-word;
 }
 
@@ -563,7 +439,6 @@ textarea{
     font-size:14px;
     color:#555;
     margin-bottom:10px;
-    overflow-wrap:anywhere;
 }
 
 .comentario-rodape{
@@ -573,12 +448,6 @@ textarea{
     gap:10px;
     color:#666;
     font-size:13px;
-    min-width:0;
-}
-
-.comentario-rodape > div{
-    min-width:0;
-    overflow-wrap:anywhere;
 }
 
 .comentario-autor{
@@ -591,9 +460,8 @@ textarea{
 }
 
 .botao-curtir{
-    width:40px;
-    height:40px;
-    min-width:40px;
+    width:38px;
+    height:38px;
     border:2px solid #064e3b;
     border-radius:50%;
     background:transparent;
@@ -603,8 +471,6 @@ textarea{
     align-items:center;
     justify-content:center;
     font-size:21px;
-    touch-action:manipulation;
-    flex-shrink:0;
 }
 
 .botao-curtir.curtido{
@@ -612,17 +478,13 @@ textarea{
     color:white;
 }
 
-
-/* =====================================================
-   MAPA
-===================================================== */
+/* MAPA */
 
 .mapa-container{
     background:white;
     border:1px solid #ddd;
     border-radius:10px;
     padding:15px;
-    width:100%;
 }
 
 .mapa{
@@ -630,12 +492,10 @@ textarea{
     height:500px;
     border:none;
     border-radius:8px;
-    display:block;
 }
 
 .mapa-info{
     margin-bottom:15px;
-    overflow-wrap:anywhere;
 }
 
 .mapa-info strong{
@@ -647,35 +507,24 @@ textarea{
     background:#064e3b;
     color:white;
     padding:9px 13px;
-    min-height:40px;
     border-radius:6px;
     cursor:pointer;
     font-size:13px;
     margin-top:5px;
-    font-weight:bold;
-    touch-action:manipulation;
 }
 
 .botao-como-chegar{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    max-width:100%;
+    display:inline-block;
     text-decoration:none;
     background:#064e3b;
     color:white;
     padding:13px 20px;
-    min-height:46px;
     border-radius:7px;
     margin-top:15px;
     font-weight:bold;
-    text-align:center;
 }
 
-
-/* =====================================================
-   MENSAGENS
-===================================================== */
+/* MENSAGENS */
 
 .mensagem{
     display:none;
@@ -684,32 +533,25 @@ textarea{
     background:#e5ebe8;
     color:#064e3b;
     border-radius:7px;
-    overflow-wrap:anywhere;
 }
 
 .carregando{
     text-align:center;
     padding:40px;
     color:#777;
-    grid-column:1 / -1;
 }
 
 .carregando-comentarios,
 .comentarios-vazio{
     color:#777;
     padding:15px 0;
-    overflow-wrap:anywhere;
 }
 
-
-/* =====================================================
-   RODAPÉ DE NAVEGAÇÃO
-===================================================== */
+/* RODAPÉ DE NAVEGAÇÃO */
 
 .rodape-navegacao{
     display:flex;
     justify-content:center;
-    align-items:stretch;
     gap:10px;
     flex-wrap:wrap;
     margin-top:35px;
@@ -717,14 +559,7 @@ textarea{
     border-top:1px solid #ddd;
 }
 
-.rodape-navegacao .botao{
-    min-width:140px;
-}
-
-
-/* =====================================================
-   VOLTAR
-===================================================== */
+/* VOLTAR */
 
 .botao-voltar-flutuante{
     position:fixed;
@@ -735,24 +570,18 @@ textarea{
     background:#064e3b;
     color:white;
     padding:13px 18px;
-    min-height:46px;
     border-radius:30px;
     cursor:pointer;
     font-size:14px;
     font-weight:bold;
     display:none;
-    touch-action:manipulation;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
 }
 
 .botao-voltar-flutuante.visivel{
     display:block;
 }
 
-
-/* =====================================================
-   FOTO
-===================================================== */
+/* FOTO */
 
 .foto-ampliada{
     display:none;
@@ -775,11 +604,6 @@ textarea{
     object-fit:contain;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
 footer{
     text-align:center;
     padding:35px 15px;
@@ -787,375 +611,91 @@ footer{
     font-size:13px;
 }
 
+/* RESPONSIVIDADE DOS BOTÕES E EXPERIÊNCIA MOBILE */
 
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media(max-width:850px){
-
-    .container{
-        padding-left:15px;
-        padding-right:15px;
-    }
-
-    .lista-pets{
-        grid-template-columns:
-            repeat(auto-fit,minmax(220px,1fr));
-        gap:15px;
-    }
-
-    .pet-foto,
-    .pet-sem-foto{
-        height:220px;
-    }
-
+.botoes-inicio .botao{
+    min-width:165px;
 }
 
-
-/* =====================================================
-   CELULAR
-===================================================== */
+.opcoes .opcao{
+    min-height:44px;
+    box-sizing:border-box;
+}
 
 @media(max-width:700px){
 
-    header{
-        padding:16px 15px;
-    }
-
-    .logo{
-        font-size:25px;
-        letter-spacing:1.5px;
-    }
-
-    .container{
-        padding:18px 10px;
-    }
-
-    .inicio{
-        padding:35px 8px;
-    }
-
-    .inicio h1{
-        font-size:29px;
-        line-height:1.2;
-    }
-
-    .inicio p{
-        font-size:14px;
-    }
-
-    .inicio h2{
-        font-size:20px;
-        margin-top:32px;
-    }
-
     .botoes-inicio{
-        flex-direction:column;
-        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
         gap:10px;
+        width:100%;
+        max-width:440px;
+        margin:0 auto;
     }
 
     .botoes-inicio .botao{
         width:100%;
         min-width:0;
+        padding:13px 10px;
+        white-space:nowrap;
+    }
+
+    .opcoes{
+        display:grid;
+        gap:9px;
+        width:100%;
+    }
+
+    .opcoes .opcao{
+        width:100%;
+        min-width:0;
+        padding:10px 7px;
+        line-height:1.2;
+        white-space:normal;
+    }
+
+    /* Grupos de 4: duas colunas, duas linhas, sem criar uma lista longa. */
+    .opcoes-2x2{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    /* Grupos curtos de 3: mantêm as opções lado a lado. */
+    .opcoes-3{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    /* Sexo: dois botões juntos e o terceiro ocupa a largura abaixo. */
+    .opcoes-sexo{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .opcoes-sexo .opcao:last-child{
+        grid-column:1 / -1;
+    }
+
+    .opcoes-2{
+        grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
 
-    /* FORMULÁRIO */
-
-    .bloco{
-        padding:17px 13px;
-        border-radius:9px;
-        margin-bottom:15px;
-    }
-
-    .bloco h2{
-        font-size:21px;
-        margin-bottom:17px;
+    .inicio h1{
+        font-size:30px;
     }
 
     .linha{
         grid-template-columns:1fr;
-        gap:0;
     }
-
-    .campo{
-        margin-bottom:16px;
-    }
-
-    input,
-    select,
-    textarea{
-        font-size:16px;
-        padding:12px;
-        min-height:46px;
-    }
-
-    textarea{
-        min-height:110px;
-    }
-
-
-    /* BOTÕES DE OPÇÃO */
-
-    .opcoes{
-        display:grid;
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-        gap:8px;
-    }
-
-    .opcao{
-        width:100%;
-        min-width:0;
-        min-height:46px;
-        padding:10px 7px;
-        font-size:12px;
-        line-height:1.25;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
-
-    /* PESO */
-
-    .peso-controle{
-        justify-content:flex-start;
-    }
-
-    .peso-controle button{
-        width:48px;
-        height:48px;
-        min-width:48px;
-    }
-
-
-    /* MATCH */
-
-    #match > h2{
-        font-size:25px;
-    }
-
-    .filtro-match{
-        padding:14px;
-        margin-bottom:18px;
-    }
-
-    #filtroStatus{
-        max-width:none;
-    }
-
-    .lista-pets{
-        grid-template-columns:1fr;
-        gap:13px;
-    }
-
-    .pet-card{
-        width:100%;
-    }
-
-    .pet-foto,
-    .pet-sem-foto{
-        height:auto;
-        aspect-ratio:4 / 3;
-    }
-
-    .pet-resumo{
-        padding:13px;
-    }
-
-    .pet-nome{
-        font-size:20px;
-    }
-
-
-    /* MODAL */
 
     .modal{
-        padding:6px;
-    }
-
-    .modal-conteudo{
-        margin:3px auto 25px;
-        border-radius:10px;
-    }
-
-    .modal-foto-mini{
-        max-height:300px;
-    }
-
-    .modal-dados{
-        padding:17px 14px;
-    }
-
-    .modal-dados h2{
-        font-size:24px;
-    }
-
-    .dado{
-        padding:9px 0;
-        font-size:14px;
-    }
-
-
-    /* EDIÇÃO */
-
-    .edicao-cadastro{
-        padding:14px 12px;
-        margin-top:20px;
-    }
-
-    .edicao-cadastro h3{
-        font-size:19px;
-    }
-
-    .botao-editar,
-    .botao-cancelar{
-        width:100%;
-        margin:0 0 8px 0;
-    }
-
-
-    /* COMENTÁRIOS */
-
-    .comentarios-bloco{
-        margin-top:22px;
-        padding-top:20px;
-    }
-
-    .comentarios-titulo{
-        font-size:20px;
-    }
-
-    .form-comentario{
-        padding:14px;
-    }
-
-    .form-comentario textarea{
-        min-height:100px;
-    }
-
-    .botao-comentar{
-        width:100%;
-    }
-
-    .comentario-item{
-        padding:13px;
-    }
-
-    .comentario-rodape{
-        align-items:flex-end;
-    }
-
-
-    /* MAPA */
-
-    .mapa-container{
         padding:8px;
     }
 
-    .mapa{
-        height:55vh;
-        min-height:350px;
-        max-height:520px;
+    .modal-conteudo{
+        margin:5px auto 30px;
     }
-
-    .botao-como-chegar{
-        width:100%;
-    }
-
-
-    /* NAVEGAÇÃO */
-
-    .rodape-navegacao{
-        display:grid;
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-        gap:8px;
-        margin-top:25px;
-        padding:17px 0;
-    }
-
-    .rodape-navegacao .botao{
-        width:100%;
-        min-width:0;
-        padding:12px 8px;
-        font-size:13px;
-    }
-
-    .rodape-navegacao .botao:last-child{
-        grid-column:1 / -1;
-    }
-
-
-    /* BOTÃO VOLTAR */
-
-    .botao-voltar-flutuante{
-        right:12px;
-        bottom:12px;
-        padding:12px 16px;
-    }
-
-}
-
-
-/* =====================================================
-   CELULARES MUITO PEQUENOS
-===================================================== */
-
-@media(max-width:360px){
-
-    .container{
-        padding-left:7px;
-        padding-right:7px;
-    }
-
-    .bloco{
-        padding:14px 10px;
-    }
-
-    .opcoes{
-        grid-template-columns:1fr;
-    }
-
-    .opcao{
-        font-size:13px;
-    }
-
-    .inicio h1{
-        font-size:26px;
-    }
-
-    .modal-dados{
-        padding:15px 11px;
-    }
-
-    .rodape-navegacao{
-        grid-template-columns:1fr;
-    }
-
-    .rodape-navegacao .botao:last-child{
-        grid-column:auto;
-    }
-
-}
-
-
-/* =====================================================
-   PAISAGEM EM CELULAR
-===================================================== */
-
-@media(max-width:700px) and (orientation:landscape){
 
     .modal-foto-mini{
-        max-height:240px;
-    }
-
-    .mapa{
-        height:70vh;
-        min-height:280px;
+        max-height:330px;
     }
 
 }
@@ -1174,7 +714,9 @@ REDE PET
 
 </header>
 
+
 <main class="container">
+
 
 <!-- =====================================================
      INÍCIO
@@ -1202,20 +744,23 @@ POR ONDE VOCÊ QUER COMEÇAR?
 <div class="botoes-inicio">
 
 <button
-class="botao"
-onclick="abrirPagina('pet')">
-CADASTRAR SEU PET </button>
-
-<button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-VISUALIZAR PETS </button>
+VISUALIZAR PETS
+</button>
+
+<button
+class="botao"
+onclick="abrirPagina('pet')">
+CADASTRAR SEU PET
+</button>
 
 </div>
 
 </div>
 
 </section>
+
 
 <!-- =====================================================
      CADASTRO
@@ -1246,37 +791,42 @@ accept="image/*">
 
 </div>
 
+
 <div class="campo">
 
 <label>
 STATUS DO ANIMAL
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-2x2">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'status','Perdido')">
-PERDIDO </button>
+PERDIDO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'status','Para adoção')">
-PARA ADOÇÃO </button>
+PARA ADOÇÃO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'status','Encontrado')">
-ENCONTRADO </button>
+ENCONTRADO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'status','Adotado')">
-ADOTADO </button>
+ADOTADO
+</button>
 
 </div>
 
@@ -1285,6 +835,7 @@ type="hidden"
 id="status">
 
 </div>
+
 
 <div class="campo">
 
@@ -1298,37 +849,42 @@ required>
 
 </div>
 
+
 <div class="campo">
 
 <label>
 IDADE
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-2x2">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'idade','Filhote (até 1 ano)')">
-FILHOTE (ATÉ 1 ANO) </button>
+FILHOTE (ATÉ 1 ANO)
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">
-JOVEM (1 A 3 ANOS) </button>
+JOVEM (1 A 3 ANOS)
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">
-ADULTO (3 A 8 ANOS) </button>
+ADULTO (3 A 8 ANOS)
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'idade','Idoso (8+ anos)')">
-IDOSO (8+ ANOS) </button>
+IDOSO (8+ ANOS)
+</button>
 
 </div>
 
@@ -1337,6 +893,7 @@ type="hidden"
 id="idade">
 
 </div>
+
 
 <div class="campo">
 
@@ -1349,7 +906,8 @@ PESO APROXIMADO
 <button
 type="button"
 onclick="alterarPeso(-1)">
-− </button>
+−
+</button>
 
 <div class="peso-valor">
 <span id="pesoValor">0</span> KG
@@ -1358,11 +916,13 @@ onclick="alterarPeso(-1)">
 <button
 type="button"
 onclick="alterarPeso(1)">
-+ </button>
++
+</button>
 
 </div>
 
 </div>
+
 
 <div class="campo">
 
@@ -1370,25 +930,28 @@ onclick="alterarPeso(1)">
 ESPÉCIE
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-3">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'especie','Cão')">
-CÃO </button>
+CÃO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'especie','Gato')">
-GATO </button>
+GATO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'especie','Outro')">
-OUTRO </button>
+OUTRO
+</button>
 
 </div>
 
@@ -1403,6 +966,7 @@ style="display:none;margin-top:10px">
 
 </div>
 
+
 <div class="campo">
 
 <label>
@@ -1414,31 +978,35 @@ id="raca">
 
 </div>
 
+
 <div class="campo">
 
 <label>
 SEXO
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-sexo">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'sexo','Macho')">
-MACHO </button>
+MACHO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'sexo','Fêmea')">
-FÊMEA </button>
+FÊMEA
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'sexo','Não identificado')">
-NÃO IDENTIFICADO </button>
+NÃO IDENTIFICADO
+</button>
 
 </div>
 
@@ -1448,31 +1016,35 @@ id="sexo">
 
 </div>
 
+
 <div class="campo">
 
 <label>
 PORTE
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-3">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'porte','Pequeno')">
-PEQUENO </button>
+PEQUENO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'porte','Médio')">
-MÉDIO </button>
+MÉDIO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'porte','Grande')">
-GRANDE </button>
+GRANDE
+</button>
 
 </div>
 
@@ -1481,6 +1053,7 @@ type="hidden"
 id="porte">
 
 </div>
+
 
 <div class="campo">
 
@@ -1493,6 +1066,7 @@ id="cor">
 
 </div>
 
+
 <div class="linha">
 
 <div class="campo">
@@ -1501,25 +1075,28 @@ id="cor">
 É CASTRADO?
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-3">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'castrado','Sim')">
-SIM </button>
+SIM
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'castrado','Não')">
-NÃO </button>
+NÃO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'castrado','Não sei')">
-NÃO SEI </button>
+NÃO SEI
+</button>
 
 </div>
 
@@ -1529,31 +1106,35 @@ id="castrado">
 
 </div>
 
+
 <div class="campo">
 
 <label>
 É VACINADO?
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-3">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'vacinado','Sim')">
-SIM </button>
+SIM
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'vacinado','Não')">
-NÃO </button>
+NÃO
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'vacinado','Não sei')">
-NÃO SEI </button>
+NÃO SEI
+</button>
 
 </div>
 
@@ -1564,6 +1145,7 @@ id="vacinado">
 </div>
 
 </div>
+
 
 <div class="campo">
 
@@ -1577,6 +1159,7 @@ id="ultimaVez">
 
 </div>
 
+
 <div class="campo">
 
 <label>
@@ -1588,6 +1171,7 @@ id="pontoReferencia"
 placeholder="EX.: PRÓXIMO À PRAÇA">
 
 </div>
+
 
 <div class="campo">
 
@@ -1602,6 +1186,7 @@ id="observacoes">
 </div>
 
 </div>
+
 
 <div class="bloco">
 
@@ -1620,6 +1205,7 @@ id="tutorNome">
 
 </div>
 
+
 <div class="campo">
 
 <label>
@@ -1631,25 +1217,28 @@ id="tutorContato">
 
 </div>
 
+
 <div class="campo">
 
 <label>
 DESEJA EXIBIR OS DADOS DO TUTOR PUBLICAMENTE?
 </label>
 
-<div class="opcoes">
+<div class="opcoes opcoes-2">
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'whatsappPublico','Sim')">
-SIM </button>
+SIM
+</button>
 
 <button
 type="button"
 class="opcao"
 onclick="selecionar(this,'whatsappPublico','Não')">
-NÃO </button>
+NÃO
+</button>
 
 </div>
 
@@ -1658,6 +1247,7 @@ type="hidden"
 id="whatsappPublico">
 
 </div>
+
 
 <div class="campo">
 
@@ -1669,6 +1259,7 @@ ENDEREÇO DO TUTOR
 id="endereco">
 
 </div>
+
 
 <div class="linha">
 
@@ -1682,6 +1273,7 @@ BAIRRO
 id="bairro">
 
 </div>
+
 
 <div class="campo">
 
@@ -1698,12 +1290,14 @@ id="cidade">
 
 </div>
 
+
 <div class="bloco">
 
 <button
 type="submit"
 class="botao">
-CADASTRAR PET </button>
+CADASTRAR PET
+</button>
 
 <div
 id="mensagem"
@@ -1714,26 +1308,31 @@ class="mensagem">
 
 </form>
 
+
 <div class="rodape-navegacao">
 
 <button
 class="botao"
 onclick="abrirPagina('match')">
-MATCH </button>
+MATCH
+</button>
 
 <button
 class="botao"
 onclick="abrirPagina('mapa')">
-MAPA </button>
+MAPA
+</button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-INÍCIO </button>
+INÍCIO
+</button>
 
 </div>
 
 </section>
+
 
 <!-- =====================================================
      MATCH
@@ -1754,11 +1353,13 @@ ENCONTRE ANIMAIS PERDIDOS OU DISPONÍVEIS PARA ADOÇÃO.
 
 </p>
 
+
 <div class="filtro-match">
 
 <label
 for="filtroStatus">
-O QUE VOCÊ DESEJA VISUALIZAR? </label>
+O QUE VOCÊ DESEJA VISUALIZAR?
+</label>
 
 <select
 id="filtroStatus"
@@ -1780,6 +1381,7 @@ PARA ADOÇÃO
 
 </div>
 
+
 <div
 id="listaPets"
 class="lista-pets">
@@ -1790,26 +1392,31 @@ CARREGANDO PETS...
 
 </div>
 
+
 <div class="rodape-navegacao">
 
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-CADASTRO DE PET </button>
+CADASTRO DE PET
+</button>
 
 <button
 class="botao"
 onclick="abrirPagina('mapa')">
-MAPA </button>
+MAPA
+</button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-INÍCIO </button>
+INÍCIO
+</button>
 
 </div>
 
 </section>
+
 
 <!-- =====================================================
      MAPA
@@ -1836,6 +1443,7 @@ PARA VISUALIZAR O LOCAL.
 
 </div>
 
+
 <div class="mapa-container">
 
 <iframe
@@ -1847,33 +1455,39 @@ loading="lazy">
 
 </div>
 
+
 <div
 id="botaoMapaArea"
 style="text-align:center;">
 </div>
+
 
 <div class="rodape-navegacao">
 
 <button
 class="botao"
 onclick="abrirPagina('pet')">
-CADASTRO DE PET </button>
+CADASTRO DE PET
+</button>
 
 <button
 class="botao"
 onclick="abrirPagina('match')">
-MATCH </button>
+MATCH
+</button>
 
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('inicio')">
-INÍCIO </button>
+INÍCIO
+</button>
 
 </div>
 
 </section>
 
 </main>
+
 
 <!-- =====================================================
      MODAL
@@ -1893,6 +1507,7 @@ style="display:none"
 onclick="abrirFotoAmpliada()"
 alt="FOTO DO PET">
 
+
 <div class="modal-dados">
 
 <h2
@@ -1902,6 +1517,7 @@ id="modalNome">
 <div
 id="modalDados">
 </div>
+
 
 <button
 type="button"
@@ -1914,6 +1530,7 @@ onclick="abrirEdicao()">
 
 </button>
 
+
 <div
 id="edicaoCadastro"
 class="edicao-cadastro"
@@ -1923,10 +1540,12 @@ style="display:none;">
 EDITAR CADASTRO DO PET
 </h3>
 
+
 <div class="campo">
 <label>NOME</label>
 <input id="editNome">
 </div>
+
 
 <div class="campo">
 <label>STATUS</label>
@@ -1952,6 +1571,7 @@ ADOTADO
 </select>
 
 </div>
+
 
 <div class="campo">
 <label>IDADE</label>
@@ -1982,6 +1602,7 @@ IDOSO (8+ ANOS)
 
 </div>
 
+
 <div class="campo">
 <label>PESO (KG)</label>
 
@@ -1992,6 +1613,7 @@ min="0"
 step="0.1">
 
 </div>
+
 
 <div class="campo">
 <label>ESPÉCIE</label>
@@ -2018,6 +1640,7 @@ OUTRO
 
 </div>
 
+
 <div class="campo">
 <label>RAÇA</label>
 
@@ -2025,6 +1648,7 @@ OUTRO
 id="editRaca">
 
 </div>
+
 
 <div class="campo">
 <label>SEXO</label>
@@ -2051,6 +1675,7 @@ NÃO IDENTIFICADO
 
 </div>
 
+
 <div class="campo">
 <label>PORTE</label>
 
@@ -2076,6 +1701,7 @@ GRANDE
 
 </div>
 
+
 <div class="campo">
 <label>COR</label>
 
@@ -2083,6 +1709,7 @@ GRANDE
 id="editCor">
 
 </div>
+
 
 <div class="campo">
 <label>CASTRADO</label>
@@ -2109,6 +1736,7 @@ NÃO SEI
 
 </div>
 
+
 <div class="campo">
 <label>VACINADO</label>
 
@@ -2134,6 +1762,7 @@ NÃO SEI
 
 </div>
 
+
 <div class="campo">
 <label>NOME DO TUTOR</label>
 
@@ -2142,6 +1771,7 @@ id="editTutorNome">
 
 </div>
 
+
 <div class="campo">
 <label>CONTATO DO TUTOR</label>
 
@@ -2149,6 +1779,7 @@ id="editTutorNome">
 id="editTutorContato">
 
 </div>
+
 
 <div class="campo">
 <label>WHATSAPP PÚBLICO</label>
@@ -2171,6 +1802,7 @@ NÃO
 
 </div>
 
+
 <div class="campo">
 <label>ENDEREÇO</label>
 
@@ -2178,6 +1810,7 @@ NÃO
 id="editEndereco">
 
 </div>
+
 
 <div class="campo">
 <label>BAIRRO</label>
@@ -2187,6 +1820,7 @@ id="editBairro">
 
 </div>
 
+
 <div class="campo">
 <label>CIDADE</label>
 
@@ -2195,6 +1829,7 @@ id="editCidade">
 
 </div>
 
+
 <div class="campo">
 <label>PONTO DE REFERÊNCIA</label>
 
@@ -2202,6 +1837,7 @@ id="editCidade">
 id="editPontoReferencia">
 
 </div>
+
 
 <div class="campo">
 <label>ÚLTIMA VEZ VISTO</label>
@@ -2212,6 +1848,7 @@ id="editUltimaVez">
 
 </div>
 
+
 <div class="campo">
 <label>OBSERVAÇÕES</label>
 
@@ -2220,6 +1857,7 @@ id="editObservacoes">
 </textarea>
 
 </div>
+
 
 <button
 type="button"
@@ -2230,6 +1868,7 @@ SALVAR ALTERAÇÕES
 
 </button>
 
+
 <button
 type="button"
 class="botao-cancelar"
@@ -2239,12 +1878,14 @@ CANCELAR
 
 </button>
 
+
 <div
 id="mensagemEdicao"
 class="mensagem">
 </div>
 
 </div>
+
 
 <!-- COMENTÁRIOS -->
 
@@ -2253,6 +1894,7 @@ class="mensagem">
 <h3 class="comentarios-titulo">
 COMENTÁRIOS SOBRE O PET
 </h3>
+
 
 <div class="form-comentario">
 
@@ -2265,6 +1907,7 @@ id="comentarioTexto"
 placeholder="EX.: VI ELE PERTO DA PADARIA.">
 </textarea>
 
+
 <label>
 SEU NOME
 </label>
@@ -2273,13 +1916,15 @@ SEU NOME
 id="comentarioNome"
 placeholder="DIGITE SEU NOME">
 
+
 <label>
-ONDE VOCÊ VIU O PET? <span style="font-weight:normal;color:#777;">(OPCIONAL)</span>
+ONDE VOCÊ VIU O PET?
 </label>
 
 <input
 id="comentarioLocal"
 placeholder="EX.: PERTO DA PADARIA CENTRAL">
+
 
 <button
 type="button"
@@ -2290,12 +1935,14 @@ COMENTAR
 
 </button>
 
+
 <div
 id="mensagemComentario"
 class="mensagem">
 </div>
 
 </div>
+
 
 <div
 id="listaComentarios"
@@ -2313,6 +1960,7 @@ CARREGANDO COMENTÁRIOS...
 
 </div>
 
+
 <!-- VOLTAR -->
 
 <button
@@ -2323,6 +1971,7 @@ onclick="fecharModal()">
 ← VOLTAR
 
 </button>
+
 
 <!-- FOTO AMPLIADA -->
 
@@ -2337,17 +1986,20 @@ alt="FOTO AMPLIADA DO PET">
 
 </div>
 
+
 <footer>
 
 REDE PET — PROTÓTIPO
 
 </footer>
 
+
 <iframe
 name="frameCadastro"
 id="frameCadastro"
 style="display:none">
 </iframe>
+
 
 <script>
 
@@ -2859,7 +2511,7 @@ document
 
             document
                 .querySelectorAll(
-                    "#formPet .opcao"
+                    ".opcao"
                 )
                 .forEach(
                     b =>
@@ -2867,14 +2519,6 @@ document
                         "selecionada"
                     )
                 );
-
-
-            document
-                .getElementById(
-                    "especieOutro"
-                )
-                .style.display =
-                "none";
 
 
         }catch(erro){
@@ -3153,6 +2797,15 @@ function renderizarPets(){
                     );
 
 
+                /*
+                 * O BACKEND JÁ ESCONDE
+                 * ENCONTRADO E ADOTADO.
+                 *
+                 * Esta proteção adicional
+                 * evita que sejam renderizados
+                 * publicamente.
+                 */
+
                 const idPet =
                     campoPet(
                         pet,
@@ -3165,7 +2818,6 @@ function renderizarPets(){
                     campoPet(
                         pet,
                         "Token Proprietario",
-                        "Token Proprietário",
                         "tokenProprietario"
                     );
 
@@ -3293,6 +2945,13 @@ function renderizarPets(){
 
             }
 
+
+            /*
+             * MATCH:
+             * FOTO
+             * NOME
+             * STATUS
+             */
 
             card.innerHTML =
 
@@ -4177,7 +3836,6 @@ function preencherEdicao(){
                 pet,
                 "Ultima Vez",
                 "Última vez",
-                "Última vez visto",
                 "ultimaVez"
             )
         );
@@ -4236,7 +3894,6 @@ function salvarEdicaoPet(){
             campoPet(
                 petAtual,
                 "ID",
-                "ID_Pet",
                 "id"
             ),
 
@@ -4487,9 +4144,6 @@ function salvarEdicaoPet(){
                     "WhatsApp Publico":
                         dados.whatsappPublico,
 
-                    "WhatsApp público":
-                        dados.whatsappPublico,
-
                     whatsappPublico:
                         dados.whatsappPublico,
 
@@ -4514,25 +4168,16 @@ function salvarEdicaoPet(){
                     "Ponto Referencia":
                         dados.pontoReferencia,
 
-                    "Ponto de referência":
-                        dados.pontoReferencia,
-
                     pontoReferencia:
                         dados.pontoReferencia,
 
                     "Ultima Vez":
                         dados.ultimaVez,
 
-                    "Última vez":
-                        dados.ultimaVez,
-
                     ultimaVez:
                         dados.ultimaVez,
 
                     Observacoes:
-                        dados.observacoes,
-
-                    Observações:
                         dados.observacoes,
 
                     observacoes:
@@ -4802,19 +4447,8 @@ function carregarComentarios(
                         "";
 
 
-                    /*
-                     * LOCAL É OPCIONAL.
-                     *
-                     * Só criamos o bloco de
-                     * localização quando o usuário
-                     * realmente informou um local.
-                     */
-
                     if(
-                        item.local &&
-                        String(
-                            item.local
-                        ).trim() !== ""
+                        item.local
                     ){
 
                         localHTML =
@@ -5007,13 +4641,6 @@ function enviarComentario(){
             .trim();
 
 
-    /*
-     * LOCAL É OPCIONAL.
-     *
-     * Não usamos mais !local como
-     * condição de bloqueio.
-     */
-
     const local =
         document
             .getElementById(
@@ -5059,10 +4686,19 @@ function enviarComentario(){
     }
 
 
-    /*
-     * NÃO EXISTE MAIS VALIDAÇÃO
-     * OBRIGANDO O LOCAL.
-     */
+    if(
+        !local
+    ){
+
+        mensagem.style.display =
+            "block";
+
+        mensagem.textContent =
+            "INFORME ONDE VOCÊ VIU O PET.";
+
+        return;
+
+    }
 
 
     mensagem.style.display =
@@ -5087,7 +4723,6 @@ function enviarComentario(){
                 campoPet(
                     petAtual,
                     "ID",
-                    "ID_Pet",
                     "id"
                 ),
 
@@ -5144,7 +4779,6 @@ function enviarComentario(){
                 campoPet(
                     petAtual,
                     "ID",
-                    "ID_Pet",
                     "id"
                 )
             );
@@ -5537,6 +5171,11 @@ function formatarDataInput(
         );
 
 
+    /*
+     * Caso o valor já venha no padrão
+     * aceito pelo input.
+     */
+
     if(
         /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/
         .test(
@@ -5653,24 +5292,7 @@ document.addEventListener(
             "Escape"
         ){
 
-            if(
-                document
-                    .getElementById(
-                        "fotoAmpliada"
-                    )
-                    .classList
-                    .contains(
-                        "aberta"
-                    )
-            ){
-
-                fecharFotoAmpliada();
-
-            }else{
-
-                fecharModal();
-
-            }
+            fecharFotoAmpliada();
 
         }
 
