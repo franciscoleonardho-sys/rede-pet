@@ -490,19 +490,19 @@ textarea{
 
 /* MAPA */
 
-.mapa-container{background:white;border:1px solid #ddd;border-radius:10px;padding:15px;}
-.mapa{width:100%;height:500px;border:none;border-radius:8px;}
-.mapa-rede-pet{width:100%;overflow:hidden;border-radius:10px;background:#eef2ef;border:1px solid #d8dfdb;}
-.mapa-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:#fff;color:#064e3b;font-weight:bold;font-size:13px;}
-.mapa-legenda{font-size:11px;color:#666;font-weight:normal;}
-.mapa-cidade{position:relative;height:500px;overflow:hidden;background:linear-gradient(135deg,#e7ece9,#f4f5f1 45%,#e6ece8);}
-.estrada{position:absolute;background:#fff;box-shadow:0 0 0 1px rgba(180,190,185,.45);transform-origin:center;}
-.estrada-a{width:125%;height:34px;left:-10%;top:45%;transform:rotate(-18deg);}.estrada-b{width:120%;height:24px;left:-8%;top:23%;transform:rotate(28deg);}.estrada-c{width:110%;height:28px;left:-5%;top:70%;transform:rotate(12deg);}.estrada-d{width:25px;height:115%;left:57%;top:-8%;transform:rotate(18deg);}
-.rio{position:absolute;width:24px;height:125%;left:27%;top:-10%;background:rgba(116,170,185,.22);transform:rotate(-18deg);border-radius:50%;}
-.mapa-bairro{position:absolute;color:#77827d;font-size:10px;letter-spacing:.4px;font-weight:bold;pointer-events:none;}.bairro-1{left:8%;top:35%;}.bairro-2{right:8%;top:18%;}.bairro-3{right:12%;bottom:22%;}.bairro-4{left:12%;bottom:12%;}
-.marcador-pet{position:absolute;z-index:5;width:72px;height:72px;border:0;border-radius:50%;background:#fff;color:#064e3b;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .15s,box-shadow .15s;}.marcador-pet:hover,.marcador-pet.ativo{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.24);}.marcador-pet span{font-size:27px;line-height:1;}.marcador-pet small{font-size:9px;font-weight:bold;}.marcador-salgado{left:17%;top:25%;}.marcador-centro{left:53%;top:43%;}.marcador-cidade-jardim{right:14%;bottom:19%;}
-.mapa-nota{padding:11px 13px;background:#fff;color:#666;font-size:12px;line-height:1.4;border-top:1px solid #d8dfdb;}
-@media(max-width:700px){.mapa-cidade{height:430px;}.mapa-topo{align-items:flex-start;flex-direction:column;gap:3px;}.marcador-pet{width:64px;height:64px;}.marcador-pet span{font-size:24px;}.marcador-salgado{left:10%;top:25%;}.marcador-centro{left:46%;top:43%;}.marcador-cidade-jardim{right:7%;bottom:18%;}}
+.mapa-container{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+}
+
+.mapa{
+    width:100%;
+    height:500px;
+    border:none;
+    border-radius:8px;
+}
 
 .mapa-info{
     margin-bottom:15px;
@@ -560,52 +560,13 @@ textarea{
 /* RODAPÉ DE NAVEGAÇÃO */
 
 .rodape-navegacao{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    display:flex;
+    justify-content:center;
     gap:10px;
+    flex-wrap:wrap;
     margin-top:35px;
     padding:20px 0;
     border-top:1px solid #ddd;
-}
-
-/* Nas páginas MATCH e MAPA: dois atalhos menores em cima
-   e CADASTRO DE PET sozinho na linha de baixo. */
-.rodape-navegacao .botao{
-    width:100%;
-    min-width:0;
-    box-sizing:border-box;
-}
-
-.rodape-navegacao .botao:first-child{
-    grid-column:1 / -1;
-    grid-row:2;
-}
-
-.rodape-navegacao .botao:nth-child(2){
-    grid-column:2;
-    grid-row:1;
-}
-
-.rodape-navegacao .botao:nth-child(3){
-    grid-column:1;
-    grid-row:1;
-}
-
-/* Na página de CADASTRO, os três atalhos permanecem pequenos
-   e lado a lado, em uma única linha. */
-/* PÁGINA DE CADASTRO: os 3 atalhos permanecem na mesma linha,
-   em TODOS os tamanhos de tela. */
-section#pet .rodape-navegacao{
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-}
-
-section#pet .rodape-navegacao .botao:first-child,
-section#pet .rodape-navegacao .botao:nth-child(2),
-section#pet .rodape-navegacao .botao:nth-child(3){
-    grid-column:auto !important;
-    grid-row:auto !important;
-    width:100%;
-    min-width:0;
 }
 
 /* VOLTAR */
@@ -685,10 +646,8 @@ footer{
     .botoes-inicio .botao{
         width:100%;
         min-width:0;
-        padding:13px 6px;
-        font-size:13px;
+        padding:13px 10px;
         white-space:nowrap;
-        letter-spacing:-0.2px;
     }
 
     .opcoes{
@@ -764,19 +723,6 @@ footer{
         grid-template-columns:1fr;
     }
 
-
-    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha também no celular */
-    section#pet .rodape-navegacao{
-        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    }
-
-    section#pet .rodape-navegacao .botao{
-        padding-left:6px;
-        padding-right:6px;
-        white-space:nowrap;
-        font-size:13px;
-    }
-
     .modal{
         padding:8px;
     }
@@ -789,8 +735,56 @@ footer{
         max-height:330px;
     }
 
+    .botoes-inicio .botao:nth-child(2){
+        font-size:12px;
+        letter-spacing:0;
+        padding-left:6px;
+        padding-right:6px;
+    }
+
+    /* MATCH e MAPA: dois atalhos em cima e cadastro abaixo. */
+    #match .rodape-navegacao, #mapa .rodape-navegacao{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+    #match .rodape-navegacao .botao:first-child, #mapa .rodape-navegacao .botao:first-child{
+        grid-column:1 / -1;
+        grid-row:2;
+    }
+    #match .rodape-navegacao .botao:nth-child(2), #match .rodape-navegacao .botao:nth-child(3),
+    #mapa .rodape-navegacao .botao:nth-child(2), #mapa .rodape-navegacao .botao:nth-child(3){
+        grid-row:1;
+    }
+    /* Cadastro: os três atalhos permanecem na mesma linha. */
+    #pet .rodape-navegacao{
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:7px;
+    }
+    #pet .rodape-navegacao .botao{
+        min-width:0;
+        width:100%;
+        padding-left:4px;
+        padding-right:4px;
+        font-size:11px;
+        white-space:nowrap;
+    }
 
 }
+
+
+.mapa-redepet{position:relative;overflow:hidden;background:#f3f5f2;border-radius:14px;min-height:360px;}
+.mapa-legenda{padding:10px 14px;background:#fff;border-bottom:1px solid #ddd;color:#666;font-size:12px;text-align:center;}
+.mapa-visual{width:100%;line-height:0;}
+.mapa-visual svg{display:block;width:100%;height:auto;min-height:360px;}
+.rp-marker{cursor:pointer;outline:none;}
+.rp-marker circle{transition:transform .15s, filter .15s;}
+.rp-marker:hover circle,.rp-marker:focus circle{transform:scale(1.08);filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));transform-origin:center;}
+.mapa-painel{margin:12px;padding:14px;border:1px solid #ddd;border-radius:12px;background:#fff;text-align:left;}
+.mapa-painel h3{margin:0 0 6px;}
+.mapa-painel p{margin:5px 0;color:#666;}
+.mapa-painel .botao{margin-top:8px;}
 
 </style>
 
@@ -1522,21 +1516,52 @@ class="pagina">
 MAPA
 </h2>
 
-<div id="mapaInfo" class="mapa-info">
-<p><strong>MAPA REDE PET</strong><br>VISUALIZE, DE FORMA APROXIMADA, AS REGIÕES ONDE HÁ ANIMAIS CADASTRADOS.</p>
+<div
+id="mapaInfo"
+class="mapa-info">
+
+<p style="color:#666;">
+
+SELECIONE COMO CHEGAR EM UM COMENTÁRIO
+PARA VISUALIZAR O LOCAL.
+
+</p>
+
 </div>
-<div class="mapa-container">
-<div id="mapaRedePet" class="mapa-rede-pet" aria-label="Mapa da REDE PET com regiões e animais cadastrados">
-<div class="mapa-topo"><span>CARUARU • REDE PET</span><span class="mapa-legenda">🐾 ANIMAIS CADASTRADOS</span></div>
-<div class="mapa-cidade">
-<div class="estrada estrada-a"></div><div class="estrada estrada-b"></div><div class="estrada estrada-c"></div><div class="estrada estrada-d"></div><div class="rio"></div>
-<button class="marcador-pet marcador-salgado" onclick="selecionarRegiaoMapa('salgado')" aria-label="Salgado, 2 animais cadastrados"><span>🐾</span><small>SALGADO</small></button>
-<button class="marcador-pet marcador-centro" onclick="selecionarRegiaoMapa('centro')" aria-label="Centro, 1 animal cadastrado"><span>🐾</span><small>CENTRO</small></button>
-<button class="marcador-pet marcador-cidade-jardim" onclick="selecionarRegiaoMapa('cidade-jardim')" aria-label="Cidade Jardim, 1 animal cadastrado"><span>🐾</span><small>CIDADE JARDIM</small></button>
-<div class="mapa-bairro bairro-1">UNIVERSITÁRIO</div><div class="mapa-bairro bairro-2">PETRÓPOLIS</div><div class="mapa-bairro bairro-3">INDIANÓPOLIS</div><div class="mapa-bairro bairro-4">RIACHÃO</div>
-</div>
-<div class="mapa-nota">🐾 As marcações representam <strong>regiões aproximadas</strong>. O endereço exato não é exibido no mapa.</div>
-</div>
+
+
+<div class="mapa-container mapa-redepet">
+  <div class="mapa-legenda">
+    <span>🐾</span> MARCADORES INDICAM REGIÕES APROXIMADAS COM ANIMAIS CADASTRADOS
+  </div>
+  <div class="mapa-visual" id="mapaVisual" aria-label="Mapa da REDE PET">
+    <svg viewBox="0 0 900 560" role="img" aria-label="Mapa ilustrativo de Caruaru com regiões da REDE PET">
+      <rect width="900" height="560" fill="#f3f5f2"/>
+      <path d="M0 110 C170 80 250 160 380 120 S650 70 900 120" fill="none" stroke="#d6dcd7" stroke-width="42"/>
+      <path d="M-20 430 C170 370 250 450 410 390 S690 340 920 420" fill="none" stroke="#d6dcd7" stroke-width="36"/>
+      <path d="M110 -20 C150 130 110 250 180 580" fill="none" stroke="#dfe4df" stroke-width="28"/>
+      <path d="M650 -20 C590 120 680 250 620 580" fill="none" stroke="#dfe4df" stroke-width="34"/>
+      <path d="M0 270 L900 250" stroke="#e0e5e0" stroke-width="18"/>
+      <path d="M310 0 L360 560" stroke="#e0e5e0" stroke-width="16"/>
+      <path d="M470 0 L430 560" stroke="#e0e5e0" stroke-width="13"/>
+      <path d="M790 0 L730 560" stroke="#e0e5e0" stroke-width="15"/>
+      <path d="M40 520 C220 460 320 520 460 470 S720 450 880 510" fill="none" stroke="#cbd3cc" stroke-width="7"/>
+      <g fill="#9ca79f" font-family="Arial, sans-serif" font-size="18" font-weight="600">
+        <text x="115" y="180">Salgado</text><text x="400" y="210">Centro</text><text x="635" y="330">Cidade Jardim</text>
+        <text x="690" y="150" font-size="14" font-weight="400">Caruaru - PE</text>
+      </g>
+      <g class="rp-marker" data-area="Salgado" tabindex="0" role="button" onclick="mostrarAreaMapa('Salgado')" onkeydown="if(event.key==='Enter')mostrarAreaMapa('Salgado')">
+        <circle cx="165" cy="145" r="25" fill="#ffffff" stroke="#333" stroke-width="3"/><text x="165" y="154" text-anchor="middle" font-size="24">🐾</text>
+      </g>
+      <g class="rp-marker" data-area="Centro" tabindex="0" role="button" onclick="mostrarAreaMapa('Centro')" onkeydown="if(event.key==='Enter')mostrarAreaMapa('Centro')">
+        <circle cx="440" cy="180" r="25" fill="#ffffff" stroke="#333" stroke-width="3"/><text x="440" y="189" text-anchor="middle" font-size="24">🐾</text>
+      </g>
+      <g class="rp-marker" data-area="Cidade Jardim" tabindex="0" role="button" onclick="mostrarAreaMapa('Cidade Jardim')" onkeydown="if(event.key==='Enter')mostrarAreaMapa('Cidade Jardim')">
+        <circle cx="670" cy="300" r="25" fill="#ffffff" stroke="#333" stroke-width="3"/><text x="670" y="309" text-anchor="middle" font-size="24">🐾</text>
+      </g>
+    </svg>
+  </div>
+  <div id="mapaPainel" class="mapa-painel" style="display:none"></div>
 </div>
 
 
@@ -2073,7 +2098,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO
+
 
 </footer>
 
@@ -2096,6 +2121,25 @@ let petAtual = null;
 let petsCarregados = [];
 let localMapaAtual = "";
 
+
+const animaisMapaDemo = {
+  "Salgado":[{nome:"Thor",status:"Perdido"},{nome:"Mel",status:"Encontrado"}],
+  "Centro":[{nome:"Nina",status:"Para adoção"}],
+  "Cidade Jardim":[{nome:"Luna",status:"Perdido"}]
+};
+
+function mostrarAreaMapa(area){
+  const painel=document.getElementById("mapaPainel");
+  const lista=animaisMapaDemo[area]||[];
+  painel.innerHTML=`<h3>🐾 ${area}</h3><p><strong>${lista.length}</strong> animal(is) cadastrado(s) nesta região.</p>${lista.map(p=>`<p>🐾 <strong>${p.nome}</strong> — ${p.status}</p>`).join("")}<button type="button" class="botao" onclick="abrirNavegacaoArea('${area}')">COMO CHEGAR</button>`;
+  painel.style.display="block";
+  painel.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function abrirNavegacaoArea(area){
+  const q=encodeURIComponent(area+", Caruaru, Pernambuco");
+  window.open("https://www.google.com/maps/search/?api=1&query="+q,"_blank");
+}
 
 /* =========================
    NAVEGAÇÃO
@@ -5002,35 +5046,84 @@ function curtirComentarioHTML(
    MAPA
 ========================= */
 
-function selecionarRegiaoMapa(regiao){
-    const dados={
-        salgado:{nome:"SALGADO",quantidade:"2 animais cadastrados",animais:"Thor • Perdido | Mel • Encontrado"},
-        centro:{nome:"CENTRO",quantidade:"1 animal cadastrado",animais:"Nina • Para adoção"},
-        "cidade-jardim":{nome:"CIDADE JARDIM",quantidade:"1 animal cadastrado",animais:"Rex • Perdido"}
-    };
-    const item=dados[regiao]; if(!item)return;
-    document.querySelectorAll('.marcador-pet').forEach(function(botao){botao.classList.remove('ativo');});
-    const botao=document.querySelector('.marcador-'+regiao); if(botao)botao.classList.add('ativo');
-    const info=document.getElementById('mapaInfo');
-    if(info)info.innerHTML='<p><strong>'+item.nome+'</strong><br>'+item.quantidade+'<br><span style="color:#666;">'+item.animais+'</span></p>';
-    const area=document.getElementById('botaoMapaArea');
-    if(area)area.innerHTML='<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao(\''+item.nome+'\')">📍 COMO CHEGAR À REGIÃO</button>';
-}
+function abrirMapaDoComentario(
+    local
+){
 
-function abrirNavegacaoRegiao(local){
-    const encoded=encodeURIComponent(local+', Caruaru, Pernambuco');
-    const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;
-    window.open(url,'_blank','noopener,noreferrer');
-}
+    if(
+        !local
+    ){
+        return;
+    }
 
-function abrirMapaDoComentario(local){
-    if(!local)return;
-    localMapaAtual=local;
-    const info=document.getElementById('mapaInfo');
-    const area=document.getElementById('botaoMapaArea');
-    if(info)info.innerHTML='<p><strong>LOCAL INFORMADO:</strong><br>'+escaparHTML(local)+'<br><span style="color:#666;">O mapa apresenta regiões aproximadas. Para a rota, use o botão abaixo.</span></p>';
-    if(area){const encoded=encodeURIComponent(local);const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;area.innerHTML='<a class="botao-como-chegar" href="'+escaparHTML(url)+'" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR ATÉ O LOCAL</a>';}
-    fecharModal(); abrirPagina('mapa');
+
+    localMapaAtual =
+        local;
+
+
+    const mapa =
+        document.getElementById(
+            "mapaIframe"
+        );
+
+
+    const info =
+        document.getElementById(
+            "mapaInfo"
+        );
+
+
+    const area =
+        document.getElementById(
+            "botaoMapaArea"
+        );
+
+
+    const encoded =
+        encodeURIComponent(
+            local
+        );
+
+
+    mapa.src =
+        "https://www.google.com/maps?q=" +
+        encoded +
+        "&output=embed";
+
+
+    info.innerHTML =
+        '<p>' +
+        '<strong>LOCAL INFORMADO:</strong><br>' +
+        escaparHTML(
+            local
+        ) +
+        '</p>';
+
+
+    const url =
+        "https://www.google.com/maps/dir/?api=1&destination=" +
+        encoded;
+
+
+    area.innerHTML =
+        '<a class="botao-como-chegar" ' +
+        'href="' +
+        escaparHTML(
+            url
+        ) +
+        '" target="_blank" ' +
+        'rel="noopener noreferrer">' +
+        '📍 COMO CHEGAR ATÉ O LOCAL' +
+        '</a>';
+
+
+    fecharModal();
+
+
+    abrirPagina(
+        "mapa"
+    );
+
 }
 
 
