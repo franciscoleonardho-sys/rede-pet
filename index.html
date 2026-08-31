@@ -669,6 +669,14 @@ footer{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
+    /* Os grupos de 4 permanecem sempre em 2 x 2 no celular,
+       inclusive em telas mais estreitas. */
+    .opcoes-2x2 .opcao{
+        min-width:0;
+        width:100%;
+        overflow-wrap:anywhere;
+    }
+
     /* Grupos curtos de 3: mantêm as opções lado a lado. */
     .opcoes-3{
         grid-template-columns:repeat(3,minmax(0,1fr));
