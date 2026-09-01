@@ -1,3 +1,4 @@
+<!-- REDE PET v15: UI de edição aprovada; mapa dinâmico prioriza bairro real; ID_Tutor enviado pelo frontend. A persistência entre dispositivos depende do backend/planilha. -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -511,6 +512,48 @@ textarea{
 .botao-editar-circular:hover{
     background:#b91c1c;
     color:#fff;
+}
+.botao-editar-detalhe{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin:18px 0 0;
+    padding:6px 12px 6px 6px;
+    border:2px solid #b91c1c;
+    border-radius:22px;
+    background:#fff;
+    color:#b91c1c;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    line-height:1;
+}
+.icone-editar-detalhe{
+    width:28px;
+    height:28px;
+    min-width:28px;
+    border:2px solid #b91c1c;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    font-size:18px;
+    line-height:1;
+}
+.botao-editar-detalhe:hover{
+    background:#b91c1c;
+    color:#fff;
+}
+.botao-editar-detalhe:hover .icone-editar-detalhe{
+    background:#fff;
+    color:#b91c1c;
+}
+@media(max-width:700px){
+    .botao-editar-detalhe{
+        font-size:12px;
+    }
 }
 .pet-topo-resumo{
     display:flex;
@@ -1667,12 +1710,13 @@ id="modalDados">
 
 <button
 type="button"
-class="botao-editar-circular"
+class="botao-editar-detalhe"
 id="botaoEditarCadastro"
 onclick="event.stopPropagation();abrirEdicao()"
 aria-label="Editar cadastro deste animal"
 title="Editar cadastro">
-<span aria-hidden="true">✎</span>
+<span class="icone-editar-detalhe" aria-hidden="true">✎</span>
+<span class="texto-editar-detalhe">EDITAR CADASTRO</span>
 </button>
 
 
@@ -2134,7 +2178,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v14
+REDE PET — PROTÓTIPO • v15
 
 </footer>
 
@@ -4838,6 +4882,11 @@ function atualizarMapaComPets(){
     const mapa=document.querySelector("#mapaRedePet .mapa-cidade");
     if(!mapa || !Array.isArray(petsCarregados))return;
     mapa.querySelectorAll(".marcador-dinamico-pet").forEach(function(el){el.remove();});
+    /* Os marcadores antigos eram exemplos fixos. Depois que os dados reais
+       chegam, eles ficam ocultos para nunca colocar um PET no bairro errado. */
+    mapa.querySelectorAll(".marcador-pet:not(.marcador-dinamico-pet)").forEach(function(el){
+        el.style.display="none";
+    });
     const grupos={};
     petsCarregados.forEach(function(pet){
         const status=normalizarStatus(campoPet(pet,"Status","status"));
@@ -4890,7 +4939,7 @@ function selecionarRegiaoMapa(regiao){
     const info=document.getElementById('mapaInfo');
     if(info)info.innerHTML='<p><strong>'+item.nome+'</strong><br>'+item.quantidade+'<br><span style="color:#666;">'+item.animais+'</span></p>';
     const area=document.getElementById('botaoMapaArea');
-            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(cfg.label)}')">📍 COMO CHEGAR À REGIÃO</button>`;
+            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(item.nome)}')">📍 COMO CHEGAR À REGIÃO</button>`;
 }
 
 function abrirNavegacaoRegiao(local){
