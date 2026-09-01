@@ -735,89 +735,6 @@ footer{
         max-height:330px;
     }
 
-    .botoes-inicio .botao:nth-child(2){
-        font-size:12px;
-        letter-spacing:0;
-        padding-left:6px;
-        padding-right:6px;
-    }
-
-    /* MATCH e MAPA: dois atalhos em cima e cadastro abaixo. */
-    #match .rodape-navegacao, #mapa .rodape-navegacao{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-    }
-    #match .rodape-navegacao .botao:first-child, #mapa .rodape-navegacao .botao:first-child{
-        grid-column:1 / -1;
-        grid-row:2;
-    }
-    #match .rodape-navegacao .botao:nth-child(2), #match .rodape-navegacao .botao:nth-child(3),
-    #mapa .rodape-navegacao .botao:nth-child(2), #mapa .rodape-navegacao .botao:nth-child(3){
-        grid-row:1;
-    }
-    /* Cadastro: os três atalhos permanecem na mesma linha. */
-    #pet .rodape-navegacao{
-        display:grid;
-        grid-template-columns:repeat(3,minmax(0,1fr));
-        gap:7px;
-    }
-    #pet .rodape-navegacao .botao{
-        min-width:0;
-        width:100%;
-        padding-left:4px;
-        padding-right:4px;
-        font-size:11px;
-        white-space:nowrap;
-    }
-
-}
-
-
-.mapa-redepet{position:relative;overflow:hidden;background:#f3f5f2;border-radius:14px;min-height:360px;}
-.mapa-legenda{padding:10px 14px;background:#fff;border-bottom:1px solid #ddd;color:#666;font-size:12px;text-align:center;}
-.mapa-visual{width:100%;line-height:0;}
-.mapa-visual svg{display:block;width:100%;height:auto;min-height:360px;}
-.rp-marker{cursor:pointer;outline:none;}
-.rp-marker circle{transition:transform .15s, filter .15s;}
-.rp-marker:hover circle,.rp-marker:focus circle{transform:scale(1.08);filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));transform-origin:center;}
-.mapa-painel{margin:12px;padding:14px;border:1px solid #ddd;border-radius:12px;background:#fff;text-align:left;}
-.mapa-painel h3{margin:0 0 6px;}
-.mapa-painel p{margin:5px 0;color:#666;}
-.mapa-painel .botao{margin-top:8px;}
-
-
-/* EDITAR CADASTRO — exclusivo do tutor */
-#botaoEditarCadastro{background:#c62828 !important;border-color:#c62828 !important;color:#fff !important;}
-#botaoEditarCadastro:hover,#botaoEditarCadastro:focus{background:#a91f1f !important;border-color:#a91f1f !important;}
-
-
-/* =====================================================
-   V13 — EDIÇÃO DISCRETA DO TUTOR
-===================================================== */
-.botao-editar-tutor{
-    display:none;
-    width:38px !important;
-    height:38px !important;
-    min-width:38px !important;
-    padding:0 !important;
-    margin:14px 0 0 auto !important;
-    border-radius:50% !important;
-    border:0 !important;
-    background:#c62828 !important;
-    color:#fff !important;
-    font-size:20px !important;
-    line-height:38px !important;
-    text-align:center !important;
-    box-shadow:none !important;
-    cursor:pointer;
-}
-.botao-editar-tutor.visivel{display:block !important;}
-.botao-editar-tutor:hover,
-.botao-editar-tutor:focus{
-    background:#a91f1f !important;
-    outline:2px solid rgba(198,40,40,.20);
-    outline-offset:2px;
 }
 
 </style>
@@ -1546,41 +1463,41 @@ INÍCIO
 id="mapa"
 class="pagina">
 
-<h2>MAPA</h2>
+<h2>
+MAPA
+</h2>
 
-<div id="mapaInfo" class="mapa-info">
+<div
+id="mapaInfo"
+class="mapa-info">
+
 <p style="color:#666;">
-VISUALIZE, DE FORMA APROXIMADA, AS REGIÕES ONDE HÁ ANIMAIS ATIVOS CADASTRADOS NA REDE PET.
+
+SELECIONE COMO CHEGAR EM UM COMENTÁRIO
+PARA VISUALIZAR O LOCAL.
+
 </p>
+
 </div>
 
-<div class="mapa-container mapa-redepet">
-  <div class="mapa-legenda">
-    <span>🐾</span> MARCADORES INDICAM REGIÕES APROXIMADAS COM ANIMAIS CADASTRADOS
-  </div>
-  <div class="mapa-visual" id="mapaVisual" aria-label="Mapa da REDE PET">
-    <svg id="mapaSvg" viewBox="0 0 900 560" role="img" aria-label="Mapa ilustrativo de Caruaru com regiões da REDE PET">
-      <rect width="900" height="560" fill="#f3f5f2"/>
-      <path d="M0 110 C170 80 250 160 380 120 S650 70 900 120" fill="none" stroke="#d6dcd7" stroke-width="42"/>
-      <path d="M-20 430 C170 370 250 450 410 390 S690 340 920 420" fill="none" stroke="#d6dcd7" stroke-width="36"/>
-      <path d="M110 -20 C150 130 110 250 180 580" fill="none" stroke="#dfe4df" stroke-width="28"/>
-      <path d="M650 -20 C590 120 680 250 620 580" fill="none" stroke="#dfe4df" stroke-width="34"/>
-      <path d="M0 270 L900 250" stroke="#e0e5e0" stroke-width="18"/>
-      <path d="M310 0 L360 560" stroke="#e0e5e0" stroke-width="16"/>
-      <path d="M470 0 L430 560" stroke="#e0e5e0" stroke-width="13"/>
-      <path d="M790 0 L730 560" stroke="#e0e5e0" stroke-width="15"/>
-      <path d="M40 520 C220 460 320 520 460 470 S720 450 880 510" fill="none" stroke="#cbd3cc" stroke-width="7"/>
-      <g fill="#9ca79f" font-family="Arial, sans-serif" font-size="18" font-weight="600">
-        <text x="115" y="180">Salgado</text><text x="400" y="210">Centro</text><text x="635" y="330">Cidade Jardim</text>
-        <text x="690" y="150" font-size="14" font-weight="400">Caruaru - PE</text>
-      </g>
-      <g id="marcadoresMapa"></g>
-    </svg>
-  </div>
-  <div id="mapaPainel" class="mapa-painel" style="display:none"></div>
+
+<div class="mapa-container">
+
+<iframe
+id="mapaIframe"
+class="mapa"
+src="https://www.google.com/maps?q=Caruaru,+Pernambuco&output=embed"
+loading="lazy">
+</iframe>
+
 </div>
 
-<div id="botaoMapaArea" style="text-align:center;"></div>
+
+<div
+id="botaoMapaArea"
+style="text-align:center;">
+</div>
+
 
 <div class="rodape-navegacao">
 
@@ -1641,12 +1558,13 @@ id="modalDados">
 
 <button
 type="button"
+class="botao"
+style="margin-top:20px;display:none;"
 id="botaoEditarCadastro"
-class="botao-editar-tutor"
-title="Editar cadastro"
-aria-label="Editar cadastro"
 onclick="abrirEdicao()">
-✎
+
+✏️ EDITAR CADASTRO
+
 </button>
 
 
@@ -2106,11 +2024,7 @@ alt="FOTO AMPLIADA DO PET">
 </div>
 
 
-<footer>
-
-
-
-</footer>
+<!-- RODAPÉ DE PROTÓTIPO REMOVIDO -->
 
 
 <iframe
@@ -2131,88 +2045,6 @@ let petAtual = null;
 let petsCarregados = [];
 let localMapaAtual = "";
 
-
-/* =========================
-   MAPA — INTEGRADO AOS CADASTROS REAIS
-========================= */
-
-function obterLocalMapa(pet){
-    const bairro = campoPet(pet,"Bairro","bairro");
-    const cidade = campoPet(pet,"Cidade","cidade");
-    if(bairro) return String(bairro).trim();
-    if(cidade) return String(cidade).trim();
-    return "";
-}
-
-function chaveMapa(texto){
-    return String(texto||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toUpperCase();
-}
-
-function agruparAnimaisMapa(){
-    const grupos={};
-    petsCarregados.forEach(function(pet){
-        const status=normalizarStatus(campoPet(pet,"Status","status"));
-        if(status!=="PERDIDO" && status!=="PARA ADOÇÃO") return;
-        const local=obterLocalMapa(pet);
-        if(!local) return;
-        const chave=chaveMapa(local);
-        if(!grupos[chave]) grupos[chave]={nome:local,pets:[]};
-        grupos[chave].pets.push(pet);
-    });
-    return Object.values(grupos);
-}
-
-function renderizarMapaReal(){
-    const grupo=document.getElementById("marcadoresMapa");
-    if(!grupo) return;
-    grupo.innerHTML="";
-    const grupos=agruparAnimaisMapa();
-    if(!grupos.length){
-        const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-        t.setAttribute("x","450"); t.setAttribute("y","390"); t.setAttribute("text-anchor","middle");
-        t.setAttribute("font-family","Arial, sans-serif"); t.setAttribute("font-size","18");
-        t.setAttribute("font-weight","600"); t.setAttribute("fill","#666");
-        t.textContent="NENHUM ANIMAL ATIVO COM LOCALIZAÇÃO CADASTRADA";
-        grupo.appendChild(t); return;
-    }
-    const posicoes=[[165,145],[440,180],[670,300],[250,330],[760,210],[330,430],[590,430],[790,390],[100,350],[520,100]];
-    grupos.forEach(function(item,index){
-        const pos=posicoes[index%posicoes.length];
-        const g=document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("class","rp-marker"); g.setAttribute("tabindex","0"); g.setAttribute("role","button");
-        g.setAttribute("aria-label",item.nome+", "+item.pets.length+" animais cadastrados");
-        g.addEventListener("click",function(){mostrarGrupoMapa(index);});
-        g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrarGrupoMapa(index);}});
-        const c=document.createElementNS("http://www.w3.org/2000/svg","circle");
-        c.setAttribute("cx",pos[0]); c.setAttribute("cy",pos[1]); c.setAttribute("r","25"); c.setAttribute("fill","#fff"); c.setAttribute("stroke","#333"); c.setAttribute("stroke-width","3"); g.appendChild(c);
-        const p=document.createElementNS("http://www.w3.org/2000/svg","text");
-        p.setAttribute("x",pos[0]); p.setAttribute("y",pos[1]+9); p.setAttribute("text-anchor","middle"); p.setAttribute("font-size","24"); p.textContent="🐾"; g.appendChild(p);
-        if(item.pets.length>1){
-            const n=document.createElementNS("http://www.w3.org/2000/svg","text");
-            n.setAttribute("x",pos[0]+20); n.setAttribute("y",pos[1]-18); n.setAttribute("text-anchor","middle"); n.setAttribute("font-family","Arial,sans-serif"); n.setAttribute("font-size","11"); n.setAttribute("font-weight","700"); n.setAttribute("fill","#064e3b"); n.textContent=item.pets.length; g.appendChild(n);
-        }
-        grupo.appendChild(g);
-    });
-}
-
-function mostrarGrupoMapa(index){
-    const grupos=agruparAnimaisMapa(); const item=grupos[index]; const painel=document.getElementById("mapaPainel");
-    if(!item||!painel) return;
-    let lista="";
-    item.pets.forEach(function(pet){
-        const nome=campoPet(pet,"Nome","nome")||"PET";
-        const status=normalizarStatus(campoPet(pet,"Status","status"));
-        lista+='<p>🐾 <strong>'+escaparHTML(nome)+'</strong> — '+escaparHTML(status)+'</p>';
-    });
-    painel.innerHTML='<h3>🐾 '+escaparHTML(item.nome)+'</h3><p><strong>'+item.pets.length+'</strong> '+(item.pets.length===1?'animal cadastrado':'animais cadastrados')+' nesta região.</p>'+lista+'<button type="button" class="botao" onclick="abrirNavegacaoArea(\''+escaparJS(item.nome)+'\')">COMO CHEGAR</button>';
-    painel.style.display="block";
-    painel.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-
-function abrirNavegacaoArea(area){
-    const q=encodeURIComponent(area+", Caruaru, Pernambuco");
-    window.open("https://www.google.com/maps/search/?api=1&query="+q,"_blank");
-}
 
 /* =========================
    NAVEGAÇÃO
@@ -2242,8 +2074,7 @@ function abrirPagina(nome){
     });
 
     if(
-        nome === "match" ||
-        nome === "mapa"
+        nome === "match"
     ){
 
         carregarPets();
@@ -2335,83 +2166,1398 @@ function alterarPeso(
 }
 
 
+/* =========================
+   TOKEN
+========================= */
 
-/* =====================================================
-   V13 — IDENTIDADE PERMANENTE DO TUTOR
-   O ID é derivado do telefone normalizado.
-   Assim, o mesmo telefone gera o mesmo ID em
-   celular, computador ou outro aparelho.
-===================================================== */
+function gerarTokenProprietario(){
 
-function normalizarTelefoneTutor(valor){
-    return String(valor || "").replace(/\D/g,"");
-}
-
-function gerarIdTutorPorTelefone(telefone){
-    const base = normalizarTelefoneTutor(telefone);
-    if(!base) return "";
-
-    // Hash determinístico simples para o front-end.
-    // O backend deve persistir esse ID na planilha.
-    let hash = 2166136261;
-    for(let i=0;i<base.length;i++){
-        hash ^= base.charCodeAt(i);
-        hash += (hash<<1)+(hash<<4)+(hash<<7)+(hash<<8)+(hash<<24);
-    }
-    hash >>>= 0;
-    return "TUTOR-" + hash.toString(36).toUpperCase().padStart(7,"0");
-}
-
-function obterIdTutorAtual(){
-    return localStorage.getItem("redePetIdTutor") || "";
-}
-
-function salvarIdentidadeTutor(telefone){
-    const tel = normalizarTelefoneTutor(telefone);
-    if(!tel) return "";
-    const id = gerarIdTutorPorTelefone(tel);
-    localStorage.setItem("redePetIdTutor", id);
-    localStorage.setItem("redePetTelefone", tel);
-    return id;
-}
-
-function tutorEhDonoPorIdentidade(pet){
-    const idAtual = obterIdTutorAtual();
-    const idPet = campoPet(
-        pet,
-        "ID_Tutor",
-        "ID Tutor",
-        "id_tutor",
-        "Id_Tutor"
+    return (
+        "RP-" +
+        Date.now().toString(36) +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2,12) +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2,12)
     );
 
-    if(idAtual && idPet && String(idAtual) === String(idPet)){
-        return true;
-    }
+}
 
-    // Compatibilidade com registros antigos:
-    // se ainda não possuem ID_Tutor, compara o telefone
-    // do cadastro com o telefone salvo neste aparelho.
-    const telAtual = normalizarTelefoneTutor(
-        localStorage.getItem("redePetTelefone") || ""
+
+/* =========================
+   IMAGEM
+========================= */
+
+function converterImagem(
+    file
+){
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        ) => {
+
+            if(!file){
+
+                resolve("");
+
+                return;
+
+            }
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                () =>
+                resolve(
+                    reader.result
+                );
+
+            reader.onerror =
+                reject;
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
     );
-    const telPet = normalizarTelefoneTutor(
-        campoPet(
-            pet,
-            "Telefone",
-            "Telefone Tutor",
-            "tutorContato",
-            "telefone",
-            "Contato"
+
+}
+
+
+/* =========================
+   POST
+========================= */
+
+function enviarPost(
+    acao,
+    dados
+){
+
+    const formulario =
+        document.createElement(
+            "form"
+        );
+
+    formulario.method =
+        "POST";
+
+    formulario.action =
+        URL_APPS_SCRIPT;
+
+    formulario.target =
+        "frameCadastro";
+
+    formulario.style.display =
+        "none";
+
+    adicionarCampo(
+        formulario,
+        "acao",
+        acao
+    );
+
+    adicionarCampo(
+        formulario,
+        "dados",
+        JSON.stringify(
+            dados
         )
     );
 
-    return !!(telAtual && telPet && telAtual === telPet);
+    document.body.appendChild(
+        formulario
+    );
+
+    formulario.submit();
+
+    setTimeout(
+        () =>
+        formulario.remove(),
+        1800
+    );
+
 }
 
-function atualizarBotaoEditar(){
-    atualizarBotaoEditarPorTutor(petAtual);
+
+function adicionarCampo(
+    formulario,
+    nome,
+    valor
+){
+
+    const campo =
+        document.createElement(
+            "input"
+        );
+
+    campo.type =
+        "hidden";
+
+    campo.name =
+        nome;
+
+    campo.value =
+        valor;
+
+    formulario.appendChild(
+        campo
+    );
+
 }
+
+
+/* =========================
+   CADASTRO
+========================= */
+
+document
+.getElementById(
+    "formPet"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+        mensagem.style.display =
+            "block";
+
+        mensagem.textContent =
+            "SALVANDO CADASTRO...";
+
+        try{
+
+            const arquivo =
+                document
+                    .getElementById(
+                        "foto"
+                    )
+                    .files[0];
+
+            const foto =
+                await converterImagem(
+                    arquivo
+                );
+
+            const token =
+                gerarTokenProprietario();
+
+            const dados = {
+
+                foto:
+                    foto,
+
+                status:
+                    document
+                        .getElementById(
+                            "status"
+                        )
+                        .value,
+
+                nome:
+                    document
+                        .getElementById(
+                            "nome"
+                        )
+                        .value,
+
+                idade:
+                    document
+                        .getElementById(
+                            "idade"
+                        )
+                        .value,
+
+                peso:
+                    Number(
+                        peso
+                    ),
+
+                castrado:
+                    document
+                        .getElementById(
+                            "castrado"
+                        )
+                        .value,
+
+                especie:
+                    document
+                        .getElementById(
+                            "especie"
+                        )
+                        .value,
+
+                especieOutro:
+                    document
+                        .getElementById(
+                            "especieOutro"
+                        )
+                        .value,
+
+                vacinado:
+                    document
+                        .getElementById(
+                            "vacinado"
+                        )
+                        .value,
+
+                raca:
+                    document
+                        .getElementById(
+                            "raca"
+                        )
+                        .value,
+
+                sexo:
+                    document
+                        .getElementById(
+                            "sexo"
+                        )
+                        .value,
+
+                porte:
+                    document
+                        .getElementById(
+                            "porte"
+                        )
+                        .value,
+
+                cor:
+                    document
+                        .getElementById(
+                            "cor"
+                        )
+                        .value,
+
+                tutorNome:
+                    document
+                        .getElementById(
+                            "tutorNome"
+                        )
+                        .value,
+
+                tutorContato:
+                    document
+                        .getElementById(
+                            "tutorContato"
+                        )
+                        .value,
+
+                whatsappPublico:
+                    document
+                        .getElementById(
+                            "whatsappPublico"
+                        )
+                        .value,
+
+                endereco:
+                    document
+                        .getElementById(
+                            "endereco"
+                        )
+                        .value,
+
+                bairro:
+                    document
+                        .getElementById(
+                            "bairro"
+                        )
+                        .value,
+
+                cidade:
+                    document
+                        .getElementById(
+                            "cidade"
+                        )
+                        .value,
+
+                pontoReferencia:
+                    document
+                        .getElementById(
+                            "pontoReferencia"
+                        )
+                        .value,
+
+                ultimaVez:
+                    document
+                        .getElementById(
+                            "ultimaVez"
+                        )
+                        .value,
+
+                observacoes:
+                    document
+                        .getElementById(
+                            "observacoes"
+                        )
+                        .value,
+
+                tokenProprietario:
+                    token
+
+            };
+
+
+            enviarPost(
+                "cadastrarPet",
+                dados
+            );
+
+
+            localStorage.setItem(
+                "redePetUltimoToken",
+                token
+            );
+
+
+            mensagem.textContent =
+                "PET CADASTRADO COM SUCESSO!";
+
+
+            this.reset();
+
+
+            peso = 0;
+
+
+            document
+                .getElementById(
+                    "pesoValor"
+                )
+                .textContent =
+                "0";
+
+
+            document
+                .querySelectorAll(
+                    ".opcao"
+                )
+                .forEach(
+                    b =>
+                    b.classList.remove(
+                        "selecionada"
+                    )
+                );
+
+
+        }catch(erro){
+
+            console.error(
+                erro
+            );
+
+            mensagem.textContent =
+                "ERRO AO PREPARAR O CADASTRO.";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CARREGAR PETS
+========================= */
+
+function carregarPets(){
+
+    const lista =
+        document.getElementById(
+            "listaPets"
+        );
+
+    lista.innerHTML =
+        '<div class="carregando">' +
+        'CARREGANDO PETS...' +
+        '</div>';
+
+
+    const token =
+        localStorage.getItem(
+            "redePetUltimoToken"
+        ) || "";
+
+
+    const callback =
+        "redePet_" +
+        Date.now() +
+        "_" +
+        Math.floor(
+            Math.random() * 100000
+        );
+
+
+    let finalizado =
+        false;
+
+
+    window[callback] =
+        function(pets){
+
+            if(finalizado){
+                return;
+            }
+
+            finalizado =
+                true;
+
+            petsCarregados =
+                Array.isArray(
+                    pets
+                )
+                ? pets
+                : [];
+
+            renderizarPets();
+
+            delete window[
+                callback
+            ];
+
+        };
+
+
+    const script =
+        document.createElement(
+            "script"
+        );
+
+
+    script.src =
+        URL_APPS_SCRIPT +
+        "?acao=listarPets" +
+        "&token=" +
+        encodeURIComponent(
+            token
+        ) +
+        "&callback=" +
+        callback +
+        "&t=" +
+        Date.now();
+
+
+    script.async =
+        true;
+
+
+    script.onerror =
+        function(){
+
+            if(finalizado){
+                return;
+            }
+
+            finalizado =
+                true;
+
+            lista.innerHTML =
+                '<div class="carregando">' +
+                'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
+                '</div>';
+
+            delete window[
+                callback
+            ];
+
+        };
+
+
+    document.body.appendChild(
+        script
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(!finalizado){
+
+                finalizado =
+                    true;
+
+                lista.innerHTML =
+                    '<div class="carregando">' +
+                    'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
+                    '</div>';
+
+                delete window[
+                    callback
+                ];
+
+            }
+
+        },
+        10000
+    );
+
+}
+
+
+/* =========================
+   CAMPO PET
+========================= */
+
+function campoPet(
+    pet,
+    ...nomes
+){
+
+    for(
+        const nome of nomes
+    ){
+
+        if(
+            pet &&
+            pet[nome] !== undefined &&
+            pet[nome] !== null &&
+            String(
+                pet[nome]
+            ).trim() !== ""
+        ){
+
+            return pet[nome];
+
+        }
+
+    }
+
+    return "";
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function normalizarStatus(
+    valor
+){
+
+    const texto =
+        String(
+            valor || ""
+        )
+        .trim()
+        .toLowerCase();
+
+    if(
+        texto === "perdido" ||
+        texto === "perdida"
+    ){
+        return "PERDIDO";
+    }
+
+    if(
+        texto === "para adoção" ||
+        texto === "para adocao"
+    ){
+        return "PARA ADOÇÃO";
+    }
+
+    if(
+        texto === "encontrado" ||
+        texto === "encontrada"
+    ){
+        return "ENCONTRADO";
+    }
+
+    if(
+        texto === "adotado" ||
+        texto === "adotada"
+    ){
+        return "ADOTADO";
+    }
+
+    return texto
+        ? texto.toUpperCase()
+        : "SEM STATUS";
+}
+
+
+/* =========================
+   MATCH
+========================= */
+
+function renderizarPets(){
+
+    const lista =
+        document.getElementById(
+            "listaPets"
+        );
+
+    const filtro =
+        document.getElementById(
+            "filtroStatus"
+        ).value;
+
+
+    lista.innerHTML =
+        "";
+
+
+    const token =
+        localStorage.getItem(
+            "redePetUltimoToken"
+        ) || "";
+
+
+    const pets =
+        petsCarregados.filter(
+            function(pet){
+
+                const status =
+                    normalizarStatus(
+                        campoPet(
+                            pet,
+                            "Status",
+                            "status"
+                        )
+                    );
+
+
+                /*
+                 * O BACKEND JÁ ESCONDE
+                 * ENCONTRADO E ADOTADO.
+                 *
+                 * Esta proteção adicional
+                 * evita que sejam renderizados
+                 * publicamente.
+                 */
+
+                const idPet =
+                    campoPet(
+                        pet,
+                        "ID_Pet",
+                        "ID",
+                        "id"
+                    );
+
+                const tokenPet =
+                    campoPet(
+                        pet,
+                        "Token Proprietario",
+                        "tokenProprietario"
+                    );
+
+
+                const ehMeu =
+                    token &&
+                    tokenPet &&
+                    String(token) ===
+                    String(tokenPet);
+
+
+                if(
+                    (
+                        status ===
+                        "ENCONTRADO" ||
+                        status ===
+                        "ADOTADO"
+                    ) &&
+                    !ehMeu
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    filtro ===
+                    "TODOS"
+                ){
+
+                    return true;
+
+                }
+
+
+                return (
+                    status ===
+                    filtro
+                );
+
+            }
+        );
+
+
+    if(!pets.length){
+
+        lista.innerHTML =
+            '<div class="carregando">' +
+            'NENHUM PET ENCONTRADO.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    pets.forEach(
+        function(pet){
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "pet-card";
+
+
+            card.onclick =
+                function(){
+
+                    abrirModal(
+                        pet
+                    );
+
+                };
+
+
+            const foto =
+                campoPet(
+                    pet,
+                    "Foto",
+                    "foto"
+                );
+
+
+            const nome =
+                campoPet(
+                    pet,
+                    "Nome",
+                    "nome"
+                ) ||
+                "PET";
+
+
+            const status =
+                normalizarStatus(
+                    campoPet(
+                        pet,
+                        "Status",
+                        "status"
+                    )
+                );
+
+
+            let imagem =
+                '<div class="pet-sem-foto">' +
+                'SEM FOTO' +
+                '</div>';
+
+
+            if(foto){
+
+                imagem =
+                    '<img ' +
+                    'class="pet-foto" ' +
+                    'src="' +
+                    escaparHTML(
+                        foto
+                    ) +
+                    '" ' +
+                    'alt="FOTO DO PET">';
+
+            }
+
+
+            /*
+             * MATCH:
+             * FOTO
+             * NOME
+             * STATUS
+             */
+
+            card.innerHTML =
+
+                imagem +
+
+                '<div class="pet-resumo">' +
+
+                '<h3 class="pet-nome">' +
+
+                escaparHTML(
+                    nome
+                ) +
+
+                '</h3>' +
+
+                '<span class="pet-status">' +
+
+                escaparHTML(
+                    status
+                ) +
+
+                '</span>' +
+
+                '</div>';
+
+
+            lista.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+function aplicarFiltro(){
+
+    renderizarPets();
+
+}
+
+
+/* =========================
+   ABRIR MODAL
+========================= */
+
+function abrirModal(
+    pet
+){
+
+    petAtual =
+        pet;
+
+
+    const foto =
+        campoPet(
+            pet,
+            "Foto",
+            "foto"
+        );
+
+
+    const imagem =
+        document.getElementById(
+            "modalFotoMini"
+        );
+
+
+    if(foto){
+
+        imagem.src =
+            foto;
+
+        imagem.style.display =
+            "block";
+
+    }else{
+
+        imagem.style.display =
+            "none";
+
+    }
+
+
+    const nome =
+        campoPet(
+            pet,
+            "Nome",
+            "nome"
+        ) ||
+        "PET";
+
+
+    document
+        .getElementById(
+            "modalNome"
+        )
+        .textContent =
+        nome;
+
+
+    mostrarDadosPet(
+        pet
+    );
+
+
+    document
+        .getElementById(
+            "edicaoCadastro"
+        )
+        .style.display =
+        "none";
+
+
+    verificarPermissaoEdicao();
+
+
+    document
+        .getElementById(
+            "comentarioTexto"
+        )
+        .value =
+        "";
+
+
+    document
+        .getElementById(
+            "comentarioNome"
+        )
+        .value =
+        "";
+
+
+    document
+        .getElementById(
+            "comentarioLocal"
+        )
+        .value =
+        "";
+
+
+    document
+        .getElementById(
+            "mensagemComentario"
+        )
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "modal"
+        )
+        .classList.add(
+            "aberto"
+        );
+
+
+    document
+        .getElementById(
+            "botaoVoltarFlutuante"
+        )
+        .classList.add(
+            "visivel"
+        );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    carregarComentarios(
+        nome,
+        campoPet(
+            pet,
+            "ID_Pet",
+            "ID",
+            "id"
+        )
+    );
+
+}
+
+
+/* =========================
+   DETALHES
+========================= */
+
+function mostrarDadosPet(
+    pet
+){
+
+    const nome =
+        campoPet(
+            pet,
+            "Nome",
+            "nome"
+        );
+
+
+    const status =
+        normalizarStatus(
+            campoPet(
+                pet,
+                "Status",
+                "status"
+            )
+        );
+
+
+    const idade =
+        campoPet(
+            pet,
+            "Idade",
+            "idade"
+        );
+
+
+    const peso =
+        campoPet(
+            pet,
+            "Peso",
+            "peso"
+        );
+
+
+    const especie =
+        campoPet(
+            pet,
+            "Especie",
+            "Espécie",
+            "especie"
+        );
+
+
+    const especieOutro =
+        campoPet(
+            pet,
+            "Especie Outro",
+            "Espécie Outro",
+            "especieOutro"
+        );
+
+
+    const raca =
+        campoPet(
+            pet,
+            "Raca",
+            "Raça",
+            "raca"
+        );
+
+
+    const sexo =
+        campoPet(
+            pet,
+            "Sexo",
+            "sexo"
+        );
+
+
+    const porte =
+        campoPet(
+            pet,
+            "Porte",
+            "porte"
+        );
+
+
+    const cor =
+        campoPet(
+            pet,
+            "Cor",
+            "cor"
+        );
+
+
+    const castrado =
+        campoPet(
+            pet,
+            "Castrado",
+            "castrado"
+        );
+
+
+    const vacinado =
+        campoPet(
+            pet,
+            "Vacinado",
+            "vacinado"
+        );
+
+
+    const ultimaVez =
+        campoPet(
+            pet,
+            "Última vez visto",
+            "Ultima vez visto",
+            "Ultima Vez",
+            "Última vez",
+            "ultimaVez"
+        );
+
+
+    const pontoReferencia =
+        campoPet(
+            pet,
+            "Ponto_Referencia",
+            "Ponto Referencia",
+            "Ponto de referência",
+            "pontoReferencia"
+        );
+
+
+    const observacoes =
+        campoPet(
+            pet,
+            "Observacoes",
+            "Observações",
+            "observacoes"
+        );
+
+
+    let html =
+        "";
+
+
+    html += criarDado(
+        "NOME",
+        nome
+    );
+
+    html += criarDado(
+        "STATUS",
+        status
+    );
+
+    html += criarDado(
+        "IDADE",
+        idade
+    );
+
+
+    let pesoTexto =
+        "-";
+
+
+    if(
+        peso !== "" &&
+        peso !== null &&
+        peso !== undefined
+    ){
+
+        const numero =
+            Number(
+                String(
+                    peso
+                )
+                .replace(
+                    ",",
+                    "."
+                )
+                .replace(
+                    /kg/gi,
+                    ""
+                )
+                .trim()
+            );
+
+
+        if(
+            !isNaN(
+                numero
+            )
+        ){
+
+            pesoTexto =
+                numero +
+                " KG";
+
+        }
+
+    }
+
+
+    html += criarDado(
+        "PESO",
+        pesoTexto
+    );
+
+
+    html += criarDado(
+        "ESPÉCIE",
+        especie === "Outro" &&
+        especieOutro
+            ? especie +
+              " — " +
+              especieOutro
+            : especie
+    );
+
+
+    html += criarDado(
+        "RAÇA",
+        raca
+    );
+
+
+    html += criarDado(
+        "SEXO",
+        sexo
+    );
+
+
+    html += criarDado(
+        "PORTE",
+        porte
+    );
+
+
+    html += criarDado(
+        "COR",
+        cor
+    );
+
+
+    html += criarDado(
+        "CASTRADO",
+        castrado
+    );
+
+
+    html += criarDado(
+        "VACINADO",
+        vacinado
+    );
+
+
+    html += criarDado(
+        "ÚLTIMA VEZ VISTO",
+        ultimaVez
+    );
+
+
+    html += criarDado(
+        "PONTO DE REFERÊNCIA",
+        pontoReferencia
+    );
+
+
+    html += criarDado(
+        "OBSERVAÇÕES",
+        observacoes
+    );
+
+
+    const whatsapp =
+        campoPet(
+            pet,
+            "Exibir WhatsApp público?",
+            "WhatsApp Publico",
+            "WhatsApp público",
+            "whatsappPublico"
+        );
+
+
+    if(
+        String(
+            whatsapp
+        )
+        .trim()
+        .toLowerCase()
+        ===
+        "sim"
+    ){
+
+        html +=
+            '<hr style="margin:18px 0">';
+
+
+        html += criarDado(
+            "NOME DO TUTOR",
+            campoPet(
+                pet,
+                "Tutor Nome",
+                "Nome do tutor",
+                "tutorNome"
+            )
+        );
+
+
+        html += criarDado(
+            "CONTATO DO TUTOR",
+            campoPet(
+                pet,
+                "Tutor Contato",
+                "Contato do tutor",
+                "tutorContato"
+            )
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            "modalDados"
+        )
+        .innerHTML =
+        html;
+
+}
+
+
+/* =========================
+   PERMISSÃO
+========================= */
+
+function verificarPermissaoEdicao(){
+
+    const botao =
+        document.getElementById(
+            "botaoEditarCadastro"
+        );
+
+
+    if(
+        !petAtual
+    ){
+
+        botao.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const tokenLocal =
+        localStorage.getItem(
+            "redePetUltimoToken"
+        ) || "";
+
+
+    const tokenPet =
+        campoPet(
+            petAtual,
+            "Token Proprietario",
+            "Token Proprietário",
+            "tokenProprietario"
+        );
+
+
+    if(
+        tokenLocal &&
+        tokenPet &&
+        String(tokenLocal) ===
+        String(tokenPet)
+    ){
+
+        botao.style.display =
+            "inline-block";
+
+    }else{
+
+        botao.style.display =
+            "none";
+
+    }
+
+}
+
 
 /* =========================
    ABRIR EDIÇÃO
@@ -2419,31 +3565,35 @@ function atualizarBotaoEditar(){
 
 function abrirEdicao(){
 
-    if(!petAtual){
+    if(
+        !petAtual
+    ){
         return;
     }
 
-    if(!tutorEhDonoPorIdentidade(petAtual)){
-        const botao = document.getElementById("botaoEditarCadastro");
-        if(botao){
-            botao.style.display = "none";
-        }
-        return;
-    }
 
     preencherEdicao();
 
-    const edicao =
-        document.getElementById("edicaoCadastro");
 
-    if(edicao){
-        edicao.style.display = "block";
-        edicao.scrollIntoView({
+    document
+        .getElementById(
+            "edicaoCadastro"
+        )
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById(
+            "edicaoCadastro"
+        )
+        .scrollIntoView({
             behavior:"smooth",
             block:"start"
         });
-    }
+
 }
+
 
 function fecharEdicao(){
 
@@ -4184,71 +5334,7 @@ document.addEventListener(
 
 </script>
 
-
-<!-- =====================================================
-     V13 — ACESSO DO TUTOR
-===================================================== -->
-<div id="acessoTutorV13" style="
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:9999;
-    padding:20px;
-    box-sizing:border-box;">
-  <div style="
-      max-width:420px;
-      margin:12vh auto 0;
-      background:#fff;
-      border-radius:16px;
-      padding:22px;
-      box-sizing:border-box;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);">
-    <h3 style="margin-top:0;">JÁ SOU TUTOR CADASTRADO</h3>
-    <p style="color:#666;font-size:14px;">
-      Informe o telefone usado no cadastro para reconhecer seu ID de tutor neste aparelho.
-    </p>
-    <input id="telefoneTutorV13"
-      type="tel"
-      inputmode="tel"
-      placeholder="SEU TELEFONE"
-      style="width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccc;border-radius:10px;">
-    <div id="mensagemTutorV13" style="margin-top:10px;font-size:13px;"></div>
-    <button type="button" class="botao" onclick="confirmarTutorV13()" style="margin-top:12px;width:100%;">
-      CONTINUAR
-    </button>
-    <button type="button" class="botao botao-secundario" onclick="fecharTutorV13()" style="margin-top:8px;width:100%;">
-      CANCELAR
-    </button>
-  </div>
-</div>
-
-<script>
-function abrirAcessoTutorV13(){
-    const el = document.getElementById("acessoTutorV13");
-    if(el) el.style.display = "block";
-}
-function fecharTutorV13(){
-    const el = document.getElementById("acessoTutorV13");
-    if(el) el.style.display = "none";
-}
-function confirmarTutorV13(){
-    const tel = document.getElementById("telefoneTutorV13").value;
-    if(normalizarTelefoneTutor(tel).length < 8){
-        document.getElementById("mensagemTutorV13").textContent =
-            "INFORME UM TELEFONE VÁLIDO.";
-        return;
-    }
-    const id = salvarIdentidadeTutor(tel);
-    document.getElementById("mensagemTutorV13").textContent =
-        "TUTOR RECONHECIDO. ID: " + id;
-    setTimeout(function(){
-        fecharTutorV13();
-        carregarPets();
-    }, 700);
-}
-</script>
-
 </body>
 
 </html>
+
