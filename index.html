@@ -255,7 +255,7 @@ textarea{
     box-shadow:0 5px 18px rgba(0,0,0,.08);
 }
 
-.pet-foto{
+.pet-foto{opacity:0;transition:opacity .2s ease;
     width:100%;
     height:240px;
     object-fit:cover;
@@ -488,63 +488,65 @@ textarea{
     color:white;
 }
 
-
-/* EDITAR PET — botão discreto */
-.botao-editar-pet{
-    width:38px;
-    height:38px;
-    min-width:38px;
+/* EDIÇÃO DISCRETA DO TUTOR */
+.botao-editar-circular{
+    display:none;
+    width:34px;
+    height:34px;
+    min-width:34px;
     padding:0;
-    margin:18px 0 0;
-    border:0;
-    border-radius:50%;
-    background:transparent;
-    color:#b91c1c;
-    font-size:25px;
-    line-height:38px;
-    text-align:center;
-    cursor:pointer;
-    font-family:Arial,sans-serif;
-    font-weight:bold;
-    transition:transform .15s,background .15s;
-}
-.botao-editar-pet:hover{
-    transform:scale(1.08);
-    background:rgba(185,28,28,.08);
-}
-.botao-editar-pet:focus-visible{
-    outline:2px solid #b91c1c;
-    outline-offset:3px;
-}
-
-/* MAPA DINÂMICO POR BAIRRO */
-.marcadores-mapa-dinamicos{
-    position:absolute;
-    inset:0;
-    z-index:6;
-}
-.marcador-pet-dinamico{
-    position:absolute;
-    transform:translate(-50%,-50%);
-    min-width:68px;
-    min-height:68px;
-    padding:7px 8px;
-    border:0;
+    margin:0;
+    border:2px solid #b91c1c;
     border-radius:50%;
     background:#fff;
-    color:#064e3b;
-    box-shadow:0 4px 14px rgba(0,0,0,.18);
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
+    color:#b91c1c;
     align-items:center;
     justify-content:center;
-    gap:2px;
+    cursor:pointer;
+    box-sizing:border-box;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
 }
-.marcador-pet-dinamico span{font-size:25px;line-height:1;}
-.marcador-pet-dinamico small{font-size:8px;font-weight:bold;white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis;}
-.marcador-pet-dinamico strong{font-size:9px;}
-@media(max-width:700px){.marcador-pet-dinamico{min-width:60px;min-height:60px;}.marcador-pet-dinamico span{font-size:22px;}}
+.botao-editar-circular:hover{
+    background:#b91c1c;
+    color:#fff;
+}
+.pet-topo-resumo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+.pet-topo-resumo .pet-nome{
+    margin:0;
+    min-width:0;
+}
+.pet-topo-resumo .botao-editar-circular{
+    flex:0 0 auto;
+}
+.match-loading{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    grid-column:1/-1;
+}
+.match-skeleton{
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+    overflow:hidden;
+}
+.match-skeleton-foto{
+    height:240px;
+    background:linear-gradient(90deg,#e6ebe8 25%,#f5f6f5 37%,#e6ebe8 63%);
+    background-size:400% 100%;
+    animation:matchSkeleton 1.2s ease-in-out infinite;
+}
+.match-skeleton-linha{height:18px;width:58%;margin:15px;border-radius:6px;background:#e6ebe8;}
+.match-skeleton-status{height:12px;width:30%;margin:0 15px 18px;border-radius:20px;background:#e6ebe8;}
+.match-carregando-texto{grid-column:1/-1;text-align:center;color:#666;font-size:14px;padding:0 0 4px;}
+@keyframes matchSkeleton{0%{background-position:100% 0}100%{background-position:-100% 0}}
 
 /* MAPA */
 
@@ -1516,7 +1518,7 @@ id="filtroStatus"
 onchange="aplicarFiltro()">
 
 <option value="TODOS">
-TODOS OS PETS
+PERDIDOS E PARA ADOÇÃO
 </option>
 
 <option value="PERDIDO">
@@ -1536,9 +1538,11 @@ PARA ADOÇÃO
 id="listaPets"
 class="lista-pets">
 
-<div class="carregando">
-CARREGANDO PETS...
+<div class="match-loading" aria-label="Carregando animais">
+    <div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>
+    <div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>
 </div>
+<div class="match-carregando-texto">PROCURANDO ANIMAIS PERDIDOS E PARA ADOÇÃO...</div>
 
 </div>
 
@@ -1588,10 +1592,12 @@ MAPA
 <div class="mapa-topo"><span>CARUARU • REDE PET</span><span class="mapa-legenda">🐾 ANIMAIS CADASTRADOS</span></div>
 <div class="mapa-cidade">
 <div class="estrada estrada-a"></div><div class="estrada estrada-b"></div><div class="estrada estrada-c"></div><div class="estrada estrada-d"></div><div class="rio"></div>
-<div id="marcadoresMapa" class="marcadores-mapa-dinamicos"></div>
+<button class="marcador-pet marcador-salgado" onclick="selecionarRegiaoMapa('salgado')" aria-label="Salgado, 2 animais cadastrados"><span>🐾</span><small>SALGADO</small></button>
+<button class="marcador-pet marcador-centro" onclick="selecionarRegiaoMapa('centro')" aria-label="Centro, 1 animal cadastrado"><span>🐾</span><small>CENTRO</small></button>
+<button class="marcador-pet marcador-cidade-jardim" onclick="selecionarRegiaoMapa('cidade-jardim')" aria-label="Cidade Jardim, 1 animal cadastrado"><span>🐾</span><small>CIDADE JARDIM</small></button>
 <div class="mapa-bairro bairro-1">UNIVERSITÁRIO</div><div class="mapa-bairro bairro-2">PETRÓPOLIS</div><div class="mapa-bairro bairro-3">INDIANÓPOLIS</div><div class="mapa-bairro bairro-4">RIACHÃO</div>
 </div>
-<div class="mapa-nota">🐾 Cada patinha é posicionada pela <strong>região aproximada do bairro informado no cadastro</strong>. O endereço exato não é exibido no mapa.</div>
+<div class="mapa-nota">🐾 As marcações representam <strong>regiões aproximadas</strong>. O endereço exato não é exibido no mapa.</div>
 </div>
 </div>
 
@@ -1661,13 +1667,12 @@ id="modalDados">
 
 <button
 type="button"
-class="botao-editar-pet"
-style="display:none;"
+class="botao-editar-circular"
 id="botaoEditarCadastro"
-onclick="abrirEdicao()"
-title="Editar cadastro deste animal"
-aria-label="Editar cadastro deste animal">
-✎
+onclick="event.stopPropagation();abrirEdicao()"
+aria-label="Editar cadastro deste animal"
+title="Editar cadastro">
+<span aria-hidden="true">✎</span>
 </button>
 
 
@@ -2129,7 +2134,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v13
+REDE PET — PROTÓTIPO • v14
 
 </footer>
 
@@ -2180,20 +2185,16 @@ function abrirPagina(nome){
         behavior:"smooth"
     });
 
-    if(
-        nome === "match"
-    ){
-
+    if(nome === "match"){
         carregarPets();
-
     }
 
-    if(
-        nome === "mapa"
-    ){
-
-        carregarPets();
-
+    if(nome === "mapa"){
+        if(!petsCarregados.length){
+            carregarPets();
+        }else{
+            atualizarMapaComPets();
+        }
     }
 
 }
@@ -2302,32 +2303,37 @@ function gerarTokenProprietario(){
 
 }
 
-
 /* =========================
-   ID PERMANENTE DO TUTOR
+   IDENTIDADE PERMANENTE DO TUTOR
 ========================= */
 
 function gerarIdTutor(){
-
-    const existente =
-        localStorage.getItem("redePetIdTutor");
-
-    if(existente){
-        return existente;
-    }
-
-    const id =
+    return (
         "TUTOR-" +
         Date.now().toString(36).toUpperCase() +
         "-" +
-        Math.random().toString(36).substring(2,8).toUpperCase();
+        Math.random().toString(36).substring(2,8).toUpperCase()
+    );
+}
 
-    localStorage.setItem("redePetIdTutor", id);
+function obterIdTutorLocal(){
+    let id = localStorage.getItem("redePetIdTutor");
+    if(!id){
+        id = gerarIdTutor();
+        localStorage.setItem("redePetIdTutor", id);
+    }
     return id;
 }
 
-function obterIdTutor(){
-    return gerarIdTutor();
+function obterIdTutorPet(pet){
+    return campoPet(
+        pet,
+        "ID_Tutor",
+        "ID Tutor",
+        "Id Tutor",
+        "idTutor",
+        "id_tutor"
+    );
 }
 
 
@@ -2499,9 +2505,6 @@ document
             const token =
                 gerarTokenProprietario();
 
-            const idTutor =
-                obterIdTutor();
-
             const dados = {
 
                 foto:
@@ -2655,11 +2658,10 @@ document
                 tokenProprietario:
                     token,
 
+                /* identidade permanente do tutor;
+                   o backend deve persistir este campo */
                 idTutor:
-                    idTutor,
-
-                "ID_Tutor":
-                    idTutor
+                    obterIdTutorLocal()
 
             };
 
@@ -2725,139 +2727,54 @@ document
    CARREGAR PETS
 ========================= */
 
-function carregarPets(){
-
-    const lista =
-        document.getElementById(
-            "listaPets"
-        );
-
-    lista.innerHTML =
-        '<div class="carregando">' +
-        'CARREGANDO PETS...' +
-        '</div>';
-
-
-    const token =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
-
-
-    const callback =
-        "redePet_" +
-        Date.now() +
-        "_" +
-        Math.floor(
-            Math.random() * 100000
-        );
-
-
-    let finalizado =
-        false;
-
-
-    window[callback] =
-        function(pets){
-
-            if(finalizado){
-                return;
-            }
-
-            finalizado =
-                true;
-
-            petsCarregados =
-                Array.isArray(
-                    pets
-                )
-                ? pets
-                : [];
-
-            renderizarPets();
-            renderizarMapaComPets();
-
-            delete window[
-                callback
-            ];
-
-        };
-
-
-    const script =
-        document.createElement(
-            "script"
-        );
-
-
-    script.src =
-        URL_APPS_SCRIPT +
-        "?acao=listarPets" +
-        "&token=" +
-        encodeURIComponent(
-            token
-        ) +
-        "&callback=" +
-        callback +
-        "&t=" +
-        Date.now();
-
-
-    script.async =
-        true;
-
-
-    script.onerror =
-        function(){
-
-            if(finalizado){
-                return;
-            }
-
-            finalizado =
-                true;
-
-            lista.innerHTML =
-                '<div class="carregando">' +
-                'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
-                '</div>';
-
-            delete window[
-                callback
-            ];
-
-        };
-
-
-    document.body.appendChild(
-        script
-    );
-
-
-    setTimeout(
-        function(){
-
-            if(!finalizado){
-
-                finalizado =
-                    true;
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
-                    '</div>';
-
-                delete window[
-                    callback
-                ];
-
-            }
-
-        },
-        10000
-    );
-
+function mostrarLoadingMatch(){
+    const lista=document.getElementById("listaPets");
+    if(!lista)return;
+    lista.innerHTML='<div class="match-loading" aria-label="Carregando animais">'+
+        '<div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>'+
+        '<div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>'+
+        '</div><div class="match-carregando-texto">PROCURANDO ANIMAIS PERDIDOS E PARA ADOÇÃO...</div>';
 }
+
+function carregarPets(){
+    const lista=document.getElementById("listaPets");
+    if(!lista)return;
+    if(Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); return; }
+    if(window.redePetCarregandoPets)return;
+    window.redePetCarregandoPets=true;
+    mostrarLoadingMatch();
+    const token=localStorage.getItem("redePetUltimoToken")||"";
+    const callback="redePet_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+    let finalizado=false;
+    function fim(){window.redePetCarregandoPets=false;}
+    window[callback]=function(pets){
+        if(finalizado)return;
+        finalizado=true;
+        petsCarregados=Array.isArray(pets)?pets:[];
+        fim();
+        renderizarPets();
+        atualizarMapaComPets();
+        delete window[callback];
+    };
+    const script=document.createElement("script");
+    script.src=URL_APPS_SCRIPT+"?acao=listarPets&token="+encodeURIComponent(token)+"&callback="+callback+"&t="+Date.now();
+    script.async=true;
+    script.onerror=function(){
+        if(finalizado)return;
+        finalizado=true; fim();
+        lista.innerHTML='<div class="carregando">NÃO FOI POSSÍVEL CARREGAR OS PETS. TENTE NOVAMENTE.</div>';
+        delete window[callback];
+    };
+    document.body.appendChild(script);
+    setTimeout(function(){
+        if(!finalizado){
+            finalizado=true; fim();
+            lista.innerHTML='<div class="carregando">A BUSCA ESTÁ DEMORANDO MAIS QUE O NORMAL. TENTE NOVAMENTE.</div>';
+            delete window[callback];
+        }
+    },15000);
+}
+
 
 
 /* =========================
@@ -2947,231 +2864,53 @@ function normalizarStatus(
 ========================= */
 
 function renderizarPets(){
-
-    const lista =
-        document.getElementById(
-            "listaPets"
-        );
-
-    const filtro =
-        document.getElementById(
-            "filtroStatus"
-        ).value;
-
-
-    lista.innerHTML =
-        "";
-
-
-    const token =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
-
-
-    const pets =
-        petsCarregados.filter(
-            function(pet){
-
-                const status =
-                    normalizarStatus(
-                        campoPet(
-                            pet,
-                            "Status",
-                            "status"
-                        )
-                    );
-
-
-                /*
-                 * O BACKEND JÁ ESCONDE
-                 * ENCONTRADO E ADOTADO.
-                 *
-                 * Esta proteção adicional
-                 * evita que sejam renderizados
-                 * publicamente.
-                 */
-
-                const idPet =
-                    campoPet(
-                        pet,
-                        "ID_Pet",
-                        "ID",
-                        "id"
-                    );
-
-                const tokenPet =
-                    campoPet(
-                        pet,
-                        "Token Proprietario",
-                        "tokenProprietario"
-                    );
-
-
-                const ehMeu =
-                    token &&
-                    tokenPet &&
-                    String(token) ===
-                    String(tokenPet);
-
-
-                if(
-                    (
-                        status ===
-                        "ENCONTRADO" ||
-                        status ===
-                        "ADOTADO"
-                    ) &&
-                    !ehMeu
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    filtro ===
-                    "TODOS"
-                ){
-
-                    return true;
-
-                }
-
-
-                return (
-                    status ===
-                    filtro
-                );
-
-            }
-        );
-
-
+    const lista=document.getElementById("listaPets");
+    const filtro=document.getElementById("filtroStatus").value;
+    lista.innerHTML="";
+    const token=localStorage.getItem("redePetUltimoToken")||"";
+    const idTutor=obterIdTutorLocal();
+    const pets=petsCarregados.filter(function(pet){
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        if(status!=="PERDIDO" && status!=="PARA ADOÇÃO")return false;
+        if(filtro==="PERDIDO")return status==="PERDIDO";
+        if(filtro==="PARA ADOÇÃO")return status==="PARA ADOÇÃO";
+        return true;
+    });
     if(!pets.length){
-
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'NENHUM PET ENCONTRADO.' +
-            '</div>';
-
+        lista.innerHTML='<div class="carregando">NENHUM ANIMAL PERDIDO OU PARA ADOÇÃO FOI ENCONTRADO.</div>';
         return;
-
     }
-
-
-    pets.forEach(
-        function(pet){
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "pet-card";
-
-
-            card.onclick =
-                function(){
-
-                    abrirModal(
-                        pet
-                    );
-
-                };
-
-
-            const foto =
-                campoPet(
-                    pet,
-                    "Foto",
-                    "foto"
-                );
-
-
-            const nome =
-                campoPet(
-                    pet,
-                    "Nome",
-                    "nome"
-                ) ||
-                "PET";
-
-
-            const status =
-                normalizarStatus(
-                    campoPet(
-                        pet,
-                        "Status",
-                        "status"
-                    )
-                );
-
-
-            let imagem =
-                '<div class="pet-sem-foto">' +
-                'SEM FOTO' +
-                '</div>';
-
-
-            if(foto){
-
-                imagem =
-                    '<img ' +
-                    'class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(
-                        foto
-                    ) +
-                    '" ' +
-                    'alt="FOTO DO PET">';
-
-            }
-
-
-            /*
-             * MATCH:
-             * FOTO
-             * NOME
-             * STATUS
-             */
-
-            card.innerHTML =
-
-                imagem +
-
-                '<div class="pet-resumo">' +
-
-                '<h3 class="pet-nome">' +
-
-                escaparHTML(
-                    nome
-                ) +
-
-                '</h3>' +
-
-                '<span class="pet-status">' +
-
-                escaparHTML(
-                    status
-                ) +
-
-                '</span>' +
-
-                '</div>';
-
-
-            lista.appendChild(
-                card
-            );
-
+    pets.forEach(function(pet,indice){
+        const card=document.createElement("article");
+        card.className="pet-card";
+        card.onclick=function(){abrirModal(pet);};
+        const foto=campoPet(pet,"Foto","foto");
+        const nome=campoPet(pet,"Nome","nome")||"PET";
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        let imagem='<div class="pet-sem-foto">SEM FOTO</div>';
+        if(foto){
+            imagem='<div class="pet-foto-area" style="position:relative;width:100%;height:240px;background:#e6ebe8;overflow:hidden;">'+
+            '<div class="pet-sem-foto" style="position:absolute;inset:0;height:240px;">CARREGANDO FOTO...</div>'+
+            '<img class="pet-foto" src="'+escaparHTML(foto)+'" alt="FOTO DO PET" '+(indice===0?'fetchpriority="high"':'loading="lazy"')+' decoding="async" onload="this.previousElementSibling.style.display=\'none\';this.style.opacity=\'1\';" onerror="this.style.display=\'none\';this.previousElementSibling.textContent=\'FOTO INDISPONÍVEL\';">'+
+            '</div>';
         }
-    );
-
+        card.innerHTML=imagem+'<div class="pet-resumo">'+
+            '<div class="pet-topo-resumo"><h3 class="pet-nome">'+escaparHTML(nome)+'</h3><button type="button" class="botao-editar-circular" aria-label="Editar cadastro de '+escaparHTML(nome)+'" title="Editar cadastro">✎</button></div>'+
+            '<span class="pet-status">'+escaparHTML(status)+'</span></div>';
+        const botao=card.querySelector(".botao-editar-circular");
+        const petIdTutor=obterIdTutorPet(pet);
+        const petToken=campoPet(pet,"Token Proprietario","Token Proprietário","tokenProprietario");
+        const podeEditar=(idTutor&&petIdTutor&&String(idTutor)===String(petIdTutor))||(token&&petToken&&String(token)===String(petToken));
+        if(podeEditar){
+            botao.style.display="inline-flex";
+            botao.onclick=function(event){event.stopPropagation();abrirModal(pet);setTimeout(abrirEdicao,0);};
+        }else{
+            botao.remove();
+        }
+        lista.appendChild(card);
+    });
 }
+
 
 
 function aplicarFiltro(){
@@ -3659,66 +3398,25 @@ function mostrarDadosPet(
 
 function verificarPermissaoEdicao(){
 
-    const botao =
-        document.getElementById(
-            "botaoEditarCadastro"
-        );
+    const botao = document.getElementById("botaoEditarCadastro");
 
-
-    if(
-        !petAtual
-    ){
-
-        botao.style.display =
-            "none";
-
+    if(!petAtual || !botao){
+        if(botao) botao.style.display = "none";
         return;
-
     }
 
+    const idLocal = obterIdTutorLocal();
+    const idPet = obterIdTutorPet(petAtual);
 
-    const tokenLocal =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
+    const tokenLocal = localStorage.getItem("redePetUltimoToken") || "";
+    const tokenPet = campoPet(petAtual,"Token Proprietario","Token Proprietário","tokenProprietario");
 
+    const ehTutorPorId = idLocal && idPet && String(idLocal) === String(idPet);
+    const ehTutorPorToken = tokenLocal && tokenPet && String(tokenLocal) === String(tokenPet);
 
-    const tokenPet =
-        campoPet(
-            petAtual,
-            "Token Proprietario",
-            "Token Proprietário",
-            "tokenProprietario"
-        );
-
-    const idTutorLocal =
-        localStorage.getItem("redePetIdTutor") || "";
-
-    const idTutorPet =
-        campoPet(
-            petAtual,
-            "ID_Tutor",
-            "ID Tutor",
-            "idTutor"
-        );
-
-
-    if(
-        (tokenLocal && tokenPet && String(tokenLocal) === String(tokenPet)) ||
-        (idTutorLocal && idTutorPet && String(idTutorLocal) === String(idTutorPet))
-    ){
-
-        botao.style.display =
-            "inline-block";
-
-    }else{
-
-        botao.style.display =
-            "none";
-
-    }
-
+    botao.style.display = (ehTutorPorId || ehTutorPorToken) ? "inline-flex" : "none";
 }
+
 
 
 /* =========================
@@ -4096,10 +3794,7 @@ function salvarEdicaoPet(){
             token,
 
         idTutor:
-            obterIdTutor(),
-
-        "ID_Tutor":
-            obterIdTutor(),
+            obterIdTutorLocal(),
 
         nome:
             document
@@ -5115,186 +4810,87 @@ function curtirComentarioHTML(
 }
 
 
+
+/* =========================
+   MAPA DINÂMICO POR BAIRRO
+========================= */
+
+const REDE_PET_BAIRROS_MAPA={
+    "alto do moura":{label:"ALTO DO MOURA",left:"12%",top:"24%"},
+    "cidade jardim":{label:"CIDADE JARDIM",left:"72%",top:"68%"},
+    "salgado":{label:"SALGADO",left:"20%",top:"32%"},
+    "centro":{label:"CENTRO",left:"50%",top:"45%"},
+    "universitário":{label:"UNIVERSITÁRIO",left:"10%",top:"60%"},
+    "universitario":{label:"UNIVERSITÁRIO",left:"10%",top:"60%"},
+    "petrópolis":{label:"PETRÓPOLIS",left:"74%",top:"20%"},
+    "petropolis":{label:"PETRÓPOLIS",left:"74%",top:"20%"},
+    "indianópolis":{label:"INDIANÓPOLIS",left:"70%",top:"42%"},
+    "indianopolis":{label:"INDIANÓPOLIS",left:"70%",top:"42%"},
+    "riachão":{label:"RIACHÃO",left:"18%",top:"78%"},
+    "riachao":{label:"RIACHÃO",left:"18%",top:"78%"}
+};
+
+function chaveBairroMapa(valor){
+    return String(valor||"").trim().toLowerCase().replace(/\s+/g," ");
+}
+
+function atualizarMapaComPets(){
+    const mapa=document.querySelector("#mapaRedePet .mapa-cidade");
+    if(!mapa || !Array.isArray(petsCarregados))return;
+    mapa.querySelectorAll(".marcador-dinamico-pet").forEach(function(el){el.remove();});
+    const grupos={};
+    petsCarregados.forEach(function(pet){
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        /* O mapa mostra todos os animais cadastrados; o filtro
+           exclusivo de Perdidos + Para adoção pertence ao Match. */
+        const bairro=campoPet(pet,"Bairro","bairro");
+        const chave=chaveBairroMapa(bairro);
+        if(!chave)return;
+        if(!grupos[chave])grupos[chave]={bairro:bairro,pets:[]};
+        grupos[chave].pets.push(pet);
+    });
+    Object.keys(grupos).forEach(function(chave){
+        const grupo=grupos[chave];
+        const cfg=REDE_PET_BAIRROS_MAPA[chave] || {label:String(grupo.bairro).toUpperCase(),left:"50%",top:"50%"};
+        const btn=document.createElement("button");
+        btn.type="button";
+        btn.className="marcador-pet marcador-dinamico-pet";
+        btn.style.left=cfg.left;
+        btn.style.top=cfg.top;
+        btn.style.right="auto";
+        btn.style.bottom="auto";
+        btn.innerHTML='<span>🐾</span><small>'+escaparHTML(cfg.label)+' • '+grupo.pets.length+'</small>';
+        btn.setAttribute("aria-label",cfg.label+", "+grupo.pets.length+" animais");
+        btn.onclick=function(){
+            document.querySelectorAll('.marcador-pet').forEach(function(b){b.classList.remove('ativo');});
+            btn.classList.add('ativo');
+            const nomes=grupo.pets.map(function(p){return campoPet(p,"Nome","nome")||"PET";}).join(" • ");
+            const info=document.getElementById("mapaInfo");
+            if(info)info.innerHTML='<p><strong>'+escaparHTML(cfg.label)+'</strong><br>'+grupo.pets.length+' '+(grupo.pets.length===1?'animal':'animais')+' cadastrado(s)<br><span style="color:#666;">'+escaparHTML(nomes)+'</span></p>';
+            const area=document.getElementById("botaoMapaArea");
+            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(cfg.label)}')">📍 COMO CHEGAR À REGIÃO</button>`;
+        };
+        mapa.appendChild(btn);
+    });
+}
+
 /* =========================
    MAPA
 ========================= */
 
-function normalizarBairroMapa(valor){
-    return String(valor || "")
-        .trim()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g,"-");
-}
-
-
-/*
- * Posições aproximadas por BAIRRO.
- * Não representam endereço exato. Servem apenas
- * para que cada novo cadastro apareça na região
- * correspondente ao bairro informado.
- */
-const POSICOES_BAIRROS_MAPA = {
-    "alto-do-moura": {left:"16%", top:"24%", nome:"ALTO DO MOURA"},
-    "salgado": {left:"25%", top:"54%", nome:"SALGADO"},
-    "centro": {left:"51%", top:"43%", nome:"CENTRO"},
-    "cidade-jardim": {left:"78%", top:"68%", nome:"CIDADE JARDIM"},
-    "universitario": {left:"18%", top:"38%", nome:"UNIVERSITÁRIO"},
-    "petropolis": {left:"79%", top:"24%", nome:"PETRÓPOLIS"},
-    "indianopolis": {left:"73%", top:"54%", nome:"INDIANÓPOLIS"},
-    "riachao": {left:"22%", top:"78%", nome:"RIACHÃO"},
-    "agamenon": {left:"65%", top:"72%", nome:"AGAMENON"},
-    "sao-francisco": {left:"37%", top:"29%", nome:"SÃO FRANCISCO"},
-    "kennedy": {left:"59%", top:"21%", nome:"KENNEDY"},
-    "santa-rosa": {left:"40%", top:"72%", nome:"SANTA ROSA"}
-};
-
-
-function encontrarPosicaoBairro(bairro){
-
-    const chave = normalizarBairroMapa(bairro);
-
-    if(POSICOES_BAIRROS_MAPA[chave]){
-        return POSICOES_BAIRROS_MAPA[chave];
-    }
-
-    /*
-     * Fallback: o novo bairro ainda não está no mapa.
-     * Ele fica numa posição neutra, mas mantém o nome
-     * correto e a rota continua sendo calculada pelo bairro.
-     */
-    return {
-        left:"50%",
-        top:"50%",
-        nome:String(bairro || "REGIÃO INFORMADA").toUpperCase()
-    };
-}
-
-
-function renderizarMapaComPets(){
-
-    const camada =
-        document.getElementById("marcadoresMapa");
-
-    if(!camada){
-        return;
-    }
-
-    camada.innerHTML = "";
-
-    const grupos = {};
-
-    (Array.isArray(petsCarregados) ? petsCarregados : [])
-        .forEach(function(pet){
-
-            const bairro = campoPet(
-                pet,
-                "Bairro",
-                "bairro"
-            );
-
-            if(!bairro){
-                return;
-            }
-
-            const chave = normalizarBairroMapa(bairro);
-
-            if(!grupos[chave]){
-                grupos[chave] = {
-                    bairro:bairro,
-                    pets:[]
-                };
-            }
-
-            grupos[chave].pets.push(pet);
-        });
-
-    Object.keys(grupos).forEach(function(chave){
-
-        const grupo = grupos[chave];
-        const pos = encontrarPosicaoBairro(grupo.bairro);
-
-        const botao = document.createElement("button");
-        botao.type = "button";
-        botao.className = "marcador-pet-dinamico";
-        botao.style.left = pos.left;
-        botao.style.top = pos.top;
-        botao.setAttribute(
-            "aria-label",
-            pos.nome + ", " + grupo.pets.length + " animal(is) cadastrado(s)"
-        );
-
-        botao.innerHTML =
-            '<span>🐾</span>' +
-            '<strong>' + grupo.pets.length + '</strong>' +
-            '<small>' + escaparHTML(pos.nome) + '</small>';
-
-        botao.onclick = function(){
-            selecionarBairroMapa(chave);
-        };
-
-        camada.appendChild(botao);
-    });
-}
-
-
-function selecionarBairroMapa(chave){
-
-    const grupos = {};
-
-    (Array.isArray(petsCarregados) ? petsCarregados : [])
-        .forEach(function(pet){
-
-            const bairro = campoPet(pet,"Bairro","bairro");
-            if(!bairro){ return; }
-
-            const k = normalizarBairroMapa(bairro);
-
-            if(!grupos[k]){
-                grupos[k] = {bairro:bairro,pets:[]};
-            }
-
-            grupos[k].pets.push(pet);
-        });
-
-    const grupo = grupos[chave];
-    if(!grupo){ return; }
-
-    const pos = encontrarPosicaoBairro(grupo.bairro);
-    const nomes = grupo.pets.map(function(pet){
-        return campoPet(pet,"Nome","nome") || "PET";
-    }).join(" • ");
-
-    const info = document.getElementById("mapaInfo");
-
-    if(info){
-        info.innerHTML =
-            '<p><strong>' + escaparHTML(pos.nome) + '</strong><br>' +
-            grupo.pets.length + ' animal(is) cadastrado(s)<br>' +
-            '<span style="color:#666;">' + escaparHTML(nomes) + '</span></p>';
-    }
-
-    const area = document.getElementById("botaoMapaArea");
-
-    if(area){
-        const destino = encodeURIComponent(
-            pos.nome + ", Caruaru, Pernambuco"
-        );
-        const url =
-            "https://www.google.com/maps/dir/?api=1&destination=" +
-            destino;
-
-        area.innerHTML =
-            '<a class="botao-como-chegar" href="' +
-            escaparHTML(url) +
-            '" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR AO BAIRRO</a>';
-    }
-}
-
-
 function selecionarRegiaoMapa(regiao){
-    selecionarBairroMapa(normalizarBairroMapa(regiao));
+    const dados={
+        salgado:{nome:"SALGADO",quantidade:"2 animais cadastrados",animais:"Thor • Perdido | Mel • Encontrado"},
+        centro:{nome:"CENTRO",quantidade:"1 animal cadastrado",animais:"Nina • Para adoção"},
+        "cidade-jardim":{nome:"CIDADE JARDIM",quantidade:"1 animal cadastrado",animais:"Rex • Perdido"}
+    };
+    const item=dados[regiao]; if(!item)return;
+    document.querySelectorAll('.marcador-pet').forEach(function(botao){botao.classList.remove('ativo');});
+    const botao=document.querySelector('.marcador-'+regiao); if(botao)botao.classList.add('ativo');
+    const info=document.getElementById('mapaInfo');
+    if(info)info.innerHTML='<p><strong>'+item.nome+'</strong><br>'+item.quantidade+'<br><span style="color:#666;">'+item.animais+'</span></p>';
+    const area=document.getElementById('botaoMapaArea');
+            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(cfg.label)}')">📍 COMO CHEGAR À REGIÃO</button>`;
 }
 
 function abrirNavegacaoRegiao(local){
