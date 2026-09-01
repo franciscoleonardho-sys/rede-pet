@@ -1,4 +1,4 @@
-<!-- REDE PET v15: UI de edição aprovada; mapa dinâmico prioriza bairro real; ID_Tutor enviado pelo frontend. A persistência entre dispositivos depende do backend/planilha. -->
+<!-- REDE PET v16: UI de edição aprovada; mapa dinâmico prioriza bairro real; ID_Tutor enviado pelo frontend. A persistência entre dispositivos depende do backend/planilha. -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -636,6 +636,16 @@ textarea{
     margin-top:15px;
     font-weight:bold;
 }
+
+/* ACESSO DO TUTOR */
+.acesso-tutor{margin:0 0 18px;padding:14px;border:1px solid #d8dfdb;border-radius:10px;background:#f7faf8;}
+.acesso-tutor-titulo{font-size:13px;font-weight:800;color:#064e3b;margin-bottom:9px;}
+.acesso-tutor-linha{display:flex;gap:8px;}
+.acesso-tutor-linha input{flex:1;min-width:0;padding:11px;border:1px solid #cfd7d2;border-radius:7px;text-transform:uppercase;}
+.botao-acesso-tutor{border:0;background:#064e3b;color:#fff;border-radius:7px;padding:0 15px;font-weight:700;cursor:pointer;}
+.acesso-tutor-mensagem{font-size:12px;margin-top:8px;color:#555;}
+.codigo-tutor-gerado{margin-top:10px;padding:10px;border-radius:7px;background:#fff3cd;color:#664d03;font-weight:700;font-size:13px;}
+@media(max-width:700px){.acesso-tutor-linha{flex-direction:column}.botao-acesso-tutor{padding:11px;width:100%;}}
 
 /* MENSAGENS */
 
@@ -1388,6 +1398,16 @@ id="observacoes">
 <h2>
 DADOS DO TUTOR
 </h2>
+
+<div class="acesso-tutor" id="acessoTutorPanel">
+<div class="acesso-tutor-titulo">JÁ SOU TUTOR CADASTRADO</div>
+<div class="acesso-tutor-linha">
+<input id="codigoTutorAcesso" inputmode="text" autocomplete="one-time-code" placeholder="DIGITE SEU CÓDIGO DE ACESSO">
+<button type="button" class="botao-acesso-tutor" onclick="acessarTutorPorCodigo()">ACESSAR</button>
+</div>
+<div id="mensagemAcessoTutor" class="acesso-tutor-mensagem"></div>
+<div id="codigoTutorGerado" class="codigo-tutor-gerado" style="display:none"></div>
+</div>
 
 <div class="campo">
 
@@ -2178,7 +2198,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v15
+REDE PET — PROTÓTIPO • v16
 
 </footer>
 
@@ -2352,32 +2372,45 @@ function gerarTokenProprietario(){
 ========================= */
 
 function gerarIdTutor(){
-    return (
-        "TUTOR-" +
-        Date.now().toString(36).toUpperCase() +
-        "-" +
-        Math.random().toString(36).substring(2,8).toUpperCase()
-    );
+    return "TUTOR-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).substring(2,8).toUpperCase();
 }
-
+function gerarCodigoTutor(){
+    return Math.random().toString(36).substring(2,6).toUpperCase()+"-"+Math.random().toString(36).substring(2,6).toUpperCase();
+}
 function obterIdTutorLocal(){
-    let id = localStorage.getItem("redePetIdTutor");
-    if(!id){
-        id = gerarIdTutor();
-        localStorage.setItem("redePetIdTutor", id);
-    }
+    let id=localStorage.getItem("redePetIdTutor");
+    if(!id){ id=gerarIdTutor(); localStorage.setItem("redePetIdTutor",id); }
     return id;
 }
-
+function obterCodigoTutorLocal(){ return localStorage.getItem("redePetCodigoTutor")||""; }
+function definirIdentidadeTutor(id,codigo){
+    if(id) localStorage.setItem("redePetIdTutor",String(id));
+    if(codigo) localStorage.setItem("redePetCodigoTutor",String(codigo).toUpperCase());
+}
 function obterIdTutorPet(pet){
-    return campoPet(
-        pet,
-        "ID_Tutor",
-        "ID Tutor",
-        "Id Tutor",
-        "idTutor",
-        "id_tutor"
-    );
+    return campoPet(pet,"ID_Tutor","ID Tutor","Id Tutor","idTutor","id_tutor");
+}
+function acessarTutorPorCodigo(){
+    const campo=document.getElementById("codigoTutorAcesso");
+    const msg=document.getElementById("mensagemAcessoTutor");
+    const codigo=String(campo?.value||"").trim().toUpperCase();
+    if(!codigo){ if(msg)msg.textContent="DIGITE O CÓDIGO DE ACESSO."; return; }
+    if(msg)msg.textContent="VALIDANDO CÓDIGO...";
+    const cb="redeTutor_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+    window[cb]=function(res){
+        try{
+            if(res && res.sucesso){
+                definirIdentidadeTutor(res.idTutor,res.codigoAcesso||codigo);
+                if(msg)msg.textContent="TUTOR RECONHECIDO. SEUS PETS PODEM SER ACESSADOS NESTE APARELHO.";
+                carregarPets(true);
+                atualizarMapaComPets();
+            }else if(msg) msg.textContent=(res&&res.erro)||"CÓDIGO NÃO ENCONTRADO.";
+        }finally{delete window[cb];}
+    };
+    const script=document.createElement("script");
+    script.src=URL_APPS_SCRIPT+"?acao=acessarTutor&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();
+    script.onerror=function(){if(msg)msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};
+    document.body.appendChild(script);
 }
 
 
@@ -2549,6 +2582,9 @@ document
             const token =
                 gerarTokenProprietario();
 
+            let codigoTutor = obterCodigoTutorLocal();
+            if(!codigoTutor) codigoTutor = gerarCodigoTutor();
+
             const dados = {
 
                 foto:
@@ -2705,7 +2741,10 @@ document
                 /* identidade permanente do tutor;
                    o backend deve persistir este campo */
                 idTutor:
-                    obterIdTutorLocal()
+                    obterIdTutorLocal(),
+
+                codigoAcessoTutor:
+                    codigoTutor
 
             };
 
@@ -2720,6 +2759,9 @@ document
                 "redePetUltimoToken",
                 token
             );
+            definirIdentidadeTutor(obterIdTutorLocal(), codigoTutor);
+            const codigoBox=document.getElementById("codigoTutorGerado");
+            if(codigoBox){codigoBox.style.display="block";codigoBox.textContent="SEU CÓDIGO DE ACESSO DO TUTOR: "+codigoTutor+" — GUARDE ESTE CÓDIGO PARA USAR EM OUTRO CELULAR OU COMPUTADOR.";}
 
 
             mensagem.textContent =
@@ -2780,10 +2822,10 @@ function mostrarLoadingMatch(){
         '</div><div class="match-carregando-texto">PROCURANDO ANIMAIS PERDIDOS E PARA ADOÇÃO...</div>';
 }
 
-function carregarPets(){
+function carregarPets(forcar){
     const lista=document.getElementById("listaPets");
     if(!lista)return;
-    if(Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); return; }
+    if(!forcar && Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); return; }
     if(window.redePetCarregandoPets)return;
     window.redePetCarregandoPets=true;
     mostrarLoadingMatch();
@@ -2801,7 +2843,7 @@ function carregarPets(){
         delete window[callback];
     };
     const script=document.createElement("script");
-    script.src=URL_APPS_SCRIPT+"?acao=listarPets&token="+encodeURIComponent(token)+"&callback="+callback+"&t="+Date.now();
+    script.src=URL_APPS_SCRIPT+"?acao=listarPets&token="+encodeURIComponent(token)+"&idTutor="+encodeURIComponent(obterIdTutorLocal())+"&callback="+callback+"&t="+Date.now();
     script.async=true;
     script.onerror=function(){
         if(finalizado)return;
