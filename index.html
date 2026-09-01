@@ -488,21 +488,79 @@ textarea{
     color:white;
 }
 
+
+/* EDITAR PET — botão discreto */
+.botao-editar-pet{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    padding:0;
+    margin:18px 0 0;
+    border:0;
+    border-radius:50%;
+    background:transparent;
+    color:#b91c1c;
+    font-size:25px;
+    line-height:38px;
+    text-align:center;
+    cursor:pointer;
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    transition:transform .15s,background .15s;
+}
+.botao-editar-pet:hover{
+    transform:scale(1.08);
+    background:rgba(185,28,28,.08);
+}
+.botao-editar-pet:focus-visible{
+    outline:2px solid #b91c1c;
+    outline-offset:3px;
+}
+
+/* MAPA DINÂMICO POR BAIRRO */
+.marcadores-mapa-dinamicos{
+    position:absolute;
+    inset:0;
+    z-index:6;
+}
+.marcador-pet-dinamico{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    min-width:68px;
+    min-height:68px;
+    padding:7px 8px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#064e3b;
+    box-shadow:0 4px 14px rgba(0,0,0,.18);
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+}
+.marcador-pet-dinamico span{font-size:25px;line-height:1;}
+.marcador-pet-dinamico small{font-size:8px;font-weight:bold;white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis;}
+.marcador-pet-dinamico strong{font-size:9px;}
+@media(max-width:700px){.marcador-pet-dinamico{min-width:60px;min-height:60px;}.marcador-pet-dinamico span{font-size:22px;}}
+
 /* MAPA */
 
-.mapa-container{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:15px;
-}
-
-.mapa{
-    width:100%;
-    height:500px;
-    border:none;
-    border-radius:8px;
-}
+.mapa-container{background:white;border:1px solid #ddd;border-radius:10px;padding:15px;}
+.mapa{width:100%;height:500px;border:none;border-radius:8px;}
+.mapa-rede-pet{width:100%;overflow:hidden;border-radius:10px;background:#eef2ef;border:1px solid #d8dfdb;}
+.mapa-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:#fff;color:#064e3b;font-weight:bold;font-size:13px;}
+.mapa-legenda{font-size:11px;color:#666;font-weight:normal;}
+.mapa-cidade{position:relative;height:500px;overflow:hidden;background:linear-gradient(135deg,#e7ece9,#f4f5f1 45%,#e6ece8);}
+.estrada{position:absolute;background:#fff;box-shadow:0 0 0 1px rgba(180,190,185,.45);transform-origin:center;}
+.estrada-a{width:125%;height:34px;left:-10%;top:45%;transform:rotate(-18deg);}.estrada-b{width:120%;height:24px;left:-8%;top:23%;transform:rotate(28deg);}.estrada-c{width:110%;height:28px;left:-5%;top:70%;transform:rotate(12deg);}.estrada-d{width:25px;height:115%;left:57%;top:-8%;transform:rotate(18deg);}
+.rio{position:absolute;width:24px;height:125%;left:27%;top:-10%;background:rgba(116,170,185,.22);transform:rotate(-18deg);border-radius:50%;}
+.mapa-bairro{position:absolute;color:#77827d;font-size:10px;letter-spacing:.4px;font-weight:bold;pointer-events:none;}.bairro-1{left:8%;top:35%;}.bairro-2{right:8%;top:18%;}.bairro-3{right:12%;bottom:22%;}.bairro-4{left:12%;bottom:12%;}
+.marcador-pet{position:absolute;z-index:5;width:72px;height:72px;border:0;border-radius:50%;background:#fff;color:#064e3b;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .15s,box-shadow .15s;}.marcador-pet:hover,.marcador-pet.ativo{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.24);}.marcador-pet span{font-size:27px;line-height:1;}.marcador-pet small{font-size:9px;font-weight:bold;}.marcador-salgado{left:17%;top:25%;}.marcador-centro{left:53%;top:43%;}.marcador-cidade-jardim{right:14%;bottom:19%;}
+.mapa-nota{padding:11px 13px;background:#fff;color:#666;font-size:12px;line-height:1.4;border-top:1px solid #d8dfdb;}
+@media(max-width:700px){.mapa-cidade{height:430px;}.mapa-topo{align-items:flex-start;flex-direction:column;gap:3px;}.marcador-pet{width:64px;height:64px;}.marcador-pet span{font-size:24px;}.marcador-salgado{left:10%;top:25%;}.marcador-centro{left:46%;top:43%;}.marcador-cidade-jardim{right:7%;bottom:18%;}}
 
 .mapa-info{
     margin-bottom:15px;
@@ -560,13 +618,52 @@ textarea{
 /* RODAPÉ DE NAVEGAÇÃO */
 
 .rodape-navegacao{
-    display:flex;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
-    flex-wrap:wrap;
     margin-top:35px;
     padding:20px 0;
     border-top:1px solid #ddd;
+}
+
+/* Nas páginas MATCH e MAPA: dois atalhos menores em cima
+   e CADASTRO DE PET sozinho na linha de baixo. */
+.rodape-navegacao .botao{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.rodape-navegacao .botao:first-child{
+    grid-column:1 / -1;
+    grid-row:2;
+}
+
+.rodape-navegacao .botao:nth-child(2){
+    grid-column:2;
+    grid-row:1;
+}
+
+.rodape-navegacao .botao:nth-child(3){
+    grid-column:1;
+    grid-row:1;
+}
+
+/* Na página de CADASTRO, os três atalhos permanecem pequenos
+   e lado a lado, em uma única linha. */
+/* PÁGINA DE CADASTRO: os 3 atalhos permanecem na mesma linha,
+   em TODOS os tamanhos de tela. */
+section#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+section#pet .rodape-navegacao .botao:first-child,
+section#pet .rodape-navegacao .botao:nth-child(2),
+section#pet .rodape-navegacao .botao:nth-child(3){
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100%;
+    min-width:0;
 }
 
 /* VOLTAR */
@@ -646,8 +743,10 @@ footer{
     .botoes-inicio .botao{
         width:100%;
         min-width:0;
-        padding:13px 10px;
+        padding:13px 6px;
+        font-size:13px;
         white-space:nowrap;
+        letter-spacing:-0.2px;
     }
 
     .opcoes{
@@ -723,6 +822,19 @@ footer{
         grid-template-columns:1fr;
     }
 
+
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha também no celular */
+    section#pet .rodape-navegacao{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+
+    section#pet .rodape-navegacao .botao{
+        padding-left:6px;
+        padding-right:6px;
+        white-space:nowrap;
+        font-size:13px;
+    }
+
     .modal{
         padding:8px;
     }
@@ -734,6 +846,7 @@ footer{
     .modal-foto-mini{
         max-height:330px;
     }
+
 
 }
 
@@ -1467,29 +1580,19 @@ class="pagina">
 MAPA
 </h2>
 
-<div
-id="mapaInfo"
-class="mapa-info">
-
-<p style="color:#666;">
-
-SELECIONE COMO CHEGAR EM UM COMENTÁRIO
-PARA VISUALIZAR O LOCAL.
-
-</p>
-
+<div id="mapaInfo" class="mapa-info">
+<p><strong>MAPA REDE PET</strong><br>VISUALIZE, DE FORMA APROXIMADA, AS REGIÕES ONDE HÁ ANIMAIS CADASTRADOS.</p>
 </div>
-
-
 <div class="mapa-container">
-
-<iframe
-id="mapaIframe"
-class="mapa"
-src="https://www.google.com/maps?q=Caruaru,+Pernambuco&output=embed"
-loading="lazy">
-</iframe>
-
+<div id="mapaRedePet" class="mapa-rede-pet" aria-label="Mapa da REDE PET com regiões e animais cadastrados">
+<div class="mapa-topo"><span>CARUARU • REDE PET</span><span class="mapa-legenda">🐾 ANIMAIS CADASTRADOS</span></div>
+<div class="mapa-cidade">
+<div class="estrada estrada-a"></div><div class="estrada estrada-b"></div><div class="estrada estrada-c"></div><div class="estrada estrada-d"></div><div class="rio"></div>
+<div id="marcadoresMapa" class="marcadores-mapa-dinamicos"></div>
+<div class="mapa-bairro bairro-1">UNIVERSITÁRIO</div><div class="mapa-bairro bairro-2">PETRÓPOLIS</div><div class="mapa-bairro bairro-3">INDIANÓPOLIS</div><div class="mapa-bairro bairro-4">RIACHÃO</div>
+</div>
+<div class="mapa-nota">🐾 Cada patinha é posicionada pela <strong>região aproximada do bairro informado no cadastro</strong>. O endereço exato não é exibido no mapa.</div>
+</div>
 </div>
 
 
@@ -1558,13 +1661,13 @@ id="modalDados">
 
 <button
 type="button"
-class="botao"
-style="margin-top:20px;display:none;"
+class="botao-editar-pet"
+style="display:none;"
 id="botaoEditarCadastro"
-onclick="abrirEdicao()">
-
-✏️ EDITAR CADASTRO
-
+onclick="abrirEdicao()"
+title="Editar cadastro deste animal"
+aria-label="Editar cadastro deste animal">
+✎
 </button>
 
 
@@ -2024,7 +2127,11 @@ alt="FOTO AMPLIADA DO PET">
 </div>
 
 
-<!-- RODAPÉ DE PROTÓTIPO REMOVIDO -->
+<footer>
+
+REDE PET — PROTÓTIPO • v13
+
+</footer>
 
 
 <iframe
@@ -2075,6 +2182,14 @@ function abrirPagina(nome){
 
     if(
         nome === "match"
+    ){
+
+        carregarPets();
+
+    }
+
+    if(
+        nome === "mapa"
     ){
 
         carregarPets();
@@ -2185,6 +2300,34 @@ function gerarTokenProprietario(){
             .substring(2,12)
     );
 
+}
+
+
+/* =========================
+   ID PERMANENTE DO TUTOR
+========================= */
+
+function gerarIdTutor(){
+
+    const existente =
+        localStorage.getItem("redePetIdTutor");
+
+    if(existente){
+        return existente;
+    }
+
+    const id =
+        "TUTOR-" +
+        Date.now().toString(36).toUpperCase() +
+        "-" +
+        Math.random().toString(36).substring(2,8).toUpperCase();
+
+    localStorage.setItem("redePetIdTutor", id);
+    return id;
+}
+
+function obterIdTutor(){
+    return gerarIdTutor();
 }
 
 
@@ -2356,6 +2499,9 @@ document
             const token =
                 gerarTokenProprietario();
 
+            const idTutor =
+                obterIdTutor();
+
             const dados = {
 
                 foto:
@@ -2507,7 +2653,13 @@ document
                         .value,
 
                 tokenProprietario:
-                    token
+                    token,
+
+                idTutor:
+                    idTutor,
+
+                "ID_Tutor":
+                    idTutor
 
             };
 
@@ -2623,6 +2775,7 @@ function carregarPets(){
                 : [];
 
             renderizarPets();
+            renderizarMapaComPets();
 
             delete window[
                 callback
@@ -3538,12 +3691,21 @@ function verificarPermissaoEdicao(){
             "tokenProprietario"
         );
 
+    const idTutorLocal =
+        localStorage.getItem("redePetIdTutor") || "";
+
+    const idTutorPet =
+        campoPet(
+            petAtual,
+            "ID_Tutor",
+            "ID Tutor",
+            "idTutor"
+        );
+
 
     if(
-        tokenLocal &&
-        tokenPet &&
-        String(tokenLocal) ===
-        String(tokenPet)
+        (tokenLocal && tokenPet && String(tokenLocal) === String(tokenPet)) ||
+        (idTutorLocal && idTutorPet && String(idTutorLocal) === String(idTutorPet))
     ){
 
         botao.style.display =
@@ -3932,6 +4094,12 @@ function salvarEdicaoPet(){
 
         tokenProprietario:
             token,
+
+        idTutor:
+            obterIdTutor(),
+
+        "ID_Tutor":
+            obterIdTutor(),
 
         nome:
             document
@@ -4951,84 +5119,198 @@ function curtirComentarioHTML(
    MAPA
 ========================= */
 
-function abrirMapaDoComentario(
-    local
-){
+function normalizarBairroMapa(valor){
+    return String(valor || "")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g,"-");
+}
 
-    if(
-        !local
-    ){
+
+/*
+ * Posições aproximadas por BAIRRO.
+ * Não representam endereço exato. Servem apenas
+ * para que cada novo cadastro apareça na região
+ * correspondente ao bairro informado.
+ */
+const POSICOES_BAIRROS_MAPA = {
+    "alto-do-moura": {left:"16%", top:"24%", nome:"ALTO DO MOURA"},
+    "salgado": {left:"25%", top:"54%", nome:"SALGADO"},
+    "centro": {left:"51%", top:"43%", nome:"CENTRO"},
+    "cidade-jardim": {left:"78%", top:"68%", nome:"CIDADE JARDIM"},
+    "universitario": {left:"18%", top:"38%", nome:"UNIVERSITÁRIO"},
+    "petropolis": {left:"79%", top:"24%", nome:"PETRÓPOLIS"},
+    "indianopolis": {left:"73%", top:"54%", nome:"INDIANÓPOLIS"},
+    "riachao": {left:"22%", top:"78%", nome:"RIACHÃO"},
+    "agamenon": {left:"65%", top:"72%", nome:"AGAMENON"},
+    "sao-francisco": {left:"37%", top:"29%", nome:"SÃO FRANCISCO"},
+    "kennedy": {left:"59%", top:"21%", nome:"KENNEDY"},
+    "santa-rosa": {left:"40%", top:"72%", nome:"SANTA ROSA"}
+};
+
+
+function encontrarPosicaoBairro(bairro){
+
+    const chave = normalizarBairroMapa(bairro);
+
+    if(POSICOES_BAIRROS_MAPA[chave]){
+        return POSICOES_BAIRROS_MAPA[chave];
+    }
+
+    /*
+     * Fallback: o novo bairro ainda não está no mapa.
+     * Ele fica numa posição neutra, mas mantém o nome
+     * correto e a rota continua sendo calculada pelo bairro.
+     */
+    return {
+        left:"50%",
+        top:"50%",
+        nome:String(bairro || "REGIÃO INFORMADA").toUpperCase()
+    };
+}
+
+
+function renderizarMapaComPets(){
+
+    const camada =
+        document.getElementById("marcadoresMapa");
+
+    if(!camada){
         return;
     }
 
+    camada.innerHTML = "";
 
-    localMapaAtual =
-        local;
+    const grupos = {};
 
+    (Array.isArray(petsCarregados) ? petsCarregados : [])
+        .forEach(function(pet){
 
-    const mapa =
-        document.getElementById(
-            "mapaIframe"
+            const bairro = campoPet(
+                pet,
+                "Bairro",
+                "bairro"
+            );
+
+            if(!bairro){
+                return;
+            }
+
+            const chave = normalizarBairroMapa(bairro);
+
+            if(!grupos[chave]){
+                grupos[chave] = {
+                    bairro:bairro,
+                    pets:[]
+                };
+            }
+
+            grupos[chave].pets.push(pet);
+        });
+
+    Object.keys(grupos).forEach(function(chave){
+
+        const grupo = grupos[chave];
+        const pos = encontrarPosicaoBairro(grupo.bairro);
+
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "marcador-pet-dinamico";
+        botao.style.left = pos.left;
+        botao.style.top = pos.top;
+        botao.setAttribute(
+            "aria-label",
+            pos.nome + ", " + grupo.pets.length + " animal(is) cadastrado(s)"
         );
 
+        botao.innerHTML =
+            '<span>🐾</span>' +
+            '<strong>' + grupo.pets.length + '</strong>' +
+            '<small>' + escaparHTML(pos.nome) + '</small>';
 
-    const info =
-        document.getElementById(
-            "mapaInfo"
+        botao.onclick = function(){
+            selecionarBairroMapa(chave);
+        };
+
+        camada.appendChild(botao);
+    });
+}
+
+
+function selecionarBairroMapa(chave){
+
+    const grupos = {};
+
+    (Array.isArray(petsCarregados) ? petsCarregados : [])
+        .forEach(function(pet){
+
+            const bairro = campoPet(pet,"Bairro","bairro");
+            if(!bairro){ return; }
+
+            const k = normalizarBairroMapa(bairro);
+
+            if(!grupos[k]){
+                grupos[k] = {bairro:bairro,pets:[]};
+            }
+
+            grupos[k].pets.push(pet);
+        });
+
+    const grupo = grupos[chave];
+    if(!grupo){ return; }
+
+    const pos = encontrarPosicaoBairro(grupo.bairro);
+    const nomes = grupo.pets.map(function(pet){
+        return campoPet(pet,"Nome","nome") || "PET";
+    }).join(" • ");
+
+    const info = document.getElementById("mapaInfo");
+
+    if(info){
+        info.innerHTML =
+            '<p><strong>' + escaparHTML(pos.nome) + '</strong><br>' +
+            grupo.pets.length + ' animal(is) cadastrado(s)<br>' +
+            '<span style="color:#666;">' + escaparHTML(nomes) + '</span></p>';
+    }
+
+    const area = document.getElementById("botaoMapaArea");
+
+    if(area){
+        const destino = encodeURIComponent(
+            pos.nome + ", Caruaru, Pernambuco"
         );
+        const url =
+            "https://www.google.com/maps/dir/?api=1&destination=" +
+            destino;
+
+        area.innerHTML =
+            '<a class="botao-como-chegar" href="' +
+            escaparHTML(url) +
+            '" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR AO BAIRRO</a>';
+    }
+}
 
 
-    const area =
-        document.getElementById(
-            "botaoMapaArea"
-        );
+function selecionarRegiaoMapa(regiao){
+    selecionarBairroMapa(normalizarBairroMapa(regiao));
+}
 
+function abrirNavegacaoRegiao(local){
+    const encoded=encodeURIComponent(local+', Caruaru, Pernambuco');
+    const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;
+    window.open(url,'_blank','noopener,noreferrer');
+}
 
-    const encoded =
-        encodeURIComponent(
-            local
-        );
-
-
-    mapa.src =
-        "https://www.google.com/maps?q=" +
-        encoded +
-        "&output=embed";
-
-
-    info.innerHTML =
-        '<p>' +
-        '<strong>LOCAL INFORMADO:</strong><br>' +
-        escaparHTML(
-            local
-        ) +
-        '</p>';
-
-
-    const url =
-        "https://www.google.com/maps/dir/?api=1&destination=" +
-        encoded;
-
-
-    area.innerHTML =
-        '<a class="botao-como-chegar" ' +
-        'href="' +
-        escaparHTML(
-            url
-        ) +
-        '" target="_blank" ' +
-        'rel="noopener noreferrer">' +
-        '📍 COMO CHEGAR ATÉ O LOCAL' +
-        '</a>';
-
-
-    fecharModal();
-
-
-    abrirPagina(
-        "mapa"
-    );
-
+function abrirMapaDoComentario(local){
+    if(!local)return;
+    localMapaAtual=local;
+    const info=document.getElementById('mapaInfo');
+    const area=document.getElementById('botaoMapaArea');
+    if(info)info.innerHTML='<p><strong>LOCAL INFORMADO:</strong><br>'+escaparHTML(local)+'<br><span style="color:#666;">O mapa apresenta regiões aproximadas. Para a rota, use o botão abaixo.</span></p>';
+    if(area){const encoded=encodeURIComponent(local);const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;area.innerHTML='<a class="botao-como-chegar" href="'+escaparHTML(url)+'" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR ATÉ O LOCAL</a>';}
+    fecharModal(); abrirPagina('mapa');
 }
 
 
@@ -5337,4 +5619,3 @@ document.addEventListener(
 </body>
 
 </html>
-
