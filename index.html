@@ -851,18 +851,18 @@ POR ONDE VOCÊ QUER COMEÇAR?
 </h2>
 
 <div class="botoes-inicio">
-<button type="button" class="botao botao-secundario" onclick="abrirPagina('match')">VISUALIZAR PETS</button>
-<button type="button" class="botao" onclick="iniciarCadastroPet()">CADASTRAR SEU PET</button>
+<button id="btnInicioMatch" type="button" class="botao botao-secundario" onclick="abrirPagina('match')">VISUALIZAR PETS</button>
+<button id="btnInicioCadastro" type="button" class="botao" onclick="iniciarCadastroPet()">CADASTRAR SEU PET</button>
 </div>
 
 <div style="margin-top:24px;text-align:center;">
-<button type="button" class="tutor-link" onclick="abrirModalTutor('entrar')">JÁ SOU TUTOR CADASTRADO — ENTRAR</button>
+<button id="btnInicioEntrarTutor" type="button" class="tutor-link" onclick="abrirModalTutor('entrar')">JÁ SOU TUTOR CADASTRADO — ENTRAR</button>
 <br>
-<button type="button" class="tutor-link" onclick="abrirModalTutor('recuperar')">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+<button id="btnInicioRecuperarTutor" type="button" class="tutor-link" onclick="abrirModalTutor('recuperar')">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
 </div>
 
 <div style="margin-top:18px;text-align:center;">
-<button type="button" class="botao botao-secundario" onclick="abrirModalTutor('cadastrar')">AINDA NÃO SOU CADASTRADO — CADASTRAR-SE</button>
+<button id="btnInicioCadastrarTutor" type="button" class="botao botao-secundario" onclick="abrirModalTutor('cadastrar')">AINDA NÃO SOU CADASTRADO — CADASTRAR-SE</button>
 </div>
 
 </div>
@@ -2930,7 +2930,10 @@ function carregarPets(){
         '</div>';
 
 
-    const token = "";
+    const token =
+        localStorage.getItem(
+            "redePetUltimoToken"
+        ) || "";
 
 
     const callback =
@@ -5694,15 +5697,26 @@ document
 
 document.getElementById("modalTutor").addEventListener("click",function(event){ if(event.target===this){ fecharModalTutor(); } });
 
-// Reforça os atalhos principais da tela INÍCIO.
+// ATALHOS DA TELA INÍCIO — ligação direta e sem interferir nos demais botões.
 (function(){
-    const botoesInicio=document.querySelectorAll(".botoes-inicio button");
-    if(botoesInicio.length>=2){
-        botoesInicio[0].type="button";
-        botoesInicio[0].onclick=function(e){e.preventDefault();abrirPagina("match");};
-        botoesInicio[1].type="button";
-        botoesInicio[1].onclick=function(e){e.preventDefault();iniciarCadastroPet();};
-    }
+    const ligacoes = {
+        btnInicioMatch: function(){ abrirPagina("match"); },
+        btnInicioCadastro: function(){ iniciarCadastroPet(); },
+        btnInicioEntrarTutor: function(){ abrirModalTutor("entrar"); },
+        btnInicioRecuperarTutor: function(){ abrirModalTutor("recuperar"); },
+        btnInicioCadastrarTutor: function(){ abrirModalTutor("cadastrar"); }
+    };
+    Object.keys(ligacoes).forEach(function(id){
+        const botao=document.getElementById(id);
+        if(botao){
+            botao.type="button";
+            botao.addEventListener("click", function(event){
+                event.preventDefault();
+                event.stopPropagation();
+                ligacoes[id]();
+            });
+        }
+    });
 })();
 
 /* =========================
