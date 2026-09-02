@@ -1065,8 +1065,8 @@ CADASTRAR SEU PET
   <div class="novo-tutor-inicio">
     <strong>AINDA NÃO SOU CADASTRADO</strong>
     <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
-    <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio(); return false;">CADASTRE-SE</button>
-    <button type="button" id="botaoRecuperarCodigoInicio" class="botao botao-recuperar-inicio" onclick="abrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+    <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="redeAbrirCadastroTutor(); return false;">CADASTRE-SE</button>
+    <button type="button" id="botaoRecuperarCodigoInicio" class="botao botao-recuperar-inicio" onclick="redeAbrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
   </div>
 </div>
 
@@ -2375,7 +2375,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v34
+REDE PET — PROTÓTIPO • v35
 
 </footer>
 
@@ -3211,8 +3211,12 @@ function abrirModal(
 ){
 
     // Abrir um pet é somente visualizar os detalhes.
-    // O código de edição só é solicitado ao clicar em "EDITAR CADASTRO" (caneta).
-    fecharTodosModaisTutor();
+    // Mostramos o modal imediatamente, antes de processar qualquer campo.
+    // O código de edição só é solicitado ao clicar em "EDITAR CADASTRO".
+    const modalDetalhe=document.getElementById("modal");
+    if(modalDetalhe){ modalDetalhe.classList.add("aberto"); document.body.style.overflow="hidden"; }
+    try{ fecharTodosModaisTutor(); }catch(e){}
+    if(modalDetalhe){ modalDetalhe.classList.add("aberto"); document.body.style.overflow="hidden"; }
     petAtual =
         pet;
 
@@ -3690,7 +3694,23 @@ function verificarPermissaoEdicao(){
 
 function abrirEdicao(){
     if(!petAtual)return;
-    abrirAutorizacaoEdicao();
+    // A caneta é o único ponto que pede o código do tutor.
+    try{
+        const m=document.getElementById("modalAutorizacaoEdicao");
+        if(m){
+            m.style.display="flex";
+            m.classList.add("aberto");
+            m.setAttribute("aria-hidden","false");
+            document.body.style.overflow="hidden";
+            const campo=document.getElementById("codigoEdicaoTutor");
+            const msg=document.getElementById("mensagemAutorizacaoEdicao");
+            if(campo)campo.value="";
+            if(msg)msg.textContent="";
+            setTimeout(function(){if(campo)campo.focus();},50);
+        }
+    }catch(e){
+        console.error("REDE PET - erro ao abrir autorização:",e);
+    }
 }
 function abrirEdicaoLiberada(){
     if(!petAtual)return;
@@ -5466,6 +5486,47 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </script>
 
+<script>
+/* REDE PET v35 — FAILSAFE DOS CLIQUES PRINCIPAIS */
+(function(){
+  function tutorModal(id){
+    var m=document.getElementById(id);
+    if(!m)return false;
+    document.querySelectorAll('.modal-tutor').forEach(function(x){x.classList.remove('aberto');x.style.display='none';x.setAttribute('aria-hidden','true');});
+    m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+    return true;
+  }
+  function cadastro(){
+    if(!tutorModal('modalTutorCadastro'))return false;
+    var f=document.getElementById('formTutorCadastro'),r=document.getElementById('resultadoTutorCadastro'),msg=document.getElementById('mensagemTutorCadastro');
+    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
+    setTimeout(function(){var x=document.getElementById('novoTutorNome');if(x)x.focus();},50);return false;
+  }
+  function recuperacao(){
+    if(!tutorModal('modalRecuperacaoTutor'))return false;
+    var f=document.getElementById('formRecuperacaoTutor'),r=document.getElementById('resultadoRecuperacaoTutor'),msg=document.getElementById('mensagemRecuperacaoTutor');
+    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
+    setTimeout(function(){var x=document.getElementById('telefoneRecuperacaoTutor');if(x)x.focus();},50);return false;
+  }
+  function autorizacao(){
+    if(!window.petAtual)return false;
+    if(!tutorModal('modalAutorizacaoEdicao'))return false;
+    var c=document.getElementById('codigoEdicaoTutor'),msg=document.getElementById('mensagemAutorizacaoEdicao');
+    if(c)c.value='';if(msg)msg.textContent='';setTimeout(function(){if(c)c.focus();},50);return false;
+  }
+  window.redeAbrirCadastroTutor=cadastro;
+  window.redeAbrirRecuperacaoTutor=recuperacao;
+  window.redeAbrirAutorizacaoEdicao=autorizacao;
+  document.addEventListener('DOMContentLoaded',function(){
+    var a=document.getElementById('botaoCadastrarTutorInicio');
+    if(a)a.onclick=function(e){e.preventDefault();e.stopPropagation();return cadastro();};
+    var b=document.getElementById('botaoRecuperarCodigoInicio');
+    if(b)b.onclick=function(e){e.preventDefault();e.stopPropagation();return recuperacao();};
+    var c=document.getElementById('botaoEditarCadastro');
+    if(c)c.onclick=function(e){e.preventDefault();e.stopPropagation();return autorizacao();};
+  });
+})();
+</script>
 
 </body>
 
