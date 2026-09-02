@@ -796,19 +796,6 @@ footer{
 .botao-editar-card{position:absolute;top:10px;right:10px;width:40px;height:40px;padding:0;border:none;border-radius:50%;background:#c62828;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.18);}
 .botao-editar-card:hover,.botao-editar-card:focus{background:#a91f1f;outline:none;}
 
-
-/* TUTOR — identificação antes do cadastro do pet */
-.tutor-status{margin:0 0 18px;padding:14px 16px;border:1px solid #d9e6df;border-radius:12px;background:#f6fbf8;text-align:left;}
-.tutor-status strong{color:#064e3b;}
-.tutor-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
-.tutor-acoes .botao{margin:0;}
-.tutor-link{display:inline-block;margin-top:10px;border:0;background:none;color:#064e3b;text-decoration:underline;cursor:pointer;font:inherit;padding:0;}
-.tutor-modal-box{max-width:520px;text-align:left;}
-.tutor-modal-box h2{text-align:center;margin-bottom:8px;}
-.tutor-modal-box .subtitulo{text-align:center;color:#666;margin-bottom:18px;}
-.tutor-codigo{font-size:28px;letter-spacing:2px;font-weight:800;text-align:center;padding:16px;border-radius:12px;background:#f1f7f4;color:#064e3b;margin:15px 0;}
-.tutor-aviso{padding:12px;border-radius:10px;background:#fff8e1;color:#6b5500;margin:12px 0;}
-@media(max-width:600px){.tutor-acoes{flex-direction:column}.tutor-acoes .botao{width:100%}.tutor-codigo{font-size:23px;letter-spacing:1px}}
 </style>
 
 </head>
@@ -851,18 +838,19 @@ POR ONDE VOCÊ QUER COMEÇAR?
 </h2>
 
 <div class="botoes-inicio">
-<button class="botao botao-secundario" onclick="abrirPagina('match')">VISUALIZAR PETS</button>
-<button class="botao" onclick="iniciarCadastroPet()">CADASTRAR SEU PET</button>
-</div>
 
-<div style="margin-top:24px;text-align:center;">
-<button type="button" class="tutor-link" onclick="abrirModalTutor('entrar')">JÁ SOU TUTOR CADASTRADO — ENTRAR</button>
-<br>
-<button type="button" class="tutor-link" onclick="abrirModalTutor('recuperar')">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
-</div>
+<button
+class="botao botao-secundario"
+onclick="abrirPagina('match')">
+VISUALIZAR PETS
+</button>
 
-<div style="margin-top:18px;text-align:center;">
-<button type="button" class="botao botao-secundario" onclick="abrirModalTutor('cadastrar')">AINDA NÃO SOU CADASTRADO — CADASTRAR-SE</button>
+<button
+class="botao"
+onclick="abrirPagina('pet')">
+CADASTRAR SEU PET
+</button>
+
 </div>
 
 </div>
@@ -877,15 +865,6 @@ POR ONDE VOCÊ QUER COMEÇAR?
 <section
 id="pet"
 class="pagina">
-
-<div id="tutorStatusCadastro" class="tutor-status">
-<strong>TUTOR</strong><br>
-<span id="tutorStatusTexto">Você precisa se identificar antes de cadastrar um pet.</span>
-<div class="tutor-acoes">
-<button type="button" class="botao" onclick="abrirModalTutor('entrar')">ENTRAR COMO TUTOR</button>
-<button type="button" class="botao botao-secundario" onclick="abrirModalTutor('cadastrar')">CADASTRAR-SE</button>
-</div>
-</div>
 
 <form id="formPet">
 
@@ -2118,17 +2097,6 @@ style="display:none">
 </iframe>
 
 
-
-<!-- =====================================================
-     MODAL DO TUTOR
-===================================================== -->
-<div id="modalTutor" class="modal" style="display:none;">
-<div class="modal-conteudo tutor-modal-box">
-<button type="button" class="fechar-modal" onclick="fecharModalTutor()">×</button>
-<div id="conteudoModalTutor"></div>
-</div>
-</div>
-
 <script>
 
 const URL_APPS_SCRIPT =
@@ -2367,164 +2335,6 @@ function gerarTokenProprietario(){
 
 
 /* =========================
-   TUTOR — IDENTIFICAÇÃO E CADASTRO
-========================= */
-function obterTutorLocal(){
-    try{
-        return JSON.parse(localStorage.getItem("redePetTutor") || "null");
-    }catch(e){ return null; }
-}
-
-function salvarTutorLocal(tutor){
-    localStorage.setItem("redePetTutor", JSON.stringify(tutor));
-    localStorage.setItem("redePetUltimoToken", tutor.codigo);
-}
-
-function codigoTutor(){
-    return "RP-" + Math.floor(100000 + Math.random()*900000).toString();
-}
-
-function normalizarTelefone(valor){
-    return String(valor||"").replace(/\D/g,"");
-}
-
-function atualizarStatusTutor(){
-    const tutor=obterTutorLocal();
-    const texto=document.getElementById("tutorStatusTexto");
-    if(!texto) return;
-    if(tutor){
-        texto.innerHTML="<strong>"+escaparHTML(tutor.nome)+"</strong> — tutor identificado. Seu código de acesso é <strong>"+escaparHTML(tutor.codigo)+"</strong>. Os dados do tutor serão preenchidos automaticamente.";
-        preencherDadosTutor();
-    }else{
-        texto.textContent="Você precisa se identificar antes de cadastrar um pet.";
-    }
-}
-
-function preencherDadosTutor(){
-    const tutor=obterTutorLocal();
-    if(!tutor) return;
-    const mapa={tutorNome:tutor.nome||"", tutorContato:tutor.telefone||"", endereco:tutor.endereco||"", bairro:tutor.bairro||"", cidade:tutor.cidade||""};
-    Object.keys(mapa).forEach(function(id){
-        const el=document.getElementById(id);
-        if(el) el.value=mapa[id];
-    });
-    const publico=document.getElementById("whatsappPublico");
-    if(publico && !publico.value) publico.value="Sim";
-}
-
-function iniciarCadastroPet(){
-    const tutor=obterTutorLocal();
-    if(tutor){
-        abrirPagina("pet");
-        atualizarStatusTutor();
-        return;
-    }
-    abrirModalTutor("cadastrar");
-}
-
-function abrirModalTutor(modo){
-    const modal=document.getElementById("modalTutor");
-    const conteudo=document.getElementById("conteudoModalTutor");
-    if(!modal||!conteudo) return;
-    let html="";
-    if(modo==="cadastrar"){
-        html='<h2>CADASTRO DO TUTOR</h2><p class="subtitulo">Cadastre seus dados uma única vez. Depois, seus pets ficarão vinculados ao seu código de acesso.</p>'+
-        '<div class="campo"><label>NOME DO TUTOR</label><input id="novoTutorNome" required></div>'+
-        '<div class="campo"><label>TELEFONE</label><input id="novoTutorTelefone" inputmode="tel" required></div>'+
-        '<div class="campo"><label>ENDEREÇO DO TUTOR</label><input id="novoTutorEndereco"></div>'+
-        '<div class="campo"><label>BAIRRO</label><input id="novoTutorBairro"></div>'+
-        '<div class="campo"><label>CIDADE</label><input id="novoTutorCidade"></div>'+
-        '<div id="mensagemTutor" class="mensagem"></div>'+
-        '<button type="button" class="botao" onclick="cadastrarTutorLocal()">CRIAR MEU CADASTRO</button>';
-    }else if(modo==="entrar"){
-        html='<h2>ENTRAR COMO TUTOR</h2><p class="subtitulo">Digite seu código de acesso para acessar e editar os cadastros dos seus pets.</p>'+
-        '<div class="campo"><label>CÓDIGO DE ACESSO</label><input id="codigoTutorEntrada" placeholder="EX.: RP-123456" autocomplete="off"></div>'+
-        '<div id="mensagemTutor" class="mensagem"></div>'+
-        '<button type="button" class="botao" onclick="entrarTutor()">ENTRAR</button>'+
-        '<button type="button" class="tutor-link" onclick="abrirModalTutor(\'recuperar\')">Não lembro meu código</button>';
-    }else{
-        html='<h2>RECUPERAR MEU CÓDIGO DE ACESSO</h2><p class="subtitulo">Digite o telefone utilizado no seu cadastro.</p>'+
-        '<div class="campo"><label>TELEFONE</label><input id="telefoneRecuperar" inputmode="tel"></div>'+
-        '<div id="mensagemTutor" class="mensagem"></div>'+
-        '<button type="button" class="botao" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button>';
-    }
-    conteudo.innerHTML=html;
-    modal.style.display="flex";
-    setTimeout(function(){ const first=conteudo.querySelector("input"); if(first) first.focus(); },50);
-}
-
-function fecharModalTutor(){
-    const modal=document.getElementById("modalTutor");
-    if(modal) modal.style.display="none";
-}
-
-function cadastrarTutorLocal(){
-    const nome=document.getElementById("novoTutorNome").value.trim();
-    const telefone=document.getElementById("novoTutorTelefone").value.trim();
-    const mensagem=document.getElementById("mensagemTutor");
-    if(!nome || !normalizarTelefone(telefone)){
-        mensagem.textContent="INFORME NOME E TELEFONE."; mensagem.style.display="block"; return;
-    }
-    const tutor={codigo:codigoTutor(),nome:nome,telefone:telefone,endereco:document.getElementById("novoTutorEndereco").value.trim(),bairro:document.getElementById("novoTutorBairro").value.trim(),cidade:document.getElementById("novoTutorCidade").value.trim()};
-    salvarTutorLocal(tutor);
-    enviarPost("cadastrarTutor", tutor);
-    document.getElementById("conteudoModalTutor").innerHTML='<h2>CADASTRO REALIZADO!</h2><p class="subtitulo">Este é o seu código de acesso do tutor:</p><div class="tutor-codigo">'+escaparHTML(tutor.codigo)+'</div><div class="tutor-aviso">Guarde este código. Ele será usado para acessar e editar os cadastros dos seus pets.</div><button type="button" class="botao" onclick="finalizarCadastroTutor()">CADASTRAR MEU PET</button><button type="button" class="botao botao-secundario" onclick="fecharModalTutor()">IR PARA INÍCIO</button>';
-}
-
-function finalizarCadastroTutor(){
-    fecharModalTutor();
-    abrirPagina("pet");
-    atualizarStatusTutor();
-}
-
-function entrarTutor(){
-    const codigo=document.getElementById("codigoTutorEntrada").value.trim().toUpperCase();
-    const mensagem=document.getElementById("mensagemTutor");
-    const tutor=obterTutorLocal();
-    if(!/^RP-\d{6}$/.test(codigo)){
-        mensagem.textContent="INFORME UM CÓDIGO NO FORMATO RP-123456."; mensagem.style.display="block"; return;
-    }
-    if(tutor && tutor.codigo===codigo){
-        salvarTutorLocal(tutor); fecharModalTutor(); abrirPagina("pet"); atualizarStatusTutor(); return;
-    }
-    mensagem.textContent="CÓDIGO NÃO ENCONTRADO NESTE DISPOSITIVO. USE 'NÃO LEMBRO MEU CÓDIGO' PARA TENTAR RECUPERÁ-LO PELO TELEFONE."; mensagem.style.display="block";
-}
-
-function recuperarCodigoTutor(){
-    const telefone=document.getElementById("telefoneRecuperar").value.trim();
-    const mensagem=document.getElementById("mensagemTutor");
-    const alvo=normalizarTelefone(telefone);
-    if(!alvo){ mensagem.textContent="INFORME O TELEFONE."; mensagem.style.display="block"; return; }
-    const tutor=obterTutorLocal();
-    if(tutor && normalizarTelefone(tutor.telefone)===alvo){
-        mostrarCodigoRecuperado(tutor.codigo); return;
-    }
-    mensagem.textContent="CONSULTANDO CADASTRO..."; mensagem.style.display="block";
-    const callback="redePetTutor_"+Date.now()+"_"+Math.floor(Math.random()*100000);
-    let finalizado=false;
-    window[callback]=function(resultado){
-        if(finalizado) return; finalizado=true;
-        delete window[callback];
-        if(resultado && resultado.codigo){
-            salvarTutorLocal(resultado);
-            mostrarCodigoRecuperado(resultado.codigo);
-        }else{
-            mensagem.textContent="NÃO ENCONTRAMOS UM TUTOR COM ESSE TELEFONE.";
-        }
-    };
-    const script=document.createElement("script");
-    script.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(alvo)+"&callback="+callback+"&t="+Date.now();
-    script.onerror=function(){if(finalizado)return;finalizado=true;delete window[callback];mensagem.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";};
-    document.body.appendChild(script);
-    setTimeout(function(){if(!finalizado){finalizado=true;delete window[callback];mensagem.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";}},10000);
-}
-
-function mostrarCodigoRecuperado(codigo){
-    const conteudo=document.getElementById("conteudoModalTutor");
-    conteudo.innerHTML='<h2>SEU CÓDIGO DE ACESSO</h2><p class="subtitulo">Encontramos seu cadastro.</p><div class="tutor-codigo">'+escaparHTML(codigo)+'</div><div class="tutor-aviso">Guarde este código para acessar e editar seus pets.</div><button type="button" class="botao" onclick="abrirModalTutor(\'entrar\')">ENTRAR COMO TUTOR</button>';
-}
-
-/* =========================
    IMAGEM
 ========================= */
 
@@ -2689,15 +2499,8 @@ document
                     arquivo
                 );
 
-            const tutor = obterTutorLocal();
-            if(!tutor || !tutor.codigo){
-                abrirModalTutor("entrar");
-                return;
-            }
-
-            preencherDadosTutor();
-
-            const token = tutor.codigo;
+            const token =
+                gerarTokenProprietario();
 
             const dados = {
 
@@ -2872,7 +2675,6 @@ document
 
 
             this.reset();
-            preencherDadosTutor();
 
 
             peso = 0;
@@ -5694,8 +5496,6 @@ document
     }
 );
 
-
-document.getElementById("modalTutor").addEventListener("click",function(event){ if(event.target===this){ fecharModalTutor(); } });
 
 /* =========================
    ESC
