@@ -1,4 +1,4 @@
-<!-- REDE PET v19: correção definitiva da identificação do tutor e caneta de edição.
+<!-- REDE PET v17: correção definitiva da identificação do tutor e caneta de edição.
      REDE PET v16: UI de edição aprovada; mapa dinâmico prioriza bairro real; ID_Tutor enviado pelo frontend. A persistência entre dispositivos depende do backend/planilha. -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -490,85 +490,6 @@ textarea{
     color:white;
 }
 
-/* EDIÇÃO DISCRETA DO TUTOR */
-.botao-editar-circular{
-    display:none;
-    width:34px;
-    height:34px;
-    min-width:34px;
-    padding:0;
-    margin:0;
-    border:2px solid #b91c1c;
-    border-radius:50%;
-    background:#fff;
-    color:#b91c1c;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    box-sizing:border-box;
-    font-size:22px;
-    line-height:1;
-    font-weight:700;
-}
-.botao-editar-circular:hover{
-    background:#b91c1c;
-    color:#fff;
-}
-.botao-editar-detalhe{
-    display:none;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin:18px 0 0;
-    padding:6px 12px 6px 6px;
-    border:2px solid #b91c1c;
-    border-radius:22px;
-    background:#fff;
-    color:#b91c1c;
-    cursor:pointer;
-    font-size:13px;
-    font-weight:700;
-    line-height:1;
-}
-.icone-editar-detalhe{
-    width:28px;
-    height:28px;
-    min-width:28px;
-    border:2px solid #b91c1c;
-    border-radius:50%;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    box-sizing:border-box;
-    font-size:18px;
-    line-height:1;
-}
-.botao-editar-detalhe:hover{
-    background:#b91c1c;
-    color:#fff;
-}
-.botao-editar-detalhe:hover .icone-editar-detalhe{
-    background:#fff;
-    color:#b91c1c;
-}
-@media(max-width:700px){
-    .botao-editar-detalhe{
-        font-size:12px;
-    }
-}
-.pet-topo-resumo{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-}
-.pet-topo-resumo .pet-nome{
-    margin:0;
-    min-width:0;
-}
-.pet-topo-resumo .botao-editar-circular{
-    flex:0 0 auto;
-}
 .match-loading{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -639,16 +560,6 @@ textarea{
 }
 
 /* ACESSO DO TUTOR NA TELA INICIAL */
-.botao-recuperar{
-    background:#7f1d1d !important;
-}
-.tutor-login-inicio{
-    display:grid;
-    gap:10px;
-}
-.tutor-login-inicio .botao{
-    width:100%;
-}
 .painel-tutor-inicio{
     max-width:650px;
     margin:38px auto 0;
@@ -694,6 +605,24 @@ textarea{
 .codigo-tutor-gerado{margin-top:10px;padding:10px;border-radius:7px;background:#fff3cd;color:#664d03;font-weight:700;font-size:13px;}
 @media(max-width:700px){.acesso-tutor-linha{flex-direction:column}.botao-acesso-tutor{padding:11px;width:100%;}}
 
+
+/* FLUXO DO TUTOR — CADASTRO, RECUPERAÇÃO E AUTORIZAÇÃO */
+.botao-recuperar-inicio{width:100%;margin-top:12px;background:transparent;color:#064e3b;border:1px solid #064e3b;}
+.botao-recuperar-inicio:hover{background:#eef5f1;}
+.modal-tutor{display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.48);align-items:center;justify-content:center;padding:18px;}
+.modal-tutor.aberto{display:flex;}
+.modal-tutor-conteudo{width:min(430px,100%);background:#fff;border-radius:14px;padding:22px;box-shadow:0 18px 55px rgba(0,0,0,.25);position:relative;}
+.modal-tutor-conteudo h2{margin:0 0 8px;color:#064e3b;font-size:21px;}
+.modal-tutor-conteudo p{margin:0 0 16px;color:#666;font-size:13px;line-height:1.45;}
+.modal-tutor-fechar{position:absolute;right:12px;top:10px;border:0;background:transparent;color:#777;font-size:25px;cursor:pointer;line-height:1;}
+.tutor-codigo-destaque{margin:16px 0;padding:16px;border:1px solid #d8dfdb;border-radius:10px;background:#f7faf8;text-align:center;}
+.tutor-codigo-destaque strong{display:block;color:#064e3b;font-size:24px;letter-spacing:1.5px;margin:5px 0 12px;}
+.tutor-modal-acoes{display:flex;gap:9px;margin-top:15px;}
+.tutor-modal-acoes .botao{flex:1;}
+.tutor-modal-mensagem{min-height:20px;margin-top:9px;font-size:12px;color:#b91c1c;font-weight:700;}
+.tutor-campo-readonly{background:#f4f6f5 !important;color:#555;}
+@media(max-width:700px){.modal-tutor{padding:12px;}.modal-tutor-conteudo{padding:19px;}.tutor-modal-acoes{flex-direction:column;}.tutor-codigo-destaque strong{font-size:21px;}}
+
 /* MENSAGENS */
 
 .mensagem{
@@ -717,23 +646,55 @@ textarea{
     padding:15px 0;
 }
 
-/* RODAPÉ DE NAVEGAÇÃO — três atalhos sempre padronizados */
+/* RODAPÉ DE NAVEGAÇÃO */
+
 .rodape-navegacao{
     display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
     margin-top:35px;
     padding:20px 0;
     border-top:1px solid #ddd;
 }
+
+/* Nas páginas MATCH e MAPA: dois atalhos menores em cima
+   e CADASTRO DE PET sozinho na linha de baixo. */
 .rodape-navegacao .botao{
     width:100%;
     min-width:0;
-    min-height:48px;
     box-sizing:border-box;
-    padding:12px 8px;
-    font-size:14px;
-    white-space:nowrap;
+}
+
+.rodape-navegacao .botao:first-child{
+    grid-column:1 / -1;
+    grid-row:2;
+}
+
+.rodape-navegacao .botao:nth-child(2){
+    grid-column:2;
+    grid-row:1;
+}
+
+.rodape-navegacao .botao:nth-child(3){
+    grid-column:1;
+    grid-row:1;
+}
+
+/* Na página de CADASTRO, os três atalhos permanecem pequenos
+   e lado a lado, em uma única linha. */
+/* PÁGINA DE CADASTRO: os 3 atalhos permanecem na mesma linha,
+   em TODOS os tamanhos de tela. */
+section#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+section#pet .rodape-navegacao .botao:first-child,
+section#pet .rodape-navegacao .botao:nth-child(2),
+section#pet .rodape-navegacao .botao:nth-child(3){
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100%;
+    min-width:0;
 }
 
 /* VOLTAR */
@@ -893,18 +854,16 @@ footer{
     }
 
 
-    .rodape-navegacao{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-        gap:8px;
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha também no celular */
+    section#pet .rodape-navegacao{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
-    .rodape-navegacao .botao{
-        width:100%;
-        min-width:0;
-        min-height:46px;
-        padding:10px 4px;
-        font-size:12px;
+    section#pet .rodape-navegacao .botao{
+        padding-left:6px;
+        padding-right:6px;
         white-space:nowrap;
+        font-size:13px;
     }
 
     .modal{
@@ -968,7 +927,7 @@ POR ONDE VOCÊ QUER COMEÇAR?
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-MATCH
+VISUALIZAR PETS
 </button>
 
 <button
@@ -980,35 +939,20 @@ CADASTRAR SEU PET
 </div>
 
 <div class="painel-tutor-inicio">
-    <h2>JÁ SOU TUTOR CADASTRADO?</h2>
-    <p>
-        Entre com seu código de tutor para que a REDE PET reconheça você
-        e mostre a opção de editar os cadastros dos seus pets.
-    </p>
+    <h2>VOCÊ É TUTOR DE UM PET?</h2>
+    <p>O código de acesso é usado somente para autorizar a edição do cadastro do seu animal.</p>
 
-    <div class="tutor-login-inicio">
-        <input id="codigoTutorInicio" inputmode="text" autocomplete="one-time-code"
-               placeholder="DIGITE SEU CÓDIGO DE ACESSO"
-               aria-label="Código de acesso do tutor">
-        <button type="button" class="botao" onclick="entrarTutorInicio()">
-            ENTRAR COMO TUTOR
-        </button>
-        <button type="button" class="botao botao-recuperar" onclick="abrirRecuperacaoTutor()">
-            NÃO LEMBRO MEU CÓDIGO DE ACESSO
-        </button>
-    </div>
-
-    <div id="mensagemTutorInicio" class="mensagem-tutor-inicio"></div>
-
-    <div class="novo-tutor-inicio">
-        <strong>AINDA NÃO SOU CADASTRADO</strong>
-        <span>Crie sua identidade de tutor e depois cadastre seu pet.</span>
+    <div class="novo-tutor-inicio" style="margin-top:0;padding-top:0;border-top:0;">
+        <strong>AINDA NÃO SOU CADASTRADO?</strong>
+        <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
         <button type="button" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio()">
             CADASTRAR-SE
         </button>
     </div>
 
-    <div id="identidadeTutorInicio" class="identidade-tutor-inicio" style="display:none"></div>
+    <button type="button" class="botao botao-recuperar-inicio" onclick="abrirRecuperacaoTutor()">
+        NÃO LEMBRO MEU CÓDIGO DE ACESSO
+    </button>
 </div>
 
 </div>
@@ -1564,9 +1508,25 @@ class="mensagem">
 
 
 <div class="rodape-navegacao">
-<button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
-<button class="botao" onclick="abrirPagina('match')">MATCH</button>
-<button class="botao" onclick="abrirPagina('mapa')">MAPA</button>
+
+<button
+class="botao"
+onclick="abrirPagina('match')">
+MATCH
+</button>
+
+<button
+class="botao"
+onclick="abrirPagina('mapa')">
+MAPA
+</button>
+
+<button
+class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
 </div>
 
 </section>
@@ -1634,9 +1594,25 @@ class="lista-pets">
 
 
 <div class="rodape-navegacao">
-<button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
-<button class="botao" onclick="abrirPagina('mapa')">MAPA</button>
-<button class="botao" onclick="abrirPagina('pet')">CADASTRO DE PET</button>
+
+<button
+class="botao"
+onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button
+class="botao"
+onclick="abrirPagina('mapa')">
+MAPA
+</button>
+
+<button
+class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
 </div>
 
 </section>
@@ -1679,9 +1655,25 @@ style="text-align:center;">
 
 
 <div class="rodape-navegacao">
-<button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
-<button class="botao" onclick="abrirPagina('match')">MATCH</button>
-<button class="botao" onclick="abrirPagina('pet')">CADASTRO DE PET</button>
+
+<button
+class="botao"
+onclick="abrirPagina('pet')">
+CADASTRO DE PET
+</button>
+
+<button
+class="botao"
+onclick="abrirPagina('match')">
+MATCH
+</button>
+
+<button
+class="botao botao-secundario"
+onclick="abrirPagina('inicio')">
+INÍCIO
+</button>
+
 </div>
 
 </section>
@@ -1689,25 +1681,58 @@ style="text-align:center;">
 </main>
 
 
-<!-- =====================================================
-     RECUPERAÇÃO DO CÓDIGO DO TUTOR
-===================================================== -->
-<div id="modalRecuperacaoTutor" class="modal" aria-hidden="true">
-    <div class="modal-conteudo">
-        <div class="modal-dados">
-            <h2>NÃO LEMBRO MEU CÓDIGO DE ACESSO</h2>
-            <p style="color:#666;margin-bottom:18px;">Informe o telefone usado no cadastro do tutor para localizar seu código.</p>
-            <div class="campo">
-                <label for="telefoneRecuperacaoTutor">TELEFONE</label>
-                <input id="telefoneRecuperacaoTutor" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
-            </div>
-            <div id="mensagemRecuperacaoTutor" class="mensagem"></div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
-                <button type="button" class="botao" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button>
-                <button type="button" class="botao botao-secundario" onclick="fecharRecuperacaoTutor()">VOLTAR</button>
-            </div>
-        </div>
+<!-- MODAIS DO TUTOR -->
+<div id="modalTutorCadastro" class="modal-tutor" role="dialog" aria-modal="true" aria-labelledby="tituloTutorCadastro">
+  <div class="modal-tutor-conteudo">
+    <button type="button" class="modal-tutor-fechar" onclick="fecharModalTutorCadastro()" aria-label="Fechar">×</button>
+    <h2 id="tituloTutorCadastro">CADASTRO DO TUTOR</h2>
+    <p id="textoTutorCadastro">Informe somente seus dados de tutor. Depois de criar o cadastro, a REDE PET mostrará seu código de acesso.</p>
+    <div id="formTutorCadastro">
+      <div class="campo"><label>NOME DO TUTOR</label><input id="novoTutorNome" autocomplete="name"></div>
+      <div class="campo"><label>TELEFONE / CONTATO</label><input id="novoTutorTelefone" inputmode="tel" autocomplete="tel"></div>
+      <div id="mensagemTutorCadastro" class="tutor-modal-mensagem"></div>
+      <div class="tutor-modal-acoes">
+        <button type="button" class="botao botao-secundario" onclick="fecharModalTutorCadastro()">CANCELAR</button>
+        <button type="button" class="botao" onclick="salvarNovoTutor()">CRIAR CADASTRO</button>
+      </div>
     </div>
+    <div id="resultadoTutorCadastro" style="display:none">
+      <p>Seu cadastro de tutor foi criado. <strong>Guarde este código:</strong></p>
+      <div class="tutor-codigo-destaque"><span>CÓDIGO DE ACESSO</span><strong id="codigoTutorGerado"></strong><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorGerado','mensagemTutorCadastroResultado')">COPIAR CÓDIGO</button></div>
+      <div id="mensagemTutorCadastroResultado" class="tutor-modal-mensagem"></div>
+      <div class="tutor-modal-acoes"><button type="button" class="botao" onclick="continuarParaCadastroPet()">CONTINUAR</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="modalRecuperacaoTutor" class="modal-tutor" role="dialog" aria-modal="true" aria-labelledby="tituloRecuperacaoTutor">
+  <div class="modal-tutor-conteudo">
+    <button type="button" class="modal-tutor-fechar" onclick="fecharRecuperacaoTutor()" aria-label="Fechar">×</button>
+    <h2 id="tituloRecuperacaoTutor">RECUPERAR CÓDIGO</h2>
+    <p>Digite o telefone usado no cadastro do tutor. A REDE PET localizará seu cadastro e exibirá o código na tela.</p>
+    <div id="formRecuperacaoTutor">
+      <div class="campo"><label>TELEFONE / CONTATO</label><input id="telefoneRecuperacaoTutor" inputmode="tel" autocomplete="tel"></div>
+      <div id="mensagemRecuperacaoTutor" class="tutor-modal-mensagem"></div>
+      <div class="tutor-modal-acoes"><button type="button" class="botao botao-secundario" onclick="fecharRecuperacaoTutor()">CANCELAR</button><button type="button" class="botao" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button></div>
+    </div>
+    <div id="resultadoRecuperacaoTutor" style="display:none">
+      <p>Encontramos seu cadastro. Guarde este código para autorizar a edição dos seus pets.</p>
+      <div class="tutor-codigo-destaque"><span>CÓDIGO DE ACESSO</span><strong id="codigoTutorRecuperado"></strong><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorRecuperado','mensagemRecuperacaoResultado')">COPIAR CÓDIGO</button></div>
+      <div id="mensagemRecuperacaoResultado" class="tutor-modal-mensagem"></div>
+      <div class="tutor-modal-acoes"><button type="button" class="botao" onclick="fecharRecuperacaoTutor()">FECHAR</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="modalAutorizacaoEdicao" class="modal-tutor" role="dialog" aria-modal="true" aria-labelledby="tituloAutorizacaoEdicao">
+  <div class="modal-tutor-conteudo">
+    <button type="button" class="modal-tutor-fechar" onclick="fecharAutorizacaoEdicao()" aria-label="Fechar">×</button>
+    <h2 id="tituloAutorizacaoEdicao">EDITAR CADASTRO</h2>
+    <p>Digite o código de acesso do tutor responsável por este pet para autorizar a edição.</p>
+    <div class="campo"><label>CÓDIGO DE ACESSO</label><input id="codigoEdicaoTutor" inputmode="text" autocomplete="one-time-code" placeholder="EX.: ABCD-1234" style="text-transform:uppercase"></div>
+    <div id="mensagemAutorizacaoEdicao" class="tutor-modal-mensagem"></div>
+    <div class="tutor-modal-acoes"><button type="button" class="botao botao-secundario" onclick="fecharAutorizacaoEdicao()">CANCELAR</button><button type="button" class="botao" onclick="autorizarEdicaoPet()">AUTORIZAR E EDITAR</button></div>
+  </div>
 </div>
 
 <!-- =====================================================
@@ -1744,7 +1769,7 @@ id="modalDados">
 type="button"
 class="botao-editar-detalhe"
 id="botaoEditarCadastro"
-onclick="event.stopPropagation();abrirEdicao()"
+onclick="event.stopPropagation();abrirAutorizacaoEdicao()"
 aria-label="Editar cadastro deste animal"
 title="Editar cadastro">
 <span class="icone-editar-detalhe" aria-hidden="true">✎</span>
@@ -2265,11 +2290,15 @@ function abrirPagina(nome){
         carregarPets();
     }
 
+    if(nome === "pet"){
+        preencherDadosTutorCadastro();
+    }
+
     if(nome === "mapa"){
-        if(Array.isArray(petsCarregados) && petsCarregados.length){
-            atualizarMapaComPets();
-        }else{
+        if(!petsCarregados.length){
             carregarPets();
+        }else{
+            atualizarMapaComPets();
         }
     }
 
@@ -2389,134 +2418,149 @@ function gerarIdTutor(){
 function gerarCodigoTutor(){
     return Math.random().toString(36).substring(2,6).toUpperCase()+"-"+Math.random().toString(36).substring(2,6).toUpperCase();
 }
-function obterIdTutorLocal(){
-    let id=localStorage.getItem("redePetIdTutor");
-    if(!id){ id=gerarIdTutor(); localStorage.setItem("redePetIdTutor",id); }
-    return id;
-}
+function obterIdTutorLocal(){ return localStorage.getItem("redePetIdTutor")||""; }
 function obterCodigoTutorLocal(){ return localStorage.getItem("redePetCodigoTutor")||""; }
-function definirIdentidadeTutor(id,codigo){
+function obterNomeTutorLocal(){ return localStorage.getItem("redePetNomeTutor")||""; }
+function obterTelefoneTutorLocal(){ return localStorage.getItem("redePetTelefoneTutor")||""; }
+function definirIdentidadeTutor(id,codigo,nome,telefone){
     if(id) localStorage.setItem("redePetIdTutor",String(id));
     if(codigo) localStorage.setItem("redePetCodigoTutor",String(codigo).toUpperCase());
+    if(nome!==undefined && nome!==null) localStorage.setItem("redePetNomeTutor",String(nome));
+    if(telefone!==undefined && telefone!==null) localStorage.setItem("redePetTelefoneTutor",String(telefone));
 }
-function obterIdTutorPet(pet){
-    return campoPet(pet,"ID_Tutor","ID Tutor","Id Tutor","idTutor","id_tutor");
+function obterIdTutorPet(pet){ return campoPet(pet,"ID_Tutor","ID Tutor","Id Tutor","idTutor","id_tutor"); }
+
+function abrirModalTutorCadastro(){
+    document.getElementById("formTutorCadastro").style.display="block";
+    document.getElementById("resultadoTutorCadastro").style.display="none";
+    document.getElementById("mensagemTutorCadastro").textContent="";
+    document.getElementById("modalTutorCadastro").classList.add("aberto");
+    setTimeout(()=>document.getElementById("novoTutorNome")?.focus(),50);
+    document.body.style.overflow="hidden";
 }
-function acessarTutorPorCodigo(){
-    const campo=document.getElementById("codigoTutorInicio") || document.getElementById("codigoTutorAcesso");
-    const msg=document.getElementById("mensagemTutorInicio") || document.getElementById("mensagemAcessoTutor");
-    const codigo=String(campo?.value||"").trim().toUpperCase();
-    if(!codigo){ if(msg)msg.textContent="DIGITE O CÓDIGO DE ACESSO."; return; }
-    if(msg)msg.textContent="VALIDANDO CÓDIGO...";
-    const cb="redeTutor_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+function iniciarCadastroTutorInicio(){
+    abrirModalTutorCadastro();
+}
+function fecharModalTutorCadastro(){
+    document.getElementById("modalTutorCadastro").classList.remove("aberto");
+    if(!document.querySelector(".modal-tutor.aberto") && !document.getElementById("modal")?.classList.contains("aberto")) document.body.style.overflow="";
+}
+function salvarNovoTutor(){
+    const nome=String(document.getElementById("novoTutorNome")?.value||"").trim();
+    const telefone=String(document.getElementById("novoTutorTelefone")?.value||"").trim();
+    const msg=document.getElementById("mensagemTutorCadastro");
+    if(!nome){msg.textContent="INFORME O NOME DO TUTOR.";return;}
+    if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME UM TELEFONE VÁLIDO.";return;}
+    msg.textContent="CRIANDO CADASTRO...";
+    const cb="redeTutorCadastro_"+Date.now()+"_"+Math.floor(Math.random()*100000);
     window[cb]=function(res){
         try{
-            if(res && res.sucesso){
-                definirIdentidadeTutor(res.idTutor,res.codigoAcesso||codigo);
-                atualizarPainelTutorInicio();
-                if(msg)msg.textContent="TUTOR RECONHECIDO. SEUS PETS ESTÃO LIBERADOS PARA EDIÇÃO.";
-                carregarPets(true);
-                atualizarMapaComPets();
-                setTimeout(function(){abrirPagina('match');},500);
-            }else if(msg) msg.textContent=(res&&res.erro)||"CÓDIGO NÃO ENCONTRADO.";
+            if(res&&res.sucesso){
+                definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||nome,res.telefone||telefone);
+                document.getElementById("formTutorCadastro").style.display="none";
+                document.getElementById("resultadoTutorCadastro").style.display="block";
+                document.getElementById("codigoTutorGerado").textContent=res.codigoAcesso||"";
+                document.getElementById("mensagemTutorCadastroResultado").textContent=res.jaExistia?"ESTE TELEFONE JÁ POSSUÍA UM CADASTRO. ESTE É O CÓDIGO VINCULADO A ELE.":"CADASTRO CRIADO COM SUCESSO.";
+            }else msg.textContent=(res&&res.erro)||"NÃO FOI POSSÍVEL CRIAR O CADASTRO AGORA.";
         }finally{delete window[cb];}
     };
-    const script=document.createElement("script");
-    script.src=URL_APPS_SCRIPT+"?acao=acessarTutor&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();
-    script.async=true;
-    script.onerror=function(){if(msg)msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};
-    document.body.appendChild(script);
+    const s=document.createElement("script");
+    s.src=URL_APPS_SCRIPT+"?acao=cadastrarTutor&nome="+encodeURIComponent(nome)+"&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();
+    s.async=true;s.onerror=function(){msg.textContent="NÃO FOI POSSÍVEL CRIAR O CADASTRO AGORA.";delete window[cb];};document.body.appendChild(s);
 }
-
-function entrarTutorInicio(){
-    acessarTutorPorCodigo();
+function continuarParaCadastroPet(){
+    fecharModalTutorCadastro();
+    preencherDadosTutorCadastro();
+    abrirPagina("pet");
 }
-
-function iniciarCadastroTutorInicio(){
-    const id=obterIdTutorLocal();
-    const codigo=obterCodigoTutorLocal() || gerarCodigoTutor();
-    definirIdentidadeTutor(id,codigo);
-    atualizarPainelTutorInicio();
-    const msg=document.getElementById("mensagemTutorInicio");
-    if(msg)msg.textContent="IDENTIDADE DE TUTOR CRIADA. AGORA CADASTRE SEU PET.";
-    setTimeout(function(){abrirPagina('pet');},350);
+function preencherDadosTutorCadastro(){
+    const nome=document.getElementById("tutorNome"),tel=document.getElementById("tutorContato");
+    if(nome){nome.value=obterNomeTutorLocal();nome.readOnly=Boolean(nome.value);nome.classList.toggle("tutor-campo-readonly",Boolean(nome.value));}
+    if(tel){tel.value=obterTelefoneTutorLocal();tel.readOnly=Boolean(tel.value);tel.classList.toggle("tutor-campo-readonly",Boolean(tel.value));}
 }
-
 function abrirRecuperacaoTutor(){
-    const modal=document.getElementById("modalRecuperacaoTutor");
-    const campo=document.getElementById("telefoneRecuperacaoTutor");
-    const msg=document.getElementById("mensagemRecuperacaoTutor");
-    if(msg){msg.style.display="none";msg.textContent="";}
-    if(campo)campo.value="";
-    if(modal){modal.classList.add("aberto");modal.setAttribute("aria-hidden","false");}
+    document.getElementById("formRecuperacaoTutor").style.display="block";
+    document.getElementById("resultadoRecuperacaoTutor").style.display="none";
+    document.getElementById("mensagemRecuperacaoTutor").textContent="";
+    document.getElementById("modalRecuperacaoTutor").classList.add("aberto");
+    setTimeout(()=>document.getElementById("telefoneRecuperacaoTutor")?.focus(),50);
+    document.body.style.overflow="hidden";
 }
-
 function fecharRecuperacaoTutor(){
-    const modal=document.getElementById("modalRecuperacaoTutor");
-    if(modal){modal.classList.remove("aberto");modal.setAttribute("aria-hidden","true");}
+    document.getElementById("modalRecuperacaoTutor").classList.remove("aberto");
+    if(!document.querySelector(".modal-tutor.aberto") && !document.getElementById("modal")?.classList.contains("aberto")) document.body.style.overflow="";
 }
-
-function normalizarTelefoneFrontend(v){
-    return String(v||"").replace(/\D/g,"");
-}
-
 function recuperarCodigoTutor(){
-    const campo=document.getElementById("telefoneRecuperacaoTutor");
+    const tel=String(document.getElementById("telefoneRecuperacaoTutor")?.value||"").trim();
     const msg=document.getElementById("mensagemRecuperacaoTutor");
-    const telefone=normalizarTelefoneFrontend(campo ? campo.value : "");
-    if(!telefone){
-        if(msg){msg.style.display="block";msg.textContent="INFORME O TELEFONE CADASTRADO.";}
-        return;
-    }
-    if(msg){msg.style.display="block";msg.textContent="LOCALIZANDO SEU CADASTRO...";}
-
-    const cb="redePetRecuperarTutor_"+Date.now()+"_"+Math.floor(Math.random()*100000);
-    let finalizado=false;
+    if(tel.replace(/\D/g,"").length<8){msg.textContent="INFORME UM TELEFONE VÁLIDO.";return;}
+    msg.textContent="CONSULTANDO CADASTRO...";
+    const cb="redeTutorRecupera_"+Date.now()+"_"+Math.floor(Math.random()*100000);
     window[cb]=function(res){
-        if(finalizado)return;
-        finalizado=true;
-        delete window[cb];
-        if(res && res.sucesso && res.codigoAcesso){
-            definirIdentidadeTutor(res.idTutor,res.codigoAcesso);
-            atualizarPainelTutorInicio();
-            if(msg){
-                msg.textContent="CÓDIGO ENCONTRADO: "+res.codigoAcesso+". GUARDE-O PARA ACESSAR SEUS PETS.";
-            }
-        }else if(msg){
-            msg.textContent=(res&&res.erro)||"NÃO ENCONTRAMOS UM TUTOR COM ESSE TELEFONE.";
-        }
+        try{
+            if(res&&res.sucesso){
+                definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||tel);
+                document.getElementById("formRecuperacaoTutor").style.display="none";
+                document.getElementById("resultadoRecuperacaoTutor").style.display="block";
+                document.getElementById("codigoTutorRecuperado").textContent=res.codigoAcesso||"";
+                document.getElementById("mensagemRecuperacaoResultado").textContent="CÓDIGO RECUPERADO COM SUCESSO.";
+            }else msg.textContent=(res&&res.erro)||"NENHUM TUTOR FOI ENCONTRADO COM ESSE TELEFONE.";
+        }finally{delete window[cb];}
     };
-    const script=document.createElement("script");
-    script.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();
-    script.async=true;
-    script.onerror=function(){
-        if(finalizado)return;
-        finalizado=true;
-        delete window[cb];
-        if(msg){msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";}
+    const s=document.createElement("script");
+    s.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(tel)+"&callback="+cb+"&t="+Date.now();
+    s.async=true;s.onerror=function(){msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";delete window[cb];};document.body.appendChild(s);
+}
+function copiarCodigoTutor(idCodigo,idMensagem){
+    const codigo=String(document.getElementById(idCodigo)?.textContent||"").trim();
+    const msg=document.getElementById(idMensagem);
+    if(!codigo)return;
+    const ok=()=>{if(msg)msg.textContent="CÓDIGO COPIADO. GUARDE ESTE CÓDIGO.";};
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(codigo).then(ok).catch(()=>fallbackCopiarCodigo(codigo,ok));
+    else fallbackCopiarCodigo(codigo,ok);
+}
+function fallbackCopiarCodigo(codigo,ok){const ta=document.createElement("textarea");ta.value=codigo;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");ok();}catch(e){}ta.remove();}
+function abrirAutorizacaoEdicao(){
+    const campo=document.getElementById("codigoEdicaoTutor"),msg=document.getElementById("mensagemAutorizacaoEdicao");
+    if(!petAtual)return;
+    if(campo)campo.value="";if(msg)msg.textContent="";
+    document.getElementById("modalAutorizacaoEdicao").classList.add("aberto");
+    document.body.style.overflow="hidden";
+    setTimeout(()=>campo?.focus(),50);
+}
+function fecharAutorizacaoEdicao(){
+    document.getElementById("modalAutorizacaoEdicao").classList.remove("aberto");
+    if(!document.querySelector(".modal-tutor.aberto") && !document.getElementById("modal")?.classList.contains("aberto")) document.body.style.overflow="";
+}
+function autorizarEdicaoPet(){
+    if(!petAtual)return;
+    const codigo=String(document.getElementById("codigoEdicaoTutor")?.value||"").trim().toUpperCase();
+    const msg=document.getElementById("mensagemAutorizacaoEdicao");
+    if(!codigo){msg.textContent="DIGITE O CÓDIGO DE ACESSO.";return;}
+    const idPet=campoPet(petAtual,"ID_Pet","ID","id");
+    msg.textContent="VALIDANDO CÓDIGO...";
+    const cb="redeTutorEdit_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+    window[cb]=function(res){
+        try{
+            if(res&&res.sucesso){
+                definirIdentidadeTutor(res.idTutor,res.codigoAcesso||codigo,res.nome||obterNomeTutorLocal(),res.telefone||obterTelefoneTutorLocal());
+                fecharAutorizacaoEdicao();
+                abrirEdicao();
+            }else msg.textContent=(res&&res.erro)||"CÓDIGO NÃO AUTORIZADO PARA ESTE PET.";
+        }finally{delete window[cb];}
     };
-    document.body.appendChild(script);
-    setTimeout(function(){
-        if(!finalizado){
-            finalizado=true;
-            delete window[cb];
-            if(msg){msg.textContent="A CONSULTA ESTÁ DEMORANDO MAIS QUE O NORMAL. TENTE NOVAMENTE.";}
-        }
-    },10000);
+    const s=document.createElement("script");
+    s.src=URL_APPS_SCRIPT+"?acao=autorizarEdicaoPet&idPet="+encodeURIComponent(idPet)+"&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();
+    s.async=true;s.onerror=function(){msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};document.body.appendChild(s);
 }
-
-function atualizarPainelTutorInicio(){
-    const box=document.getElementById("identidadeTutorInicio");
-    if(!box)return;
-    const id=localStorage.getItem("redePetIdTutor")||"";
-    const codigo=localStorage.getItem("redePetCodigoTutor")||"";
-    if(id && codigo){
-        box.style.display="block";
-        box.innerHTML="TUTOR RECONHECIDO • CÓDIGO DE ACESSO: <strong>"+escaparHTML(codigo)+"</strong><br><span style=\"font-weight:normal\">Guarde este código para entrar em outro aparelho.</span>";
-    }else{
-        box.style.display="none";
-    }
+function verificarPermissaoEdicao(){
+    const botao=document.getElementById("botaoEditarCadastro");
+    if(!botao)return;
+    botao.style.display=petAtual?"inline-flex":"none";
 }
+function acessarTutorPorCodigo(){ abrirAutorizacaoEdicao(); }
+function entrarTutorInicio(){ abrirRecuperacaoTutor(); }
+function atualizarPainelTutorInicio(){}
 
 
 
@@ -2930,7 +2974,7 @@ function mostrarLoadingMatch(){
 function carregarPets(forcar){
     const lista=document.getElementById("listaPets");
     if(!lista)return;
-    if(!forcar && Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); atualizarMapaComPets(); return; }
+    if(!forcar && Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); return; }
     if(window.redePetCarregandoPets)return;
     window.redePetCarregandoPets=true;
     mostrarLoadingMatch();
@@ -3103,20 +3147,8 @@ function renderizarPets(){
             '</div>';
         }
         card.innerHTML=imagem+'<div class="pet-resumo">'+
-            '<div class="pet-topo-resumo"><h3 class="pet-nome">'+escaparHTML(nome)+'</h3><button type="button" class="botao-editar-circular" aria-label="Editar cadastro de '+escaparHTML(nome)+'" title="Editar cadastro">✎</button></div>'+
+            '<h3 class="pet-nome">'+escaparHTML(nome)+'</h3>'+
             '<span class="pet-status">'+escaparHTML(status)+'</span></div>';
-        const botao=card.querySelector(".botao-editar-circular");
-        const petIdTutor=obterIdTutorPet(pet);
-        const petToken=campoPet(pet,"Token Proprietario","Token Proprietário","tokenProprietario");
-        const podeEditar=Boolean(pet.podeEditar)||
-            (idTutor&&petIdTutor&&String(idTutor)===String(petIdTutor))||
-            (token&&petToken&&String(token)===String(petToken));
-        if(podeEditar){
-            botao.style.display="inline-flex";
-            botao.onclick=function(event){event.stopPropagation();abrirModal(pet);setTimeout(abrirEdicao,0);};
-        }else{
-            botao.remove();
-        }
         lista.appendChild(card);
     });
 }
@@ -3978,18 +4010,6 @@ function salvarEdicaoPet(){
             "redePetUltimoToken"
         ) || "";
 
-
-    if(
-        !token
-    ){
-
-        mostrarMensagemEdicao(
-            "VOCÊ NÃO POSSUI O TOKEN DESTE CADASTRO."
-        );
-
-        return;
-
-    }
 
 
     const dados = {
