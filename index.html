@@ -1000,6 +1000,8 @@ body{color:#064e3b;}
 .modal-tutor-conteudo > p,
 .tutor-mensagem{color:#064e3b;}
 .pagina label,.pagina .campo label{color:#064e3b;}
+
+
 </style>
 
 </head>
@@ -1046,7 +1048,7 @@ POR ONDE VOCÊ QUER COMEÇAR?
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-VISUALIZAR PETS
+MATCH
 </button>
 
 <button
@@ -1058,26 +1060,19 @@ CADASTRAR SEU PET
 </div>
 
 <div class="painel-tutor-inicio">
-    <h2>VOCÊ É TUTOR DE UM PET?</h2>
-    <p>AQUI VOCÊ TERÁ ACESSO AO SEU CÓDIGO. Ele servirá para que você possa editar o cadastro do pet que você cadastrou na REDE PET, se você cadastrou. Ex.: se seu pet está perdido ou para ser adotado, você pode editar o status dele. Seu código de edição é usado somente para autorizar alterações no cadastro do seu animal.</p>
-
-    <div class="novo-tutor-inicio" style="margin-top:0;padding-top:0;border-top:0;">
-        <strong>AINDA NÃO SOU CADASTRADO</strong>
-        <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
-        <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="var m=document.getElementById('modalTutorCadastro');if(m){m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}return false;">CADASTRE-SE</button>
-    </div>
-
-    <button id="botaoRecuperarCodigoInicio" type="button" class="botao botao-recuperar-inicio" onclick="var m=document.getElementById('modalRecuperacaoTutor');if(m){m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+  <h2>VOCÊ É TUTOR DE UM PET?</h2>
+  <p>AQUI VOCÊ TERÁ ACESSO AO SEU CÓDIGO. Ele servirá para que você possa editar o cadastro do pet que você cadastrou na REDE PET, se você cadastrou. Ex.: se seu pet está perdido ou para ser adotado, você pode editar o status dele. Seu código de edição é usado somente para autorizar alterações no cadastro do seu animal.</p>
+  <div class="novo-tutor-inicio">
+    <strong>AINDA NÃO SOU CADASTRADO</strong>
+    <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
+    <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio(); return false;">CADASTRE-SE</button>
+    <button type="button" id="botaoRecuperarCodigoInicio" class="botao botao-recuperar-inicio" onclick="abrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+  </div>
 </div>
 
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     CADASTRO
-===================================================== -->
 
 <section
 id="pet"
@@ -2290,7 +2285,7 @@ onclick="fecharModal()">
       <div class="campo"><label for="novoTutorNome">NOME</label><input id="novoTutorNome" type="text" autocomplete="name" placeholder="SEU NOME"></div>
       <div class="campo"><label for="novoTutorTelefone">CONTATO / TELEFONE</label><input id="novoTutorTelefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="COM PREFIXO"></div>
       <div id="mensagemTutorCadastro" class="tutor-mensagem"></div>
-      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="salvarNovoTutor()">CRIAR CADASTRO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharModalTutorCadastro()">CANCELAR</button></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="salvarNovoTutor()">CRIAR CADASTRO</button><a href="#inicio" class="botao botao-tutor-cancelar modal-tutor-fechar">CANCELAR</a></div>
     </div>
     <div id="resultadoTutorCadastro" style="display:none">
       <div id="mensagemResultadoTutorCadastro" class="tutor-mensagem" style="color:#064e3b"></div>
@@ -2307,12 +2302,12 @@ onclick="fecharModal()">
     <div id="formRecuperacaoTutor">
       <div class="campo"><label for="telefoneRecuperacaoTutor">CONTATO / TELEFONE</label><input id="telefoneRecuperacaoTutor" type="tel" inputmode="tel" autocomplete="tel" placeholder="COM PREFIXO"></div>
       <div id="mensagemRecuperacaoTutor" class="tutor-mensagem"></div>
-      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharRecuperacaoTutor()">FECHAR</button></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button><a href="#inicio" class="botao botao-tutor-cancelar modal-tutor-fechar">FECHAR</a></div>
     </div>
     <div id="resultadoRecuperacaoTutor" style="display:none">
       <div id="mensagemResultadoRecuperacaoTutor" class="tutor-mensagem" style="color:#064e3b"></div>
       <div class="tutor-codigo-box"><strong>SEU CÓDIGO DE EDIÇÃO</strong><span id="codigoTutorRecuperado" class="tutor-codigo-valor"></span></div>
-      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorRecuperado')">COPIAR CÓDIGO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharRecuperacaoTutor()">FECHAR</button></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorRecuperado')">COPIAR CÓDIGO</button><a href="#inicio" class="botao botao-tutor-cancelar modal-tutor-fechar">FECHAR</a></div>
     </div>
   </div>
 </div>
@@ -2380,7 +2375,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v20
+REDE PET — PROTÓTIPO • v33
 
 </footer>
 
@@ -2589,28 +2584,6 @@ function configurarBotaoRecuperacaoInicio(){const b=document.getElementById("bot
     fecharAutorizacaoEdicao();
     setTimeout(abrirRecuperacaoTutor,50);
 }
-
-/* Garantia de clique: estes atalhos funcionam mesmo se algum container da página
-   interceptar o clique ou se o HTML tiver sido reutilizado em outra versão. */
-(function configurarAtalhosTutorRobustos(){
-    function tratarCliqueTutor(e){
-        const el=e.target&&e.target.closest?e.target.closest("#botaoRecuperarCodigoInicio, #botaoCadastrarTutorInicio"):null;
-        if(!el)return;
-        e.preventDefault();
-        e.stopPropagation();
-        if(el.id==="botaoCadastrarTutorInicio") abrirModalTutorCadastro();
-        if(el.id==="botaoRecuperarCodigoInicio") abrirRecuperacaoTutor();
-    }
-    document.addEventListener("click",tratarCliqueTutor,true);
-})();
-document.addEventListener("DOMContentLoaded",configurarBotaoRecuperacaoInicio);setTimeout(configurarBotaoRecuperacaoInicio,300);
-function garantirModaisTutor(){
-  ["modalTutorCadastro","modalRecuperacaoTutor"].forEach(function(id){const m=document.getElementById(id);if(m){m.style.display="none";m.setAttribute("aria-hidden","true");}});
-  const c=document.getElementById("botaoCadastrarTutorInicio"); if(c){c.onclick=function(e){if(e)e.preventDefault();abrirModalTutorCadastro();return false;};}
-  const r=document.getElementById("botaoRecuperarCodigoInicio"); if(r){r.onclick=function(e){if(e)e.preventDefault();abrirRecuperacaoTutor();return false;};}
-}
-document.addEventListener("DOMContentLoaded",garantirModaisTutor);
-setTimeout(garantirModaisTutor,500);
 
 function recuperarCodigoTutor(){const telefone=String(document.getElementById("telefoneRecuperacaoTutor")?.value||"").trim();const msg=document.getElementById("mensagemRecuperacaoTutor");if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.";return;}msg.style.color="#064e3b";msg.textContent="PROCURANDO SEU CADASTRO...";const cb="redeTutorRec_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||telefone);document.getElementById("formRecuperacaoTutor").style.display="none";document.getElementById("resultadoRecuperacaoTutor").style.display="block";document.getElementById("codigoTutorRecuperado").textContent=res.codigoAcesso||"";document.getElementById("mensagemResultadoRecuperacaoTutor").textContent="OLÁ! ENCONTRAMOS SEU CADASTRO.";}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"NENHUM CADASTRO FOI ENCONTRADO.";}}finally{delete window[cb];}};const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA. VERIFIQUE SE O APPS SCRIPT FOI ATUALIZADO E PUBLICADO.";delete window[cb];};document.body.appendChild(s);setTimeout(function(){if(window[cb]){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA. VERIFIQUE SE O APPS SCRIPT FOI ATUALIZADO E PUBLICADO.";delete window[cb];}},12000);}
 function copiarCodigoTutor(id){const texto=document.getElementById(id)?.textContent||"";if(!texto)return;const ok=()=>{const el=document.getElementById(id);const old=el.textContent;el.textContent="CÓDIGO COPIADO!";setTimeout(()=>el.textContent=old,1200);};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(texto).then(ok).catch(()=>{fallbackCopiar(texto);ok();});else{fallbackCopiar(texto);ok();}}
@@ -5490,42 +5463,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </script>
 
-<script>
-/* REDE PET — abertura definitiva das janelinhas do tutor */
-(function(){
-  function abrirTutorCadastroSeguro(e){
-    if(e){e.preventDefault();e.stopPropagation();}
-    var m=document.getElementById("modalTutorCadastro");
-    if(!m)return false;
-    m.style.display="flex"; m.classList.add("aberto"); m.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-    var f=document.getElementById("formTutorCadastro"),r=document.getElementById("resultadoTutorCadastro"),msg=document.getElementById("mensagemTutorCadastro");
-    if(f)f.style.display="block"; if(r)r.style.display="none"; if(msg)msg.textContent="";
-    var n=document.getElementById("novoTutorNome"); if(n)setTimeout(function(){n.focus();},50);
-    return false;
-  }
-  function abrirTutorRecuperacaoSeguro(e){
-    if(e){e.preventDefault();e.stopPropagation();}
-    var m=document.getElementById("modalRecuperacaoTutor");
-    if(!m)return false;
-    m.style.display="flex"; m.classList.add("aberto"); m.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-    var f=document.getElementById("formRecuperacaoTutor"),r=document.getElementById("resultadoRecuperacaoTutor"),msg=document.getElementById("mensagemRecuperacaoTutor");
-    if(f)f.style.display="block"; if(r)r.style.display="none"; if(msg)msg.textContent="";
-    var t=document.getElementById("telefoneRecuperacaoTutor"); if(t)setTimeout(function(){t.focus();},50);
-    return false;
-  }
-  window.redeAbrirCadastroTutor=abrirTutorCadastroSeguro;
-  window.redeAbrirRecuperacaoTutor=abrirTutorRecuperacaoSeguro;
-  function ligar(){
-    var c=document.getElementById("botaoCadastrarTutorInicio"), r=document.getElementById("botaoRecuperarCodigoInicio");
-    if(c){c.onclick=abrirTutorCadastroSeguro;}
-    if(r){r.onclick=abrirTutorRecuperacaoSeguro;}
-  }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ligar); else ligar();
-  setTimeout(ligar,100); setTimeout(ligar,500);
-})();
-</script>
+
 </body>
 
 </html>
