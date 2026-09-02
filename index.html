@@ -981,6 +981,25 @@ footer{
 .botao-tutor-cancelar{background:#eef1ef !important;color:#064e3b !important;border:1px solid #cbd5d0 !important;}
 @media(max-width:700px){.modal-tutor{padding:10px}.modal-tutor-conteudo{padding:20px;max-width:390px}.tutor-codigo-valor{font-size:23px}}
 
+
+/* TIPOGRAFIA REDE PET — textos de leitura em verde */
+body{color:#064e3b;}
+.pagina p,
+.pagina .mapa-info,
+.pagina .mapa-nota,
+.pagina .carregando,
+.pagina .filtro-match,
+.pagina .ajuda,
+.pagina .descricao,
+.pagina .texto-explicativo,
+.pagina .mensagem,
+.pagina .observacao,
+.pagina .rodape-texto,
+.painel-tutor-inicio > p,
+.novo-tutor-inicio > span,
+.modal-tutor-conteudo > p,
+.tutor-mensagem{color:#064e3b;}
+.pagina label,.pagina .campo label{color:#064e3b;}
 </style>
 
 </head>
@@ -1045,7 +1064,7 @@ CADASTRAR SEU PET
     <div class="novo-tutor-inicio" style="margin-top:0;padding-top:0;border-top:0;">
         <strong>AINDA NÃO SOU CADASTRADO</strong>
         <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
-        <button type="button" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio()">CADASTRE-SE</button>
+        <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio()">CADASTRE-SE</button>
     </div>
 
     <button id="botaoRecuperarCodigoInicio" type="button" class="botao botao-recuperar-inicio" onclick="event.preventDefault(); abrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
@@ -2305,6 +2324,7 @@ onclick="fecharModal()">
     <div class="campo"><label for="codigoEdicaoTutor">CÓDIGO DE EDIÇÃO</label><input id="codigoEdicaoTutor" type="text" inputmode="text" autocomplete="one-time-code" placeholder="EX.: 1L1H-XZQ6"></div>
     <div id="mensagemAutorizacaoEdicao" class="tutor-mensagem"></div>
     <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="autorizarEdicaoPet()">AUTORIZAR E EDITAR</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharAutorizacaoEdicao()">CANCELAR</button></div>
+    <button type="button" class="botao botao-recuperar-inicio" style="margin-top:10px" onclick="abrirRecuperacaoTutorAPartirDaEdicao()">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
   </div>
 </div>
 
@@ -2529,7 +2549,25 @@ function continuarParaCadastroPet(){fecharModalTutorCadastro();abrirPagina("pet"
 function preencherDadosTutorCadastro(){const n=document.getElementById("tutorNome"),t=document.getElementById("tutorContato");if(n){n.value=obterNomeTutorLocal();n.readOnly=!!obterNomeTutorLocal();}if(t){t.value=obterTelefoneTutorLocal();t.readOnly=!!obterTelefoneTutorLocal();}}
 function abrirRecuperacaoTutor(){const m=document.getElementById("modalRecuperacaoTutor");if(!m)return;m.classList.add("aberto");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";document.getElementById("formRecuperacaoTutor").style.display="block";document.getElementById("resultadoRecuperacaoTutor").style.display="none";document.getElementById("mensagemRecuperacaoTutor").textContent="";setTimeout(()=>document.getElementById("telefoneRecuperacaoTutor")?.focus(),50);}
 function fecharRecuperacaoTutor(){const m=document.getElementById("modalRecuperacaoTutor");if(m)m.classList.remove("aberto");document.body.style.overflow="";}
-function configurarBotaoRecuperacaoInicio(){const b=document.getElementById("botaoRecuperarCodigoInicio");if(!b||b.dataset.recuperacaoConfigurada==="1")return;b.dataset.recuperacaoConfigurada="1";b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();abrirRecuperacaoTutor();});}document.addEventListener("DOMContentLoaded",configurarBotaoRecuperacaoInicio);setTimeout(configurarBotaoRecuperacaoInicio,300);
+function configurarBotaoRecuperacaoInicio(){const b=document.getElementById("botaoRecuperarCodigoInicio");if(!b||b.dataset.recuperacaoConfigurada==="1")return;b.dataset.recuperacaoConfigurada="1";b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();abrirRecuperacaoTutor();});}function abrirRecuperacaoTutorAPartirDaEdicao(){
+    fecharAutorizacaoEdicao();
+    setTimeout(abrirRecuperacaoTutor,50);
+}
+
+/* Garantia de clique: estes atalhos funcionam mesmo se algum container da página
+   interceptar o clique ou se o HTML tiver sido reutilizado em outra versão. */
+(function configurarAtalhosTutorRobustos(){
+    function tratarCliqueTutor(e){
+        const el=e.target&&e.target.closest?e.target.closest("#botaoRecuperarCodigoInicio, #botaoCadastrarTutorInicio"):null;
+        if(!el)return;
+        e.preventDefault();
+        e.stopPropagation();
+        if(el.id==="botaoCadastrarTutorInicio") abrirModalTutorCadastro();
+        if(el.id==="botaoRecuperarCodigoInicio") abrirRecuperacaoTutor();
+    }
+    document.addEventListener("click",tratarCliqueTutor,true);
+})();
+document.addEventListener("DOMContentLoaded",configurarBotaoRecuperacaoInicio);setTimeout(configurarBotaoRecuperacaoInicio,300);
 function recuperarCodigoTutor(){const telefone=String(document.getElementById("telefoneRecuperacaoTutor")?.value||"").trim();const msg=document.getElementById("mensagemRecuperacaoTutor");if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.";return;}msg.style.color="#064e3b";msg.textContent="PROCURANDO SEU CADASTRO...";const cb="redeTutorRec_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||telefone);document.getElementById("formRecuperacaoTutor").style.display="none";document.getElementById("resultadoRecuperacaoTutor").style.display="block";document.getElementById("codigoTutorRecuperado").textContent=res.codigoAcesso||"";document.getElementById("mensagemResultadoRecuperacaoTutor").textContent="OLÁ! ENCONTRAMOS SEU CADASTRO.";}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"NENHUM CADASTRO FOI ENCONTRADO.";}}finally{delete window[cb];}};const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";delete window[cb];};document.body.appendChild(s);}
 function copiarCodigoTutor(id){const texto=document.getElementById(id)?.textContent||"";if(!texto)return;const ok=()=>{const el=document.getElementById(id);const old=el.textContent;el.textContent="CÓDIGO COPIADO!";setTimeout(()=>el.textContent=old,1200);};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(texto).then(ok).catch(()=>{fallbackCopiar(texto);ok();});else{fallbackCopiar(texto);ok();}}
 function fallbackCopiar(texto){const ta=document.createElement("textarea");ta.value=texto;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}
@@ -2537,7 +2575,15 @@ function abrirAutorizacaoEdicao(){const m=document.getElementById("modalAutoriza
 function fecharAutorizacaoEdicao(){const m=document.getElementById("modalAutorizacaoEdicao");if(m)m.classList.remove("aberto");document.body.style.overflow="";}
 function autorizarEdicaoPet(){if(!petAtual)return;const codigo=String(document.getElementById("codigoEdicaoTutor")?.value||"").trim().toUpperCase();const msg=document.getElementById("mensagemAutorizacaoEdicao");if(!codigo){msg.textContent="INFORME O CÓDIGO DE EDIÇÃO.";return;}msg.style.color="#064e3b";msg.textContent="VALIDANDO CÓDIGO...";const cb="redeTutorEdit_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||"");fecharAutorizacaoEdicao();abrirEdicaoLiberada();}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"CÓDIGO NÃO AUTORIZADO.";}}finally{delete window[cb];}};const id=campoPet(petAtual,"ID_Pet","ID Pet","ID","id","Código","Codigo")||"";const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=autorizarEdicaoPet&idPet="+encodeURIComponent(id)+"&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};document.body.appendChild(s);}
 
-function atualizarPainelTutorInicio(){}
+function atualizarPainelTutorInicio(){
+    const box=document.getElementById("identidadeTutorInicio");
+    if(!box)return;
+    const id=obterIdTutorLocal(),codigo=obterCodigoTutorLocal();
+    if(id&&codigo){
+        box.style.display="block";
+        box.innerHTML="TUTOR RECONHECIDO • CÓDIGO DE ACESSO: <strong>"+escaparHTML(codigo)+"</strong><br><span style=\"font-weight:normal\">Guarde este código para entrar em outro aparelho.</span>";
+    }else box.style.display="none";
+}
 
 
 /* =========================
