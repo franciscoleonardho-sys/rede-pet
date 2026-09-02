@@ -943,7 +943,25 @@ footer{
 }
 
 
-/* FLUXO DO TUTOR — v20 */
+/* TIPOGRAFIA — títulos em Arial e textos de apoio em verde */
+.painel-tutor-inicio h2,
+.painel-tutor-inicio strong{
+    font-family:Arial,Helvetica,sans-serif;
+}
+.painel-tutor-inicio p,
+.painel-tutor-inicio .novo-tutor-inicio span{
+    font-family:Georgia,"Times New Roman",serif;
+    color:#2f6f5f;
+}
+.painel-tutor-inicio p{
+    font-weight:400;
+}
+.painel-tutor-inicio p strong{
+    color:#2f6f5f;
+    font-weight:400;
+}
+
+/* FLUXO DO TUTOR — v22 */
 .botao-recuperar-inicio{margin-top:14px;background:#b91c1c !important;color:#fff !important;border:2px solid #b91c1c !important;width:100%;}
 .botao-recuperar-inicio:hover{background:#991b1b !important;border-color:#991b1b !important;}
 .modal-tutor{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.62);display:none;padding:18px;overflow:auto;}
@@ -1022,7 +1040,7 @@ CADASTRAR SEU PET
 
 <div class="painel-tutor-inicio">
     <h2>VOCÊ É TUTOR DE UM PET?</h2>
-    <p>Seu código de edição é usado somente para autorizar alterações no cadastro do seu animal.</p>
+    <p>AQUI VOCÊ TERÁ ACESSO AO SEU CÓDIGO. Ele servirá para que você possa editar o cadastro do pet que você cadastrou na REDE PET, se você cadastrou. Ex.: se seu pet está perdido ou para ser adotado, você pode editar o status dele. Seu código de edição é usado somente para autorizar alterações no cadastro do seu animal.</p>
 
     <div class="novo-tutor-inicio" style="margin-top:0;padding-top:0;border-top:0;">
         <strong>AINDA NÃO SOU CADASTRADO</strong>
@@ -1030,7 +1048,7 @@ CADASTRAR SEU PET
         <button type="button" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio()">CADASTRE-SE</button>
     </div>
 
-    <button type="button" class="botao botao-recuperar-inicio" onclick="abrirRecuperacaoTutor()">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+    <button id="botaoRecuperarCodigoInicio" type="button" class="botao botao-recuperar-inicio" onclick="event.preventDefault(); abrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
 </div>
 
 </div>
@@ -2266,7 +2284,7 @@ onclick="fecharModal()">
 <div id="modalRecuperacaoTutor" class="modal-tutor" aria-hidden="true">
   <div class="modal-tutor-conteudo">
     <h2>RECUPERAR CÓDIGO</h2>
-    <p id="textoRecuperacaoTutor">Informe o contato com o prefixo utilizado no cadastro do seu pet.</p>
+    <p id="textoRecuperacaoTutor">INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.</p>
     <div id="formRecuperacaoTutor">
       <div class="campo"><label for="telefoneRecuperacaoTutor">CONTATO / TELEFONE</label><input id="telefoneRecuperacaoTutor" type="tel" inputmode="tel" autocomplete="tel" placeholder="COM PREFIXO"></div>
       <div id="mensagemRecuperacaoTutor" class="tutor-mensagem"></div>
@@ -2511,6 +2529,7 @@ function continuarParaCadastroPet(){fecharModalTutorCadastro();abrirPagina("pet"
 function preencherDadosTutorCadastro(){const n=document.getElementById("tutorNome"),t=document.getElementById("tutorContato");if(n){n.value=obterNomeTutorLocal();n.readOnly=!!obterNomeTutorLocal();}if(t){t.value=obterTelefoneTutorLocal();t.readOnly=!!obterTelefoneTutorLocal();}}
 function abrirRecuperacaoTutor(){const m=document.getElementById("modalRecuperacaoTutor");if(!m)return;m.classList.add("aberto");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";document.getElementById("formRecuperacaoTutor").style.display="block";document.getElementById("resultadoRecuperacaoTutor").style.display="none";document.getElementById("mensagemRecuperacaoTutor").textContent="";setTimeout(()=>document.getElementById("telefoneRecuperacaoTutor")?.focus(),50);}
 function fecharRecuperacaoTutor(){const m=document.getElementById("modalRecuperacaoTutor");if(m)m.classList.remove("aberto");document.body.style.overflow="";}
+function configurarBotaoRecuperacaoInicio(){const b=document.getElementById("botaoRecuperarCodigoInicio");if(!b||b.dataset.recuperacaoConfigurada==="1")return;b.dataset.recuperacaoConfigurada="1";b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();abrirRecuperacaoTutor();});}document.addEventListener("DOMContentLoaded",configurarBotaoRecuperacaoInicio);setTimeout(configurarBotaoRecuperacaoInicio,300);
 function recuperarCodigoTutor(){const telefone=String(document.getElementById("telefoneRecuperacaoTutor")?.value||"").trim();const msg=document.getElementById("mensagemRecuperacaoTutor");if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.";return;}msg.style.color="#064e3b";msg.textContent="PROCURANDO SEU CADASTRO...";const cb="redeTutorRec_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||telefone);document.getElementById("formRecuperacaoTutor").style.display="none";document.getElementById("resultadoRecuperacaoTutor").style.display="block";document.getElementById("codigoTutorRecuperado").textContent=res.codigoAcesso||"";document.getElementById("mensagemResultadoRecuperacaoTutor").textContent="OLÁ! ENCONTRAMOS SEU CADASTRO.";}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"NENHUM CADASTRO FOI ENCONTRADO.";}}finally{delete window[cb];}};const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA.";delete window[cb];};document.body.appendChild(s);}
 function copiarCodigoTutor(id){const texto=document.getElementById(id)?.textContent||"";if(!texto)return;const ok=()=>{const el=document.getElementById(id);const old=el.textContent;el.textContent="CÓDIGO COPIADO!";setTimeout(()=>el.textContent=old,1200);};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(texto).then(ok).catch(()=>{fallbackCopiar(texto);ok();});else{fallbackCopiar(texto);ok();}}
 function fallbackCopiar(texto){const ta=document.createElement("textarea");ta.value=texto;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}
