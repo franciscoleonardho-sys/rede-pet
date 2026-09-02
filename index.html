@@ -638,6 +638,42 @@ textarea{
     font-weight:bold;
 }
 
+/* ACESSO DO TUTOR NA TELA INICIAL */
+.painel-tutor-inicio{
+    max-width:650px;
+    margin:38px auto 0;
+    padding:22px;
+    background:#fff;
+    border:1px solid #d8dfdb;
+    border-radius:12px;
+    text-align:left;
+}
+.painel-tutor-inicio h2{
+    margin:0 0 8px;
+    color:#064e3b;
+    font-size:21px;
+}
+.painel-tutor-inicio p{
+    margin:0 0 16px;
+    color:#666;
+    max-width:none;
+    font-size:14px;
+}
+.tutor-login-inicio{display:flex;gap:10px;align-items:stretch;}
+.tutor-login-inicio input{flex:1;min-width:0;text-transform:uppercase;}
+.tutor-login-inicio .botao{white-space:nowrap;}
+.mensagem-tutor-inicio{min-height:20px;margin-top:9px;font-size:13px;color:#064e3b;font-weight:bold;}
+.novo-tutor-inicio{margin-top:18px;padding-top:18px;border-top:1px solid #e5e9e7;display:flex;flex-direction:column;gap:5px;}
+.novo-tutor-inicio strong{color:#064e3b;font-size:14px;}
+.novo-tutor-inicio span{color:#666;font-size:13px;margin-bottom:7px;}
+.novo-tutor-inicio .botao{width:100%;}
+.identidade-tutor-inicio{margin-top:15px;padding:12px;border-radius:8px;background:#fff3cd;color:#664d03;font-size:13px;font-weight:bold;}
+@media(max-width:700px){
+    .painel-tutor-inicio{margin-top:28px;padding:17px;}
+    .tutor-login-inicio{flex-direction:column;}
+    .tutor-login-inicio .botao{width:100%;}
+}
+
 /* ACESSO DO TUTOR */
 .acesso-tutor{margin:0 0 18px;padding:14px;border:1px solid #d8dfdb;border-radius:10px;background:#f7faf8;}
 .acesso-tutor-titulo{font-size:13px;font-weight:800;color:#064e3b;margin-bottom:9px;}
@@ -961,6 +997,35 @@ onclick="abrirPagina('pet')">
 CADASTRAR SEU PET
 </button>
 
+</div>
+
+<div class="painel-tutor-inicio">
+    <h2>JÁ SOU TUTOR CADASTRADO?</h2>
+    <p>
+        Entre com seu código de tutor para que a REDE PET reconheça você
+        e mostre a opção de editar os cadastros dos seus pets.
+    </p>
+
+    <div class="tutor-login-inicio">
+        <input id="codigoTutorInicio" inputmode="text" autocomplete="one-time-code"
+               placeholder="DIGITE SEU CÓDIGO DE ACESSO"
+               aria-label="Código de acesso do tutor">
+        <button type="button" class="botao" onclick="entrarTutorInicio()">
+            ENTRAR COMO TUTOR
+        </button>
+    </div>
+
+    <div id="mensagemTutorInicio" class="mensagem-tutor-inicio"></div>
+
+    <div class="novo-tutor-inicio">
+        <strong>AINDA NÃO SOU CADASTRADO</strong>
+        <span>Crie sua identidade de tutor e depois cadastre seu pet.</span>
+        <button type="button" class="botao botao-secundario" onclick="iniciarCadastroTutorInicio()">
+            CADASTRAR-SE
+        </button>
+    </div>
+
+    <div id="identidadeTutorInicio" class="identidade-tutor-inicio" style="display:none"></div>
 </div>
 
 </div>
@@ -1399,16 +1464,6 @@ id="observacoes">
 <h2>
 DADOS DO TUTOR
 </h2>
-
-<div class="acesso-tutor" id="acessoTutorPanel">
-<div class="acesso-tutor-titulo">JÁ SOU TUTOR CADASTRADO</div>
-<div class="acesso-tutor-linha">
-<input id="codigoTutorAcesso" inputmode="text" autocomplete="one-time-code" placeholder="DIGITE SEU CÓDIGO DE ACESSO">
-<button type="button" class="botao-acesso-tutor" onclick="acessarTutorPorCodigo()">ACESSAR</button>
-</div>
-<div id="mensagemAcessoTutor" class="acesso-tutor-mensagem"></div>
-<div id="codigoTutorGerado" class="codigo-tutor-gerado" style="display:none"></div>
-</div>
 
 <div class="campo">
 
@@ -2392,8 +2447,8 @@ function obterIdTutorPet(pet){
     return campoPet(pet,"ID_Tutor","ID Tutor","Id Tutor","idTutor","id_tutor");
 }
 function acessarTutorPorCodigo(){
-    const campo=document.getElementById("codigoTutorAcesso");
-    const msg=document.getElementById("mensagemAcessoTutor");
+    const campo=document.getElementById("codigoTutorInicio") || document.getElementById("codigoTutorAcesso");
+    const msg=document.getElementById("mensagemTutorInicio") || document.getElementById("mensagemAcessoTutor");
     const codigo=String(campo?.value||"").trim().toUpperCase();
     if(!codigo){ if(msg)msg.textContent="DIGITE O CÓDIGO DE ACESSO."; return; }
     if(msg)msg.textContent="VALIDANDO CÓDIGO...";
@@ -2402,17 +2457,48 @@ function acessarTutorPorCodigo(){
         try{
             if(res && res.sucesso){
                 definirIdentidadeTutor(res.idTutor,res.codigoAcesso||codigo);
-                if(msg)msg.textContent="TUTOR RECONHECIDO. SEUS PETS PODEM SER ACESSADOS NESTE APARELHO.";
+                atualizarPainelTutorInicio();
+                if(msg)msg.textContent="TUTOR RECONHECIDO. SEUS PETS ESTÃO LIBERADOS PARA EDIÇÃO.";
                 carregarPets(true);
                 atualizarMapaComPets();
+                setTimeout(function(){abrirPagina('match');},500);
             }else if(msg) msg.textContent=(res&&res.erro)||"CÓDIGO NÃO ENCONTRADO.";
         }finally{delete window[cb];}
     };
     const script=document.createElement("script");
     script.src=URL_APPS_SCRIPT+"?acao=acessarTutor&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();
+    script.async=true;
     script.onerror=function(){if(msg)msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};
     document.body.appendChild(script);
 }
+
+function entrarTutorInicio(){
+    acessarTutorPorCodigo();
+}
+
+function iniciarCadastroTutorInicio(){
+    const id=gerarIdTutor();
+    const codigo=gerarCodigoTutor();
+    definirIdentidadeTutor(id,codigo);
+    atualizarPainelTutorInicio();
+    const msg=document.getElementById("mensagemTutorInicio");
+    if(msg)msg.textContent="IDENTIDADE DE TUTOR CRIADA. AGORA CADASTRE SEU PET.";
+    setTimeout(function(){abrirPagina('pet');},350);
+}
+
+function atualizarPainelTutorInicio(){
+    const box=document.getElementById("identidadeTutorInicio");
+    if(!box)return;
+    const id=localStorage.getItem("redePetIdTutor")||"";
+    const codigo=localStorage.getItem("redePetCodigoTutor")||"";
+    if(id && codigo){
+        box.style.display="block";
+        box.innerHTML="TUTOR RECONHECIDO • CÓDIGO DE ACESSO: <strong>"+escaparHTML(codigo)+"</strong><br><span style=\"font-weight:normal\">Guarde este código para entrar em outro aparelho.</span>";
+    }else{
+        box.style.display="none";
+    }
+}
+
 
 
 /* =========================
@@ -2761,8 +2847,7 @@ document
                 token
             );
             definirIdentidadeTutor(obterIdTutorLocal(), codigoTutor);
-            const codigoBox=document.getElementById("codigoTutorGerado");
-            if(codigoBox){codigoBox.style.display="block";codigoBox.textContent="SEU CÓDIGO DE ACESSO DO TUTOR: "+codigoTutor+" — GUARDE ESTE CÓDIGO PARA USAR EM OUTRO CELULAR OU COMPUTADOR.";}
+            atualizarPainelTutorInicio();
 
 
             mensagem.textContent =
@@ -5321,6 +5406,10 @@ document.addEventListener(
 
     }
 );
+
+document.addEventListener("DOMContentLoaded",function(){
+    atualizarPainelTutorInicio();
+});
 
 </script>
 
