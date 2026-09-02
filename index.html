@@ -2255,7 +2255,7 @@ function abrirPagina(nome){
         nome === "mapa"
     ){
 
-        carregarPets();
+        carregarPets(true);
 
     }
 
@@ -2930,10 +2930,12 @@ function carregarPets(){
         '</div>';
 
 
-    const token =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
+    /*
+     * IMPORTANTE: o carregamento público do MATCH não usa o código do tutor.
+     * O código serve apenas para identificar o tutor e permitir edição.
+     * Assim, um tutor logado não faz os animais públicos desaparecerem.
+     */
+    const token = "";
 
 
     const callback =
@@ -5697,26 +5699,28 @@ document
 
 document.getElementById("modalTutor").addEventListener("click",function(event){ if(event.target===this){ fecharModalTutor(); } });
 
-// ATALHOS DA TELA INÍCIO — ligação direta e sem interferir nos demais botões.
+
+/* =====================================================
+   ATALHOS DA INÍCIO — TUTOR
+   Eventos diretos para garantir o clique mesmo em navegadores
+   que tenham comportamento diferente com onclick inline.
+===================================================== */
 (function(){
-    const ligacoes = {
-        btnInicioMatch: function(){ abrirPagina("match"); },
-        btnInicioCadastro: function(){ iniciarCadastroPet(); },
-        btnInicioEntrarTutor: function(){ abrirModalTutor("entrar"); },
-        btnInicioRecuperarTutor: function(){ abrirModalTutor("recuperar"); },
-        btnInicioCadastrarTutor: function(){ abrirModalTutor("cadastrar"); }
-    };
-    Object.keys(ligacoes).forEach(function(id){
+    function ligar(id, acao){
         const botao=document.getElementById(id);
-        if(botao){
-            botao.type="button";
-            botao.addEventListener("click", function(event){
-                event.preventDefault();
-                event.stopPropagation();
-                ligacoes[id]();
-            });
-        }
-    });
+        if(!botao) return;
+        botao.type="button";
+        botao.addEventListener("click",function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            try{ acao(); }catch(e){ console.error(e); }
+        });
+    }
+    ligar("btnInicioMatch",function(){ abrirPagina("match"); });
+    ligar("btnInicioCadastro",function(){ iniciarCadastroPet(); });
+    ligar("btnInicioEntrarTutor",function(){ abrirModalTutor("entrar"); });
+    ligar("btnInicioRecuperarTutor",function(){ abrirModalTutor("recuperar"); });
+    ligar("btnInicioCadastrarTutor",function(){ abrirModalTutor("cadastrar"); });
 })();
 
 /* =========================
