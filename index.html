@@ -1064,10 +1064,10 @@ CADASTRAR SEU PET
     <div class="novo-tutor-inicio" style="margin-top:0;padding-top:0;border-top:0;">
         <strong>AINDA NÃO SOU CADASTRADO</strong>
         <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
-        <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="return redeAbrirCadastroTutor();">CADASTRE-SE</button>
+        <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="var m=document.getElementById('modalTutorCadastro');if(m){m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}return false;">CADASTRE-SE</button>
     </div>
 
-    <button id="botaoRecuperarCodigoInicio" type="button" class="botao botao-recuperar-inicio" onclick="return redeAbrirRecuperacaoTutor();">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+    <button id="botaoRecuperarCodigoInicio" type="button" class="botao botao-recuperar-inicio" onclick="var m=document.getElementById('modalRecuperacaoTutor');if(m){m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
 </div>
 
 </div>
@@ -5490,6 +5490,42 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </script>
 
+<script>
+/* REDE PET — abertura definitiva das janelinhas do tutor */
+(function(){
+  function abrirTutorCadastroSeguro(e){
+    if(e){e.preventDefault();e.stopPropagation();}
+    var m=document.getElementById("modalTutorCadastro");
+    if(!m)return false;
+    m.style.display="flex"; m.classList.add("aberto"); m.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    var f=document.getElementById("formTutorCadastro"),r=document.getElementById("resultadoTutorCadastro"),msg=document.getElementById("mensagemTutorCadastro");
+    if(f)f.style.display="block"; if(r)r.style.display="none"; if(msg)msg.textContent="";
+    var n=document.getElementById("novoTutorNome"); if(n)setTimeout(function(){n.focus();},50);
+    return false;
+  }
+  function abrirTutorRecuperacaoSeguro(e){
+    if(e){e.preventDefault();e.stopPropagation();}
+    var m=document.getElementById("modalRecuperacaoTutor");
+    if(!m)return false;
+    m.style.display="flex"; m.classList.add("aberto"); m.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    var f=document.getElementById("formRecuperacaoTutor"),r=document.getElementById("resultadoRecuperacaoTutor"),msg=document.getElementById("mensagemRecuperacaoTutor");
+    if(f)f.style.display="block"; if(r)r.style.display="none"; if(msg)msg.textContent="";
+    var t=document.getElementById("telefoneRecuperacaoTutor"); if(t)setTimeout(function(){t.focus();},50);
+    return false;
+  }
+  window.redeAbrirCadastroTutor=abrirTutorCadastroSeguro;
+  window.redeAbrirRecuperacaoTutor=abrirTutorRecuperacaoSeguro;
+  function ligar(){
+    var c=document.getElementById("botaoCadastrarTutorInicio"), r=document.getElementById("botaoRecuperarCodigoInicio");
+    if(c){c.onclick=abrirTutorCadastroSeguro;}
+    if(r){r.onclick=abrirTutorRecuperacaoSeguro;}
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ligar); else ligar();
+  setTimeout(ligar,100); setTimeout(ligar,500);
+})();
+</script>
 </body>
 
 </html>
