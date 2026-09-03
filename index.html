@@ -562,6 +562,14 @@ textarea{
     justify-content:space-between;
     gap:10px;
 }
+.botao-editar-match{
+    flex:0 0 auto;
+    width:34px;
+    height:34px;
+    position:relative;
+    z-index:3;
+}
+.botao-editar-match span{font-size:18px;}
 .pet-topo-resumo .pet-nome{
     margin:0;
     min-width:0;
@@ -2377,7 +2385,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO • v36
+REDE PET — PROTÓTIPO • v37
 
 </footer>
 
@@ -2433,11 +2441,7 @@ function abrirPagina(nome){
     }
 
     if(nome === "mapa"){
-        if(!petsCarregados.length){
-            carregarPets();
-        }else{
-            atualizarMapaComPets();
-        }
+        carregarPetsMapa();
     }
 
 }
@@ -3188,13 +3192,40 @@ function renderizarPets(){
             '<img class="pet-foto" src="'+escaparHTML(foto)+'" alt="FOTO DO PET" '+(indice===0?'fetchpriority="high"':'loading="lazy"')+' decoding="async" onload="this.previousElementSibling.style.display=\'none\';this.style.opacity=\'1\';" onerror="this.style.display=\'none\';this.previousElementSibling.textContent=\'FOTO INDISPONÍVEL\';">'+
             '</div>';
         }
+        const idPetTutor=obterIdTutorPet(pet);
+        const souTutor=!!obterIdTutorLocal() && !!idPetTutor && String(obterIdTutorLocal()).trim()===String(idPetTutor).trim();
+        const atalhoEdicao=souTutor ? '<button type="button" class="botao-editar-circular botao-editar-match" aria-label="Editar cadastro deste animal" title="Editar cadastro" onclick="event.preventDefault();event.stopPropagation();abrirEdicaoDoMatch(this);return false;"><span aria-hidden="true">✎</span></button>' : '';
         card.innerHTML=imagem+'<div class="pet-resumo">'+
-            '<div class="pet-topo-resumo"><h3 class="pet-nome">'+escaparHTML(nome)+'</h3></div>'+
+            '<div class="pet-topo-resumo"><h3 class="pet-nome">'+escaparHTML(nome)+'</h3>'+atalhoEdicao+'</div>'+
             '<span class="pet-status">'+escaparHTML(status)+'</span></div>';
         lista.appendChild(card);
     });
 }
 
+
+
+function petAtualizarReferencia(botao){
+    const card=botao.closest(".pet-card");
+    const cards=Array.from(document.querySelectorAll("#listaPets .pet-card"));
+    const indice=cards.indexOf(card);
+    const visiveis=petsCarregados.filter(function(pet){
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        if(status!=="PERDIDO" && status!=="PARA ADOÇÃO")return false;
+        const filtro=document.getElementById("filtroStatus")?.value||"TODOS";
+        if(filtro==="PERDIDO")return status==="PERDIDO";
+        if(filtro==="PARA ADOÇÃO")return status==="PARA ADOÇÃO";
+        return true;
+    });
+    return visiveis[indice]||null;
+}
+
+function abrirEdicaoDoMatch(botao){
+    const pet=petAtualizarReferencia(botao);
+    if(!pet)return false;
+    abrirModal(pet);
+    setTimeout(abrirEdicao,60);
+    return false;
+}
 
 
 function aplicarFiltro(){
@@ -3696,23 +3727,7 @@ function verificarPermissaoEdicao(){
 
 function abrirEdicao(){
     if(!petAtual)return;
-    // A caneta é o único ponto que pede o código do tutor.
-    try{
-        const m=document.getElementById("modalAutorizacaoEdicao");
-        if(m){
-            m.style.display="flex";
-            m.classList.add("aberto");
-            m.setAttribute("aria-hidden","false");
-            document.body.style.overflow="hidden";
-            const campo=document.getElementById("codigoEdicaoTutor");
-            const msg=document.getElementById("mensagemAutorizacaoEdicao");
-            if(campo)campo.value="";
-            if(msg)msg.textContent="";
-            setTimeout(function(){if(campo)campo.focus();},50);
-        }
-    }catch(e){
-        console.error("REDE PET - erro ao abrir autorização:",e);
-    }
+    abrirAutorizacaoEdicao();
 }
 function abrirEdicaoLiberada(){
     if(!petAtual)return;
@@ -5101,20 +5116,34 @@ function chaveBairroMapa(valor){
     return String(valor||"").trim().toLowerCase().replace(/\s+/g," ");
 }
 
-function atualizarMapaComPets(){
+function carregarPetsMapa(){
     const mapa=document.querySelector("#mapaRedePet .mapa-cidade");
-    if(!mapa || !Array.isArray(petsCarregados))return;
+    if(!mapa)return;
     mapa.querySelectorAll(".marcador-dinamico-pet").forEach(function(el){el.remove();});
-    /* Os marcadores antigos eram exemplos fixos. Depois que os dados reais
-       chegam, eles ficam ocultos para nunca colocar um PET no bairro errado. */
-    mapa.querySelectorAll(".marcador-pet:not(.marcador-dinamico-pet)").forEach(function(el){
-        el.style.display="none";
-    });
+    const callback="redePetMapa_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+    let finalizado=false;
+    window[callback]=function(pets){
+        if(finalizado)return;
+        finalizado=true;
+        petsCarregados=Array.isArray(pets)?pets:petsCarregados;
+        renderizarMapaPorBairro(petsCarregados);
+        delete window[callback];
+    };
+    const script=document.createElement("script");
+    script.src=URL_APPS_SCRIPT+"?acao=listarPetsMapa&callback="+callback+"&t="+Date.now();
+    script.async=true;
+    script.onerror=function(){if(finalizado)return;finalizado=true;delete window[callback];};
+    document.body.appendChild(script);
+    setTimeout(function(){if(!finalizado){finalizado=true;delete window[callback];}},15000);
+}
+
+function renderizarMapaPorBairro(lista){
+    const mapa=document.querySelector("#mapaRedePet .mapa-cidade");
+    if(!mapa)return;
+    mapa.querySelectorAll(".marcador-dinamico-pet").forEach(function(el){el.remove();});
+    mapa.querySelectorAll(".marcador-pet:not(.marcador-dinamico-pet)").forEach(function(el){el.style.display="none";});
     const grupos={};
-    petsCarregados.forEach(function(pet){
-        const status=normalizarStatus(campoPet(pet,"Status","status"));
-        /* O mapa mostra todos os animais cadastrados; o filtro
-           exclusivo de Perdidos + Para adoção pertence ao Match. */
+    (Array.isArray(lista)?lista:[]).forEach(function(pet){
         const bairro=campoPet(pet,"Bairro","bairro");
         const chave=chaveBairroMapa(bairro);
         if(!chave)return;
@@ -5123,27 +5152,27 @@ function atualizarMapaComPets(){
     });
     Object.keys(grupos).forEach(function(chave){
         const grupo=grupos[chave];
-        const cfg=REDE_PET_BAIRROS_MAPA[chave] || {label:String(grupo.bairro).toUpperCase(),left:"50%",top:"50%"};
+        const cfg=REDE_PET_BAIRROS_MAPA[chave]||{label:String(grupo.bairro).toUpperCase(),left:"50%",top:"50%"};
         const btn=document.createElement("button");
         btn.type="button";
         btn.className="marcador-pet marcador-dinamico-pet";
-        btn.style.left=cfg.left;
-        btn.style.top=cfg.top;
-        btn.style.right="auto";
-        btn.style.bottom="auto";
-        btn.innerHTML='<span>🐾</span><small>'+escaparHTML(cfg.label)+' • '+grupo.pets.length+'</small>';
-        btn.setAttribute("aria-label",cfg.label+", "+grupo.pets.length+" animais");
+        btn.style.left=cfg.left; btn.style.top=cfg.top; btn.style.right="auto"; btn.style.bottom="auto";
+        const sufixo=grupo.pets.length>1?" +"+(grupo.pets.length-1):"";
+        btn.innerHTML='<span>🐾</span><small>'+escaparHTML(cfg.label+sufixo)+'</small>';
+        btn.setAttribute("aria-label",cfg.label+", "+grupo.pets.length+" animais cadastrados");
         btn.onclick=function(){
-            document.querySelectorAll('.marcador-pet').forEach(function(b){b.classList.remove('ativo');});
-            btn.classList.add('ativo');
+            document.querySelectorAll(".marcador-pet").forEach(function(b){b.classList.remove("ativo");});
+            btn.classList.add("ativo");
             const nomes=grupo.pets.map(function(p){return campoPet(p,"Nome","nome")||"PET";}).join(" • ");
             const info=document.getElementById("mapaInfo");
             if(info)info.innerHTML='<p><strong>'+escaparHTML(cfg.label)+'</strong><br>'+grupo.pets.length+' '+(grupo.pets.length===1?'animal':'animais')+' cadastrado(s)<br><span style="color:#666;">'+escaparHTML(nomes)+'</span></p>';
-            const area=document.getElementById("botaoMapaArea");
-            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(cfg.label)}')">📍 COMO CHEGAR À REGIÃO</button>`;
         };
         mapa.appendChild(btn);
     });
+}
+
+function atualizarMapaComPets(){
+    renderizarMapaPorBairro(petsCarregados);
 }
 
 /* =========================
@@ -5488,47 +5517,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </script>
 
-<script>
-/* REDE PET v36 — FAILSAFE DOS CLIQUES PRINCIPAIS */
-(function(){
-  function tutorModal(id){
-    var m=document.getElementById(id);
-    if(!m)return false;
-    document.querySelectorAll('.modal-tutor').forEach(function(x){x.classList.remove('aberto');x.style.display='none';x.setAttribute('aria-hidden','true');});
-    m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
-    return true;
-  }
-  function cadastro(){
-    if(!tutorModal('modalTutorCadastro'))return false;
-    var f=document.getElementById('formTutorCadastro'),r=document.getElementById('resultadoTutorCadastro'),msg=document.getElementById('mensagemTutorCadastro');
-    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
-    setTimeout(function(){var x=document.getElementById('novoTutorNome');if(x)x.focus();},50);return false;
-  }
-  function recuperacao(){
-    if(!tutorModal('modalRecuperacaoTutor'))return false;
-    var f=document.getElementById('formRecuperacaoTutor'),r=document.getElementById('resultadoRecuperacaoTutor'),msg=document.getElementById('mensagemRecuperacaoTutor');
-    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
-    setTimeout(function(){var x=document.getElementById('telefoneRecuperacaoTutor');if(x)x.focus();},50);return false;
-  }
-  function autorizacao(){
-    if(!window.petAtual)return false;
-    if(!tutorModal('modalAutorizacaoEdicao'))return false;
-    var c=document.getElementById('codigoEdicaoTutor'),msg=document.getElementById('mensagemAutorizacaoEdicao');
-    if(c)c.value='';if(msg)msg.textContent='';setTimeout(function(){if(c)c.focus();},50);return false;
-  }
-  window.redeAbrirCadastroTutor=cadastro;
-  window.redeAbrirRecuperacaoTutor=recuperacao;
-  window.redeAbrirAutorizacaoEdicao=autorizacao;
-  document.addEventListener('DOMContentLoaded',function(){
-    var a=document.getElementById('botaoCadastrarTutorInicio');
-    if(a)a.onclick=function(e){e.preventDefault();e.stopPropagation();return cadastro();};
-    var b=document.getElementById('botaoRecuperarCodigoInicio');
-    if(b)b.onclick=function(e){e.preventDefault();e.stopPropagation();return recuperacao();};
-    var c=document.getElementById('botaoEditarCadastro');
-    if(c)c.onclick=function(e){e.preventDefault();e.stopPropagation();return autorizacao();};
-  });
-})();
-</script>
+
 
 </body>
 
