@@ -1,3 +1,5 @@
+<!-- REDE PET v17: correção definitiva da identificação do tutor e caneta de edição.
+     REDE PET v16: UI de edição aprovada; mapa dinâmico prioriza bairro real; ID_Tutor enviado pelo frontend. A persistência entre dispositivos depende do backend/planilha. -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -255,7 +257,7 @@ textarea{
     box-shadow:0 5px 18px rgba(0,0,0,.08);
 }
 
-.pet-foto{
+.pet-foto{opacity:0;transition:opacity .2s ease;
     width:100%;
     height:240px;
     object-fit:cover;
@@ -488,21 +490,123 @@ textarea{
     color:white;
 }
 
-/* MAPA */
-
-.mapa-container{
-    background:white;
+/* EDIÇÃO DISCRETA DO TUTOR */
+.botao-editar-circular{
+    display:none;
+    width:34px;
+    height:34px;
+    min-width:34px;
+    padding:0;
+    margin:0;
+    border:2px solid #b91c1c;
+    border-radius:50%;
+    background:#fff;
+    color:#b91c1c;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-sizing:border-box;
+    font-size:22px;
+    line-height:1;
+    font-weight:700;
+}
+.botao-editar-circular:hover{
+    background:#b91c1c;
+    color:#fff;
+}
+.botao-editar-detalhe{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin:18px 0 0;
+    padding:6px 12px 6px 6px;
+    border:2px solid #b91c1c;
+    border-radius:22px;
+    background:#fff;
+    color:#b91c1c;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    line-height:1;
+}
+.icone-editar-detalhe{
+    width:28px;
+    height:28px;
+    min-width:28px;
+    border:2px solid #b91c1c;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    font-size:18px;
+    line-height:1;
+}
+.botao-editar-detalhe:hover{
+    background:#b91c1c;
+    color:#fff;
+}
+.botao-editar-detalhe:hover .icone-editar-detalhe{
+    background:#fff;
+    color:#b91c1c;
+}
+@media(max-width:700px){
+    .botao-editar-detalhe{
+        font-size:12px;
+    }
+}
+.pet-topo-resumo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+.pet-topo-resumo .pet-nome{
+    margin:0;
+    min-width:0;
+}
+.pet-topo-resumo .botao-editar-circular{
+    flex:0 0 auto;
+}
+.match-loading{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    grid-column:1/-1;
+}
+.match-skeleton{
+    background:#fff;
     border:1px solid #ddd;
     border-radius:10px;
-    padding:15px;
+    overflow:hidden;
 }
+.match-skeleton-foto{
+    height:240px;
+    background:linear-gradient(90deg,#e6ebe8 25%,#f5f6f5 37%,#e6ebe8 63%);
+    background-size:400% 100%;
+    animation:matchSkeleton 1.2s ease-in-out infinite;
+}
+.match-skeleton-linha{height:18px;width:58%;margin:15px;border-radius:6px;background:#e6ebe8;}
+.match-skeleton-status{height:12px;width:30%;margin:0 15px 18px;border-radius:20px;background:#e6ebe8;}
+.match-carregando-texto{grid-column:1/-1;text-align:center;color:#666;font-size:14px;padding:0 0 4px;}
+@keyframes matchSkeleton{0%{background-position:100% 0}100%{background-position:-100% 0}}
 
-.mapa{
-    width:100%;
-    height:500px;
-    border:none;
-    border-radius:8px;
-}
+/* MAPA */
+
+.mapa-container{background:white;border:1px solid #ddd;border-radius:10px;padding:15px;}
+.mapa{width:100%;height:500px;border:none;border-radius:8px;}
+.mapa-rede-pet{width:100%;overflow:hidden;border-radius:10px;background:#eef2ef;border:1px solid #d8dfdb;}
+.mapa-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:#fff;color:#064e3b;font-weight:bold;font-size:13px;}
+.mapa-legenda{font-size:11px;color:#666;font-weight:normal;}
+.mapa-cidade{position:relative;height:500px;overflow:hidden;background:linear-gradient(135deg,#e7ece9,#f4f5f1 45%,#e6ece8);}
+.estrada{position:absolute;background:#fff;box-shadow:0 0 0 1px rgba(180,190,185,.45);transform-origin:center;}
+.estrada-a{width:125%;height:34px;left:-10%;top:45%;transform:rotate(-18deg);}.estrada-b{width:120%;height:24px;left:-8%;top:23%;transform:rotate(28deg);}.estrada-c{width:110%;height:28px;left:-5%;top:70%;transform:rotate(12deg);}.estrada-d{width:25px;height:115%;left:57%;top:-8%;transform:rotate(18deg);}
+.rio{position:absolute;width:24px;height:125%;left:27%;top:-10%;background:rgba(116,170,185,.22);transform:rotate(-18deg);border-radius:50%;}
+.mapa-bairro{position:absolute;color:#77827d;font-size:10px;letter-spacing:.4px;font-weight:bold;pointer-events:none;}.bairro-1{left:8%;top:35%;}.bairro-2{right:8%;top:18%;}.bairro-3{right:12%;bottom:22%;}.bairro-4{left:12%;bottom:12%;}
+.marcador-pet{position:absolute;z-index:5;width:72px;height:72px;border:0;border-radius:50%;background:#fff;color:#064e3b;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .15s,box-shadow .15s;}.marcador-pet:hover,.marcador-pet.ativo{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.24);}.marcador-pet span{font-size:27px;line-height:1;}.marcador-pet small{font-size:9px;font-weight:bold;}.marcador-salgado{left:17%;top:25%;}.marcador-centro{left:53%;top:43%;}.marcador-cidade-jardim{right:14%;bottom:19%;}
+.mapa-nota{padding:11px 13px;background:#fff;color:#666;font-size:12px;line-height:1.4;border-top:1px solid #d8dfdb;}
+@media(max-width:700px){.mapa-cidade{height:430px;}.mapa-topo{align-items:flex-start;flex-direction:column;gap:3px;}.marcador-pet{width:64px;height:64px;}.marcador-pet span{font-size:24px;}.marcador-salgado{left:10%;top:25%;}.marcador-centro{left:46%;top:43%;}.marcador-cidade-jardim{right:7%;bottom:18%;}}
 
 .mapa-info{
     margin-bottom:15px;
@@ -534,6 +638,52 @@ textarea{
     font-weight:bold;
 }
 
+/* ACESSO DO TUTOR NA TELA INICIAL */
+.painel-tutor-inicio{
+    max-width:650px;
+    margin:38px auto 0;
+    padding:22px;
+    background:#fff;
+    border:1px solid #d8dfdb;
+    border-radius:12px;
+    text-align:left;
+}
+.painel-tutor-inicio h2{
+    margin:0 0 8px;
+    color:#064e3b;
+    font-size:21px;
+}
+.painel-tutor-inicio p{
+    margin:0 0 16px;
+    color:#666;
+    max-width:none;
+    font-size:14px;
+}
+.tutor-login-inicio{display:flex;gap:10px;align-items:stretch;}
+.tutor-login-inicio input{flex:1;min-width:0;text-transform:uppercase;}
+.tutor-login-inicio .botao{white-space:nowrap;}
+.mensagem-tutor-inicio{min-height:20px;margin-top:9px;font-size:13px;color:#064e3b;font-weight:bold;}
+.novo-tutor-inicio{margin-top:18px;padding-top:18px;border-top:1px solid #e5e9e7;display:flex;flex-direction:column;gap:5px;}
+.novo-tutor-inicio strong{color:#064e3b;font-size:14px;}
+.novo-tutor-inicio span{color:#666;font-size:13px;margin-bottom:7px;}
+.novo-tutor-inicio .botao{width:100%;}
+.identidade-tutor-inicio{margin-top:15px;padding:12px;border-radius:8px;background:#fff3cd;color:#664d03;font-size:13px;font-weight:bold;}
+@media(max-width:700px){
+    .painel-tutor-inicio{margin-top:28px;padding:17px;}
+    .tutor-login-inicio{flex-direction:column;}
+    .tutor-login-inicio .botao{width:100%;}
+}
+
+/* ACESSO DO TUTOR */
+.acesso-tutor{margin:0 0 18px;padding:14px;border:1px solid #d8dfdb;border-radius:10px;background:#f7faf8;}
+.acesso-tutor-titulo{font-size:13px;font-weight:800;color:#064e3b;margin-bottom:9px;}
+.acesso-tutor-linha{display:flex;gap:8px;}
+.acesso-tutor-linha input{flex:1;min-width:0;padding:11px;border:1px solid #cfd7d2;border-radius:7px;text-transform:uppercase;}
+.botao-acesso-tutor{border:0;background:#064e3b;color:#fff;border-radius:7px;padding:0 15px;font-weight:700;cursor:pointer;}
+.acesso-tutor-mensagem{font-size:12px;margin-top:8px;color:#555;}
+.codigo-tutor-gerado{margin-top:10px;padding:10px;border-radius:7px;background:#fff3cd;color:#664d03;font-weight:700;font-size:13px;}
+@media(max-width:700px){.acesso-tutor-linha{flex-direction:column}.botao-acesso-tutor{padding:11px;width:100%;}}
+
 /* MENSAGENS */
 
 .mensagem{
@@ -560,13 +710,52 @@ textarea{
 /* RODAPÉ DE NAVEGAÇÃO */
 
 .rodape-navegacao{
-    display:flex;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
-    flex-wrap:wrap;
     margin-top:35px;
     padding:20px 0;
     border-top:1px solid #ddd;
+}
+
+/* Nas páginas MATCH e MAPA: dois atalhos menores em cima
+   e CADASTRO DE PET sozinho na linha de baixo. */
+.rodape-navegacao .botao{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+}
+
+.rodape-navegacao .botao:first-child{
+    grid-column:1 / -1;
+    grid-row:2;
+}
+
+.rodape-navegacao .botao:nth-child(2){
+    grid-column:2;
+    grid-row:1;
+}
+
+.rodape-navegacao .botao:nth-child(3){
+    grid-column:1;
+    grid-row:1;
+}
+
+/* Na página de CADASTRO, os três atalhos permanecem pequenos
+   e lado a lado, em uma única linha. */
+/* PÁGINA DE CADASTRO: os 3 atalhos permanecem na mesma linha,
+   em TODOS os tamanhos de tela. */
+section#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+section#pet .rodape-navegacao .botao:first-child,
+section#pet .rodape-navegacao .botao:nth-child(2),
+section#pet .rodape-navegacao .botao:nth-child(3){
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100%;
+    min-width:0;
 }
 
 /* VOLTAR */
@@ -646,8 +835,10 @@ footer{
     .botoes-inicio .botao{
         width:100%;
         min-width:0;
-        padding:13px 10px;
+        padding:13px 6px;
+        font-size:13px;
         white-space:nowrap;
+        letter-spacing:-0.2px;
     }
 
     .opcoes{
@@ -669,6 +860,14 @@ footer{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
+    /* Os grupos de 4 permanecem sempre em 2 x 2 no celular,
+       inclusive em telas mais estreitas. */
+    .opcoes-2x2 .opcao{
+        min-width:0;
+        width:100%;
+        overflow-wrap:anywhere;
+    }
+
     /* Grupos curtos de 3: mantêm as opções lado a lado. */
     .opcoes-3{
         grid-template-columns:repeat(3,minmax(0,1fr));
@@ -687,51 +886,45 @@ footer{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
-    /* Todos os botões de escolha têm uma área de toque consistente.
-       O texto pode quebrar, mas a grade continua compacta. */
-    .opcoes .opcao{
-        min-height:46px;
-        display:flex;
-        align-items:center;
+    /* PESO NO CELULAR: compacto e centralizado */
+    .peso-controle{
         justify-content:center;
-        text-align:center;
+        gap:12px;
+        width:100%;
     }
 
-    /* Nas grades de 3, reduzimos apenas o texto para evitar apertos
-       em celulares estreitos, sem transformar as opções em uma lista. */
-    .opcoes-3 .opcao{
-        padding-left:4px;
-        padding-right:4px;
-        font-size:14px;
+    .peso-controle button{
+        width:38px;
+        height:38px;
+        font-size:21px;
+        flex:0 0 38px;
     }
 
-    .opcoes-sexo .opcao{
-        font-size:14px;
+    .peso-valor{
+        min-width:72px;
+        font-size:19px;
     }
+
 
     .inicio h1{
         font-size:30px;
     }
 
-    /* Mantém os blocos curtos lado a lado no celular.
-       Assim CASTRADO e VACINADO não empurram o formulário para baixo. */
     .linha{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
+        grid-template-columns:1fr;
     }
 
-    .linha .campo{
-        min-width:0;
+
+    /* PÁGINA DE CADASTRO: manter os 3 atalhos na mesma linha também no celular */
+    section#pet .rodape-navegacao{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
-    .linha .opcoes{
-        gap:6px;
-    }
-
-    .linha .opcao{
-        padding:10px 4px;
+    section#pet .rodape-navegacao .botao{
+        padding-left:6px;
+        padding-right:6px;
+        white-space:nowrap;
         font-size:13px;
-        min-height:44px;
     }
 
     .modal{
@@ -746,7 +939,68 @@ footer{
         max-height:330px;
     }
 
+
 }
+
+
+/* TIPOGRAFIA — títulos em Arial e textos de apoio em verde */
+.painel-tutor-inicio h2,
+.painel-tutor-inicio strong{
+    font-family:Arial,Helvetica,sans-serif;
+}
+.painel-tutor-inicio p,
+.painel-tutor-inicio .novo-tutor-inicio span{
+    font-family:Georgia,"Times New Roman",serif;
+    color:#2f6f5f;
+}
+.painel-tutor-inicio p{
+    font-weight:400;
+}
+.painel-tutor-inicio p strong{
+    color:#2f6f5f;
+    font-weight:400;
+}
+
+/* FLUXO DO TUTOR — v22 */
+.botao-recuperar-inicio{margin-top:14px;background:#b91c1c !important;color:#fff !important;border:2px solid #b91c1c !important;width:100%;}
+.botao-recuperar-inicio:hover{background:#991b1b !important;border-color:#991b1b !important;}
+.modal-tutor{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.62);display:none;padding:18px;overflow:auto;}
+.modal-tutor.aberto{display:flex;align-items:center;justify-content:center;}
+.modal-tutor-conteudo{width:100%;max-width:430px;background:#fff;border-radius:16px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.25);}
+.modal-tutor-conteudo h2{margin:0 0 8px;color:#064e3b;font-size:21px;text-align:center;}
+.modal-tutor-conteudo p{margin:0 0 18px;color:#555;text-align:center;line-height:1.45;font-size:14px;}
+.modal-tutor-conteudo .campo{margin-bottom:14px;}
+.modal-tutor-conteudo .campo label{display:block;font-weight:700;font-size:12px;margin-bottom:6px;color:#064e3b;}
+.modal-tutor-conteudo .campo input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccd5d0;border-radius:9px;font-size:16px;}
+.tutor-codigo-box{margin:18px 0;padding:16px;border-radius:12px;background:#f3f6f4;text-align:center;}
+.tutor-codigo-box strong{display:block;color:#064e3b;font-size:13px;margin-bottom:7px;}
+.tutor-codigo-valor{font-size:27px;font-weight:800;letter-spacing:2px;color:#b91c1c;word-break:break-all;}
+.tutor-mensagem{min-height:20px;margin:8px 0 12px;text-align:center;font-size:13px;font-weight:700;color:#b91c1c;}
+.tutor-acoes{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.tutor-acoes .botao{flex:1 1 150px;}
+.botao-tutor-cancelar{background:#eef1ef !important;color:#064e3b !important;border:1px solid #cbd5d0 !important;}
+@media(max-width:700px){.modal-tutor{padding:10px}.modal-tutor-conteudo{padding:20px;max-width:390px}.tutor-codigo-valor{font-size:23px}}
+
+
+/* TIPOGRAFIA REDE PET — textos de leitura em verde */
+body{color:#064e3b;}
+.pagina p,
+.pagina .mapa-info,
+.pagina .mapa-nota,
+.pagina .carregando,
+.pagina .filtro-match,
+.pagina .ajuda,
+.pagina .descricao,
+.pagina .texto-explicativo,
+.pagina .mensagem,
+.pagina .observacao,
+.pagina .rodape-texto,
+.painel-tutor-inicio > p,
+.novo-tutor-inicio > span,
+.modal-tutor-conteudo > p,
+.tutor-mensagem{color:#064e3b;}
+.pagina label,.pagina .campo label{color:#064e3b;}
+
 
 </style>
 
@@ -794,7 +1048,7 @@ POR ONDE VOCÊ QUER COMEÇAR?
 <button
 class="botao botao-secundario"
 onclick="abrirPagina('match')">
-VISUALIZAR PETS
+MATCH
 </button>
 
 <button
@@ -805,14 +1059,20 @@ CADASTRAR SEU PET
 
 </div>
 
+<div class="painel-tutor-inicio">
+  <h2>VOCÊ É TUTOR DE UM PET?</h2>
+  <p>AQUI VOCÊ TERÁ ACESSO AO SEU CÓDIGO. Ele servirá para que você possa editar o cadastro do pet que você cadastrou na REDE PET, se você cadastrou. Ex.: se seu pet está perdido ou para ser adotado, você pode editar o status dele. Seu código de edição é usado somente para autorizar alterações no cadastro do seu animal.</p>
+  <div class="novo-tutor-inicio">
+    <strong>AINDA NÃO SOU CADASTRADO</strong>
+    <span>Crie seus dados de tutor antes de cadastrar seu pet.</span>
+    <button type="button" id="botaoCadastrarTutorInicio" class="botao botao-secundario" onclick="redeAbrirCadastroTutor(); return false;">CADASTRE-SE</button>
+    <button type="button" id="botaoRecuperarCodigoInicio" class="botao botao-recuperar-inicio" onclick="redeAbrirRecuperacaoTutor(); return false;">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+  </div>
+</div>
+
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     CADASTRO
-===================================================== -->
 
 <section
 id="pet"
@@ -1414,7 +1674,7 @@ id="filtroStatus"
 onchange="aplicarFiltro()">
 
 <option value="TODOS">
-TODOS OS PETS
+PERDIDOS E PARA ADOÇÃO
 </option>
 
 <option value="PERDIDO">
@@ -1434,9 +1694,11 @@ PARA ADOÇÃO
 id="listaPets"
 class="lista-pets">
 
-<div class="carregando">
-CARREGANDO PETS...
+<div class="match-loading" aria-label="Carregando animais">
+    <div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>
+    <div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>
 </div>
+<div class="match-carregando-texto">PROCURANDO ANIMAIS PERDIDOS E PARA ADOÇÃO...</div>
 
 </div>
 
@@ -1478,29 +1740,21 @@ class="pagina">
 MAPA
 </h2>
 
-<div
-id="mapaInfo"
-class="mapa-info">
-
-<p style="color:#666;">
-
-SELECIONE COMO CHEGAR EM UM COMENTÁRIO
-PARA VISUALIZAR O LOCAL.
-
-</p>
-
+<div id="mapaInfo" class="mapa-info">
+<p><strong>MAPA REDE PET</strong><br>VISUALIZE, DE FORMA APROXIMADA, AS REGIÕES ONDE HÁ ANIMAIS CADASTRADOS.</p>
 </div>
-
-
 <div class="mapa-container">
-
-<iframe
-id="mapaIframe"
-class="mapa"
-src="https://www.google.com/maps?q=Caruaru,+Pernambuco&output=embed"
-loading="lazy">
-</iframe>
-
+<div id="mapaRedePet" class="mapa-rede-pet" aria-label="Mapa da REDE PET com regiões e animais cadastrados">
+<div class="mapa-topo"><span>CARUARU • REDE PET</span><span class="mapa-legenda">🐾 ANIMAIS CADASTRADOS</span></div>
+<div class="mapa-cidade">
+<div class="estrada estrada-a"></div><div class="estrada estrada-b"></div><div class="estrada estrada-c"></div><div class="estrada estrada-d"></div><div class="rio"></div>
+<button class="marcador-pet marcador-salgado" onclick="selecionarRegiaoMapa('salgado')" aria-label="Salgado, 2 animais cadastrados"><span>🐾</span><small>SALGADO</small></button>
+<button class="marcador-pet marcador-centro" onclick="selecionarRegiaoMapa('centro')" aria-label="Centro, 1 animal cadastrado"><span>🐾</span><small>CENTRO</small></button>
+<button class="marcador-pet marcador-cidade-jardim" onclick="selecionarRegiaoMapa('cidade-jardim')" aria-label="Cidade Jardim, 1 animal cadastrado"><span>🐾</span><small>CIDADE JARDIM</small></button>
+<div class="mapa-bairro bairro-1">UNIVERSITÁRIO</div><div class="mapa-bairro bairro-2">PETRÓPOLIS</div><div class="mapa-bairro bairro-3">INDIANÓPOLIS</div><div class="mapa-bairro bairro-4">RIACHÃO</div>
+</div>
+<div class="mapa-nota">🐾 As marcações representam <strong>regiões aproximadas</strong>. O endereço exato não é exibido no mapa.</div>
+</div>
 </div>
 
 
@@ -1569,13 +1823,13 @@ id="modalDados">
 
 <button
 type="button"
-class="botao"
-style="margin-top:20px;display:none;"
+class="botao-editar-detalhe"
 id="botaoEditarCadastro"
-onclick="abrirEdicao()">
-
-✏️ EDITAR CADASTRO
-
+onclick="event.stopPropagation();abrirEdicao()"
+aria-label="Editar cadastro deste animal"
+title="Editar cadastro — informe o código do tutor">
+<span class="icone-editar-detalhe" aria-hidden="true">✎</span>
+<span class="texto-editar-detalhe">EDITAR CADASTRO</span>
 </button>
 
 
@@ -2009,6 +2263,8 @@ CARREGANDO COMENTÁRIOS...
 </div>
 
 
+</div>
+
 <!-- VOLTAR -->
 
 <button
@@ -2020,6 +2276,90 @@ onclick="fecharModal()">
 
 </button>
 
+
+
+<!-- MODAIS DO TUTOR -->
+<div id="modalTutorCadastro" class="modal-tutor" aria-hidden="true">
+  <div class="modal-tutor-conteudo">
+    <h2>CADASTRO DO TUTOR</h2>
+    <p id="textoTutorCadastro">Informe seus dados para criar sua identidade na REDE PET.</p>
+    <div id="formTutorCadastro">
+      <div class="campo"><label for="novoTutorNome">NOME</label><input id="novoTutorNome" type="text" autocomplete="name" placeholder="SEU NOME"></div>
+      <div class="campo"><label for="novoTutorTelefone">CONTATO / TELEFONE</label><input id="novoTutorTelefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="COM PREFIXO"></div>
+      <div id="mensagemTutorCadastro" class="tutor-mensagem"></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="salvarNovoTutor()">CRIAR CADASTRO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharModalTutorCadastro()">CANCELAR</button></div>
+    </div>
+    <div id="resultadoTutorCadastro" style="display:none">
+      <div id="mensagemResultadoTutorCadastro" class="tutor-mensagem" style="color:#064e3b"></div>
+      <div class="tutor-codigo-box"><strong>SEU CÓDIGO DE EDIÇÃO</strong><span id="codigoTutorGerado" class="tutor-codigo-valor"></span></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorGerado')">COPIAR CÓDIGO</button><button type="button" class="botao" onclick="continuarParaCadastroPet()">CONTINUAR</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="modalRecuperacaoTutor" class="modal-tutor" aria-hidden="true">
+  <div class="modal-tutor-conteudo">
+    <h2>RECUPERAR CÓDIGO</h2>
+    <p id="textoRecuperacaoTutor">INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.</p>
+    <div id="formRecuperacaoTutor">
+      <div class="campo"><label for="telefoneRecuperacaoTutor">CONTATO / TELEFONE</label><input id="telefoneRecuperacaoTutor" type="tel" inputmode="tel" autocomplete="tel" placeholder="COM PREFIXO"></div>
+      <div id="mensagemRecuperacaoTutor" class="tutor-mensagem"></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="recuperarCodigoTutor()">RECUPERAR CÓDIGO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharRecuperacaoTutor()">FECHAR</button></div>
+    </div>
+    <div id="resultadoRecuperacaoTutor" style="display:none">
+      <div id="mensagemResultadoRecuperacaoTutor" class="tutor-mensagem" style="color:#064e3b"></div>
+      <div class="tutor-codigo-box"><strong>SEU CÓDIGO DE EDIÇÃO</strong><span id="codigoTutorRecuperado" class="tutor-codigo-valor"></span></div>
+      <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="copiarCodigoTutor('codigoTutorRecuperado')">COPIAR CÓDIGO</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharRecuperacaoTutor()">FECHAR</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="modalAutorizacaoEdicao" class="modal-tutor" aria-hidden="true">
+  <div class="modal-tutor-conteudo">
+    <h2>AUTORIZAR EDIÇÃO</h2>
+    <p>Informe o código de edição do tutor responsável por este pet.</p>
+    <div class="campo"><label for="codigoEdicaoTutor">CÓDIGO DE EDIÇÃO</label><input id="codigoEdicaoTutor" type="text" inputmode="text" autocomplete="one-time-code" placeholder="EX.: 1L1H-XZQ6"></div>
+    <div id="mensagemAutorizacaoEdicao" class="tutor-mensagem"></div>
+    <div class="tutor-acoes"><button type="button" class="botao botao-secundario" onclick="autorizarEdicaoPet()">AUTORIZAR E EDITAR</button><button type="button" class="botao botao-tutor-cancelar" onclick="fecharAutorizacaoEdicao()">CANCELAR</button></div>
+    <button type="button" class="botao botao-recuperar-inicio" style="margin-top:10px" onclick="abrirRecuperacaoTutorAPartirDaEdicao()">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+  </div>
+</div>
+
+<script>
+/* ATALHOS DIRETOS DO BLOCO "VOCÊ É TUTOR DE UM PET?" */
+window.redeAbrirCadastroTutor = function(){
+  var m=document.getElementById("modalTutorCadastro");
+  if(!m)return false;
+  m.style.display="flex";
+  m.classList.add("aberto");
+  m.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  var f=document.getElementById("formTutorCadastro");
+  var r=document.getElementById("resultadoTutorCadastro");
+  if(f)f.style.display="block";
+  if(r)r.style.display="none";
+  var msg=document.getElementById("mensagemTutorCadastro");
+  if(msg)msg.textContent="";
+  setTimeout(function(){var n=document.getElementById("novoTutorNome");if(n)n.focus();},50);
+  return false;
+};
+window.redeAbrirRecuperacaoTutor = function(){
+  var m=document.getElementById("modalRecuperacaoTutor");
+  if(!m)return false;
+  m.style.display="flex";
+  m.classList.add("aberto");
+  m.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  var f=document.getElementById("formRecuperacaoTutor");
+  var r=document.getElementById("resultadoRecuperacaoTutor");
+  if(f)f.style.display="block";
+  if(r)r.style.display="none";
+  var msg=document.getElementById("mensagemRecuperacaoTutor");
+  if(msg)msg.textContent="";
+  setTimeout(function(){var t=document.getElementById("telefoneRecuperacaoTutor");if(t)t.focus();},50);
+  return false;
+};
+</script>
 
 <!-- FOTO AMPLIADA -->
 
@@ -2037,7 +2377,7 @@ alt="FOTO AMPLIADA DO PET">
 
 <footer>
 
-REDE PET — PROTÓTIPO
+REDE PET — PROTÓTIPO • v36
 
 </footer>
 
@@ -2088,12 +2428,16 @@ function abrirPagina(nome){
         behavior:"smooth"
     });
 
-    if(
-        nome === "match"
-    ){
-
+    if(nome === "match"){
         carregarPets();
+    }
 
+    if(nome === "mapa"){
+        if(!petsCarregados.length){
+            carregarPets();
+        }else{
+            atualizarMapaComPets();
+        }
     }
 
 }
@@ -2200,6 +2544,67 @@ function gerarTokenProprietario(){
             .substring(2,12)
     );
 
+}
+
+/* =========================
+   IDENTIDADE E FLUXO DO TUTOR
+========================= */
+function gerarIdTutor(){return "TUTOR-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).substring(2,8).toUpperCase();}
+function gerarCodigoTutor(){return Math.random().toString(36).substring(2,6).toUpperCase()+"-"+Math.random().toString(36).substring(2,6).toUpperCase();}
+function obterIdTutorLocal(){return localStorage.getItem("redePetIdTutor")||"";}
+function obterCodigoTutorLocal(){return localStorage.getItem("redePetCodigoTutor")||"";}
+function obterNomeTutorLocal(){return localStorage.getItem("redePetNomeTutor")||"";}
+function obterTelefoneTutorLocal(){return localStorage.getItem("redePetTelefoneTutor")||"";}
+function definirIdentidadeTutor(id,codigo,nome,telefone){if(id)localStorage.setItem("redePetIdTutor",String(id));if(codigo)localStorage.setItem("redePetCodigoTutor",String(codigo).toUpperCase());if(nome!==undefined)localStorage.setItem("redePetNomeTutor",String(nome||""));if(telefone!==undefined)localStorage.setItem("redePetTelefoneTutor",String(telefone||""));}
+function obterIdTutorPet(pet){return campoPet(pet,"ID_Tutor","ID Tutor","Id Tutor","idTutor","id_tutor");}
+function fecharTodosModaisTutor(){
+  ["modalTutorCadastro","modalRecuperacaoTutor","modalAutorizacaoEdicao"].forEach(function(id){
+    const m=document.getElementById(id);
+    if(m){m.classList.remove("aberto");m.style.display="none";m.setAttribute("aria-hidden","true");}
+  });
+  document.body.style.overflow="";
+}
+
+function abrirModalTutorCadastro(){fecharTodosModaisTutor();const m=document.getElementById("modalTutorCadastro");if(!m)return;m.classList.add("aberto");m.style.display="flex";m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";setTimeout(()=>document.getElementById("novoTutorNome")?.focus(),50);}
+function fecharModalTutorCadastro(){const m=document.getElementById("modalTutorCadastro");if(m){m.classList.remove("aberto");m.style.display="none";m.setAttribute("aria-hidden","true");}document.body.style.overflow="";}
+function iniciarCadastroTutorInicio(){abrirModalTutorCadastro();}
+function salvarNovoTutor(){
+  const nome=String(document.getElementById("novoTutorNome")?.value||"").trim();
+  const telefone=String(document.getElementById("novoTutorTelefone")?.value||"").trim();
+  const msg=document.getElementById("mensagemTutorCadastro");
+  if(!nome){msg.textContent="INFORME O NOME DO TUTOR.";return;}
+  if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME UM CONTATO VÁLIDO COM O PREFIXO.";return;}
+  msg.style.color="#064e3b";msg.textContent="CRIANDO CADASTRO...";
+  const cb="redeTutorCadastro_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{
+    if(res&&res.sucesso){
+      definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||nome,res.telefone||telefone);
+      document.getElementById("formTutorCadastro").style.display="none";
+      document.getElementById("resultadoTutorCadastro").style.display="block";
+      document.getElementById("codigoTutorGerado").textContent=res.codigoAcesso||"";
+      document.getElementById("mensagemResultadoTutorCadastro").textContent=res.jaExistia?"VOCÊ JÁ ESTÁ CADASTRADO NA REDE PET.":"SEJA BEM-VINDO À REDE PET!";
+    }else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"NÃO FOI POSSÍVEL CRIAR O CADASTRO AGORA.";}
+  }finally{delete window[cb];}};
+  const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=cadastrarTutor&nome="+encodeURIComponent(nome)+"&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CRIAR O CADASTRO AGORA.";delete window[cb];};document.body.appendChild(s);
+}
+function continuarParaCadastroPet(){fecharModalTutorCadastro();abrirPagina("pet");setTimeout(preencherDadosTutorCadastro,100);}
+function preencherDadosTutorCadastro(){const n=document.getElementById("tutorNome"),t=document.getElementById("tutorContato");if(n){n.value=obterNomeTutorLocal();n.readOnly=!!obterNomeTutorLocal();}if(t){t.value=obterTelefoneTutorLocal();t.readOnly=!!obterTelefoneTutorLocal();}}
+function abrirRecuperacaoTutor(){fecharTodosModaisTutor();const m=document.getElementById("modalRecuperacaoTutor");if(!m)return;m.classList.add("aberto");m.style.display="flex";m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";document.getElementById("formRecuperacaoTutor").style.display="block";document.getElementById("resultadoRecuperacaoTutor").style.display="none";document.getElementById("mensagemRecuperacaoTutor").textContent="";setTimeout(()=>document.getElementById("telefoneRecuperacaoTutor")?.focus(),50);}
+function fecharRecuperacaoTutor(){const m=document.getElementById("modalRecuperacaoTutor");if(m){m.classList.remove("aberto");m.style.display="none";m.setAttribute("aria-hidden","true");}document.body.style.overflow="";}
+function configurarBotaoRecuperacaoInicio(){const b=document.getElementById("botaoRecuperarCodigoInicio");if(!b||b.dataset.recuperacaoConfigurada==="1")return;b.dataset.recuperacaoConfigurada="1";b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();abrirRecuperacaoTutor();});}function abrirRecuperacaoTutorAPartirDaEdicao(){
+    fecharAutorizacaoEdicao();
+    setTimeout(abrirRecuperacaoTutor,50);
+}
+
+function recuperarCodigoTutor(){const telefone=String(document.getElementById("telefoneRecuperacaoTutor")?.value||"").trim();const msg=document.getElementById("mensagemRecuperacaoTutor");if(telefone.replace(/\D/g,"").length<8){msg.textContent="INFORME O CONTATO COM O PREFIXO UTILIZADO NO CADASTRO DO SEU PET.";return;}msg.style.color="#064e3b";msg.textContent="PROCURANDO SEU CADASTRO...";const cb="redeTutorRec_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||telefone);document.getElementById("formRecuperacaoTutor").style.display="none";document.getElementById("resultadoRecuperacaoTutor").style.display="block";document.getElementById("codigoTutorRecuperado").textContent=res.codigoAcesso||"";document.getElementById("mensagemResultadoRecuperacaoTutor").textContent="OLÁ! ENCONTRAMOS SEU CADASTRO.";}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"NENHUM CADASTRO FOI ENCONTRADO.";}}finally{delete window[cb];}};const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=recuperarTutor&telefone="+encodeURIComponent(telefone)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA. VERIFIQUE SE O APPS SCRIPT FOI ATUALIZADO E PUBLICADO.";delete window[cb];};document.body.appendChild(s);setTimeout(function(){if(window[cb]){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL CONSULTAR O CADASTRO AGORA. VERIFIQUE SE O APPS SCRIPT FOI ATUALIZADO E PUBLICADO.";delete window[cb];}},12000);}
+function copiarCodigoTutor(id){const texto=document.getElementById(id)?.textContent||"";if(!texto)return;const ok=()=>{const el=document.getElementById(id);const old=el.textContent;el.textContent="CÓDIGO COPIADO!";setTimeout(()=>el.textContent=old,1200);};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(texto).then(ok).catch(()=>{fallbackCopiar(texto);ok();});else{fallbackCopiar(texto);ok();}}
+function fallbackCopiar(texto){const ta=document.createElement("textarea");ta.value=texto;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}
+function abrirAutorizacaoEdicao(){fecharTodosModaisTutor();const m=document.getElementById("modalAutorizacaoEdicao");if(!m||!petAtual)return;m.classList.add("aberto");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";document.getElementById("codigoEdicaoTutor").value="";document.getElementById("mensagemAutorizacaoEdicao").textContent="";setTimeout(()=>document.getElementById("codigoEdicaoTutor")?.focus(),50);}
+function fecharAutorizacaoEdicao(){const m=document.getElementById("modalAutorizacaoEdicao");if(m){m.classList.remove("aberto");m.setAttribute("aria-hidden","true");}document.body.style.overflow="";}
+function autorizarEdicaoPet(){if(!petAtual)return;const codigo=String(document.getElementById("codigoEdicaoTutor")?.value||"").trim().toUpperCase();const msg=document.getElementById("mensagemAutorizacaoEdicao");if(!codigo){msg.textContent="INFORME O CÓDIGO DE EDIÇÃO.";return;}msg.style.color="#064e3b";msg.textContent="VALIDANDO CÓDIGO...";const cb="redeTutorEdit_"+Date.now()+"_"+Math.floor(Math.random()*100000);window[cb]=function(res){try{if(res&&res.sucesso){definirIdentidadeTutor(res.idTutor,res.codigoAcesso,res.nome||"",res.telefone||"");fecharAutorizacaoEdicao();abrirEdicaoLiberada();}else{msg.style.color="#b91c1c";msg.textContent=(res&&res.erro)||"CÓDIGO NÃO AUTORIZADO.";}}finally{delete window[cb];}};const id=campoPet(petAtual,"ID_Pet","ID Pet","ID","id","Código","Codigo")||"";const s=document.createElement("script");s.src=URL_APPS_SCRIPT+"?acao=autorizarEdicaoPet&idPet="+encodeURIComponent(id)+"&codigoAcesso="+encodeURIComponent(codigo)+"&callback="+cb+"&t="+Date.now();s.async=true;s.onerror=function(){msg.style.color="#b91c1c";msg.textContent="NÃO FOI POSSÍVEL VALIDAR AGORA.";delete window[cb];};document.body.appendChild(s);}
+
+function atualizarPainelTutorInicio(){
+    const box=document.getElementById("identidadeTutorInicio");
+    if(box)box.style.display="none";
 }
 
 
@@ -2371,6 +2776,9 @@ document
             const token =
                 gerarTokenProprietario();
 
+            let codigoTutor = obterCodigoTutorLocal();
+            if(!codigoTutor) codigoTutor = gerarCodigoTutor();
+
             const dados = {
 
                 foto:
@@ -2522,7 +2930,15 @@ document
                         .value,
 
                 tokenProprietario:
-                    token
+                    token,
+
+                /* identidade permanente do tutor;
+                   o backend deve persistir este campo */
+                idTutor:
+                    obterIdTutorLocal(),
+
+                codigoAcessoTutor:
+                    codigoTutor
 
             };
 
@@ -2537,7 +2953,7 @@ document
                 "redePetUltimoToken",
                 token
             );
-
+            definirIdentidadeTutor(obterIdTutorLocal(), codigoTutor);
 
             mensagem.textContent =
                 "PET CADASTRADO COM SUCESSO!";
@@ -2588,138 +3004,71 @@ document
    CARREGAR PETS
 ========================= */
 
-function carregarPets(){
-
-    const lista =
-        document.getElementById(
-            "listaPets"
-        );
-
-    lista.innerHTML =
-        '<div class="carregando">' +
-        'CARREGANDO PETS...' +
-        '</div>';
-
-
-    const token =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
-
-
-    const callback =
-        "redePet_" +
-        Date.now() +
-        "_" +
-        Math.floor(
-            Math.random() * 100000
-        );
-
-
-    let finalizado =
-        false;
-
-
-    window[callback] =
-        function(pets){
-
-            if(finalizado){
-                return;
-            }
-
-            finalizado =
-                true;
-
-            petsCarregados =
-                Array.isArray(
-                    pets
-                )
-                ? pets
-                : [];
-
-            renderizarPets();
-
-            delete window[
-                callback
-            ];
-
-        };
-
-
-    const script =
-        document.createElement(
-            "script"
-        );
-
-
-    script.src =
-        URL_APPS_SCRIPT +
-        "?acao=listarPets" +
-        "&token=" +
-        encodeURIComponent(
-            token
-        ) +
-        "&callback=" +
-        callback +
-        "&t=" +
-        Date.now();
-
-
-    script.async =
-        true;
-
-
-    script.onerror =
-        function(){
-
-            if(finalizado){
-                return;
-            }
-
-            finalizado =
-                true;
-
-            lista.innerHTML =
-                '<div class="carregando">' +
-                'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
-                '</div>';
-
-            delete window[
-                callback
-            ];
-
-        };
-
-
-    document.body.appendChild(
-        script
-    );
-
-
-    setTimeout(
-        function(){
-
-            if(!finalizado){
-
-                finalizado =
-                    true;
-
-                lista.innerHTML =
-                    '<div class="carregando">' +
-                    'NÃO FOI POSSÍVEL CARREGAR OS PETS.' +
-                    '</div>';
-
-                delete window[
-                    callback
-                ];
-
-            }
-
-        },
-        10000
-    );
-
+function mostrarLoadingMatch(){
+    const lista=document.getElementById("listaPets");
+    if(!lista)return;
+    lista.innerHTML='<div class="match-loading" aria-label="Carregando animais">'+
+        '<div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>'+
+        '<div class="match-skeleton"><div class="match-skeleton-foto"></div><div class="match-skeleton-linha"></div><div class="match-skeleton-status"></div></div>'+
+        '</div><div class="match-carregando-texto">PROCURANDO ANIMAIS PERDIDOS E PARA ADOÇÃO...</div>';
 }
+
+function carregarPets(forcar){
+    const lista=document.getElementById("listaPets");
+    if(!lista)return;
+    if(!forcar && Array.isArray(petsCarregados) && petsCarregados.length){ renderizarPets(); return; }
+    if(window.redePetCarregandoPets)return;
+    window.redePetCarregandoPets=true;
+    mostrarLoadingMatch();
+    const token=localStorage.getItem("redePetUltimoToken")||"";
+    const callback="redePet_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+    let finalizado=false;
+    function fim(){window.redePetCarregandoPets=false;}
+    window[callback]=function(pets){
+        if(finalizado)return;
+        finalizado=true;
+        petsCarregados=Array.isArray(pets)?pets:[];
+
+        // RECUPERA A IDENTIDADE DO TUTOR A PARTIR DO TOKEN
+        // caso o localStorage tenha sido recriado/limpo.
+        const tokenLocal=localStorage.getItem("redePetUltimoToken")||"";
+        if(tokenLocal){
+            const petComToken=petsCarregados.find(function(p){
+                const t=campoPet(p,"Token Proprietario","Token Proprietário","tokenProprietario");
+                return t && String(t).trim()===String(tokenLocal).trim();
+            });
+            if(petComToken){
+                const idDoPet=obterIdTutorPet(petComToken);
+                if(idDoPet){
+                    localStorage.setItem("redePetIdTutor",String(idDoPet));
+                }
+            }
+        }
+
+        fim();
+        renderizarPets();
+        atualizarMapaComPets();
+        delete window[callback];
+    };
+    const script=document.createElement("script");
+    script.src=URL_APPS_SCRIPT+"?acao=listarPets&token="+encodeURIComponent(token)+"&idTutor="+encodeURIComponent("")+"&callback="+callback+"&t="+Date.now();
+    script.async=true;
+    script.onerror=function(){
+        if(finalizado)return;
+        finalizado=true; fim();
+        lista.innerHTML='<div class="carregando">NÃO FOI POSSÍVEL CARREGAR OS PETS. TENTE NOVAMENTE.</div>';
+        delete window[callback];
+    };
+    document.body.appendChild(script);
+    setTimeout(function(){
+        if(!finalizado){
+            finalizado=true; fim();
+            lista.innerHTML='<div class="carregando">A BUSCA ESTÁ DEMORANDO MAIS QUE O NORMAL. TENTE NOVAMENTE.</div>';
+            delete window[callback];
+        }
+    },15000);
+}
+
 
 
 /* =========================
@@ -2809,231 +3158,43 @@ function normalizarStatus(
 ========================= */
 
 function renderizarPets(){
-
-    const lista =
-        document.getElementById(
-            "listaPets"
-        );
-
-    const filtro =
-        document.getElementById(
-            "filtroStatus"
-        ).value;
-
-
-    lista.innerHTML =
-        "";
-
-
-    const token =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
-
-
-    const pets =
-        petsCarregados.filter(
-            function(pet){
-
-                const status =
-                    normalizarStatus(
-                        campoPet(
-                            pet,
-                            "Status",
-                            "status"
-                        )
-                    );
-
-
-                /*
-                 * O BACKEND JÁ ESCONDE
-                 * ENCONTRADO E ADOTADO.
-                 *
-                 * Esta proteção adicional
-                 * evita que sejam renderizados
-                 * publicamente.
-                 */
-
-                const idPet =
-                    campoPet(
-                        pet,
-                        "ID_Pet",
-                        "ID",
-                        "id"
-                    );
-
-                const tokenPet =
-                    campoPet(
-                        pet,
-                        "Token Proprietario",
-                        "tokenProprietario"
-                    );
-
-
-                const ehMeu =
-                    token &&
-                    tokenPet &&
-                    String(token) ===
-                    String(tokenPet);
-
-
-                if(
-                    (
-                        status ===
-                        "ENCONTRADO" ||
-                        status ===
-                        "ADOTADO"
-                    ) &&
-                    !ehMeu
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    filtro ===
-                    "TODOS"
-                ){
-
-                    return true;
-
-                }
-
-
-                return (
-                    status ===
-                    filtro
-                );
-
-            }
-        );
-
-
+    const lista=document.getElementById("listaPets");
+    const filtro=document.getElementById("filtroStatus").value;
+    lista.innerHTML="";
+    const token=localStorage.getItem("redePetUltimoToken")||"";
+    const idTutor=obterIdTutorLocal();
+    const pets=petsCarregados.filter(function(pet){
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        if(status!=="PERDIDO" && status!=="PARA ADOÇÃO")return false;
+        if(filtro==="PERDIDO")return status==="PERDIDO";
+        if(filtro==="PARA ADOÇÃO")return status==="PARA ADOÇÃO";
+        return true;
+    });
     if(!pets.length){
-
-        lista.innerHTML =
-            '<div class="carregando">' +
-            'NENHUM PET ENCONTRADO.' +
-            '</div>';
-
+        lista.innerHTML='<div class="carregando">NENHUM ANIMAL PERDIDO OU PARA ADOÇÃO FOI ENCONTRADO.</div>';
         return;
-
     }
-
-
-    pets.forEach(
-        function(pet){
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "pet-card";
-
-
-            card.onclick =
-                function(){
-
-                    abrirModal(
-                        pet
-                    );
-
-                };
-
-
-            const foto =
-                campoPet(
-                    pet,
-                    "Foto",
-                    "foto"
-                );
-
-
-            const nome =
-                campoPet(
-                    pet,
-                    "Nome",
-                    "nome"
-                ) ||
-                "PET";
-
-
-            const status =
-                normalizarStatus(
-                    campoPet(
-                        pet,
-                        "Status",
-                        "status"
-                    )
-                );
-
-
-            let imagem =
-                '<div class="pet-sem-foto">' +
-                'SEM FOTO' +
-                '</div>';
-
-
-            if(foto){
-
-                imagem =
-                    '<img ' +
-                    'class="pet-foto" ' +
-                    'src="' +
-                    escaparHTML(
-                        foto
-                    ) +
-                    '" ' +
-                    'alt="FOTO DO PET">';
-
-            }
-
-
-            /*
-             * MATCH:
-             * FOTO
-             * NOME
-             * STATUS
-             */
-
-            card.innerHTML =
-
-                imagem +
-
-                '<div class="pet-resumo">' +
-
-                '<h3 class="pet-nome">' +
-
-                escaparHTML(
-                    nome
-                ) +
-
-                '</h3>' +
-
-                '<span class="pet-status">' +
-
-                escaparHTML(
-                    status
-                ) +
-
-                '</span>' +
-
-                '</div>';
-
-
-            lista.appendChild(
-                card
-            );
-
+    pets.forEach(function(pet,indice){
+        const card=document.createElement("article");
+        card.className="pet-card";
+        card.onclick=function(){abrirModal(pet);};
+        const foto=campoPet(pet,"Foto","foto");
+        const nome=campoPet(pet,"Nome","nome")||"PET";
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        let imagem='<div class="pet-sem-foto">SEM FOTO</div>';
+        if(foto){
+            imagem='<div class="pet-foto-area" style="position:relative;width:100%;height:240px;background:#e6ebe8;overflow:hidden;">'+
+            '<div class="pet-sem-foto" style="position:absolute;inset:0;height:240px;">CARREGANDO FOTO...</div>'+
+            '<img class="pet-foto" src="'+escaparHTML(foto)+'" alt="FOTO DO PET" '+(indice===0?'fetchpriority="high"':'loading="lazy"')+' decoding="async" onload="this.previousElementSibling.style.display=\'none\';this.style.opacity=\'1\';" onerror="this.style.display=\'none\';this.previousElementSibling.textContent=\'FOTO INDISPONÍVEL\';">'+
+            '</div>';
         }
-    );
-
+        card.innerHTML=imagem+'<div class="pet-resumo">'+
+            '<div class="pet-topo-resumo"><h3 class="pet-nome">'+escaparHTML(nome)+'</h3></div>'+
+            '<span class="pet-status">'+escaparHTML(status)+'</span></div>';
+        lista.appendChild(card);
+    });
 }
+
 
 
 function aplicarFiltro(){
@@ -3051,6 +3212,13 @@ function abrirModal(
     pet
 ){
 
+    // Abrir um pet é somente visualizar os detalhes.
+    // Mostramos o modal imediatamente, antes de processar qualquer campo.
+    // O código de edição só é solicitado ao clicar em "EDITAR CADASTRO".
+    const modalDetalhe=document.getElementById("modal");
+    if(modalDetalhe){ modalDetalhe.classList.add("aberto"); document.body.style.overflow="hidden"; }
+    try{ fecharTodosModaisTutor(); }catch(e){}
+    if(modalDetalhe){ modalDetalhe.classList.add("aberto"); document.body.style.overflow="hidden"; }
     petAtual =
         pet;
 
@@ -3516,99 +3684,42 @@ function mostrarDadosPet(
 
 
 /* =========================
-   PERMISSÃO
+   PERMISSÃO / CANETA DO TUTOR
 ========================= */
-
 function verificarPermissaoEdicao(){
-
-    const botao =
-        document.getElementById(
-            "botaoEditarCadastro"
-        );
-
-
-    if(
-        !petAtual
-    ){
-
-        botao.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    const tokenLocal =
-        localStorage.getItem(
-            "redePetUltimoToken"
-        ) || "";
-
-
-    const tokenPet =
-        campoPet(
-            petAtual,
-            "Token Proprietario",
-            "Token Proprietário",
-            "tokenProprietario"
-        );
-
-
-    if(
-        tokenLocal &&
-        tokenPet &&
-        String(tokenLocal) ===
-        String(tokenPet)
-    ){
-
-        botao.style.display =
-            "inline-block";
-
-    }else{
-
-        botao.style.display =
-            "none";
-
-    }
-
+    const botao=document.getElementById("botaoEditarCadastro");
+    if(!botao)return;
+    // A caneta fica disponível no detalhe do pet.
+    // A autorização NÃO acontece ao abrir o animal; ela só acontece ao clicar na caneta.
+    botao.style.display=petAtual?"inline-flex":"none";
 }
-
-
-/* =========================
-   ABRIR EDIÇÃO
-========================= */
 
 function abrirEdicao(){
-
-    if(
-        !petAtual
-    ){
-        return;
+    if(!petAtual)return;
+    // A caneta é o único ponto que pede o código do tutor.
+    try{
+        const m=document.getElementById("modalAutorizacaoEdicao");
+        if(m){
+            m.style.display="flex";
+            m.classList.add("aberto");
+            m.setAttribute("aria-hidden","false");
+            document.body.style.overflow="hidden";
+            const campo=document.getElementById("codigoEdicaoTutor");
+            const msg=document.getElementById("mensagemAutorizacaoEdicao");
+            if(campo)campo.value="";
+            if(msg)msg.textContent="";
+            setTimeout(function(){if(campo)campo.focus();},50);
+        }
+    }catch(e){
+        console.error("REDE PET - erro ao abrir autorização:",e);
     }
-
-
-    preencherEdicao();
-
-
-    document
-        .getElementById(
-            "edicaoCadastro"
-        )
-        .style.display =
-        "block";
-
-
-    document
-        .getElementById(
-            "edicaoCadastro"
-        )
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
 }
-
+function abrirEdicaoLiberada(){
+    if(!petAtual)return;
+    preencherEdicao();
+    document.getElementById("edicaoCadastro").style.display="block";
+    document.getElementById("edicaoCadastro").scrollIntoView({behavior:"smooth",block:"start"});
+}
 
 function fecharEdicao(){
 
@@ -3922,17 +4033,13 @@ function salvarEdicaoPet(){
             "redePetUltimoToken"
         ) || "";
 
+    const codigoTutorEdicao = obterCodigoTutorLocal();
 
-    if(
-        !token
-    ){
-
+    if(!token && !codigoTutorEdicao){
         mostrarMensagemEdicao(
-            "VOCÊ NÃO POSSUI O TOKEN DESTE CADASTRO."
+            "AUTORIZE A EDIÇÃO COM O CÓDIGO DO TUTOR."
         );
-
         return;
-
     }
 
 
@@ -3947,6 +4054,12 @@ function salvarEdicaoPet(){
 
         tokenProprietario:
             token,
+
+        idTutor:
+            obterIdTutorLocal(),
+
+        codigoAcessoTutor:
+            obterCodigoTutorLocal(),
 
         nome:
             document
@@ -4387,6 +4500,8 @@ function fecharFotoAmpliada(){
 ========================= */
 
 function fecharModal(){
+
+    fecharTodosModaisTutor();
 
     document
         .getElementById(
@@ -4962,88 +5077,108 @@ function curtirComentarioHTML(
 }
 
 
+
+/* =========================
+   MAPA DINÂMICO POR BAIRRO
+========================= */
+
+const REDE_PET_BAIRROS_MAPA={
+    "alto do moura":{label:"ALTO DO MOURA",left:"12%",top:"24%"},
+    "cidade jardim":{label:"CIDADE JARDIM",left:"72%",top:"68%"},
+    "salgado":{label:"SALGADO",left:"20%",top:"32%"},
+    "centro":{label:"CENTRO",left:"50%",top:"45%"},
+    "universitário":{label:"UNIVERSITÁRIO",left:"10%",top:"60%"},
+    "universitario":{label:"UNIVERSITÁRIO",left:"10%",top:"60%"},
+    "petrópolis":{label:"PETRÓPOLIS",left:"74%",top:"20%"},
+    "petropolis":{label:"PETRÓPOLIS",left:"74%",top:"20%"},
+    "indianópolis":{label:"INDIANÓPOLIS",left:"70%",top:"42%"},
+    "indianopolis":{label:"INDIANÓPOLIS",left:"70%",top:"42%"},
+    "riachão":{label:"RIACHÃO",left:"18%",top:"78%"},
+    "riachao":{label:"RIACHÃO",left:"18%",top:"78%"}
+};
+
+function chaveBairroMapa(valor){
+    return String(valor||"").trim().toLowerCase().replace(/\s+/g," ");
+}
+
+function atualizarMapaComPets(){
+    const mapa=document.querySelector("#mapaRedePet .mapa-cidade");
+    if(!mapa || !Array.isArray(petsCarregados))return;
+    mapa.querySelectorAll(".marcador-dinamico-pet").forEach(function(el){el.remove();});
+    /* Os marcadores antigos eram exemplos fixos. Depois que os dados reais
+       chegam, eles ficam ocultos para nunca colocar um PET no bairro errado. */
+    mapa.querySelectorAll(".marcador-pet:not(.marcador-dinamico-pet)").forEach(function(el){
+        el.style.display="none";
+    });
+    const grupos={};
+    petsCarregados.forEach(function(pet){
+        const status=normalizarStatus(campoPet(pet,"Status","status"));
+        /* O mapa mostra todos os animais cadastrados; o filtro
+           exclusivo de Perdidos + Para adoção pertence ao Match. */
+        const bairro=campoPet(pet,"Bairro","bairro");
+        const chave=chaveBairroMapa(bairro);
+        if(!chave)return;
+        if(!grupos[chave])grupos[chave]={bairro:bairro,pets:[]};
+        grupos[chave].pets.push(pet);
+    });
+    Object.keys(grupos).forEach(function(chave){
+        const grupo=grupos[chave];
+        const cfg=REDE_PET_BAIRROS_MAPA[chave] || {label:String(grupo.bairro).toUpperCase(),left:"50%",top:"50%"};
+        const btn=document.createElement("button");
+        btn.type="button";
+        btn.className="marcador-pet marcador-dinamico-pet";
+        btn.style.left=cfg.left;
+        btn.style.top=cfg.top;
+        btn.style.right="auto";
+        btn.style.bottom="auto";
+        btn.innerHTML='<span>🐾</span><small>'+escaparHTML(cfg.label)+' • '+grupo.pets.length+'</small>';
+        btn.setAttribute("aria-label",cfg.label+", "+grupo.pets.length+" animais");
+        btn.onclick=function(){
+            document.querySelectorAll('.marcador-pet').forEach(function(b){b.classList.remove('ativo');});
+            btn.classList.add('ativo');
+            const nomes=grupo.pets.map(function(p){return campoPet(p,"Nome","nome")||"PET";}).join(" • ");
+            const info=document.getElementById("mapaInfo");
+            if(info)info.innerHTML='<p><strong>'+escaparHTML(cfg.label)+'</strong><br>'+grupo.pets.length+' '+(grupo.pets.length===1?'animal':'animais')+' cadastrado(s)<br><span style="color:#666;">'+escaparHTML(nomes)+'</span></p>';
+            const area=document.getElementById("botaoMapaArea");
+            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(cfg.label)}')">📍 COMO CHEGAR À REGIÃO</button>`;
+        };
+        mapa.appendChild(btn);
+    });
+}
+
 /* =========================
    MAPA
 ========================= */
 
-function abrirMapaDoComentario(
-    local
-){
+function selecionarRegiaoMapa(regiao){
+    const dados={
+        salgado:{nome:"SALGADO",quantidade:"2 animais cadastrados",animais:"Thor • Perdido | Mel • Encontrado"},
+        centro:{nome:"CENTRO",quantidade:"1 animal cadastrado",animais:"Nina • Para adoção"},
+        "cidade-jardim":{nome:"CIDADE JARDIM",quantidade:"1 animal cadastrado",animais:"Rex • Perdido"}
+    };
+    const item=dados[regiao]; if(!item)return;
+    document.querySelectorAll('.marcador-pet').forEach(function(botao){botao.classList.remove('ativo');});
+    const botao=document.querySelector('.marcador-'+regiao); if(botao)botao.classList.add('ativo');
+    const info=document.getElementById('mapaInfo');
+    if(info)info.innerHTML='<p><strong>'+item.nome+'</strong><br>'+item.quantidade+'<br><span style="color:#666;">'+item.animais+'</span></p>';
+    const area=document.getElementById('botaoMapaArea');
+            if(area)area.innerHTML=`<button class="botao-localizacao" type="button" onclick="abrirNavegacaoRegiao('${escaparHTML(item.nome)}')">📍 COMO CHEGAR À REGIÃO</button>`;
+}
 
-    if(
-        !local
-    ){
-        return;
-    }
+function abrirNavegacaoRegiao(local){
+    const encoded=encodeURIComponent(local+', Caruaru, Pernambuco');
+    const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;
+    window.open(url,'_blank','noopener,noreferrer');
+}
 
-
-    localMapaAtual =
-        local;
-
-
-    const mapa =
-        document.getElementById(
-            "mapaIframe"
-        );
-
-
-    const info =
-        document.getElementById(
-            "mapaInfo"
-        );
-
-
-    const area =
-        document.getElementById(
-            "botaoMapaArea"
-        );
-
-
-    const encoded =
-        encodeURIComponent(
-            local
-        );
-
-
-    mapa.src =
-        "https://www.google.com/maps?q=" +
-        encoded +
-        "&output=embed";
-
-
-    info.innerHTML =
-        '<p>' +
-        '<strong>LOCAL INFORMADO:</strong><br>' +
-        escaparHTML(
-            local
-        ) +
-        '</p>';
-
-
-    const url =
-        "https://www.google.com/maps/dir/?api=1&destination=" +
-        encoded;
-
-
-    area.innerHTML =
-        '<a class="botao-como-chegar" ' +
-        'href="' +
-        escaparHTML(
-            url
-        ) +
-        '" target="_blank" ' +
-        'rel="noopener noreferrer">' +
-        '📍 COMO CHEGAR ATÉ O LOCAL' +
-        '</a>';
-
-
-    fecharModal();
-
-
-    abrirPagina(
-        "mapa"
-    );
-
+function abrirMapaDoComentario(local){
+    if(!local)return;
+    localMapaAtual=local;
+    const info=document.getElementById('mapaInfo');
+    const area=document.getElementById('botaoMapaArea');
+    if(info)info.innerHTML='<p><strong>LOCAL INFORMADO:</strong><br>'+escaparHTML(local)+'<br><span style="color:#666;">O mapa apresenta regiões aproximadas. Para a rota, use o botão abaixo.</span></p>';
+    if(area){const encoded=encodeURIComponent(local);const url='https://www.google.com/maps/dir/?api=1&destination='+encoded;area.innerHTML='<a class="botao-como-chegar" href="'+escaparHTML(url)+'" target="_blank" rel="noopener noreferrer">📍 COMO CHEGAR ATÉ O LOCAL</a>';}
+    fecharModal(); abrirPagina('mapa');
 }
 
 
@@ -5347,8 +5482,55 @@ document.addEventListener(
     }
 );
 
+document.addEventListener("DOMContentLoaded",function(){
+    preencherDadosTutorCadastro();
+});
+
+</script>
+
+<script>
+/* REDE PET v36 — FAILSAFE DOS CLIQUES PRINCIPAIS */
+(function(){
+  function tutorModal(id){
+    var m=document.getElementById(id);
+    if(!m)return false;
+    document.querySelectorAll('.modal-tutor').forEach(function(x){x.classList.remove('aberto');x.style.display='none';x.setAttribute('aria-hidden','true');});
+    m.style.display='flex';m.classList.add('aberto');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+    return true;
+  }
+  function cadastro(){
+    if(!tutorModal('modalTutorCadastro'))return false;
+    var f=document.getElementById('formTutorCadastro'),r=document.getElementById('resultadoTutorCadastro'),msg=document.getElementById('mensagemTutorCadastro');
+    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
+    setTimeout(function(){var x=document.getElementById('novoTutorNome');if(x)x.focus();},50);return false;
+  }
+  function recuperacao(){
+    if(!tutorModal('modalRecuperacaoTutor'))return false;
+    var f=document.getElementById('formRecuperacaoTutor'),r=document.getElementById('resultadoRecuperacaoTutor'),msg=document.getElementById('mensagemRecuperacaoTutor');
+    if(f)f.style.display='block';if(r)r.style.display='none';if(msg)msg.textContent='';
+    setTimeout(function(){var x=document.getElementById('telefoneRecuperacaoTutor');if(x)x.focus();},50);return false;
+  }
+  function autorizacao(){
+    if(!window.petAtual)return false;
+    if(!tutorModal('modalAutorizacaoEdicao'))return false;
+    var c=document.getElementById('codigoEdicaoTutor'),msg=document.getElementById('mensagemAutorizacaoEdicao');
+    if(c)c.value='';if(msg)msg.textContent='';setTimeout(function(){if(c)c.focus();},50);return false;
+  }
+  window.redeAbrirCadastroTutor=cadastro;
+  window.redeAbrirRecuperacaoTutor=recuperacao;
+  window.redeAbrirAutorizacaoEdicao=autorizacao;
+  document.addEventListener('DOMContentLoaded',function(){
+    var a=document.getElementById('botaoCadastrarTutorInicio');
+    if(a)a.onclick=function(e){e.preventDefault();e.stopPropagation();return cadastro();};
+    var b=document.getElementById('botaoRecuperarCodigoInicio');
+    if(b)b.onclick=function(e){e.preventDefault();e.stopPropagation();return recuperacao();};
+    var c=document.getElementById('botaoEditarCadastro');
+    if(c)c.onclick=function(e){e.preventDefault();e.stopPropagation();return autorizacao();};
+  });
+})();
 </script>
 
 </body>
 
 </html>
+
