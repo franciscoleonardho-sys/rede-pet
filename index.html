@@ -1,4 +1,4 @@
-<!-- REDE PET v18: Versão Completa e Integrada (Início/Feed, Match, Cadastro Fiel, Mapa e Sobre Nós) -->
+<!-- REDE PET v19: Versão Completa e Integrada (Início/Feed, Match, Cadastro Fiel, Mapa e Sobre Nós) -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -76,12 +76,6 @@ button{
 .botao-secundario{
     background:#064e3b;
     color:white;
-}
-
-.botao-secundario:hover{
-    background:#04392b;
-    color:white;
-    opacity:1;
 }
 
 /* INÍCIO & FEED */
@@ -351,22 +345,6 @@ textarea{
     overflow-y:auto;
 }
 
-/* COMENTÁRIOS */
-
-.comentarios-bloco{
-    margin-top:25px;
-    padding-top:20px;
-    border-top:1px solid #ddd;
-}
-
-.form-comentario{
-    background:#f5f7f6;
-    border:1px solid #dfe5e2;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:15px;
-}
-
 /* MAPA INTERATIVO */
 
 .mapa-container{
@@ -399,7 +377,6 @@ textarea{
 .mapa-cidade{
     position:relative;
     height:450px;
-    overflow:hidden;
     background:linear-gradient(135deg,#e7ece9,#f4f5f1 45%,#e6ece8);
 }
 
@@ -417,4 +394,679 @@ textarea{
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    transition:transform .15
+}
+
+.marcador-perdido { color: #b91c1c; border-color: #b91c1c; }
+.marcador-adocao  { color: #0284c7; border-color: #0284c7; }
+.marcador-adotado { color: #15803d; border-color: #15803d; }
+
+/* PAINEL DO TUTOR */
+
+.painel-tutor-inicio{
+    max-width:650px;
+    margin:35px auto 0;
+    padding:22px;
+    background:#fff;
+    border:1px solid #d8dfdb;
+    border-radius:12px;
+    text-align:left;
+}
+
+.painel-tutor-inicio h2{
+    margin:0 0 8px;
+    color:#064e3b;
+    font-size:21px;
+}
+
+.painel-tutor-inicio p{
+    margin:0 0 16px;
+    color:#064e3b;
+    font-size:14px;
+}
+
+.novo-tutor-inicio{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid #e5e9e7;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.botao-recuperar-inicio{
+    background:#b91c1c !important;
+    color:#fff !important;
+}
+
+/* RODAPÉ DE NAVEGAÇÃO */
+
+.rodape-navegacao{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin-top:35px;
+    padding:20px 0;
+    border-top:1px solid #ddd;
+}
+
+.rodape-navegacao .botao{
+    width:100%;
+}
+
+section#pet .rodape-navegacao{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+/* SOBRE NÓS */
+.sobre-card{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.pilares-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:15px;
+    margin-top:15px;
+}
+
+.pilar-box{
+    background:#f5f7f6;
+    border:1px solid #dfe5e2;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+}
+
+@media(max-width:700px){
+    .linha{ grid-template-columns:1fr; }
+    .botoes-inicio{ display:grid; grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">REDE PET</div>
+</header>
+
+<main class="container">
+
+<!-- =====================================================
+     1. INÍCIO / FEED
+===================================================== -->
+<section id="inicio" class="pagina ativa">
+  <div class="inicio">
+    <h1>O QUE É A REDE PET?</h1>
+    <p>UMA PLATAFORMA COMUNITÁRIA E TECNOLÓGICA VOLTADA À PROTEÇÃO E AO REENCONTRO DE ANIMAIS.</p>
+
+    <h2>POR ONDE VOCÊ QUER COMEÇAR?</h2>
+
+    <div class="botoes-inicio">
+      <button class="botao botao-secundario" onclick="abrirPagina('match')">MATCH</button>
+      <button class="botao" onclick="abrirPagina('pet')">CADASTRAR SEU PET</button>
+      <button class="botao botao-secundario" onclick="abrirPagina('mapa')">MAPA</button>
+      <button class="botao botao-secundario" onclick="abrirPagina('sobre')">SOBRE NÓS</button>
+    </div>
+
+    <!-- PAINEL DE IDENTIFICAÇÃO DO TUTOR -->
+    <div class="painel-tutor-inicio">
+      <h2>VOCÊ É TUTOR DE UM PET?</h2>
+      <p>Informe seu WhatsApp para gerenciar e editar os status dos seus pets cadastrados na plataforma.</p>
+      
+      <div style="display:flex; gap:10px; margin-bottom:15px;">
+        <input type="text" id="tutorWhatsInput" placeholder="WhatsApp (ex: 81999999999)">
+        <button type="button" class="botao" onclick="loginTutorNaInicio()">ENTRAR</button>
+      </div>
+      <div id="msgTutorInicio" style="font-weight:bold; font-size:13px; margin-bottom:10px;"></div>
+
+      <div class="novo-tutor-inicio">
+        <strong>AINDA NÃO SOU CADASTRADO</strong>
+        <span>Crie seus dados de tutor antes ou durante o cadastro do seu pet.</span>
+        <button type="button" class="botao botao-recuperar-inicio" onclick="recuperarCodigoTutor()">NÃO LEMBRO MEU CÓDIGO DE ACESSO</button>
+      </div>
+    </div>
+
+    <!-- FEED DA COMUNIDADE -->
+    <div class="bloco" style="margin-top:35px; text-align:left;">
+      <h2 style="text-align:center;">FEED DA COMUNIDADE</h2>
+      <p style="text-align:center; margin-bottom:20px; font-size:14px;">Acompanhe feiras de adoção, campanhas de castração, vacinação e avisos importantes.</p>
+
+      <div style="background:#f7faf8; border:1px solid #d8dfdb; border-radius:10px; padding:15px; margin-bottom:20px;">
+        <h3 style="font-size:15px; color:#064e3b; margin-bottom:10px;">Compartilhar Informação no Feed</h3>
+        <input type="text" id="feedTitulo" placeholder="Título (Ex: Feira de Adoção)" style="margin-bottom:8px;">
+        <textarea id="feedTexto" placeholder="Detalhes da ação..." style="margin-bottom:8px; min-height:60px;"></textarea>
+        <button type="button" class="botao" onclick="publicarNoFeed()" style="padding:10px 18px; font-size:13px;">Publicar no Feed</button>
+      </div>
+
+      <div id="listaFeed" style="display:flex; flex-direction:column; gap:15px;">
+        <div style="background:#fff; border:1px solid #d8dfdb; border-radius:10px; padding:18px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="color:#064e3b; font-size:16px;">🐾 Feira de Adoção e Apoio Animal</strong>
+            <span style="font-size:12px; color:#777;">Hoje</span>
+          </div>
+          <p style="margin-bottom:10px; color:#333;">Participe do nosso encontro no centro! Teremos orientação técnica e apoio para cadastro na REDE PET.</p>
+          
+          <div style="display:flex; gap:15px; align-items:center; border-top:1px solid #eee; padding-top:10px; font-size:13px;">
+            <button onclick="curtirItem(this)" style="background:none; border:none; cursor:pointer; font-weight:bold; color:#064e3b;">
+              ❤️ <span>12</span> Curtidas
+            </button>
+            <button onclick="compartilharItem('Feira de Adoção REDE PET')" style="background:none; border:none; cursor:pointer; font-weight:bold; color:#064e3b;">
+              🔗 Compartilhar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================
+     2. CADASTRO DO PET (FIEL AO ORIGINAL)
+===================================================== -->
+<section id="pet" class="pagina">
+  <form id="formPet" onsubmit="cadastrarPet(event)">
+    <div class="bloco">
+      <h2>DADOS DO PET</h2>
+
+      <div class="campo">
+        <label>FOTO DO ANIMAL (URL)</label>
+        <input type="url" id="foto" placeholder="https://...">
+      </div>
+
+      <div class="campo">
+        <label>STATUS DO ANIMAL</label>
+        <div class="opcoes opcoes-2x2">
+          <button type="button" class="opcao" onclick="selecionar(this,'status','Perdido')">PERDIDO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'status','Para adoção')">PARA ADOÇÃO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'status','Encontrado')">ENCONTRADO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'status','Adotado')">ADOTADO</button>
+        </div>
+        <input type="hidden" id="status" required>
+      </div>
+
+      <div class="campo">
+        <label>NOME DO PET</label>
+        <input id="nome" required>
+      </div>
+
+      <div class="campo">
+        <label>IDADE</label>
+        <div class="opcoes opcoes-2x2">
+          <button type="button" class="opcao" onclick="selecionar(this,'idade','Filhote (até 1 ano)')">FILHOTE (ATÉ 1 ANO)</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'idade','Jovem (1 a 3 anos)')">JOVEM (1 A 3 ANOS)</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'idade','Adulto (3 a 8 anos)')">ADULTO (3 A 8 ANOS)</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'idade','Idoso (8+ anos)')">IDOSO (8+ ANOS)</button>
+        </div>
+        <input type="hidden" id="idade">
+      </div>
+
+      <div class="campo">
+        <label>PESO APROXIMADO</label>
+        <div class="peso-controle">
+          <button type="button" onclick="alterarPeso(-1)">−</button>
+          <div class="peso-valor"><span id="pesoValor">0</span> KG</div>
+          <button type="button" onclick="alterarPeso(1)">+</button>
+        </div>
+        <input type="hidden" id="peso" value="0">
+      </div>
+
+      <div class="campo">
+        <label>ESPÉCIE</label>
+        <div class="opcoes opcoes-3">
+          <button type="button" class="opcao" onclick="selecionar(this,'especie','Cão')">CÃO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'especie','Gato')">GATO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'especie','Outro')">OUTRO</button>
+        </div>
+        <input type="hidden" id="especie">
+        <input id="especieOutro" placeholder="SE ESCOLHEU OUTRO, ESPECIFIQUE" style="display:none;margin-top:10px">
+      </div>
+
+      <div class="campo">
+        <label>RAÇA</label>
+        <input id="raca">
+      </div>
+
+      <div class="campo">
+        <label>SEXO</label>
+        <div class="opcoes opcoes-sexo">
+          <button type="button" class="opcao" onclick="selecionar(this,'sexo','Macho')">MACHO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'sexo','Fêmea')">FÊMEA</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'sexo','Não identificado')">NÃO IDENTIFICADO</button>
+        </div>
+        <input type="hidden" id="sexo">
+      </div>
+
+      <div class="campo">
+        <label>PORTE</label>
+        <div class="opcoes opcoes-3">
+          <button type="button" class="opcao" onclick="selecionar(this,'porte','Pequeno')">PEQUENO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'porte','Médio')">MÉDIO</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'porte','Grande')">GRANDE</button>
+        </div>
+        <input type="hidden" id="porte">
+      </div>
+
+      <div class="campo">
+        <label>COR</label>
+        <input id="cor">
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label>É CASTRADO?</label>
+          <div class="opcoes opcoes-3">
+            <button type="button" class="opcao" onclick="selecionar(this,'castrado','Sim')">SIM</button>
+            <button type="button" class="opcao" onclick="selecionar(this,'castrado','Não')">NÃO</button>
+            <button type="button" class="opcao" onclick="selecionar(this,'castrado','Não sei')">NÃO SEI</button>
+          </div>
+          <input type="hidden" id="castrado">
+        </div>
+
+        <div class="campo">
+          <label>É VACINADO?</label>
+          <div class="opcoes opcoes-3">
+            <button type="button" class="opcao" onclick="selecionar(this,'vacinado','Sim')">SIM</button>
+            <button type="button" class="opcao" onclick="selecionar(this,'vacinado','Não')">NÃO</button>
+            <button type="button" class="opcao" onclick="selecionar(this,'vacinado','Não sei')">NÃO SEI</button>
+          </div>
+          <input type="hidden" id="vacinado">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>ÚLTIMA VEZ EM QUE FOI VISTO</label>
+        <input type="datetime-local" id="ultimaVez">
+      </div>
+
+      <div class="campo">
+        <label>PONTO DE REFERÊNCIA</label>
+        <input id="pontoReferencia" placeholder="EX.: PRÓXIMO À PRAÇA">
+      </div>
+
+      <div class="campo">
+        <label>OBSERVAÇÕES</label>
+        <textarea id="observacoes"></textarea>
+      </div>
+    </div>
+
+    <div class="bloco">
+      <h2>DADOS DO TUTOR</h2>
+
+      <div class="campo">
+        <label>NOME DO TUTOR</label>
+        <input id="tutorNome" required>
+      </div>
+
+      <div class="campo">
+        <label>CONTATO DO TUTOR (WHATSAPP)</label>
+        <input id="tutorContato" required placeholder="(81) 99999-9999">
+      </div>
+
+      <div class="campo">
+        <label>DESEJA EXIBIR OS DADOS DO TUTOR PUBLICAMENTE? (LGPD)</label>
+        <div class="opcoes opcoes-2">
+          <button type="button" class="opcao" onclick="selecionar(this,'whatsappPublico','Sim')">SIM</button>
+          <button type="button" class="opcao" onclick="selecionar(this,'whatsappPublico','Não')">NÃO</button>
+        </div>
+        <input type="hidden" id="whatsappPublico">
+      </div>
+
+      <div class="campo">
+        <label>ENDEREÇO DO TUTOR</label>
+        <input id="endereco">
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label>BAIRRO</label>
+          <input id="bairro" required>
+        </div>
+
+        <div class="campo">
+          <label>CIDADE</label>
+          <input id="cidade" required placeholder="Ex: Caruaru">
+        </div>
+      </div>
+    </div>
+
+    <div class="bloco">
+      <button type="submit" class="botao">CADASTRAR PET</button>
+    </div>
+  </form>
+
+  <div class="rodape-navegacao">
+    <button class="botao" onclick="abrirPagina('match')">MATCH</button>
+    <button class="botao" onclick="abrirPagina('mapa')">MAPA</button>
+    <button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
+  </div>
+</section>
+
+<!-- =====================================================
+     3. MATCH
+===================================================== -->
+<section id="match" class="pagina">
+  <h2>MATCH</h2>
+  <p style="margin:10px 0 20px; color:#064e3b">ENCONTRE ANIMAIS PERDIDOS OU DISPONÍVEIS PARA ADOÇÃO.</p>
+
+  <div class="filtro-match">
+    <label for="filtroStatus">O QUE VOCÊ DESEJA VISUALIZAR?</label>
+    <select id="filtroStatus" onchange="aplicarFiltro()">
+      <option value="TODOS">PERDIDOS E PARA ADOÇÃO</option>
+      <option value="PERDIDO">PERDIDOS</option>
+      <option value="PARA ADOÇÃO">PARA ADOÇÃO</option>
+    </select>
+  </div>
+
+  <div id="listaPets" class="lista-pets">Carregando animais...</div>
+
+  <div class="rodape-navegacao">
+    <button class="botao" onclick="abrirPagina('pet')">CADASTRAR PET</button>
+    <button class="botao" onclick="abrirPagina('mapa')">MAPA</button>
+    <button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
+  </div>
+</section>
+
+<!-- =====================================================
+     4. MAPA (Marcadores por Bairro e Cores)
+===================================================== -->
+<section id="mapa" class="pagina">
+  <h2>MAPA</h2>
+  <p style="margin-bottom:15px;">Visualização por Bairros (🔴 Perdidos | 🔵 Para Adoção | 🟢 Adotados)</p>
+
+  <div class="mapa-container">
+    <div class="mapa-rede-pet">
+      <div class="mapa-topo">
+        <span>CARUARU • REDE PET</span>
+        <span>🐾 OCORRÊNCIAS REGISTRADAS POR BAIRRO</span>
+      </div>
+      <div class="mapa-cidade">
+        <div class="marcador-pet marcador-perdido" style="left:20%; top:30%;" onclick="alert('Bairro Salgado: Animais Perdidos')">
+          <span>🐾</span><small>Salgado</small>
+        </div>
+        <div class="marcador-pet marcador-adocao" style="left:50%; top:45%;" onclick="alert('Bairro Centro: Animais para Adoção')">
+          <span>🐾</span><small>Centro</small>
+        </div>
+        <div class="marcador-pet marcador-adotado" style="right:20%; bottom:25%;" onclick="alert('Bairro Cidade Jardim: Animais Adotados')">
+          <span>🐾</span><small>C. Jardim</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape-navegacao">
+    <button class="botao" onclick="abrirPagina('pet')">CADASTRAR PET</button>
+    <button class="botao" onclick="abrirPagina('match')">MATCH</button>
+    <button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
+  </div>
+</section>
+
+<!-- =====================================================
+     5. SOBRE NÓS
+===================================================== -->
+<section id="sobre" class="pagina">
+  <h2>SOBRE O REDE PET</h2>
+
+  <div class="sobre-card">
+    <h3 style="color:#064e3b; margin-bottom:10px;">Nossa História</h3>
+    <p>O REDE PET nasceu do desejo de criar um espaço que aproximasse pessoas que compartilham o amor pelos animais, evoluindo para uma plataforma que conecta tecnologia, informação e participação comunitária.</p>
+  </div>
+
+  <div class="sobre-card">
+    <h3 style="color:#064e3b; margin-bottom:10px;">Os Pilares da REDE PET</h3>
+    <div class="pilares-grid">
+      <div class="pilar-box"><strong>CONECTAR</strong><br><small>Aproximar pessoas que podem ajudar e quem precisa de ajuda.</small></div>
+      <div class="pilar-box"><strong>PROTEGER</strong><br><small>Dar visibilidade aos animais perdidos e incentivar a adoção.</small></div>
+      <div class="pilar-box"><strong>MOBILIZAR</strong><br><small>Transformar a comunidade em uma rede de colaboração ativa.</small></div>
+    </div>
+  </div>
+
+  <div class="sobre-card">
+    <h3 style="color:#064e3b; margin-bottom:10px;">Equipe</h3>
+    <p>• <strong>Goretti Almeida:</strong> Idealizadora da iniciativa.</p>
+    <p>• <strong>Francisco Leonardo:</strong> Idealizador do projeto, responsável pela concepção da plataforma e identidade visual.</p>
+    <p>• <strong>Ezequiel Nascimento:</strong> Desenvolvimento e aperfeiçoamento técnico.</p>
+  </div>
+
+  <div class="rodape-navegacao">
+    <button class="botao" onclick="abrirPagina('pet')">CADASTRAR PET</button>
+    <button class="botao" onclick="abrirPagina('match')">MATCH</button>
+    <button class="botao botao-secundario" onclick="abrirPagina('inicio')">INÍCIO</button>
+  </div>
+</section>
+
+</main>
+
+<!-- MODAL DE DETALHES DO PET -->
+<div id="modal" class="modal">
+  <div class="modal-conteudo">
+    <div class="modal-corpo" id="modalCorpo"></div>
+    <div style="padding:15px; background:#f5f7f6; text-align:right;">
+      <button class="botao" onclick="fecharModal()" style="padding:8px 16px;">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const URL_API = "https://script.google.com/macros/s/AKfycbzKA88ttm2BNiuUUPW6NMFAQuL5wf9PmhbNnHBFF-EJHh-gXO3G6ckzV1WUeBb0-a5x/exec";
+  let tutorAtual = localStorage.getItem("tutorId") || "";
+  let pesoAtual = 0;
+
+  function abrirPagina(id) {
+    document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
+    document.getElementById(id).classList.add('ativa');
+    window.scrollTo(0,0);
+    if (id === 'match') carregarPets();
+  }
+
+  function selecionar(btn, idCampo, valor) {
+    const pai = btn.parentElement;
+    pai.querySelectorAll('.opcao').forEach(b => b.classList.remove('selecionada'));
+    btn.classList.add('selecionada');
+    document.getElementById(idCampo).value = valor;
+  }
+
+  function alterarPeso(delta) {
+    pesoAtual = Math.max(0, pesoAtual + delta);
+    document.getElementById('pesoValor').innerText = pesoAtual;
+    document.getElementById('peso').value = pesoAtual;
+  }
+
+  function loginTutorNaInicio() {
+    const whats = document.getElementById('tutorWhatsInput').value.trim();
+    if(!whats) return;
+    fetch(URL_API, { method: 'POST', body: JSON.stringify({ action: 'loginTutor', telefone: whats }) })
+    .then(res => res.json())
+    .then(d => {
+      if(d && d.idTutor) {
+        tutorAtual = d.idTutor;
+        localStorage.setItem("tutorId", tutorAtual);
+        document.getElementById('msgTutorInicio').innerText = "✅ Tutor Autenticado!";
+        carregarPets();
+      } else {
+        document.getElementById('msgTutorInicio').innerText = "❌ Tutor não encontrado.";
+      }
+    });
+  }
+
+  function recuperarCodigoTutor() {
+    alert("Para recuperar seu código de tutor, informe seu WhatsApp cadastrado ou entre em contato com o administrador.");
+  }
+
+  function carregarPets() {
+    const container = document.getElementById('listaPets');
+    container.innerHTML = "Procurando animais...";
+    fetch(`${URL_API}?action=listar&idTutor=${tutorAtual}`)
+    .then(r => r.json())
+    .then(data => {
+      if(!Array.isArray(data) || !data.length) {
+        container.innerHTML = "<p>Nenhum pet encontrado.</p>";
+        return;
+      }
+      container.innerHTML = "";
+      data.forEach(pet => {
+        const card = document.createElement('div');
+        card.className = 'pet-card';
+        const foto = pet.foto ? `<img src="${pet.foto}" class="pet-foto">` : `<div class="pet-sem-foto">Sem Foto</div>`;
+        const podeEditar = (pet.idTutor && pet.idTutor === tutorAtual);
+
+        card.innerHTML = `
+          ${foto}
+          <div class="pet-resumo">
+            <div class="pet-topo-resumo">
+              <div class="pet-nome">${pet.nome || 'Sem Nome'}</div>
+              ${podeEditar ? `<button class="botao-editar-circular" onclick="editarStatusPet(event, '${pet.id}', '${pet.status}')">✏️</button>` : ''}
+            </div>
+            <div style="font-size:13px; color:#555;">📍 ${pet.bairro || 'Local não informado'}</div>
+            <div class="pet-status">${pet.status}</div>
+          </div>
+        `;
+        card.onclick = (e) => { if(e.target.tagName !== 'BUTTON') abrirDetalhesPet(pet); };
+        container.appendChild(card);
+      });
+    });
+  }
+
+  function aplicarFiltro() {
+    const filtro = document.getElementById('filtroStatus').value;
+    document.querySelectorAll('.pet-card').forEach(card => {
+      const st = card.querySelector('.pet-status').innerText.toUpperCase();
+      if(filtro === 'TODOS' || st === filtro) card.style.display = 'block';
+      else card.style.display = 'none';
+    });
+  }
+
+  function cadastrarPet(e) {
+    e.preventDefault();
+    const dados = {
+      action: 'cadastrar',
+      nome: document.getElementById('nome').value,
+      status: document.getElementById('status').value,
+      idade: document.getElementById('idade').value,
+      peso: document.getElementById('peso').value,
+      especie: document.getElementById('especie').value,
+      raca: document.getElementById('raca').value,
+      sexo: document.getElementById('sexo').value,
+      porte: document.getElementById('porte').value,
+      cor: document.getElementById('cor').value,
+      castrado: document.getElementById('castrado').value,
+      vacinado: document.getElementById('vacinado').value,
+      foto: document.getElementById('foto').value,
+      tutorNome: document.getElementById('tutorNome').value,
+      tutorContato: document.getElementById('tutorContato').value,
+      whatsappPublico: document.getElementById('whatsappPublico').value,
+      endereco: document.getElementById('endereco').value,
+      bairro: document.getElementById('bairro').value,
+      cidade: document.getElementById('cidade').value,
+      pontoReferencia: document.getElementById('pontoReferencia').value,
+      ultimaVez: document.getElementById('ultimaVez').value,
+      observacoes: document.getElementById('observacoes').value,
+      idTutor: tutorAtual
+    };
+
+    fetch(URL_API, { method: 'POST', body: JSON.stringify(dados) })
+    .then(r => r.json())
+    .then(d => {
+      if(d.sucesso) {
+        alert("Pet cadastrado com sucesso!");
+        if(d.idTutor) { tutorAtual = d.idTutor; localStorage.setItem("tutorId", tutorAtual); }
+        abrirPagina('match');
+      } else { alert("Erro ao cadastrar."); }
+    });
+  }
+
+  function editarStatusPet(e, id, atual) {
+    e.stopPropagation();
+    const novo = prompt("Atualizar status (Perdido, Para adoção, Encontrado, Adotado):", atual);
+    if(!novo) return;
+    fetch(URL_API, { method: 'POST', body: JSON.stringify({ action: 'status', id: id, novoStatus: novo, idTutor: tutorAtual }) })
+    .then(r => r.json())
+    .then(d => { if(d.sucesso) carregarPets(); else alert("Permissão negada."); });
+  }
+
+  function abrirDetalhesPet(pet) {
+    const corpo = document.getElementById('modalCorpo');
+    corpo.innerHTML = `
+      <h2>${pet.nome}</h2>
+      ${pet.foto ? `<img src="${pet.foto}" style="width:100%; max-height:250px; object-fit:contain; margin-bottom:10px;">` : ''}
+      <p><strong>Status:</strong> ${pet.status}</p>
+      <p><strong>Espécie/Raça:</strong> ${pet.especie || ''} - ${pet.raca || ''}</p>
+      <p><strong>Bairro:</strong> ${pet.bairro || ''}</p>
+      <p><strong>Contato Tutor:</strong> ${pet.tutorContato || 'Privado'}</p>
+      <p><strong>Observações:</strong> ${pet.observacoes || 'Nenhuma'}</p>
+      
+      <div style="margin-top:20px; border-top:1px solid #ddd; padding-top:15px;">
+        <h3>Comentários</h3>
+        <div id="comentariosPetLista" style="max-height:120px; overflow-y:auto; font-size:13px; margin:10px 0;">Carregando...</div>
+        <input type="text" id="comentarioAutor" placeholder="Seu Nome" style="margin-bottom:5px;">
+        <textarea id="comentarioTexto" placeholder="Escreva uma informação..." style="min-height:50px; margin-bottom:5px;"></textarea>
+        <button class="botao" onclick="enviarComentarioPet('${pet.id}')" style="padding:8px 14px; font-size:13px;">Comentar</button>
+      </div>
+    `;
+    document.getElementById('modal').classList.add('aberto');
+    carregarComentariosPet(pet.id);
+  }
+
+  function carregarComentariosPet(idPet) {
+    fetch(`${URL_API}?action=comentarios&idPet=${idPet}`)
+    .then(r => r.json())
+    .then(coms => {
+      const div = document.getElementById('comentariosPetLista');
+      if(!coms.length) { div.innerHTML = "Nenhum comentário."; return; }
+      div.innerHTML = coms.map(c => `<div><b>${c.nomeComentario}:</b> ${c.texto || ''}</div>`).join('<hr style="margin:4px 0;">');
+    });
+  }
+
+  function enviarComentarioPet(idPet) {
+    const nomeComentario = document.getElementById('comentarioAutor').value;
+    const texto = document.getElementById('comentarioTexto').value;
+    if(!texto) return;
+    fetch(URL_API, { method: 'POST', body: JSON.stringify({ action: 'comentar', idPet, nomeComentario, texto }) })
+    .then(() => carregarComentariosPet(idPet));
+  }
+
+  function publicarNoFeed() {
+    const tit = document.getElementById('feedTitulo').value;
+    const txt = document.getElementById('feedTexto').value;
+    if(!txt) return;
+    const item = document.createElement('div');
+    item.style.cssText = "background:#fff; border:1px solid #d8dfdb; border-radius:10px; padding:18px;";
+    item.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <strong style="color:#064e3b; font-size:16px;">🐾 ${tit || 'Comunicado Comunidade'}</strong>
+        <span style="font-size:12px; color:#777;">Agora</span>
+      </div>
+      <p style="margin-bottom:10px; color:#333;">${txt}</p>
+      <div style="display:flex; gap:15px; align-items:center; border-top:1px solid #eee; padding-top:10px; font-size:13px;">
+        <button onclick="curtirItem(this)" style="background:none; border:none; cursor:pointer; font-weight:bold; color:#064e3b;"> <span>0</span> Curtidas</button>
+        <button onclick="compartilharItem('${tit}')" style="background:none; border:none; cursor:pointer; font-weight:bold; color:#064e3b;">🔗 Compartilhar</button>
+      </div>
+    `;
+    document.getElementById('listaFeed').prepend(item);
+    document.getElementById('feedTitulo').value = "";
+    document.getElementById('feedTexto').value = "";
+  }
+
+  function curtirItem(btn) {
+    const span = btn.querySelector('span');
+    span.innerText = parseInt(span.innerText) + 1;
+  }
+
+  function compartilharItem(titulo) {
+    if(navigator.share) {
+      navigator.share({ title: 'REDE PET', text: titulo, url: window.location.href });
+    } else {
+      alert("Link copiado para compartilhamento!");
+    }
+  }
+
+  function fecharModal() { document.getElementById('modal').classList.remove('aberto'); }
+</script>
+
+</body>
+</html>
